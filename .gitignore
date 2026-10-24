@@ -52,3 +52,16 @@ Thumbs.db
 coverage/
 .coverage
 htmlcov/
+
+# Retrospective-review bulky / regenerable outputs
+research/retrospective-review/outputs/plots/
+research/retrospective-review/outputs/*.npy
+research/retrospective-review/outputs/cache/
+
+# Allow research tree despite broad data ignores
+!research/
+!research/**/
+!research/**/*.md
+!research/**/*.py
+!research/**/*.json
+!research/**/*.toml
