@@ -1,0 +1,940 @@
+{
+  "generated_at": "2026-10-24T18:55:30-04:00",
+  "design": "research/pressure_week_residual/DESIGN.md",
+  "holdout_honesty": "Previously examined 2018/2019 cases are development/diagnostic, not a blind holdout. 2019 is not evaluated for new settings in this run.",
+  "frozen_settings_path": "research/pressure_week_residual/outputs/frozen_settings.json",
+  "causality_probe": {
+    "probe_idx": 7016,
+    "score_unchanged_after_future_mutation": true,
+    "score": 0.5
+  },
+  "warm_prefix": {
+    "first_scorable_idx": 2016,
+    "warm_missing_fraction": 1.0,
+    "post_warm_missing_fraction": 0.0,
+    "warm_all_missing": true
+  },
+  "DEV": {
+    "residual": {
+      "period": "DEV",
+      "method": "week_residual",
+      "tau": 1.5,
+      "n_onsets": 9,
+      "n_abrupt_onsets": 3,
+      "onset_recall": 0.2222222222222222,
+      "abrupt_onset_recall": 0.6666666666666666,
+      "matched_delays_hours": {
+        "median": 14.666666666666666,
+        "p90": 21.2,
+        "max": 22.833333333333332,
+        "n": 2
+      },
+      "n_episodes": 13,
+      "n_matched_episodes": 2,
+      "n_unmatched_episodes": 11,
+      "unmatched_episodes_per_week": 0.4425287356321839,
+      "time_in_alarm_fraction": 0.0029334291187739464,
+      "longest_episode_hours": 2.4166666666666665,
+      "period_weeks": 24.857142857142858,
+      "matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify": "2018-03-06 14:35",
+          "delay_hours": 22.833333333333332,
+          "episode_peak_score": 2.2399978637695312,
+          "strongest_sensor": "n229",
+          "open_leaks_at_notify": 4,
+          "context_at_notify": {
+            "p227": 40.19000244140625,
+            "p235": 43.459999084472656,
+            "PUMP_1": 43.97999954223633,
+            "T1": 0.0
+          }
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify": "2018-05-18 15:05",
+          "delay_hours": 6.5,
+          "episode_peak_score": 2.25,
+          "strongest_sensor": "n54",
+          "open_leaks_at_notify": 4,
+          "context_at_notify": {
+            "p227": 46.56000518798828,
+            "p235": 72.91999816894531,
+            "PUMP_1": 43.7599983215332,
+            "T1": -0.029999971389770508
+          }
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        }
+      ]
+    },
+    "baseline": {
+      "period": "DEV",
+      "method": "raw_30m_drop",
+      "tau": 1.1,
+      "n_onsets": 9,
+      "n_abrupt_onsets": 3,
+      "onset_recall": 0.2222222222222222,
+      "abrupt_onset_recall": 0.3333333333333333,
+      "matched_delays_hours": {
+        "median": 13.875,
+        "p90": 19.641666666666666,
+        "max": 21.083333333333332,
+        "n": 2
+      },
+      "n_episodes": 37,
+      "n_matched_episodes": 2,
+      "n_unmatched_episodes": 35,
+      "unmatched_episodes_per_week": 1.4080459770114941,
+      "time_in_alarm_fraction": 0.0014168263090676885,
+      "longest_episode_hours": 0.3333333333333333,
+      "period_weeks": 24.857142857142858,
+      "matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify": "2018-05-03 12:00",
+          "delay_hours": 21.083333333333332,
+          "episode_peak_score": 1.4099998474121094,
+          "strongest_sensor": "n54",
+          "open_leaks_at_notify": 3,
+          "context_at_notify": {
+            "p227": 26.830001831054688,
+            "p235": 28.49999237060547,
+            "PUMP_1": 44.0,
+            "T1": -0.09999990463256836
+          }
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify": "2018-05-18 15:15",
+          "delay_hours": 6.666666666666667,
+          "episode_peak_score": 1.470001220703125,
+          "strongest_sensor": "n54",
+          "open_leaks_at_notify": 4,
+          "context_at_notify": {
+            "p227": 39.73999786376953,
+            "p235": 64.43999481201172,
+            "PUMP_1": 43.84000015258789,
+            "T1": 0.009999990463256836
+          }
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        }
+      ]
+    },
+    "residual_grid": [
+      {
+        "period": "DEV",
+        "method": "week_residual",
+        "tau": 0.25,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 0.6666666666666666,
+        "abrupt_onset_recall": 0.0,
+        "matched_delays_hours": {
+          "median": 4.291666666666667,
+          "p90": 10.416666666666666,
+          "max": 13.25,
+          "n": 6
+        },
+        "n_episodes": 267,
+        "n_matched_episodes": 6,
+        "n_unmatched_episodes": 261,
+        "unmatched_episodes_per_week": 10.5,
+        "time_in_alarm_fraction": 0.3269276819923372,
+        "longest_episode_hours": 169.41666666666666,
+        "period_weeks": 24.857142857142858
+      },
+      {
+        "period": "DEV",
+        "method": "week_residual",
+        "tau": 0.35,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 0.7777777777777778,
+        "abrupt_onset_recall": 0.6666666666666666,
+        "matched_delays_hours": {
+          "median": 3.5833333333333335,
+          "p90": 10.400000000000002,
+          "max": 13.25,
+          "n": 7
+        },
+        "n_episodes": 216,
+        "n_matched_episodes": 7,
+        "n_unmatched_episodes": 209,
+        "unmatched_episodes_per_week": 8.408045977011493,
+        "time_in_alarm_fraction": 0.2500199553001277,
+        "longest_episode_hours": 167.83333333333334,
+        "period_weeks": 24.857142857142858
+      },
+      {
+        "period": "DEV",
+        "method": "week_residual",
+        "tau": 0.5,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 0.7777777777777778,
+        "abrupt_onset_recall": 0.6666666666666666,
+        "matched_delays_hours": {
+          "median": 1.4166666666666667,
+          "p90": 11.950000000000001,
+          "max": 13.25,
+          "n": 7
+        },
+        "n_episodes": 186,
+        "n_matched_episodes": 7,
+        "n_unmatched_episodes": 179,
+        "unmatched_episodes_per_week": 7.2011494252873565,
+        "time_in_alarm_fraction": 0.18322956577266922,
+        "longest_episode_hours": 167.83333333333334,
+        "period_weeks": 24.857142857142858
+      },
+      {
+        "period": "DEV",
+        "method": "week_residual",
+        "tau": 0.75,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 0.6666666666666666,
+        "abrupt_onset_recall": 0.6666666666666666,
+        "matched_delays_hours": {
+          "median": 9.791666666666668,
+          "p90": 16.0,
+          "max": 20.916666666666668,
+          "n": 6
+        },
+        "n_episodes": 96,
+        "n_matched_episodes": 6,
+        "n_unmatched_episodes": 90,
+        "unmatched_episodes_per_week": 3.6206896551724137,
+        "time_in_alarm_fraction": 0.09871886973180076,
+        "longest_episode_hours": 155.58333333333334,
+        "period_weeks": 24.857142857142858
+      },
+      {
+        "period": "DEV",
+        "method": "week_residual",
+        "tau": 1.0,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 0.4444444444444444,
+        "abrupt_onset_recall": 0.6666666666666666,
+        "matched_delays_hours": {
+          "median": 6.708333333333333,
+          "p90": 17.86666666666667,
+          "max": 20.916666666666668,
+          "n": 4
+        },
+        "n_episodes": 70,
+        "n_matched_episodes": 4,
+        "n_unmatched_episodes": 66,
+        "unmatched_episodes_per_week": 2.655172413793103,
+        "time_in_alarm_fraction": 0.055615421455938695,
+        "longest_episode_hours": 21.583333333333332,
+        "period_weeks": 24.857142857142858
+      },
+      {
+        "period": "DEV",
+        "method": "week_residual",
+        "tau": 1.25,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 0.2222222222222222,
+        "abrupt_onset_recall": 0.6666666666666666,
+        "matched_delays_hours": {
+          "median": 3.375,
+          "p90": 5.875,
+          "max": 6.5,
+          "n": 2
+        },
+        "n_episodes": 29,
+        "n_matched_episodes": 2,
+        "n_unmatched_episodes": 27,
+        "unmatched_episodes_per_week": 1.0862068965517242,
+        "time_in_alarm_fraction": 0.028975095785440615,
+        "longest_episode_hours": 16.916666666666668,
+        "period_weeks": 24.857142857142858
+      },
+      {
+        "period": "DEV",
+        "method": "week_residual",
+        "tau": 1.5,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 0.2222222222222222,
+        "abrupt_onset_recall": 0.6666666666666666,
+        "matched_delays_hours": {
+          "median": 14.666666666666666,
+          "p90": 21.2,
+          "max": 22.833333333333332,
+          "n": 2
+        },
+        "n_episodes": 13,
+        "n_matched_episodes": 2,
+        "n_unmatched_episodes": 11,
+        "unmatched_episodes_per_week": 0.4425287356321839,
+        "time_in_alarm_fraction": 0.0029334291187739464,
+        "longest_episode_hours": 2.4166666666666665,
+        "period_weeks": 24.857142857142858
+      }
+    ],
+    "baseline_grid": [
+      {
+        "period": "DEV",
+        "method": "raw_30m_drop",
+        "tau": 0.15,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 1.0,
+        "abrupt_onset_recall": 1.0,
+        "matched_delays_hours": {
+          "median": 3.4166666666666665,
+          "p90": 8.6,
+          "max": 11.666666666666666,
+          "n": 9
+        },
+        "n_episodes": 580,
+        "n_matched_episodes": 9,
+        "n_unmatched_episodes": 571,
+        "unmatched_episodes_per_week": 22.97126436781609,
+        "time_in_alarm_fraction": 0.27773786717752236,
+        "longest_episode_hours": 11.583333333333334,
+        "period_weeks": 24.857142857142858
+      },
+      {
+        "period": "DEV",
+        "method": "raw_30m_drop",
+        "tau": 0.25,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 1.0,
+        "abrupt_onset_recall": 1.0,
+        "matched_delays_hours": {
+          "median": 2.4166666666666665,
+          "p90": 12.25,
+          "max": 14.583333333333334,
+          "n": 9
+        },
+        "n_episodes": 440,
+        "n_matched_episodes": 9,
+        "n_unmatched_episodes": 431,
+        "unmatched_episodes_per_week": 17.339080459770116,
+        "time_in_alarm_fraction": 0.10690054278416347,
+        "longest_episode_hours": 6.5,
+        "period_weeks": 24.857142857142858
+      },
+      {
+        "period": "DEV",
+        "method": "raw_30m_drop",
+        "tau": 0.35,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 1.0,
+        "abrupt_onset_recall": 1.0,
+        "matched_delays_hours": {
+          "median": 5.5,
+          "p90": 12.3,
+          "max": 14.833333333333334,
+          "n": 9
+        },
+        "n_episodes": 308,
+        "n_matched_episodes": 9,
+        "n_unmatched_episodes": 299,
+        "unmatched_episodes_per_week": 12.028735632183908,
+        "time_in_alarm_fraction": 0.03965118135376756,
+        "longest_episode_hours": 2.8333333333333335,
+        "period_weeks": 24.857142857142858
+      },
+      {
+        "period": "DEV",
+        "method": "raw_30m_drop",
+        "tau": 0.5,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 1.0,
+        "abrupt_onset_recall": 1.0,
+        "matched_delays_hours": {
+          "median": 5.5,
+          "p90": 13.5,
+          "max": 20.833333333333332,
+          "n": 9
+        },
+        "n_episodes": 187,
+        "n_matched_episodes": 9,
+        "n_unmatched_episodes": 178,
+        "unmatched_episodes_per_week": 7.160919540229885,
+        "time_in_alarm_fraction": 0.015445402298850575,
+        "longest_episode_hours": 0.9166666666666666,
+        "period_weeks": 24.857142857142858
+      },
+      {
+        "period": "DEV",
+        "method": "raw_30m_drop",
+        "tau": 0.75,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 0.7777777777777778,
+        "abrupt_onset_recall": 1.0,
+        "matched_delays_hours": {
+          "median": 6.5,
+          "p90": 14.983333333333336,
+          "max": 20.833333333333332,
+          "n": 7
+        },
+        "n_episodes": 168,
+        "n_matched_episodes": 7,
+        "n_unmatched_episodes": 161,
+        "unmatched_episodes_per_week": 6.477011494252873,
+        "time_in_alarm_fraction": 0.012232598978288633,
+        "longest_episode_hours": 0.3333333333333333,
+        "period_weeks": 24.857142857142858
+      },
+      {
+        "period": "DEV",
+        "method": "raw_30m_drop",
+        "tau": 1.0,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 0.4444444444444444,
+        "abrupt_onset_recall": 1.0,
+        "matched_delays_hours": {
+          "median": 5.041666666666667,
+          "p90": 16.533333333333335,
+          "max": 20.833333333333332,
+          "n": 4
+        },
+        "n_episodes": 82,
+        "n_matched_episodes": 4,
+        "n_unmatched_episodes": 78,
+        "unmatched_episodes_per_week": 3.1379310344827585,
+        "time_in_alarm_fraction": 0.004290389527458493,
+        "longest_episode_hours": 0.3333333333333333,
+        "period_weeks": 24.857142857142858
+      },
+      {
+        "period": "DEV",
+        "method": "raw_30m_drop",
+        "tau": 1.1,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 0.2222222222222222,
+        "abrupt_onset_recall": 0.3333333333333333,
+        "matched_delays_hours": {
+          "median": 13.875,
+          "p90": 19.641666666666666,
+          "max": 21.083333333333332,
+          "n": 2
+        },
+        "n_episodes": 37,
+        "n_matched_episodes": 2,
+        "n_unmatched_episodes": 35,
+        "unmatched_episodes_per_week": 1.4080459770114941,
+        "time_in_alarm_fraction": 0.0014168263090676885,
+        "longest_episode_hours": 0.3333333333333333,
+        "period_weeks": 24.857142857142858
+      },
+      {
+        "period": "DEV",
+        "method": "raw_30m_drop",
+        "tau": 1.25,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 0.0,
+        "abrupt_onset_recall": 0.0,
+        "matched_delays_hours": {
+          "median": null,
+          "p90": null,
+          "max": null,
+          "n": 0
+        },
+        "n_episodes": 5,
+        "n_matched_episodes": 0,
+        "n_unmatched_episodes": 5,
+        "unmatched_episodes_per_week": 0.20114942528735633,
+        "time_in_alarm_fraction": 0.00015964240102171138,
+        "longest_episode_hours": 0.3333333333333333,
+        "period_weeks": 24.857142857142858
+      },
+      {
+        "period": "DEV",
+        "method": "raw_30m_drop",
+        "tau": 1.5,
+        "n_onsets": 9,
+        "n_abrupt_onsets": 3,
+        "onset_recall": 0.0,
+        "abrupt_onset_recall": 0.0,
+        "matched_delays_hours": {
+          "median": null,
+          "p90": null,
+          "max": null,
+          "n": 0
+        },
+        "n_episodes": 0,
+        "n_matched_episodes": 0,
+        "n_unmatched_episodes": 0,
+        "unmatched_episodes_per_week": 0.0,
+        "time_in_alarm_fraction": 0.0,
+        "longest_episode_hours": 0.0,
+        "period_weeks": 24.857142857142858
+      }
+    ]
+  },
+  "DIAG": {
+    "residual": {
+      "period": "DIAG",
+      "method": "week_residual",
+      "tau": 1.5,
+      "n_onsets": 5,
+      "n_abrupt_onsets": 3,
+      "onset_recall": 0.0,
+      "abrupt_onset_recall": 0.0,
+      "matched_delays_hours": {
+        "median": null,
+        "p90": null,
+        "max": null,
+        "n": 0
+      },
+      "n_episodes": 8,
+      "n_matched_episodes": 0,
+      "n_unmatched_episodes": 8,
+      "unmatched_episodes_per_week": 0.30434782608695654,
+      "time_in_alarm_fraction": 0.00390625,
+      "longest_episode_hours": 6.583333333333333,
+      "period_weeks": 26.285714285714285,
+      "matches": [
+        {
+          "pipe": "p654",
+          "leak_type": "incipient",
+          "onset": "2018-07-05 03:40",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p810",
+          "leak_type": "incipient",
+          "onset": "2018-07-28 03:05",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p183",
+          "leak_type": "abrupt",
+          "onset": "2018-08-07 02:35",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p158",
+          "leak_type": "abrupt",
+          "onset": "2018-10-06 02:35",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p369",
+          "leak_type": "abrupt",
+          "onset": "2018-10-26 02:05",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        }
+      ]
+    },
+    "baseline": {
+      "period": "DIAG",
+      "method": "raw_30m_drop",
+      "tau": 1.1,
+      "n_onsets": 5,
+      "n_abrupt_onsets": 3,
+      "onset_recall": 0.0,
+      "abrupt_onset_recall": 0.0,
+      "matched_delays_hours": {
+        "median": null,
+        "p90": null,
+        "max": null,
+        "n": 0
+      },
+      "n_episodes": 56,
+      "n_matched_episodes": 0,
+      "n_unmatched_episodes": 56,
+      "unmatched_episodes_per_week": 2.130434782608696,
+      "time_in_alarm_fraction": 0.0024154589371980675,
+      "longest_episode_hours": 0.3333333333333333,
+      "period_weeks": 26.285714285714285,
+      "matches": [
+        {
+          "pipe": "p654",
+          "leak_type": "incipient",
+          "onset": "2018-07-05 03:40",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p810",
+          "leak_type": "incipient",
+          "onset": "2018-07-28 03:05",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p183",
+          "leak_type": "abrupt",
+          "onset": "2018-08-07 02:35",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p158",
+          "leak_type": "abrupt",
+          "onset": "2018-10-06 02:35",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        },
+        {
+          "pipe": "p369",
+          "leak_type": "abrupt",
+          "onset": "2018-10-26 02:05",
+          "matched": false,
+          "notify": null,
+          "delay_hours": null,
+          "episode_peak_score": null,
+          "strongest_sensor": null,
+          "open_leaks_at_notify": null,
+          "context_at_notify": null
+        }
+      ]
+    }
+  },
+  "ordinary_operating_spotchecks_DEV": [
+    {
+      "timestamp": "2018-01-17 18:00",
+      "delta_PUMP_1": -43.88999938964844,
+      "delta_T1": -1.429999828338623,
+      "score": 1.489999771118164,
+      "max_score_next_hour": 1.529998779296875,
+      "would_exceed_tau_next_hour": true,
+      "open_leaks": 1
+    },
+    {
+      "timestamp": "2018-01-10 18:00",
+      "delta_PUMP_1": 43.88999938964844,
+      "delta_T1": 1.3999998569488525,
+      "score": 0.8799972534179688,
+      "max_score_next_hour": 0.9200019836425781,
+      "would_exceed_tau_next_hour": false,
+      "open_leaks": 1
+    },
+    {
+      "timestamp": "2018-01-10 19:00",
+      "delta_PUMP_1": -44.130001068115234,
+      "delta_T1": 1.3599998950958252,
+      "score": -0.009998321533203125,
+      "max_score_next_hour": 0.009998321533203125,
+      "would_exceed_tau_next_hour": false,
+      "open_leaks": 1
+    },
+    {
+      "timestamp": "2018-01-17 04:00",
+      "delta_PUMP_1": 44.099998474121094,
+      "delta_T1": 1.3600001335144043,
+      "score": 0.5099983215332031,
+      "max_score_next_hour": 0.5699996948242188,
+      "would_exceed_tau_next_hour": false,
+      "open_leaks": 1
+    },
+    {
+      "timestamp": "2018-01-17 19:00",
+      "delta_PUMP_1": 44.13999938964844,
+      "delta_T1": -1.3299999237060547,
+      "score": 1.3699989318847656,
+      "max_score_next_hour": 1.3699989318847656,
+      "would_exceed_tau_next_hour": false,
+      "open_leaks": 1
+    },
+    {
+      "timestamp": "2018-01-17 07:00",
+      "delta_PUMP_1": -44.18000030517578,
+      "delta_T1": 1.2999999523162842,
+      "score": 0.0,
+      "max_score_next_hour": 0.0,
+      "would_exceed_tau_next_hour": false,
+      "open_leaks": 1
+    },
+    {
+      "timestamp": "2018-01-10 02:00",
+      "delta_PUMP_1": -44.060001373291016,
+      "delta_T1": -1.2800002098083496,
+      "score": 1.19000244140625,
+      "max_score_next_hour": 1.2900009155273438,
+      "would_exceed_tau_next_hour": false,
+      "open_leaks": 1
+    },
+    {
+      "timestamp": "2018-01-10 07:00",
+      "delta_PUMP_1": 44.18000030517578,
+      "delta_T1": -1.2100000381469727,
+      "score": 1.220001220703125,
+      "max_score_next_hour": 1.220001220703125,
+      "would_exceed_tau_next_hour": false,
+      "open_leaks": 1
+    },
+    {
+      "timestamp": "2018-01-09 13:00",
+      "delta_PUMP_1": 43.79999923706055,
+      "delta_T1": 1.2099997997283936,
+      "score": 1.0699996948242188,
+      "max_score_next_hour": 1.1100006103515625,
+      "would_exceed_tau_next_hour": false,
+      "open_leaks": 1
+    },
+    {
+      "timestamp": "2018-01-17 03:00",
+      "delta_PUMP_1": 44.11000061035156,
+      "delta_T1": 1.190000057220459,
+      "score": 0.6300010681152344,
+      "max_score_next_hour": 0.6300010681152344,
+      "would_exceed_tau_next_hour": false,
+      "open_leaks": 1
+    },
+    {
+      "timestamp": "2018-01-17 17:00",
+      "delta_PUMP_1": -43.93000030517578,
+      "delta_T1": -1.1800000667572021,
+      "score": 1.260000228881836,
+      "max_score_next_hour": 1.460000991821289,
+      "would_exceed_tau_next_hour": false,
+      "open_leaks": 1
+    },
+    {
+      "timestamp": "2018-01-10 17:00",
+      "delta_PUMP_1": 43.93000030517578,
+      "delta_T1": 1.1600000858306885,
+      "score": 0.8400001525878906,
+      "max_score_next_hour": 1.029998779296875,
+      "would_exceed_tau_next_hour": false,
+      "open_leaks": 1
+    }
+  ],
+  "recommendation_inputs_only": true
+}
