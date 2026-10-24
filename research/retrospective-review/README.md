@@ -13,3 +13,9 @@ Offline feasibility experiment on branch `research/retrospective-review`.
 ```
 
 Outputs: `outputs/frozen_settings.json`, `outputs/summary.json`, `outputs/RESULTS.md`, regenerable plots under `outputs/plots/` (gitignored).
+
+Evaluation audit (frozen method unchanged): `outputs/AUDIT.md` — run via
+
+```bash
+.venv/bin/python research/retrospective-review/audit_evaluation.py
+```
