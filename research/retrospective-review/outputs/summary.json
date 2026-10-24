@@ -1,0 +1,290 @@
+{
+  "generated_at": "2026-10-24T19:31:24-04:00",
+  "holdout_honesty": "2019 is not evaluated; it has already been examined historically and is not a new blind holdout. 2018 labels are for documented DEV/DIAG matching only.",
+  "method": "PairwiseOLS + offline CUSUM (LILA-inspired independent implementation)",
+  "frozen": {
+    "train_days": 14,
+    "cusum_k": 0.5,
+    "cusum_h": 8.0,
+    "min_segment_hours": 24.0
+  },
+  "gate_met": false,
+  "DEV_selected": {
+    "period": "DEV",
+    "settings": {
+      "train_days": 14,
+      "cusum_k": 0.5,
+      "cusum_h": 8.0,
+      "min_segment_hours": 24.0
+    },
+    "n_onsets": 9,
+    "n_abrupt": 3,
+    "n_incipient": 6,
+    "onset_recall": 1.0,
+    "abrupt_recall": 1.0,
+    "incipient_recall": 1.0,
+    "n_candidates": 167,
+    "n_matched_candidates": 9,
+    "n_unmatched_candidates": 158,
+    "unmatched_per_week": 6.110497237569061,
+    "median_candidate_duration_hours": 24.0,
+    "duplicate_unmatched_within_24h": 139,
+    "change_time_error_hours": {
+      "n": 9,
+      "median": 6.583333333333333,
+      "p90": 41.00000000000003,
+      "max_abs": 169.33333333333334
+    },
+    "period_weeks": 25.857142857142858,
+    "runtime_seconds": 0.3628829591907561,
+    "analyzed_rows": 52128,
+    "analyzed_sensors": 33,
+    "volume_row_x_sensor": 1720224
+  },
+  "DEV_grid_slim": [
+    {
+      "settings": {
+        "train_days": 7,
+        "cusum_k": 0.5,
+        "cusum_h": 4.0,
+        "min_segment_hours": 12.0
+      },
+      "abrupt_recall": 1.0,
+      "onset_recall": 1.0,
+      "unmatched_per_week": 11.872928176795579,
+      "n_candidates": 316
+    },
+    {
+      "settings": {
+        "train_days": 7,
+        "cusum_k": 0.5,
+        "cusum_h": 4.0,
+        "min_segment_hours": 24.0
+      },
+      "abrupt_recall": 1.0,
+      "onset_recall": 1.0,
+      "unmatched_per_week": 6.3812154696132595,
+      "n_candidates": 174
+    },
+    {
+      "settings": {
+        "train_days": 7,
+        "cusum_k": 0.5,
+        "cusum_h": 6.0,
+        "min_segment_hours": 12.0
+      },
+      "abrupt_recall": 1.0,
+      "onset_recall": 1.0,
+      "unmatched_per_week": 11.756906077348066,
+      "n_candidates": 313
+    },
+    {
+      "settings": {
+        "train_days": 7,
+        "cusum_k": 0.5,
+        "cusum_h": 6.0,
+        "min_segment_hours": 24.0
+      },
+      "abrupt_recall": 1.0,
+      "onset_recall": 1.0,
+      "unmatched_per_week": 6.3812154696132595,
+      "n_candidates": 174
+    },
+    {
+      "settings": {
+        "train_days": 7,
+        "cusum_k": 0.5,
+        "cusum_h": 8.0,
+        "min_segment_hours": 12.0
+      },
+      "abrupt_recall": 1.0,
+      "onset_recall": 1.0,
+      "unmatched_per_week": 11.56353591160221,
+      "n_candidates": 308
+    },
+    {
+      "settings": {
+        "train_days": 7,
+        "cusum_k": 0.5,
+        "cusum_h": 8.0,
+        "min_segment_hours": 24.0
+      },
+      "abrupt_recall": 1.0,
+      "onset_recall": 1.0,
+      "unmatched_per_week": 6.3812154696132595,
+      "n_candidates": 174
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "cusum_k": 0.5,
+        "cusum_h": 4.0,
+        "min_segment_hours": 12.0
+      },
+      "abrupt_recall": 1.0,
+      "onset_recall": 1.0,
+      "unmatched_per_week": 10.519337016574585,
+      "n_candidates": 281
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "cusum_k": 0.5,
+        "cusum_h": 4.0,
+        "min_segment_hours": 24.0
+      },
+      "abrupt_recall": 1.0,
+      "onset_recall": 1.0,
+      "unmatched_per_week": 6.110497237569061,
+      "n_candidates": 167
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "cusum_k": 0.5,
+        "cusum_h": 6.0,
+        "min_segment_hours": 12.0
+      },
+      "abrupt_recall": 1.0,
+      "onset_recall": 1.0,
+      "unmatched_per_week": 10.403314917127071,
+      "n_candidates": 278
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "cusum_k": 0.5,
+        "cusum_h": 6.0,
+        "min_segment_hours": 24.0
+      },
+      "abrupt_recall": 1.0,
+      "onset_recall": 1.0,
+      "unmatched_per_week": 6.110497237569061,
+      "n_candidates": 167
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "cusum_k": 0.5,
+        "cusum_h": 8.0,
+        "min_segment_hours": 12.0
+      },
+      "abrupt_recall": 1.0,
+      "onset_recall": 1.0,
+      "unmatched_per_week": 10.32596685082873,
+      "n_candidates": 276
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "cusum_k": 0.5,
+        "cusum_h": 8.0,
+        "min_segment_hours": 24.0
+      },
+      "abrupt_recall": 1.0,
+      "onset_recall": 1.0,
+      "unmatched_per_week": 6.110497237569061,
+      "n_candidates": 167
+    }
+  ],
+  "DIAG": {
+    "period": "DIAG",
+    "settings": {
+      "train_days": 14,
+      "cusum_k": 0.5,
+      "cusum_h": 8.0,
+      "min_segment_hours": 24.0
+    },
+    "n_onsets": 5,
+    "n_abrupt": 3,
+    "n_incipient": 2,
+    "onset_recall": 1.0,
+    "abrupt_recall": 1.0,
+    "incipient_recall": 1.0,
+    "n_candidates": 140,
+    "n_matched_candidates": 5,
+    "n_unmatched_candidates": 135,
+    "unmatched_per_week": 5.135869565217392,
+    "median_candidate_duration_hours": 24.375,
+    "duplicate_unmatched_within_24h": 96,
+    "change_time_error_hours": {
+      "n": 5,
+      "median": 7.166666666666667,
+      "p90": 152.23333333333335,
+      "max_abs": 243.16666666666666
+    },
+    "period_weeks": 26.285714285714285,
+    "runtime_seconds": 0.3722711249720305,
+    "analyzed_rows": 52992,
+    "analyzed_sensors": 33,
+    "volume_row_x_sensor": 1748736,
+    "matches": [
+      {
+        "pipe": "p654",
+        "leak_type": "incipient",
+        "onset": "2018-07-05 03:40",
+        "matched": true,
+        "change_time": "2018-07-15 06:50",
+        "error_hours": 243.16666666666666,
+        "open_leaks_at_change": 4,
+        "alarm_time": "2018-07-15 07:35",
+        "evidence_through": "2018-07-15 07:35"
+      },
+      {
+        "pipe": "p810",
+        "leak_type": "incipient",
+        "onset": "2018-07-28 03:05",
+        "matched": true,
+        "change_time": "2018-07-28 10:15",
+        "error_hours": 7.166666666666667,
+        "open_leaks_at_change": 5,
+        "alarm_time": "2018-07-28 11:20",
+        "evidence_through": "2018-07-28 11:20"
+      },
+      {
+        "pipe": "p183",
+        "leak_type": "abrupt",
+        "onset": "2018-08-07 02:35",
+        "matched": true,
+        "change_time": "2018-08-06 23:55",
+        "error_hours": -2.6666666666666665,
+        "open_leaks_at_change": 5,
+        "alarm_time": "2018-08-07 01:20",
+        "evidence_through": "2018-08-07 01:20"
+      },
+      {
+        "pipe": "p158",
+        "leak_type": "abrupt",
+        "onset": "2018-10-06 02:35",
+        "matched": true,
+        "change_time": "2018-10-06 18:25",
+        "error_hours": 15.833333333333334,
+        "open_leaks_at_change": 5,
+        "alarm_time": "2018-10-06 20:30",
+        "evidence_through": "2018-10-07 06:40"
+      },
+      {
+        "pipe": "p369",
+        "leak_type": "abrupt",
+        "onset": "2018-10-26 02:05",
+        "matched": true,
+        "change_time": "2018-10-26 02:00",
+        "error_hours": -0.08333333333333333,
+        "open_leaks_at_change": 4,
+        "alarm_time": "2018-10-26 03:20",
+        "evidence_through": "2018-10-26 12:05"
+      }
+    ],
+    "missed": []
+  },
+  "DIAG_ordinary_controls": {
+    "sampled_large_context_moves": 40,
+    "within_6h_of_candidate": 0,
+    "fraction": 0.0
+  },
+  "plots": [
+    "outputs/plots/diag_score.png",
+    "outputs/plots/dev_score.png"
+  ],
+  "recommendation": "**No-go**: no DEV setting met the pre-registered unmatched/wk \u2264 3.0 gate (best DEV unmatched/wk=6.11). DIAG under fallback freeze: abrupt_recall=1.00, unmatched/wk=5.14. Do not build UI/API on this operating point; revisit with a new pre-registered method (e.g. pair subsetting without leak labels, recalibration, or stronger ordinary-ops filters)."
+}

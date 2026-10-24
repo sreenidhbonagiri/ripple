@@ -1,0 +1,20 @@
+{
+  "frozen_at": "2026-10-24T19:31:23-04:00",
+  "settings": {
+    "train_days": 14,
+    "cusum_k": 0.5,
+    "cusum_h": 8.0,
+    "min_segment_hours": 24.0
+  },
+  "gate_met": false,
+  "unmatched_cap": 3.0,
+  "selection_rule": "max abrupt recall among unmatched/wk<=3 on DEV; ties: overall recall, then unmatched/wk, then larger h; if none eligible, freeze best-of-pool with gate_met=false",
+  "dev_snapshot": {
+    "abrupt_recall": 1.0,
+    "onset_recall": 1.0,
+    "unmatched_per_week": 6.110497237569061,
+    "n_candidates": 167,
+    "n_abrupt": 3,
+    "n_incipient": 6
+  }
+}
