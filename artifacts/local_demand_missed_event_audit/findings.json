@@ -1,0 +1,435 @@
+{
+  "prior_knowledge": {
+    "honest_statement": "These five pipes (p280, p710, p331, p680, p426) were previously discussed in a separate development conversation about a practice BattLeDIM scanner as abrupt events that were harder to catch / \u201cmissed\u201d relative to that practice detector\u2019s alerts. They are already-examined development examples from official dataset_configuration.yaml leakages, not a blind holdout. This rippple repository has no detector implementation; practice scanner alert lists, suppression logic, and unmatched-alert tallies are not available here and are not reproduced. Therefore baseline suppression and notification-policy failures cannot be assessed from measurements alone in this audit.",
+    "current_repo_has_detector": false,
+    "practice_artifacts_copied": false
+  },
+  "amr_audit": {
+    "source": "Zenodo 4017659 / 2019_SCADA_Demands.csv",
+    "md5": "b3e111de397a1b06d33b8a9f13bc997d",
+    "units": "L/h (official README)",
+    "delimiter": "semicolon; decimal comma",
+    "n_meters": 82,
+    "cfg_amrs_match_inp_AMR_comments": true,
+    "timestamp_start": "2019-01-01 00:00:00",
+    "timestamp_end": "2019-12-31 23:55:00",
+    "n_rows": 105120,
+    "expected_5min_rows_365d": 105120,
+    "row_count_matches_5min_grid": true,
+    "total_null_cells": 0,
+    "meters_with_any_null": 0,
+    "meters_with_negative": 0,
+    "mean_Lph_by_meter_stats": {
+      "min": 6.281287385844723,
+      "median": 138.86165458523652,
+      "max": 1835.340569634731
+    },
+    "pressure_overlap_node_ids": [
+      "n1",
+      "n31",
+      "n4"
+    ],
+    "note_do_not_sum_as_network_demand": true,
+    "area_c_statement": "Official README describes 82 AMR devices in L-Town (L/h) without using the phrase \"Area C\". All 82 cfg amrs are marked ;AMR in L-TOWN.inp and form a compact coordinate cluster. Only pressure sensors n1,n4,n31 lie inside that AMR bounding box; the other 30 pressure sensors are outside it. Competition literature commonly calls this AMR-instrumented DMA Area C \u2014 treated here as that cluster, not as network-wide demand.",
+    "amr_bbox": {
+      "xmin": 135.02,
+      "xmax": 575.55,
+      "ymin": 860.16,
+      "ymax": 1617.66
+    },
+    "pressure_sensors_inside_amr_bbox": [
+      "n1",
+      "n4",
+      "n31"
+    ]
+  },
+  "events": [
+    {
+      "pipe": "p280",
+      "onset": "2019-02-10 13:05:00",
+      "type": "abrupt",
+      "diameter_m": 0.0095008,
+      "pipe_ends": [
+        "n365",
+        "n23"
+      ],
+      "ends_are_amr_nodes": true,
+      "inside_amr_bbox": true,
+      "nearest_pressure_sensors": [
+        "n31",
+        "n4",
+        "n54"
+      ],
+      "nearest_amr_nodes": [
+        "n23",
+        "n365",
+        "n377",
+        "n361"
+      ],
+      "comparison_rule": "2h median post-onset minus 2h median pre-onset; excess vs same clock window 7 days earlier",
+      "window_hours": {
+        "pre": 6,
+        "post": 18
+      },
+      "deltas": {
+        "pressure_n31": {
+          "event_post_minus_pre_2h": -0.35999999999999943,
+          "prior_week_post_minus_pre_2h": -0.269999999999996,
+          "excess_vs_prior_week": -0.09000000000000341
+        },
+        "pressure_n4": {
+          "event_post_minus_pre_2h": -0.3500000000000014,
+          "prior_week_post_minus_pre_2h": -0.259999999999998,
+          "excess_vs_prior_week": -0.09000000000000341
+        },
+        "pressure_n54": {
+          "event_post_minus_pre_2h": 0.0899999999999963,
+          "prior_week_post_minus_pre_2h": 0.0799999999999983,
+          "excess_vs_prior_week": 0.00999999999999801
+        },
+        "flow_p227": {
+          "event_post_minus_pre_2h": -4.450000000000003,
+          "prior_week_post_minus_pre_2h": -3.6499999999999915,
+          "excess_vs_prior_week": -0.8000000000000114
+        },
+        "flow_p235": {
+          "event_post_minus_pre_2h": -4.609999999999999,
+          "prior_week_post_minus_pre_2h": -4.280000000000001,
+          "excess_vs_prior_week": -0.3299999999999983
+        },
+        "flow_PUMP_1": {
+          "event_post_minus_pre_2h": 0.0,
+          "prior_week_post_minus_pre_2h": 0.0,
+          "excess_vs_prior_week": 0.0
+        },
+        "tank_T1": {
+          "event_post_minus_pre_2h": -0.2899999999999996,
+          "prior_week_post_minus_pre_2h": -0.29000000000000004,
+          "excess_vs_prior_week": 4.440892098500626e-16
+        },
+        "amr_nearest_sum_Lph": {
+          "event_post_minus_pre_2h": -92.84999999999991,
+          "prior_week_post_minus_pre_2h": -108.0200000000001,
+          "excess_vs_prior_week": 15.170000000000186,
+          "note": "sum of nearest AMRs only; not total network demand"
+        }
+      },
+      "plot": "artifacts/local_demand_missed_event_audit/plots/p280_onset_context.png",
+      "largest_pressure_excess_vs_prior_week": [
+        "pressure_n31",
+        -0.09000000000000341
+      ]
+    },
+    {
+      "pipe": "p710",
+      "onset": "2019-03-24 14:15:00",
+      "type": "abrupt",
+      "diameter_m": 0.0092936,
+      "pipe_ends": [
+        "n648",
+        "n228"
+      ],
+      "ends_are_amr_nodes": false,
+      "inside_amr_bbox": false,
+      "nearest_pressure_sensors": [
+        "n636",
+        "n644",
+        "n229"
+      ],
+      "nearest_amr_nodes": [
+        "n343",
+        "n41",
+        "n44",
+        "n387"
+      ],
+      "comparison_rule": "2h median post-onset minus 2h median pre-onset; excess vs same clock window 7 days earlier",
+      "window_hours": {
+        "pre": 6,
+        "post": 18
+      },
+      "deltas": {
+        "pressure_n636": {
+          "event_post_minus_pre_2h": 0.00999999999999801,
+          "prior_week_post_minus_pre_2h": 0.04999999999999716,
+          "excess_vs_prior_week": -0.03999999999999915
+        },
+        "pressure_n644": {
+          "event_post_minus_pre_2h": -0.020000000000003126,
+          "prior_week_post_minus_pre_2h": 0.060000000000002274,
+          "excess_vs_prior_week": -0.0800000000000054
+        },
+        "pressure_n229": {
+          "event_post_minus_pre_2h": 0.0,
+          "prior_week_post_minus_pre_2h": 0.04999999999999716,
+          "excess_vs_prior_week": -0.04999999999999716
+        },
+        "flow_p227": {
+          "event_post_minus_pre_2h": -0.04000000000000625,
+          "prior_week_post_minus_pre_2h": -3.3499999999999943,
+          "excess_vs_prior_week": 3.309999999999988
+        },
+        "flow_p235": {
+          "event_post_minus_pre_2h": -1.8400000000000034,
+          "prior_week_post_minus_pre_2h": -2.4000000000000057,
+          "excess_vs_prior_week": 0.5600000000000023
+        },
+        "flow_PUMP_1": {
+          "event_post_minus_pre_2h": 0.0,
+          "prior_week_post_minus_pre_2h": 0.0,
+          "excess_vs_prior_week": 0.0
+        },
+        "tank_T1": {
+          "event_post_minus_pre_2h": -0.31999999999999984,
+          "prior_week_post_minus_pre_2h": -0.31000000000000005,
+          "excess_vs_prior_week": -0.009999999999999787
+        },
+        "amr_nearest_sum_Lph": {
+          "event_post_minus_pre_2h": 28.589999999999918,
+          "prior_week_post_minus_pre_2h": -10.610000000000014,
+          "excess_vs_prior_week": 39.19999999999993,
+          "note": "sum of nearest AMRs only; not total network demand"
+        }
+      },
+      "plot": "artifacts/local_demand_missed_event_audit/plots/p710_onset_context.png",
+      "largest_pressure_excess_vs_prior_week": [
+        "pressure_n644",
+        -0.0800000000000054
+      ]
+    },
+    {
+      "pipe": "p331",
+      "onset": "2019-04-20 10:10:00",
+      "type": "abrupt",
+      "diameter_m": 0.014053,
+      "pipe_ends": [
+        "n398",
+        "n399"
+      ],
+      "ends_are_amr_nodes": false,
+      "inside_amr_bbox": false,
+      "nearest_pressure_sensors": [
+        "n429",
+        "n410",
+        "n54"
+      ],
+      "nearest_amr_nodes": [
+        "n41",
+        "n343",
+        "n44",
+        "n36"
+      ],
+      "comparison_rule": "2h median post-onset minus 2h median pre-onset; excess vs same clock window 7 days earlier",
+      "window_hours": {
+        "pre": 6,
+        "post": 18
+      },
+      "deltas": {
+        "pressure_n429": {
+          "event_post_minus_pre_2h": -0.3999999999999986,
+          "prior_week_post_minus_pre_2h": -0.14999999999999858,
+          "excess_vs_prior_week": -0.25
+        },
+        "pressure_n410": {
+          "event_post_minus_pre_2h": -0.5999999999999979,
+          "prior_week_post_minus_pre_2h": -0.15000000000000213,
+          "excess_vs_prior_week": -0.44999999999999574
+        },
+        "pressure_n54": {
+          "event_post_minus_pre_2h": -0.4000000000000057,
+          "prior_week_post_minus_pre_2h": -0.15000000000000568,
+          "excess_vs_prior_week": -0.25
+        },
+        "flow_p227": {
+          "event_post_minus_pre_2h": 12.579999999999998,
+          "prior_week_post_minus_pre_2h": 4.019999999999982,
+          "excess_vs_prior_week": 8.560000000000016
+        },
+        "flow_p235": {
+          "event_post_minus_pre_2h": 13.609999999999985,
+          "prior_week_post_minus_pre_2h": 5.22999999999999,
+          "excess_vs_prior_week": 8.379999999999995
+        },
+        "flow_PUMP_1": {
+          "event_post_minus_pre_2h": 0.0,
+          "prior_week_post_minus_pre_2h": -0.03999999999999915,
+          "excess_vs_prior_week": 0.03999999999999915
+        },
+        "tank_T1": {
+          "event_post_minus_pre_2h": -0.3999999999999999,
+          "prior_week_post_minus_pre_2h": 0.029999999999999805,
+          "excess_vs_prior_week": -0.4299999999999997
+        },
+        "amr_nearest_sum_Lph": {
+          "event_post_minus_pre_2h": 196.11,
+          "prior_week_post_minus_pre_2h": -161.70000000000005,
+          "excess_vs_prior_week": 357.81000000000006,
+          "note": "sum of nearest AMRs only; not total network demand"
+        }
+      },
+      "plot": "artifacts/local_demand_missed_event_audit/plots/p331_onset_context.png",
+      "largest_pressure_excess_vs_prior_week": [
+        "pressure_n410",
+        -0.44999999999999574
+      ]
+    },
+    {
+      "pipe": "p680",
+      "onset": "2019-07-10 08:45:00",
+      "type": "abrupt",
+      "diameter_m": 0.0097197,
+      "pipe_ends": [
+        "n626",
+        "n233"
+      ],
+      "ends_are_amr_nodes": false,
+      "inside_amr_bbox": false,
+      "nearest_pressure_sensors": [
+        "n229",
+        "n215",
+        "n644"
+      ],
+      "nearest_amr_nodes": [
+        "n343",
+        "n44",
+        "n387",
+        "n388"
+      ],
+      "comparison_rule": "2h median post-onset minus 2h median pre-onset; excess vs same clock window 7 days earlier",
+      "window_hours": {
+        "pre": 6,
+        "post": 18
+      },
+      "deltas": {
+        "pressure_n229": {
+          "event_post_minus_pre_2h": -0.4799999999999969,
+          "prior_week_post_minus_pre_2h": -0.269999999999996,
+          "excess_vs_prior_week": -0.21000000000000085
+        },
+        "pressure_n215": {
+          "event_post_minus_pre_2h": -0.04000000000000625,
+          "prior_week_post_minus_pre_2h": 0.0,
+          "excess_vs_prior_week": -0.04000000000000625
+        },
+        "pressure_n644": {
+          "event_post_minus_pre_2h": -0.30000000000000426,
+          "prior_week_post_minus_pre_2h": -0.15000000000000568,
+          "excess_vs_prior_week": -0.14999999999999858
+        },
+        "flow_p227": {
+          "event_post_minus_pre_2h": 8.469999999999999,
+          "prior_week_post_minus_pre_2h": 6.090000000000003,
+          "excess_vs_prior_week": 2.3799999999999955
+        },
+        "flow_p235": {
+          "event_post_minus_pre_2h": 5.840000000000003,
+          "prior_week_post_minus_pre_2h": 9.079999999999984,
+          "excess_vs_prior_week": -3.2399999999999807
+        },
+        "flow_PUMP_1": {
+          "event_post_minus_pre_2h": -0.03999999999999915,
+          "prior_week_post_minus_pre_2h": -0.04999999999999716,
+          "excess_vs_prior_week": 0.00999999999999801
+        },
+        "tank_T1": {
+          "event_post_minus_pre_2h": -0.10999999999999988,
+          "prior_week_post_minus_pre_2h": 0.0,
+          "excess_vs_prior_week": -0.10999999999999988
+        },
+        "amr_nearest_sum_Lph": {
+          "event_post_minus_pre_2h": 178.89999999999964,
+          "prior_week_post_minus_pre_2h": 31.179999999999836,
+          "excess_vs_prior_week": 147.7199999999998,
+          "note": "sum of nearest AMRs only; not total network demand"
+        }
+      },
+      "plot": "artifacts/local_demand_missed_event_audit/plots/p680_onset_context.png",
+      "largest_pressure_excess_vs_prior_week": [
+        "pressure_n229",
+        -0.21000000000000085
+      ]
+    },
+    {
+      "pipe": "p426",
+      "onset": "2019-10-25 13:25:00",
+      "type": "abrupt",
+      "diameter_m": 0.015008,
+      "pipe_ends": [
+        "n461",
+        "n462"
+      ],
+      "ends_are_amr_nodes": false,
+      "inside_amr_bbox": false,
+      "nearest_pressure_sensors": [
+        "n342",
+        "n458",
+        "n429"
+      ],
+      "nearest_amr_nodes": [
+        "n343",
+        "n41",
+        "n44",
+        "n387"
+      ],
+      "comparison_rule": "2h median post-onset minus 2h median pre-onset; excess vs same clock window 7 days earlier",
+      "window_hours": {
+        "pre": 6,
+        "post": 18
+      },
+      "deltas": {
+        "pressure_n342": {
+          "event_post_minus_pre_2h": -0.03999999999999915,
+          "prior_week_post_minus_pre_2h": 0.23000000000000398,
+          "excess_vs_prior_week": -0.2700000000000031
+        },
+        "pressure_n458": {
+          "event_post_minus_pre_2h": 0.010000000000005116,
+          "prior_week_post_minus_pre_2h": 0.25,
+          "excess_vs_prior_week": -0.23999999999999488
+        },
+        "pressure_n429": {
+          "event_post_minus_pre_2h": -0.0899999999999963,
+          "prior_week_post_minus_pre_2h": 0.25,
+          "excess_vs_prior_week": -0.3399999999999963
+        },
+        "flow_p227": {
+          "event_post_minus_pre_2h": -1.3700000000000045,
+          "prior_week_post_minus_pre_2h": -7.049999999999983,
+          "excess_vs_prior_week": 5.679999999999978
+        },
+        "flow_p235": {
+          "event_post_minus_pre_2h": -4.110000000000014,
+          "prior_week_post_minus_pre_2h": -8.48999999999998,
+          "excess_vs_prior_week": 4.379999999999967
+        },
+        "flow_PUMP_1": {
+          "event_post_minus_pre_2h": -0.020000000000003126,
+          "prior_week_post_minus_pre_2h": 0.060000000000002274,
+          "excess_vs_prior_week": -0.0800000000000054
+        },
+        "tank_T1": {
+          "event_post_minus_pre_2h": -0.019999999999999574,
+          "prior_week_post_minus_pre_2h": -0.009999999999999787,
+          "excess_vs_prior_week": -0.009999999999999787
+        },
+        "amr_nearest_sum_Lph": {
+          "event_post_minus_pre_2h": -76.66999999999996,
+          "prior_week_post_minus_pre_2h": 10.529999999999973,
+          "excess_vs_prior_week": -87.19999999999993,
+          "note": "sum of nearest AMRs only; not total network demand"
+        }
+      },
+      "plot": "artifacts/local_demand_missed_event_audit/plots/p426_onset_context.png",
+      "largest_pressure_excess_vs_prior_week": [
+        "pressure_n429",
+        -0.3399999999999963
+      ]
+    }
+  ],
+  "diagnostic_limits": [
+    "Ground truth used only for evaluation windows (onsets from dataset_configuration.yaml).",
+    "No leakage flow timeseries imported (2019_Leakages.csv not downloaded into this analysis path).",
+    "AMR sum is local nearest-meters only; README units L/h; do not interpret as total network demand.",
+    "External inflows p227/p235 + PUMP_1 + T1 are network-level; they may absorb or mask localized leakage.",
+    "Ordinary comparison is a fixed prior-week clock window \u2014 not a fitted seasonal model."
+  ]
+}

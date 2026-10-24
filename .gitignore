@@ -52,3 +52,20 @@ Thumbs.db
 coverage/
 .coverage
 htmlcov/
+
+# Bulky / regenerable local audit & experiment outputs
+artifacts/**/plots/
+artifacts/**/*.png
+research/**/outputs/cache/
+research/**/outputs/*.npy
+research/**/outputs/episodes_*.jsonl
+
+# Allow research docs/configs despite broad *.yaml ignore
+!research/
+!research/**/
+!research/**/*.yaml
+!research/**/*.yml
+!research/**/*.md
+!research/**/*.py
+!research/**/*.json
+!research/**/*.toml
