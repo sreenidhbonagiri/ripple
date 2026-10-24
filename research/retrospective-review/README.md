@@ -19,3 +19,9 @@ Evaluation audit (frozen method unchanged): `outputs/AUDIT.md` — run via
 ```bash
 .venv/bin/python research/retrospective-review/audit_evaluation.py
 ```
+
+Decision report (nulls at ±6 h / ±24 h; no retuning): `outputs/DECISION.md`
+
+```bash
+.venv/bin/python research/retrospective-review/decision_report.py
+```
