@@ -1,5 +1,8 @@
-# Local/Vultr-ready compose. Secrets come from the environment or an untracked .env.
-# Do not bake DATABASE_URL into images. Do not provision cloud resources from this file.
+# Local Docker deployment (verified). Secrets from host .env substitution only.
+# Prerequisites:
+#   1. ./scripts/download_ltown.sh   # MD5 bfbb16b8b463e0576200ba6ad360f68e
+#   2. Project-root .env with DATABASE_URL + RIPPLE_STORAGE_LIMIT_BYTES
+# Does not migrate or import on startup. Does not publish the backend port.
 
 services:
   backend:
@@ -7,24 +10,31 @@ services:
       context: .
       dockerfile: Dockerfile.backend
     environment:
-      DATABASE_URL: ${DATABASE_URL:?set DATABASE_URL}
+      DATABASE_URL: ${DATABASE_URL:?set DATABASE_URL in project-root .env}
       RIPPLE_STORAGE_LIMIT_BYTES: ${RIPPLE_STORAGE_LIMIT_BYTES:?set RIPPLE_STORAGE_LIMIT_BYTES}
       RIPPLE_INP_PATH: /app/data/L-TOWN.inp
-      RIPPLE_CORS_ORIGINS: ${RIPPLE_CORS_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080,http://localhost,http://127.0.0.1}
-    ports:
-      - "8000:8000"
+      # Browser talks to nginx on the published frontend port (same-origin /api).
+      RIPPLE_CORS_ORIGINS: ${RIPPLE_CORS_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080}
+    volumes:
+      # Official nominal model only — not baked into the image; SCADA CSVs stay on host.
+      - ./data/L-TOWN.inp:/app/data/L-TOWN.inp:ro
+    # Backend stays on the Compose network only (no host port). Reach it via nginx /api.
+    expose:
+      - "8000"
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/api/health"]
       interval: 30s
       timeout: 5s
-      retries: 3
-      start_period: 20s
+      retries: 5
+      start_period: 45s
+    restart: unless-stopped
 
   frontend:
     build:
       context: .
       dockerfile: Dockerfile.frontend
     ports:
+      # Separate from Vite (5173) and local uvicorn (8000).
       - "8080:80"
     depends_on:
       backend:
@@ -35,3 +45,4 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
+    restart: unless-stopped

@@ -1,29 +1,40 @@
 # Ripple API — runtime secrets via environment only (never bake .env into the image).
+# L-TOWN.inp is bind-mounted at runtime (see docker-compose.yml); not copied into layers.
 FROM python:3.12-slim-bookworm
 
 WORKDIR /app
 
+# System deps for WNTR / scientific stack wheels and runtime libs.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
+    build-essential \
+    gfortran \
+    libopenblas0 \
+    libgomp1 \
+    libfreetype6 \
+    libpng16-16 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY backend/requirements.txt /app/backend/requirements.txt
 RUN pip install --no-cache-dir -r /app/backend/requirements.txt
 
 COPY backend /app/backend
-# Benchmark artifact for Tiger evidence panel (saved timings; not re-run at runtime).
+# Saved January raw/CAGG benchmark artifact (timings only; no DB credentials).
 COPY artifacts /app/artifacts
-# Nominal L-Town model must be present in the build context (gitignored under data/).
-COPY data/L-TOWN.inp /app/data/L-TOWN.inp
+
+# Mount point for the official nominal model (download via scripts/download_ltown.sh).
+RUN mkdir -p /app/data
 
 ENV PYTHONPATH=/app/backend
 ENV RIPPLE_INP_PATH=/app/data/L-TOWN.inp
 ENV RIPPLE_HOST=0.0.0.0
 ENV RIPPLE_PORT=8000
+# Do not set DATABASE_URL here — Compose/runtime only.
 
 EXPOSE 8000
 
-HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \
   CMD curl -fsS http://127.0.0.1:8000/api/health || exit 1
 
+# No migrate/import on startup — API only against the existing Tiger Cloud database.
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

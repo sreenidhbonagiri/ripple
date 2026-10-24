@@ -105,9 +105,23 @@ At cursor `T`, each sensor uses the latest **raw** reading with `ts <= T` (never
 
 Presenter UI: Jan 12 preset buttons + illustrative sensor **n54** at **15:00** (verified fresh 30-minute pressure drop — observation only). Tiger panel loads evidence on expand.
 
-Demo script: [`docs/PRESENTER_90S.md`](docs/PRESENTER_90S.md). Deploy prep: [`deploy/VULTR_CHECKLIST.md`](deploy/VULTR_CHECKLIST.md), `docker-compose.yml`.
+Demo script: [`docs/PRESENTER_90S.md`](docs/PRESENTER_90S.md). Deploy: [`deploy/VULTR_CHECKLIST.md`](deploy/VULTR_CHECKLIST.md), `docker-compose.yml`.
 
 Timestamps are **TIMESTAMP WITHOUT TIME ZONE** (naive BattLeDIM clock). Do not attach a geographic timezone.
+
+## Docker (local, verified)
+
+Requires **Docker Desktop/Engine running** (not just the CLI). Uses the existing Tiger Cloud database; does **not** migrate or import on startup.
+
+```bash
+./scripts/download_ltown.sh   # MD5 bfbb16b8b463e0576200ba6ad360f68e
+# .env must define DATABASE_URL and RIPPLE_STORAGE_LIMIT_BYTES (runtime only)
+docker compose build
+docker compose up -d          # http://127.0.0.1:8080 — backend unpublished
+docker compose down
+```
+
+Frontend assets call same-origin `/api` (nginx → internal backend). Keep Vite `:5173` / uvicorn `:8000` for development if needed.
 
 ## Verification helpers
 

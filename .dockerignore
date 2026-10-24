@@ -1,0 +1,35 @@
+# Keep secrets, raw datasets, and local tooling out of image build context.
+.git
+.gitignore
+.venv
+venv
+env
+**/__pycache__
+**/*.py[cod]
+.pytest_cache
+.mypy_cache
+.ruff_cache
+node_modules
+frontend/dist
+frontend/build
+*.log
+.DS_Store
+
+# Runtime secrets — inject via Compose environment / host .env substitution only
+.env
+.env.*
+!.env.example
+
+# Raw SCADA and other local data (L-TOWN.inp is bind-mounted at runtime, not baked in)
+data/
+*.csv
+*.xlsx
+*.yaml
+!dataset_configuration.example.yaml
+
+# Docs / local IDE
+.cursor
+agent-transcripts
+deploy/*.md
+docs/
+README.md
