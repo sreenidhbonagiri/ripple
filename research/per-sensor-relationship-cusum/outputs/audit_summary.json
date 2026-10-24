@@ -1,0 +1,1196 @@
+{
+  "generated_at": "2026-10-24T19:55:41-04:00",
+  "train_days": 14,
+  "frozen_settings": {
+    "train_days": 14,
+    "n_refs": 3,
+    "cusum_k": 0.5,
+    "cusum_h": 8.0,
+    "recover_hours": 24.0
+  },
+  "original_headline_preserved": {
+    "abrupt_recall": 1.0,
+    "incipient_recall": 1.0,
+    "unmatched_per_week": 1.2173913043478262,
+    "recommendation": "**Limited research signal:** per-sensor signed residuals improve abrupt notification metrics vs global aggregation under equivalent rules, and beat the descriptive null. **Not** validated leak detection \u2014 independent evaluation required before any productization. Alert burden must remain explicit. Caveat: longest episode ~4077 h and total time-in-alarm ~105315 h show non-recovery / multi-sensor persistence \u2014 improvement is not free of burden. Per-sensor DIAG abrupt_recall=1.00 (unmatched/wk=1.22) vs global 0.00 (unmatched/wk=0.00). Null frac\u2265obs abrupt matches=0.11."
+  },
+  "eligibility_correction": {
+    "train_end": "2018-07-15 00:00",
+    "in_prefix_onsets": [
+      {
+        "pipe": "p654",
+        "type": "incipient",
+        "onset": "2018-07-05 03:40"
+      }
+    ],
+    "eligible_onsets": [
+      {
+        "pipe": "p810",
+        "type": "incipient",
+        "onset": "2018-07-28 03:05"
+      },
+      {
+        "pipe": "p183",
+        "type": "abrupt",
+        "onset": "2018-08-07 02:35"
+      },
+      {
+        "pipe": "p158",
+        "type": "abrupt",
+        "onset": "2018-10-06 02:35"
+      },
+      {
+        "pipe": "p369",
+        "type": "abrupt",
+        "onset": "2018-10-26 02:05"
+      }
+    ],
+    "primary": {
+      "abrupt_recall": 1.0,
+      "incipient_recall": 1.0,
+      "n_abrupt": 3,
+      "n_incipient": 1,
+      "abrupt_delay_hours": {
+        "n": 3,
+        "median": 0.3333333333333333,
+        "max": 1.25
+      },
+      "matches": [
+        {
+          "pipe": "p810",
+          "leak_type": "incipient",
+          "onset": "2018-07-28 03:05",
+          "matched": true,
+          "notify_time": "2018-07-29 09:20",
+          "delay_hours": 30.25,
+          "stream_id": "n740",
+          "refs_used": [
+            "n722",
+            "n769",
+            "n296"
+          ],
+          "change_estimate_time": "2018-07-29 07:25",
+          "open_leaks_at_notify": 5,
+          "episode_end": "2018-12-31 23:55"
+        },
+        {
+          "pipe": "p183",
+          "leak_type": "abrupt",
+          "onset": "2018-08-07 02:35",
+          "matched": true,
+          "notify_time": "2018-08-07 03:50",
+          "delay_hours": 1.25,
+          "stream_id": "n726",
+          "refs_used": [
+            "n752",
+            "n769",
+            "n288"
+          ],
+          "change_estimate_time": "2018-08-07 02:25",
+          "open_leaks_at_notify": 6,
+          "episode_end": "2018-11-11 21:05"
+        },
+        {
+          "pipe": "p158",
+          "leak_type": "abrupt",
+          "onset": "2018-10-06 02:35",
+          "matched": true,
+          "notify_time": "2018-10-06 02:55",
+          "delay_hours": 0.3333333333333333,
+          "stream_id": "n288",
+          "refs_used": [
+            "n726",
+            "n752",
+            "n679"
+          ],
+          "change_estimate_time": "2018-10-05 23:45",
+          "open_leaks_at_notify": 5,
+          "episode_end": "2018-12-31 23:55"
+        },
+        {
+          "pipe": "p369",
+          "leak_type": "abrupt",
+          "onset": "2018-10-26 02:05",
+          "matched": true,
+          "notify_time": "2018-10-26 02:15",
+          "delay_hours": 0.16666666666666666,
+          "stream_id": "n410",
+          "refs_used": [
+            "n429",
+            "n415",
+            "n342"
+          ],
+          "change_estimate_time": "2018-10-26 02:00",
+          "open_leaks_at_notify": 5,
+          "episode_end": "2018-12-31 23:55"
+        }
+      ]
+    },
+    "in_prefix_matches": [
+      {
+        "pipe": "p654",
+        "leak_type": "incipient",
+        "onset": "2018-07-05 03:40",
+        "matched": true,
+        "notify_time": "2018-07-15 02:55",
+        "delay_hours": 239.25,
+        "stream_id": "n31",
+        "refs_used": [
+          "n1",
+          "n4",
+          "n549"
+        ],
+        "change_estimate_time": "2018-07-15 00:00",
+        "open_leaks_at_notify": 4,
+        "episode_end": "2018-07-24 09:00"
+      }
+    ],
+    "note": "p654 (2018-07-05) falls inside DIAG 14-day training prefix ending 2018-07-15T00:00; excluded from primary post-training recall."
+  },
+  "occupancy": {
+    "analysis_hours": 4080.0,
+    "n_sensors": 33,
+    "eligible_sensor_hours": 134640.0,
+    "summed_sensor_alarm_hours": 105317.58333333333,
+    "summed_sensor_alarm_pct_of_eligible": 78.22161566646861,
+    "union_alarm_hours": 4077.083333333333,
+    "union_alarm_pct_of_analysis": 99.92851307189542,
+    "active_sensors": {
+      "mean": 25.81313316993464,
+      "median": 26.0,
+      "p90": 27.0,
+      "max": 29.0
+    },
+    "n_notifications": 37,
+    "n_episodes_right_censored": 25,
+    "episode_length_hours": {
+      "n": 37,
+      "median": 3800.6666666666665,
+      "p90": 4063.4166666666665,
+      "max": 4076.8333333333335,
+      "mean": 2846.337837837838
+    },
+    "episodes_detail": [
+      {
+        "stream": "n54",
+        "notify": "2018-07-15 03:05",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 4076.8333333333335,
+        "right_censored": true,
+        "peak_cusum": 24.28682428598404
+      },
+      {
+        "stream": "n1",
+        "notify": "2018-07-15 05:55",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 4074.0,
+        "right_censored": true,
+        "peak_cusum": 359.7659515142441
+      },
+      {
+        "stream": "n636",
+        "notify": "2018-07-15 08:30",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 4071.4166666666665,
+        "right_censored": true,
+        "peak_cusum": 35174.95887123368
+      },
+      {
+        "stream": "n506",
+        "notify": "2018-07-15 09:15",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 4070.6666666666665,
+        "right_censored": true,
+        "peak_cusum": 748.0638946002
+      },
+      {
+        "stream": "n188",
+        "notify": "2018-07-15 21:20",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 4058.5833333333335,
+        "right_censored": true,
+        "peak_cusum": 12279.998895815806
+      },
+      {
+        "stream": "n469",
+        "notify": "2018-07-15 22:50",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 4057.0833333333335,
+        "right_censored": true,
+        "peak_cusum": 47.7662570476532
+      },
+      {
+        "stream": "n215",
+        "notify": "2018-07-15 22:55",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 4057.0,
+        "right_censored": true,
+        "peak_cusum": 77.08297692425549
+      },
+      {
+        "stream": "n4",
+        "notify": "2018-07-16 02:35",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 4053.3333333333335,
+        "right_censored": true,
+        "peak_cusum": 6432.232041131429
+      },
+      {
+        "stream": "n332",
+        "notify": "2018-07-16 08:10",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 4047.75,
+        "right_censored": true,
+        "peak_cusum": 1410.0090225912245
+      },
+      {
+        "stream": "n613",
+        "notify": "2018-07-16 18:25",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 4037.5,
+        "right_censored": true,
+        "peak_cusum": 141400.13168963953
+      },
+      {
+        "stream": "n769",
+        "notify": "2018-07-17 09:40",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 4022.25,
+        "right_censored": true,
+        "peak_cusum": 6378.87575476426
+      },
+      {
+        "stream": "n752",
+        "notify": "2018-07-17 10:00",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 4021.9166666666665,
+        "right_censored": true,
+        "peak_cusum": 56734.343799591064
+      },
+      {
+        "stream": "n495",
+        "notify": "2018-07-17 10:15",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 4021.6666666666665,
+        "right_censored": true,
+        "peak_cusum": 13.00559751689434
+      },
+      {
+        "stream": "n114",
+        "notify": "2018-07-17 12:00",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 4019.9166666666665,
+        "right_censored": true,
+        "peak_cusum": 37.522902458906174
+      },
+      {
+        "stream": "n229",
+        "notify": "2018-07-18 17:00",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 3990.9166666666665,
+        "right_censored": true,
+        "peak_cusum": 13404.284833470825
+      },
+      {
+        "stream": "n516",
+        "notify": "2018-07-20 22:45",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 3937.1666666666665,
+        "right_censored": true,
+        "peak_cusum": 66.19055457087234
+      },
+      {
+        "stream": "n549",
+        "notify": "2018-07-21 00:55",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 3935.0,
+        "right_censored": true,
+        "peak_cusum": 2493.7410145994145
+      },
+      {
+        "stream": "n342",
+        "notify": "2018-07-21 01:55",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 3934.0,
+        "right_censored": true,
+        "peak_cusum": 26379.305600434527
+      },
+      {
+        "stream": "n31",
+        "notify": "2018-07-26 15:15",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 3800.6666666666665,
+        "right_censored": true,
+        "peak_cusum": 306.0298161827959
+      },
+      {
+        "stream": "n740",
+        "notify": "2018-07-29 09:20",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 3734.5833333333335,
+        "right_censored": true,
+        "peak_cusum": 8.05431493371725
+      },
+      {
+        "stream": "n644",
+        "notify": "2018-08-07 06:10",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 3521.75,
+        "right_censored": true,
+        "peak_cusum": 58516.95726099338
+      },
+      {
+        "stream": "n105",
+        "notify": "2018-08-08 08:10",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 3495.75,
+        "right_censored": true,
+        "peak_cusum": 14.644882638007402
+      },
+      {
+        "stream": "n726",
+        "notify": "2018-08-07 03:50",
+        "end": "2018-11-11 21:05",
+        "duration_hours": 2321.25,
+        "right_censored": false,
+        "peak_cusum": 3858.6233390162233
+      },
+      {
+        "stream": "n429",
+        "notify": "2018-08-08 01:10",
+        "end": "2018-11-04 19:55",
+        "duration_hours": 2130.75,
+        "right_censored": false,
+        "peak_cusum": 1118.7729961301666
+      },
+      {
+        "stream": "n288",
+        "notify": "2018-10-06 02:55",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 2085.0,
+        "right_censored": true,
+        "peak_cusum": 8005.947403889106
+      },
+      {
+        "stream": "n410",
+        "notify": "2018-07-15 04:40",
+        "end": "2018-10-06 05:30",
+        "duration_hours": 1992.8333333333333,
+        "right_censored": false,
+        "peak_cusum": 18.712756790220737
+      },
+      {
+        "stream": "n415",
+        "notify": "2018-07-18 07:15",
+        "end": "2018-10-06 20:20",
+        "duration_hours": 1933.0833333333333,
+        "right_censored": false,
+        "peak_cusum": 13.37604439468123
+      },
+      {
+        "stream": "n410",
+        "notify": "2018-10-26 02:15",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 1605.6666666666667,
+        "right_censored": true,
+        "peak_cusum": 7706.95401352644
+      },
+      {
+        "stream": "n679",
+        "notify": "2018-09-07 23:50",
+        "end": "2018-11-13 14:25",
+        "duration_hours": 1598.5833333333333,
+        "right_censored": false,
+        "peak_cusum": 228.28044353425503
+      },
+      {
+        "stream": "n519",
+        "notify": "2018-07-16 08:35",
+        "end": "2018-09-10 02:00",
+        "duration_hours": 1337.4166666666667,
+        "right_censored": false,
+        "peak_cusum": 11.35343612730503
+      },
+      {
+        "stream": "n429",
+        "notify": "2018-11-10 03:45",
+        "end": "2018-12-31 23:55",
+        "duration_hours": 1244.1666666666667,
+        "right_censored": true,
+        "peak_cusum": 9.407022029161453
+      },
+      {
+        "stream": "n722",
+        "notify": "2018-07-17 08:15",
+        "end": "2018-08-08 10:40",
+        "duration_hours": 530.4166666666666,
+        "right_censored": false,
+        "peak_cusum": 17.170382652664557
+      },
+      {
+        "stream": "n296",
+        "notify": "2018-07-18 13:40",
+        "end": "2018-08-08 02:20",
+        "duration_hours": 492.6666666666667,
+        "right_censored": false,
+        "peak_cusum": 10.832918524742126
+      },
+      {
+        "stream": "n679",
+        "notify": "2018-07-21 00:40",
+        "end": "2018-08-08 02:30",
+        "duration_hours": 433.8333333333333,
+        "right_censored": false,
+        "peak_cusum": 12.604713842272758
+      },
+      {
+        "stream": "n415",
+        "notify": "2018-10-29 03:15",
+        "end": "2018-11-10 20:20",
+        "duration_hours": 305.0833333333333,
+        "right_censored": false,
+        "peak_cusum": 13.218018842861056
+      },
+      {
+        "stream": "n31",
+        "notify": "2018-07-15 02:55",
+        "end": "2018-07-24 09:00",
+        "duration_hours": 222.08333333333334,
+        "right_censored": false,
+        "peak_cusum": 155.80601907521486
+      },
+      {
+        "stream": "n31",
+        "notify": "2018-07-24 15:40",
+        "end": "2018-07-26 09:35",
+        "duration_hours": 41.916666666666664,
+        "right_censored": false,
+        "peak_cusum": 69.41779226064682
+      }
+    ],
+    "note": "Notifications count episode starts only. Occupancy counts ongoing alarm intervals; already-active alarms are not new detections."
+  },
+  "recovery_diagnoses": [
+    {
+      "label": "longest_n54",
+      "stream": "n54",
+      "notify": "2018-07-15 03:05",
+      "end": "2018-12-31 23:55",
+      "duration_hours": 4076.8333333333335,
+      "right_censored": true,
+      "peak_cusum": 24.28682428598404,
+      "refs": [
+        "n429",
+        "n410",
+        "n679"
+      ],
+      "pair_calibration": [
+        {
+          "ref": "n429",
+          "intercept": -1.2503714906625305,
+          "slope": 1.0448954200155058,
+          "train_rmse": 0.05914366530457684,
+          "train_mad": 0.04457163019390009,
+          "norm_scale": 0.06608189892547627,
+          "norm_loc": 0.016435480207519504,
+          "n_train": 4032
+        },
+        {
+          "ref": "n410",
+          "intercept": 5.96925671644026,
+          "slope": 1.0053173402318203,
+          "train_rmse": 0.07223825885307851,
+          "train_mad": 0.05404040671175636,
+          "norm_scale": 0.08012030699084997,
+          "norm_loc": 0.018989011520744725,
+          "n_train": 4032
+        },
+        {
+          "ref": "n679",
+          "intercept": -31.507880840670822,
+          "slope": 1.4538564107175547,
+          "train_rmse": 0.2582752262989908,
+          "train_mad": 0.055159005466101974,
+          "norm_scale": 0.08177874150404278,
+          "norm_loc": 0.15290156909174613,
+          "n_train": 4032
+        }
+      ],
+      "post_notify_z_median": -0.0593121312558651,
+      "post_notify_frac_abs_z_lt_0.5": 0.47286552337346444,
+      "post_notify_frac_z_negative": 0.5494348261553871,
+      "post_notify_frac_c_positive": 0.2142141732927253,
+      "hypotheses": {
+        "sustained_observable_relationship_change": {
+          "supported": false,
+          "evidence": "median post-notify z=-0.0593121312558651"
+        },
+        "cusum_debt_despite_normalized_residual": {
+          "supported": true,
+          "evidence": "steps with |z|<k and C>1: 932; frac |z|<0.5=0.47286552337346444; frac C>0=0.2142141732927253"
+        },
+        "restrictive_24h_recovery": {
+          "supported": true,
+          "evidence": "recovery requires 288 consecutive steps with C==0; max recover_run in episode=271"
+        },
+        "small_normalization_scales": {
+          "supported": false,
+          "evidence": "pair scales=[0.0661, 0.0801, 0.0818]"
+        },
+        "seasonal_model_mismatch": {
+          "supported": null,
+          "evidence": "DIAG train is first 14 days of Jul; long late-year episodes may reflect drift of pairwise maps \u2014 hypothesis unless z stays elevated vs refs."
+        }
+      },
+      "implementation_replay_ok": true,
+      "plots": [
+        "outputs/audit_plots/recovery_longest_n54_n54.png"
+      ]
+    },
+    {
+      "label": "longest_n1",
+      "stream": "n1",
+      "notify": "2018-07-15 05:55",
+      "end": "2018-12-31 23:55",
+      "duration_hours": 4074.0,
+      "right_censored": true,
+      "peak_cusum": 359.7659515142441,
+      "refs": [
+        "n31",
+        "n4",
+        "n114"
+      ],
+      "pair_calibration": [
+        {
+          "ref": "n31",
+          "intercept": -9.36304595622391,
+          "slope": 1.0248154877153282,
+          "train_rmse": 0.10786747322198267,
+          "train_mad": 0.04191210938923717,
+          "norm_scale": 0.06213889338048303,
+          "norm_loc": -0.023982220948216337,
+          "n_train": 4032
+        },
+        {
+          "ref": "n4",
+          "intercept": -4.352265936959963,
+          "slope": 0.9775916407544541,
+          "train_rmse": 0.11818533410206282,
+          "train_mad": 0.041274203387462904,
+          "norm_scale": 0.0611931339422525,
+          "norm_loc": 0.005148041296774153,
+          "n_train": 4032
+        },
+        {
+          "ref": "n114",
+          "intercept": -19.455758528131486,
+          "slope": 0.8872574090059879,
+          "train_rmse": 0.3756801199166676,
+          "train_mad": 0.21362820859235043,
+          "norm_scale": 0.31672518205901873,
+          "norm_loc": -0.003931790710499428,
+          "n_train": 4032
+        }
+      ],
+      "post_notify_z_median": -0.0810471624135971,
+      "post_notify_frac_abs_z_lt_0.5": 0.4809057252142609,
+      "post_notify_frac_z_negative": 0.5490192067745301,
+      "post_notify_frac_c_positive": 0.598662275767555,
+      "hypotheses": {
+        "sustained_observable_relationship_change": {
+          "supported": false,
+          "evidence": "median post-notify z=-0.0810471624135971"
+        },
+        "cusum_debt_despite_normalized_residual": {
+          "supported": true,
+          "evidence": "steps with |z|<k and C>1: 13533; frac |z|<0.5=0.4809057252142609; frac C>0=0.598662275767555"
+        },
+        "restrictive_24h_recovery": {
+          "supported": true,
+          "evidence": "recovery requires 288 consecutive steps with C==0; max recover_run in episode=284"
+        },
+        "small_normalization_scales": {
+          "supported": false,
+          "evidence": "pair scales=[0.0621, 0.0612, 0.3167]"
+        },
+        "seasonal_model_mismatch": {
+          "supported": null,
+          "evidence": "DIAG train is first 14 days of Jul; long late-year episodes may reflect drift of pairwise maps \u2014 hypothesis unless z stays elevated vs refs."
+        }
+      },
+      "implementation_replay_ok": true,
+      "plots": [
+        "outputs/audit_plots/recovery_longest_n1_n1.png"
+      ]
+    },
+    {
+      "label": "longest_n636",
+      "stream": "n636",
+      "notify": "2018-07-15 08:30",
+      "end": "2018-12-31 23:55",
+      "duration_hours": 4071.4166666666665,
+      "right_censored": true,
+      "peak_cusum": 35174.95887123368,
+      "refs": [
+        "n188",
+        "n613",
+        "n163"
+      ],
+      "pair_calibration": [
+        {
+          "ref": "n188",
+          "intercept": -1.2052361492831025,
+          "slope": 0.8448145065187901,
+          "train_rmse": 0.01675819190213462,
+          "train_mad": 0.009314565435303734,
+          "norm_scale": 0.013809774714381317,
+          "norm_loc": -0.000444330067189469,
+          "n_train": 4032
+        },
+        {
+          "ref": "n613",
+          "intercept": -0.31991368001708054,
+          "slope": 0.8162918291506948,
+          "train_rmse": 0.017135378101677454,
+          "train_mad": 0.011297532015277056,
+          "norm_scale": 0.016749720965849764,
+          "norm_loc": -0.0010709497438128324,
+          "n_train": 4032
+        },
+        {
+          "ref": "n163",
+          "intercept": 2.01455368327818,
+          "slope": 0.8277420391672715,
+          "train_rmse": 0.01806935469076761,
+          "train_mad": 0.011431961856615658,
+          "norm_scale": 0.016949026648618373,
+          "norm_loc": -0.0008943262802176832,
+          "n_train": 4032
+        }
+      ],
+      "post_notify_z_median": 0.2749826908111572,
+      "post_notify_frac_abs_z_lt_0.5": 0.2883458184944124,
+      "post_notify_frac_z_negative": 0.4221621842891645,
+      "post_notify_frac_c_positive": 0.9093700110524376,
+      "hypotheses": {
+        "sustained_observable_relationship_change": {
+          "supported": false,
+          "evidence": "median post-notify z=0.2749826908111572"
+        },
+        "cusum_debt_despite_normalized_residual": {
+          "supported": true,
+          "evidence": "steps with |z|<k and C>1: 11947; frac |z|<0.5=0.2883458184944124; frac C>0=0.9093700110524376"
+        },
+        "restrictive_24h_recovery": {
+          "supported": true,
+          "evidence": "recovery requires 288 consecutive steps with C==0; max recover_run in episode=94"
+        },
+        "small_normalization_scales": {
+          "supported": true,
+          "evidence": "pair scales=[0.0138, 0.0167, 0.0169]"
+        },
+        "seasonal_model_mismatch": {
+          "supported": null,
+          "evidence": "DIAG train is first 14 days of Jul; long late-year episodes may reflect drift of pairwise maps \u2014 hypothesis unless z stays elevated vs refs."
+        }
+      },
+      "implementation_replay_ok": true,
+      "plots": [
+        "outputs/audit_plots/recovery_longest_n636_n636.png"
+      ]
+    },
+    {
+      "label": "abrupt_hit_p183",
+      "stream": "n726",
+      "notify": "2018-08-07 03:50",
+      "end": "2018-11-11 21:05",
+      "duration_hours": 2321.25,
+      "right_censored": false,
+      "peak_cusum": 3858.6233390162233,
+      "refs": [
+        "n752",
+        "n769",
+        "n288"
+      ],
+      "pair_calibration": [
+        {
+          "ref": "n752",
+          "intercept": -0.6877219150064775,
+          "slope": 0.9723628028696629,
+          "train_rmse": 0.005435569341663228,
+          "train_mad": 0.003921919124984186,
+          "norm_scale": 0.005814637294701553,
+          "norm_loc": -9.063500726824714e-06,
+          "n_train": 4032
+        },
+        {
+          "ref": "n769",
+          "intercept": -16.297490835878463,
+          "slope": 1.3075595488013396,
+          "train_rmse": 0.008587822073557285,
+          "train_mad": 0.005416285852376745,
+          "norm_scale": 0.008030185404733763,
+          "norm_loc": -1.0999144365086977e-05,
+          "n_train": 4032
+        },
+        {
+          "ref": "n288",
+          "intercept": -1.429083896382899,
+          "slope": 0.9191128565626654,
+          "train_rmse": 0.008687536410913478,
+          "train_mad": 0.006172377122588557,
+          "norm_scale": 0.009151166321949794,
+          "norm_loc": -0.0008780408316795274,
+          "n_train": 4032
+        }
+      ],
+      "post_notify_z_median": -0.2855572998523712,
+      "post_notify_frac_abs_z_lt_0.5": 0.35155801263641584,
+      "post_notify_frac_z_negative": 0.6014144170017232,
+      "post_notify_frac_c_positive": 0.4992461229178633,
+      "hypotheses": {
+        "sustained_observable_relationship_change": {
+          "supported": false,
+          "evidence": "median post-notify z=-0.2855572998523712"
+        },
+        "cusum_debt_despite_normalized_residual": {
+          "supported": true,
+          "evidence": "steps with |z|<k and C>1: 4691; frac |z|<0.5=0.35155801263641584; frac C>0=0.4992461229178633"
+        },
+        "restrictive_24h_recovery": {
+          "supported": false,
+          "evidence": "recovery requires 288 consecutive steps with C==0; max recover_run in episode=287"
+        },
+        "small_normalization_scales": {
+          "supported": true,
+          "evidence": "pair scales=[0.0058, 0.008, 0.0092]"
+        },
+        "seasonal_model_mismatch": {
+          "supported": null,
+          "evidence": "DIAG train is first 14 days of Jul; long late-year episodes may reflect drift of pairwise maps \u2014 hypothesis unless z stays elevated vs refs."
+        }
+      },
+      "implementation_replay_ok": true,
+      "plots": [
+        "outputs/audit_plots/recovery_abrupt_hit_p183_n726.png"
+      ]
+    },
+    {
+      "label": "abrupt_hit_p158",
+      "stream": "n288",
+      "notify": "2018-10-06 02:55",
+      "end": "2018-12-31 23:55",
+      "duration_hours": 2085.0,
+      "right_censored": true,
+      "peak_cusum": 8005.947403889106,
+      "refs": [
+        "n726",
+        "n752",
+        "n679"
+      ],
+      "pair_calibration": [
+        {
+          "ref": "n726",
+          "intercept": 1.5768962494631396,
+          "slope": 1.0875337240128427,
+          "train_rmse": 0.009450038630332832,
+          "train_mad": 0.006738006906360283,
+          "norm_scale": 0.009989769039369755,
+          "norm_loc": 0.0009554337546333613,
+          "n_train": 4032
+        },
+        {
+          "ref": "n752",
+          "intercept": 0.8302746041775251,
+          "slope": 1.0574506887629027,
+          "train_rmse": 0.011602514582621406,
+          "train_mad": 0.008045078288816399,
+          "norm_scale": 0.011927633070999193,
+          "norm_loc": 0.002036238530358503,
+          "n_train": 4032
+        },
+        {
+          "ref": "n679",
+          "intercept": 4.095218518258015,
+          "slope": 1.0291967739952235,
+          "train_rmse": 0.014213490966030574,
+          "train_mad": 0.009851678996433577,
+          "norm_scale": 0.01460609928011242,
+          "norm_loc": -0.003848864896632165,
+          "n_train": 4032
+        }
+      ],
+      "post_notify_z_median": 0.45325303077697754,
+      "post_notify_frac_abs_z_lt_0.5": 0.3517445345909436,
+      "post_notify_frac_z_negative": 0.31873226489748613,
+      "post_notify_frac_c_positive": 1.0,
+      "hypotheses": {
+        "sustained_observable_relationship_change": {
+          "supported": false,
+          "evidence": "median post-notify z=0.45325303077697754"
+        },
+        "cusum_debt_despite_normalized_residual": {
+          "supported": true,
+          "evidence": "steps with |z|<k and C>1: 8801; frac |z|<0.5=0.3517445345909436; frac C>0=1.0"
+        },
+        "restrictive_24h_recovery": {
+          "supported": false,
+          "evidence": "recovery requires 288 consecutive steps with C==0; max recover_run in episode=0"
+        },
+        "small_normalization_scales": {
+          "supported": true,
+          "evidence": "pair scales=[0.01, 0.0119, 0.0146]"
+        },
+        "seasonal_model_mismatch": {
+          "supported": null,
+          "evidence": "DIAG train is first 14 days of Jul; long late-year episodes may reflect drift of pairwise maps \u2014 hypothesis unless z stays elevated vs refs."
+        }
+      },
+      "implementation_replay_ok": true,
+      "plots": [
+        "outputs/audit_plots/recovery_abrupt_hit_p158_n288.png"
+      ]
+    },
+    {
+      "label": "abrupt_hit_p369",
+      "stream": "n410",
+      "notify": "2018-10-26 02:15",
+      "end": "2018-12-31 23:55",
+      "duration_hours": 1605.6666666666667,
+      "right_censored": true,
+      "peak_cusum": 7706.95401352644,
+      "refs": [
+        "n429",
+        "n415",
+        "n342"
+      ],
+      "pair_calibration": [
+        {
+          "ref": "n429",
+          "intercept": -7.101232148117791,
+          "slope": 1.037159978819564,
+          "train_rmse": 0.016953043042180205,
+          "train_mad": 0.009692607182600455,
+          "norm_scale": 0.014370259408923433,
+          "norm_loc": -0.004585528386304105,
+          "n_train": 4032
+        },
+        {
+          "ref": "n415",
+          "intercept": -22.895007601808242,
+          "slope": 1.1840941251604438,
+          "train_rmse": 0.06467543351816744,
+          "train_mad": 0.04344724673932632,
+          "norm_scale": 0.06441488801572519,
+          "norm_loc": 0.02253414540397003,
+          "n_train": 4032
+        },
+        {
+          "ref": "n342",
+          "intercept": -21.97128443907673,
+          "slope": 1.1358132786020365,
+          "train_rmse": 0.07175550932907715,
+          "train_mad": 0.044337436318102164,
+          "norm_scale": 0.06573468308521827,
+          "norm_loc": 0.0262460688336823,
+          "n_train": 4032
+        }
+      ],
+      "post_notify_z_median": -0.1351993829011917,
+      "post_notify_frac_abs_z_lt_0.5": 0.36416004982095596,
+      "post_notify_frac_z_negative": 0.5614717940733821,
+      "post_notify_frac_c_positive": 0.5917795422699673,
+      "hypotheses": {
+        "sustained_observable_relationship_change": {
+          "supported": false,
+          "evidence": "median post-notify z=-0.1351993829011917"
+        },
+        "cusum_debt_despite_normalized_residual": {
+          "supported": true,
+          "evidence": "steps with |z|<k and C>1: 3008; frac |z|<0.5=0.36416004982095596; frac C>0=0.5917795422699673"
+        },
+        "restrictive_24h_recovery": {
+          "supported": true,
+          "evidence": "recovery requires 288 consecutive steps with C==0; max recover_run in episode=267"
+        },
+        "small_normalization_scales": {
+          "supported": true,
+          "evidence": "pair scales=[0.0144, 0.0644, 0.0657]"
+        },
+        "seasonal_model_mismatch": {
+          "supported": null,
+          "evidence": "DIAG train is first 14 days of Jul; long late-year episodes may reflect drift of pairwise maps \u2014 hypothesis unless z stays elevated vs refs."
+        }
+      },
+      "implementation_replay_ok": true,
+      "plots": [
+        "outputs/audit_plots/recovery_abrupt_hit_p369_n410.png"
+      ]
+    }
+  ],
+  "tight_2h": {
+    "window": "0\u20132 h post-onset (no pre-onset credit)",
+    "n_abrupt_onsets": 3,
+    "observed_abrupt_matches": 3,
+    "null_n_valid_shifts": 89,
+    "null_match_median": 0.0,
+    "null_match_min": 0,
+    "null_match_max": 1,
+    "null_match_mean": 0.10112359550561797,
+    "fraction_shifts_ge_observed": 0.0,
+    "caveat": "Newly added diagnostic \u2014 not the registered 7-day headline. Overlapping shifts are dependent; n is small.",
+    "per_onset": [
+      {
+        "pipe": "p810",
+        "leak_type": "incipient",
+        "onset": "2018-07-28 03:05",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "already_active_at_onset": [
+          {
+            "stream": "n54",
+            "notify": "2018-07-15 03:05"
+          },
+          {
+            "stream": "n410",
+            "notify": "2018-07-15 04:40"
+          },
+          {
+            "stream": "n1",
+            "notify": "2018-07-15 05:55"
+          },
+          {
+            "stream": "n636",
+            "notify": "2018-07-15 08:30"
+          },
+          {
+            "stream": "n506",
+            "notify": "2018-07-15 09:15"
+          },
+          {
+            "stream": "n188",
+            "notify": "2018-07-15 21:20"
+          },
+          {
+            "stream": "n469",
+            "notify": "2018-07-15 22:50"
+          },
+          {
+            "stream": "n215",
+            "notify": "2018-07-15 22:55"
+          },
+          {
+            "stream": "n4",
+            "notify": "2018-07-16 02:35"
+          },
+          {
+            "stream": "n332",
+            "notify": "2018-07-16 08:10"
+          },
+          {
+            "stream": "n519",
+            "notify": "2018-07-16 08:35"
+          },
+          {
+            "stream": "n613",
+            "notify": "2018-07-16 18:25"
+          },
+          {
+            "stream": "n722",
+            "notify": "2018-07-17 08:15"
+          },
+          {
+            "stream": "n769",
+            "notify": "2018-07-17 09:40"
+          },
+          {
+            "stream": "n752",
+            "notify": "2018-07-17 10:00"
+          },
+          {
+            "stream": "n495",
+            "notify": "2018-07-17 10:15"
+          },
+          {
+            "stream": "n114",
+            "notify": "2018-07-17 12:00"
+          },
+          {
+            "stream": "n415",
+            "notify": "2018-07-18 07:15"
+          },
+          {
+            "stream": "n296",
+            "notify": "2018-07-18 13:40"
+          },
+          {
+            "stream": "n229",
+            "notify": "2018-07-18 17:00"
+          },
+          {
+            "stream": "n516",
+            "notify": "2018-07-20 22:45"
+          },
+          {
+            "stream": "n679",
+            "notify": "2018-07-21 00:40"
+          },
+          {
+            "stream": "n549",
+            "notify": "2018-07-21 00:55"
+          },
+          {
+            "stream": "n342",
+            "notify": "2018-07-21 01:55"
+          },
+          {
+            "stream": "n31",
+            "notify": "2018-07-26 15:15"
+          }
+        ]
+      },
+      {
+        "pipe": "p183",
+        "leak_type": "abrupt",
+        "onset": "2018-08-07 02:35",
+        "matched": true,
+        "notify_time": "2018-08-07 03:50",
+        "delay_hours": 1.25,
+        "stream_id": "n726",
+        "already_active_at_onset": []
+      },
+      {
+        "pipe": "p158",
+        "leak_type": "abrupt",
+        "onset": "2018-10-06 02:35",
+        "matched": true,
+        "notify_time": "2018-10-06 02:55",
+        "delay_hours": 0.3333333333333333,
+        "stream_id": "n288",
+        "already_active_at_onset": []
+      },
+      {
+        "pipe": "p369",
+        "leak_type": "abrupt",
+        "onset": "2018-10-26 02:05",
+        "matched": true,
+        "notify_time": "2018-10-26 02:15",
+        "delay_hours": 0.16666666666666666,
+        "stream_id": "n410",
+        "already_active_at_onset": []
+      }
+    ]
+  },
+  "null_7d_eligible_only": {
+    "n_abrupt_onsets": 3,
+    "observed_abrupt_matches": 3,
+    "null_n_valid_shifts": 89,
+    "null_match_median": 1.0,
+    "null_match_min": 0,
+    "null_match_max": 3,
+    "null_match_mean": 1.1910112359550562,
+    "fraction_shifts_ge_observed": 0.11235955056179775,
+    "caveat": "Overlapping daily shifts are dependent probes; n abrupt events is small. Descriptive only \u2014 beating null is necessary, not sufficient."
+  },
+  "next_change": {
+    "proposal": "Change recovery to require sustained **observable residual normalization** (e.g. N consecutive finite steps with z_i \u2264 k or z_i \u2264 0), while keeping the episode active if z_i remains elevated \u2014 do **not** clear on wall-clock alone and do **not** periodically reset CUSUM to spawn repeated incidents.",
+    "supported_by": "CUSUM-debt evidence on diagnosed episodes where |z| is small but C stays >0",
+    "episodes_with_debt_evidence": [
+      "n54",
+      "n1",
+      "n636",
+      "n726",
+      "n288",
+      "n410"
+    ],
+    "status": "proposed only \u2014 not implemented"
+  },
+  "crosscheck_original_style_matches": [
+    {
+      "pipe": "p654",
+      "leak_type": "incipient",
+      "onset": "2018-07-05 03:40",
+      "matched": true,
+      "notify_time": "2018-07-15 02:55",
+      "delay_hours": 239.25,
+      "stream_id": "n31",
+      "refs_used": [
+        "n1",
+        "n4",
+        "n549"
+      ],
+      "change_estimate_time": "2018-07-15 00:00",
+      "open_leaks_at_notify": 4,
+      "episode_end": "2018-07-24 09:00"
+    },
+    {
+      "pipe": "p810",
+      "leak_type": "incipient",
+      "onset": "2018-07-28 03:05",
+      "matched": true,
+      "notify_time": "2018-07-29 09:20",
+      "delay_hours": 30.25,
+      "stream_id": "n740",
+      "refs_used": [
+        "n722",
+        "n769",
+        "n296"
+      ],
+      "change_estimate_time": "2018-07-29 07:25",
+      "open_leaks_at_notify": 5,
+      "episode_end": "2018-12-31 23:55"
+    },
+    {
+      "pipe": "p183",
+      "leak_type": "abrupt",
+      "onset": "2018-08-07 02:35",
+      "matched": true,
+      "notify_time": "2018-08-07 03:50",
+      "delay_hours": 1.25,
+      "stream_id": "n726",
+      "refs_used": [
+        "n752",
+        "n769",
+        "n288"
+      ],
+      "change_estimate_time": "2018-08-07 02:25",
+      "open_leaks_at_notify": 6,
+      "episode_end": "2018-11-11 21:05"
+    },
+    {
+      "pipe": "p158",
+      "leak_type": "abrupt",
+      "onset": "2018-10-06 02:35",
+      "matched": true,
+      "notify_time": "2018-10-06 02:55",
+      "delay_hours": 0.3333333333333333,
+      "stream_id": "n288",
+      "refs_used": [
+        "n726",
+        "n752",
+        "n679"
+      ],
+      "change_estimate_time": "2018-10-05 23:45",
+      "open_leaks_at_notify": 5,
+      "episode_end": "2018-12-31 23:55"
+    },
+    {
+      "pipe": "p369",
+      "leak_type": "abrupt",
+      "onset": "2018-10-26 02:05",
+      "matched": true,
+      "notify_time": "2018-10-26 02:15",
+      "delay_hours": 0.16666666666666666,
+      "stream_id": "n410",
+      "refs_used": [
+        "n429",
+        "n415",
+        "n342"
+      ],
+      "change_estimate_time": "2018-10-26 02:00",
+      "open_leaks_at_notify": 5,
+      "episode_end": "2018-12-31 23:55"
+    }
+  ]
+}

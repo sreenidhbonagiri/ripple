@@ -13,3 +13,9 @@ Branch `research/per-sensor-relationship-cusum` from `main`.
 ```
 
 Outputs: `outputs/frozen_settings.json`, `outputs/RESULTS.md`, `outputs/summary.json`, regenerable plots.
+
+Eligibility / occupancy / recovery audit (frozen settings unchanged): `outputs/AUDIT.md`
+
+```bash
+.venv/bin/python research/per-sensor-relationship-cusum/audit_occupancy_recovery.py
+```
