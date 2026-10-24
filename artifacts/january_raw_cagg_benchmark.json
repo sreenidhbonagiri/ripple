@@ -1,0 +1,273 @@
+{
+  "schema_version": 1,
+  "title": "January-only raw versus readings_15m CAGG benchmark",
+  "run_date_utc": "2026-10-24",
+  "run_started_utc": "2026-10-24T19:34:45Z",
+  "repeats": 7,
+  "method": "Single reused connection; arms alternate raw/CAGG each repeat; database timings from EXPLAIN (ANALYZE, BUFFERS) Execution Time.",
+  "timing_label": "database_execution",
+  "not_application_loading_time": true,
+  "compression_enabled": false,
+  "coverage": {
+    "scope": "january_2019_only",
+    "readings_n": 330336,
+    "readings_tmin": "2019-01-01 00:00:00",
+    "readings_tmax": "2019-01-31 23:55:00",
+    "cagg_n": 110112,
+    "pressure_sensor_count": 33
+  },
+  "workloads": [
+    {
+      "id": "q1_24h_15m",
+      "label": "24h \u00d7 15m pressure",
+      "supports": "Demo scrubbing / episode context at native CAGG grain",
+      "supports_investigation": "Demo scrubbing / episode context at native CAGG grain",
+      "window": {
+        "start": "2019-01-31 00:00:00",
+        "end_exclusive": "2019-02-01 00:00:00"
+      },
+      "equivalence": {
+        "raw_row_count": 3168,
+        "cagg_row_count": 3168,
+        "matched_rows": 3168,
+        "missing_in_cagg": 0,
+        "missing_in_raw": 0,
+        "outputs_match": true,
+        "average_method": "SUM(value_sum)/SUM(sample_count) \u2014 never avg-of-avgs"
+      },
+      "database_execution_explain": {
+        "scope": "database_execution",
+        "note": "EXPLAIN (ANALYZE, BUFFERS) Execution Time only \u2014 not application or browser loading time.",
+        "raw": {
+          "median_s": 0.006187000000000001,
+          "p95_s": 0.0062315,
+          "mean_s": 0.0061907142857142855,
+          "min_s": 0.00615,
+          "max_s": 0.006245
+        },
+        "cagg": {
+          "median_s": 0.001459,
+          "p95_s": 0.0014709,
+          "mean_s": 0.0014555714285714287,
+          "min_s": 0.001439,
+          "max_s": 0.0014730000000000001
+        }
+      },
+      "client_roundtrip": {
+        "scope": "psycopg_execute_fetchall",
+        "raw": {
+          "median_s": 0.0412886671256274,
+          "p95_s": 0.0668657250003889,
+          "mean_s": 0.04605807131156325,
+          "min_s": 0.03817941597662866,
+          "max_s": 0.07765049999579787
+        },
+        "cagg": {
+          "median_s": 0.03778366697952151,
+          "p95_s": 0.058286729641258694,
+          "mean_s": 0.0414044583948063,
+          "min_s": 0.033584415912628174,
+          "max_s": 0.06552729196846485
+        }
+      },
+      "raw_db": {
+        "median_s": 0.006187000000000001,
+        "p95_s": 0.0062315,
+        "mean_s": 0.0061907142857142855,
+        "min_s": 0.00615,
+        "max_s": 0.006245
+      },
+      "cagg_db": {
+        "median_s": 0.001459,
+        "p95_s": 0.0014709,
+        "mean_s": 0.0014555714285714287,
+        "min_s": 0.001439,
+        "max_s": 0.0014730000000000001
+      },
+      "raw_client": {
+        "median_s": 0.0412886671256274,
+        "p95_s": 0.0668657250003889,
+        "mean_s": 0.04605807131156325,
+        "min_s": 0.03817941597662866,
+        "max_s": 0.07765049999579787
+      },
+      "cagg_client": {
+        "median_s": 0.03778366697952151,
+        "p95_s": 0.058286729641258694,
+        "mean_s": 0.0414044583948063,
+        "min_s": 0.033584415912628174,
+        "max_s": 0.06552729196846485
+      },
+      "db_median_speedup": 4.240575736806032,
+      "speedup_note": "CAGG database execution median is 4.24\u00d7 faster than raw."
+    },
+    {
+      "id": "q2_january_hourly",
+      "label": "January \u00d7 hourly pressure",
+      "supports": "Multi-week investigation context (January-only coverage)",
+      "supports_investigation": "Multi-week investigation context (January-only coverage)",
+      "window": {
+        "start": "2019-01-01 00:00:00",
+        "end_exclusive": "2019-02-01 00:00:00"
+      },
+      "equivalence": {
+        "raw_row_count": 24552,
+        "cagg_row_count": 24552,
+        "matched_rows": 24552,
+        "missing_in_cagg": 0,
+        "missing_in_raw": 0,
+        "outputs_match": true,
+        "average_method": "SUM(value_sum)/SUM(sample_count) \u2014 never avg-of-avgs"
+      },
+      "database_execution_explain": {
+        "scope": "database_execution",
+        "note": "EXPLAIN (ANALYZE, BUFFERS) Execution Time only \u2014 not application or browser loading time.",
+        "raw": {
+          "median_s": 0.584538,
+          "p95_s": 0.6453317,
+          "mean_s": 0.5952421428571428,
+          "min_s": 0.5540839999999999,
+          "max_s": 0.652514
+        },
+        "cagg": {
+          "median_s": 0.34730399999999995,
+          "p95_s": 0.3704368,
+          "mean_s": 0.3468421428571428,
+          "min_s": 0.29555200000000004,
+          "max_s": 0.370513
+        }
+      },
+      "client_roundtrip": {
+        "scope": "psycopg_execute_fetchall",
+        "raw": {
+          "median_s": 0.6529581670183688,
+          "p95_s": 0.6658843328943476,
+          "mean_s": 0.6413389404104757,
+          "min_s": 0.6018225001171231,
+          "max_s": 0.6684348329436034
+        },
+        "cagg": {
+          "median_s": 0.483692292124033,
+          "p95_s": 0.5152926703915,
+          "mean_s": 0.4816496130411646,
+          "min_s": 0.4344060409348458,
+          "max_s": 0.5243948330171406
+        }
+      },
+      "raw_db": {
+        "median_s": 0.584538,
+        "p95_s": 0.6453317,
+        "mean_s": 0.5952421428571428,
+        "min_s": 0.5540839999999999,
+        "max_s": 0.652514
+      },
+      "cagg_db": {
+        "median_s": 0.34730399999999995,
+        "p95_s": 0.3704368,
+        "mean_s": 0.3468421428571428,
+        "min_s": 0.29555200000000004,
+        "max_s": 0.370513
+      },
+      "raw_client": {
+        "median_s": 0.6529581670183688,
+        "p95_s": 0.6658843328943476,
+        "mean_s": 0.6413389404104757,
+        "min_s": 0.6018225001171231,
+        "max_s": 0.6684348329436034
+      },
+      "cagg_client": {
+        "median_s": 0.483692292124033,
+        "p95_s": 0.5152926703915,
+        "mean_s": 0.4816496130411646,
+        "min_s": 0.4344060409348458,
+        "max_s": 0.5243948330171406
+      },
+      "db_median_speedup": 1.6830730426369984,
+      "speedup_note": "CAGG database execution median is 1.68\u00d7 faster than raw."
+    },
+    {
+      "id": "q3_january_daily",
+      "label": "January \u00d7 daily by sensor",
+      "supports": "Coverage / baseline overview across stored January history",
+      "supports_investigation": "Coverage / baseline overview across stored January history",
+      "window": {
+        "start": "2019-01-01 00:00:00",
+        "end_exclusive": "2019-02-01 00:00:00"
+      },
+      "equivalence": {
+        "raw_row_count": 1023,
+        "cagg_row_count": 1023,
+        "matched_rows": 1023,
+        "missing_in_cagg": 0,
+        "missing_in_raw": 0,
+        "outputs_match": true,
+        "average_method": "SUM(value_sum)/SUM(sample_count) \u2014 never avg-of-avgs"
+      },
+      "database_execution_explain": {
+        "scope": "database_execution",
+        "note": "EXPLAIN (ANALYZE, BUFFERS) Execution Time only \u2014 not application or browser loading time.",
+        "raw": {
+          "median_s": 0.441388,
+          "p95_s": 0.4607777,
+          "mean_s": 0.4261285714285714,
+          "min_s": 0.36134,
+          "max_s": 0.46097000000000005
+        },
+        "cagg": {
+          "median_s": 0.1431,
+          "p95_s": 0.16120869999999998,
+          "mean_s": 0.12586171428571427,
+          "min_s": 0.091119,
+          "max_s": 0.16605699999999998
+        }
+      },
+      "client_roundtrip": {
+        "scope": "psycopg_execute_fetchall",
+        "raw": {
+          "median_s": 0.39014312508516014,
+          "p95_s": 0.3942091749049723,
+          "mean_s": 0.3718613154653992,
+          "min_s": 0.31601470801979303,
+          "max_s": 0.39516987511888146
+        },
+        "cagg": {
+          "median_s": 0.11357599985785782,
+          "p95_s": 0.19469618741422892,
+          "mean_s": 0.14398116069579764,
+          "min_s": 0.10142212500795722,
+          "max_s": 0.19593574991449714
+        }
+      },
+      "raw_db": {
+        "median_s": 0.441388,
+        "p95_s": 0.4607777,
+        "mean_s": 0.4261285714285714,
+        "min_s": 0.36134,
+        "max_s": 0.46097000000000005
+      },
+      "cagg_db": {
+        "median_s": 0.1431,
+        "p95_s": 0.16120869999999998,
+        "mean_s": 0.12586171428571427,
+        "min_s": 0.091119,
+        "max_s": 0.16605699999999998
+      },
+      "raw_client": {
+        "median_s": 0.39014312508516014,
+        "p95_s": 0.3942091749049723,
+        "mean_s": 0.3718613154653992,
+        "min_s": 0.31601470801979303,
+        "max_s": 0.39516987511888146
+      },
+      "cagg_client": {
+        "median_s": 0.11357599985785782,
+        "p95_s": 0.19469618741422892,
+        "mean_s": 0.14398116069579764,
+        "min_s": 0.10142212500795722,
+        "max_s": 0.19593574991449714
+      },
+      "db_median_speedup": 3.0844723969252272,
+      "speedup_note": "CAGG database execution median is 3.08\u00d7 faster than raw."
+    }
+  ]
+}

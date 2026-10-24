@@ -1,0 +1,155 @@
+/**
+ * Coordinated investigation helpers (Milestone 3).
+ *
+ * Official L-TOWN.inp mappings:
+ * - p227: R1 → n303 (external inflow)
+ * - p235: R2 → n336 (external inflow)
+ * - PUMP_1: n54 → T1 (internal pump transfer, not external supply)
+ * - T1: tank level
+ */
+
+import { addSeconds, normalizeNaive, parseNaive } from "./time";
+import type { FreshnessStatus, SnapshotObservation } from "./types";
+
+export const FRESH_SECONDS = 300;
+export const COMPARE_OFFSET_SECONDS = 30 * 60;
+
+export const CONTEXT = {
+  externalInflows: [
+    {
+      sensorId: "p227",
+      role: "external_inflow",
+      label: "External inflow p227 (R1 → network)",
+      unit: "m³/h",
+    },
+    {
+      sensorId: "p235",
+      role: "external_inflow",
+      label: "External inflow p235 (R2 → network)",
+      unit: "m³/h",
+    },
+  ],
+  internalTransfer: {
+    sensorId: "PUMP_1",
+    role: "internal_transfer",
+    label: "Internal pump transfer PUMP_1 (not external supply)",
+    unit: "m³/h",
+  },
+  tankLevel: {
+    sensorId: "T1",
+    role: "tank_level",
+    label: "Tank T1 level",
+    unit: "m",
+  },
+} as const;
+
+export const DISCLAIMER =
+  "Inspect pressure changes alongside supply, pump transfer, and tank behavior. These measurements do not confirm a leak.";
+
+export interface ReadingPoint {
+  ts: string;
+  value: number;
+}
+
+export interface PressureComparison {
+  available: boolean;
+  cursor: string;
+  priorCursor: string;
+  currentValue: number | null;
+  currentTs: string | null;
+  currentStatus: FreshnessStatus;
+  priorValue: number | null;
+  priorTs: string | null;
+  priorStatus: FreshnessStatus;
+  deltaM: number | null;
+  unavailableReason: string | null;
+}
+
+export function freshnessAt(observationTs: string | null, at: string): FreshnessStatus {
+  if (!observationTs) return "missing";
+  const obs = parseNaive(normalizeNaive(observationTs)).getTime();
+  const cursor = parseNaive(normalizeNaive(at)).getTime();
+  if (obs > cursor) {
+    throw new Error("observation after comparison time");
+  }
+  const ageSec = (cursor - obs) / 1000;
+  return ageSec <= FRESH_SECONDS ? "current" : "stale";
+}
+
+export function latestAtOrBefore(
+  points: ReadingPoint[],
+  at: string,
+): ReadingPoint | null {
+  const atMs = parseNaive(normalizeNaive(at)).getTime();
+  let chosen: ReadingPoint | null = null;
+  for (const p of points) {
+    const ts = normalizeNaive(p.ts);
+    if (parseNaive(ts).getTime() > atMs) break;
+    chosen = { ts, value: p.value };
+  }
+  return chosen;
+}
+
+export function pressureChange30m(
+  points: ReadingPoint[],
+  cursor: string,
+): PressureComparison {
+  const cursorN = normalizeNaive(cursor);
+  const priorCursor = addSeconds(cursorN, -COMPARE_OFFSET_SECONDS);
+  const ordered = [...points]
+    .map((p) => ({ ts: normalizeNaive(p.ts), value: p.value }))
+    .filter((p) => parseNaive(p.ts).getTime() <= parseNaive(cursorN).getTime())
+    .sort((a, b) => parseNaive(a.ts).getTime() - parseNaive(b.ts).getTime());
+
+  const current = latestAtOrBefore(ordered, cursorN);
+  const prior = latestAtOrBefore(ordered, priorCursor);
+  const currentStatus = freshnessAt(current?.ts ?? null, cursorN);
+  const priorStatus = freshnessAt(prior?.ts ?? null, priorCursor);
+
+  if (currentStatus !== "current" || priorStatus !== "current") {
+    const reasons: string[] = [];
+    if (currentStatus === "missing") reasons.push("current observation missing");
+    if (currentStatus === "stale") reasons.push("current observation stale");
+    if (priorStatus === "missing") reasons.push("prior (−30 min) observation missing");
+    if (priorStatus === "stale") reasons.push("prior (−30 min) observation stale");
+    return {
+      available: false,
+      cursor: cursorN,
+      priorCursor,
+      currentValue: current?.value ?? null,
+      currentTs: current?.ts ?? null,
+      currentStatus,
+      priorValue: prior?.value ?? null,
+      priorTs: prior?.ts ?? null,
+      priorStatus,
+      deltaM: null,
+      unavailableReason: reasons.join("; "),
+    };
+  }
+
+  return {
+    available: true,
+    cursor: cursorN,
+    priorCursor,
+    currentValue: current!.value,
+    currentTs: current!.ts,
+    currentStatus,
+    priorValue: prior!.value,
+    priorTs: prior!.ts,
+    priorStatus,
+    deltaM: current!.value - prior!.value,
+    unavailableReason: null,
+  };
+}
+
+export function findObservation(
+  observations: SnapshotObservation[],
+  sensorId: string,
+): SnapshotObservation | null {
+  return observations.find((o) => o.sensor_id === sensorId) ?? null;
+}
+
+export function midpointTimestamp(timestamps: string[]): string | null {
+  if (timestamps.length === 0) return null;
+  return timestamps[Math.floor((timestamps.length - 1) / 2)] ?? null;
+}

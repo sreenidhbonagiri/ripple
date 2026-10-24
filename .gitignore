@@ -1,0 +1,54 @@
+# Raw datasets / benchmark files
+data/
+*.inp
+*.csv
+*.xlsx
+*.yaml
+!dataset_configuration.example.yaml
+
+# Python
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg
+
+# Node / frontend
+node_modules/
+frontend/dist/
+frontend/build/
+*.local
+
+# Environment / secrets / session credentials
+.env
+.env.*
+!.env.example
+*cookie*
+*.cookies
+cookies.txt
+*.jar
+*.token
+*credentials*
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs / coverage
+*.log
+coverage/
+.coverage
+htmlcov/

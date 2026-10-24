@@ -1,0 +1,37 @@
+# Local/Vultr-ready compose. Secrets come from the environment or an untracked .env.
+# Do not bake DATABASE_URL into images. Do not provision cloud resources from this file.
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?set DATABASE_URL}
+      RIPPLE_STORAGE_LIMIT_BYTES: ${RIPPLE_STORAGE_LIMIT_BYTES:?set RIPPLE_STORAGE_LIMIT_BYTES}
+      RIPPLE_INP_PATH: /app/data/L-TOWN.inp
+      RIPPLE_CORS_ORIGINS: ${RIPPLE_CORS_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080,http://localhost,http://127.0.0.1}
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
