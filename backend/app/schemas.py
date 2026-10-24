@@ -290,3 +290,50 @@ class PresenterPresetResponse(BaseModel):
             },
         ]
     )
+
+
+# --- Saved investigations (metadata only; measurements from time-series tables) ---
+
+
+class InvestigationCreateRequest(BaseModel):
+    title: str = Field(..., min_length=1, max_length=120)
+    note: str | None = Field(
+        default=None,
+        max_length=1000,
+        description="Optional public plain-text note. Do not enter private data.",
+    )
+    sensor_id: str = Field(..., min_length=1, max_length=64)
+    cursor: datetime
+    window_start: datetime
+    window_end: datetime
+    source_id: str = Field(
+        default="battledim-ltown-zenodo-4017659",
+        min_length=1,
+        max_length=64,
+        description="Benchmark / dataset source identifier",
+    )
+
+
+class SavedInvestigationResponse(BaseModel):
+    id: str
+    title: str
+    note: str | None
+    sensor_id: str
+    cursor: datetime
+    window_start: datetime
+    window_end: datetime
+    source_id: str
+    created_at: datetime
+    share_path: str
+    public_note_notice: str = (
+        "Shared investigation notes are public. Do not enter private or sensitive data. "
+        "The opaque link id is not authentication."
+    )
+    evidence_notice: str = (
+        "This record stores investigation metadata only. Chart values are loaded from "
+        "live historical time-series tables and are not a frozen evidence snapshot."
+    )
+
+
+class InvestigationCreateResponse(SavedInvestigationResponse):
+    pass

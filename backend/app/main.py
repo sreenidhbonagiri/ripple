@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import get_settings
@@ -12,6 +12,13 @@ from app.db import get_connection, sanitize_db_error
 from app.network_loader import get_cached_network
 from app.history import pressure_hourly_history
 from app.investigation import pressure_comparison_from_db
+from app.investigations import (
+    CREATE_RATE_LIMITER,
+    InvestigationCreate,
+    InvestigationRateLimitError,
+    InvestigationValidationError,
+    get_investigation_store,
+)
 from app.replay import (
     MAX_READINGS,
     list_sensors,
@@ -22,12 +29,15 @@ from app.replay import (
 from app.schemas import (
     HealthResponse,
     HourlyHistoryResponse,
+    InvestigationCreateRequest,
+    InvestigationCreateResponse,
     NetworkResponse,
     PresenterPresetResponse,
     PressureComparisonResponse,
     ReadyResponse,
     ReplaySnapshotResponse,
     ReplayWindowResponse,
+    SavedInvestigationResponse,
     SensorReadingsResponse,
     SensorsResponse,
 )
@@ -39,7 +49,7 @@ app = FastAPI(
         "Historical water-network investigation workspace for the BattLeDIM "
         "L-Town benchmark. Not live utility monitoring."
     ),
-    version="0.5.0",
+    version="0.6.0",
 )
 
 _settings = get_settings()
@@ -222,3 +232,81 @@ def get_tiger_evidence() -> dict:
         return present_tiger_evidence()
     except Exception as exc:  # noqa: BLE001
         raise HTTPException(status_code=500, detail=sanitize_db_error(str(exc))) from None
+
+
+def _client_rate_key(request: Request) -> str:
+    forwarded = request.headers.get("x-forwarded-for")
+    if forwarded:
+        return forwarded.split(",")[0].strip() or "unknown"
+    if request.client and request.client.host:
+        return request.client.host
+    return "unknown"
+
+
+def _investigation_response(row) -> SavedInvestigationResponse:
+    return SavedInvestigationResponse(
+        id=row.id,
+        title=row.title,
+        note=row.note,
+        sensor_id=row.sensor_id,
+        cursor=row.cursor_ts,
+        window_start=row.window_start,
+        window_end=row.window_end,
+        source_id=row.source_id,
+        created_at=row.created_at,
+        share_path=f"/?i={row.id}",
+    )
+
+
+@app.post(
+    "/api/investigations",
+    response_model=InvestigationCreateResponse,
+    status_code=201,
+)
+def create_investigation(
+    body: InvestigationCreateRequest,
+    request: Request,
+) -> InvestigationCreateResponse:
+    """Save investigation metadata. Notes are public; ids are not authentication."""
+    try:
+        CREATE_RATE_LIMITER.check(_client_rate_key(request))
+    except InvestigationRateLimitError as exc:
+        raise HTTPException(
+            status_code=429,
+            detail=str(exc),
+            headers={"Retry-After": str(exc.retry_after_seconds)},
+        ) from None
+
+    payload = InvestigationCreate(
+        title=body.title,
+        note=body.note,
+        sensor_id=body.sensor_id,
+        cursor_ts=body.cursor,
+        window_start=body.window_start,
+        window_end=body.window_end,
+        source_id=body.source_id,
+    )
+    try:
+        row = get_investigation_store().create(payload)
+    except InvestigationValidationError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from None
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=sanitize_db_error(str(exc))) from None
+    return InvestigationCreateResponse(**_investigation_response(row).model_dump())
+
+
+@app.get(
+    "/api/investigations/{investigation_id}",
+    response_model=SavedInvestigationResponse,
+)
+def get_investigation(investigation_id: str) -> SavedInvestigationResponse:
+    """Reopen saved metadata. Measurements come from existing time-series APIs."""
+    if len(investigation_id) > 64 or "/" in investigation_id:
+        raise HTTPException(status_code=404, detail="Investigation not found")
+    try:
+        row = get_investigation_store().get(investigation_id)
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=sanitize_db_error(str(exc))) from None
+    if row is None:
+        raise HTTPException(status_code=404, detail="Investigation not found")
+    return _investigation_response(row)

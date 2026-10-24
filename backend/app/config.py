@@ -31,6 +31,9 @@ class Settings(BaseSettings):
         "http://localhost:5173,http://127.0.0.1:5173,"
         "http://localhost:4173,http://127.0.0.1:4173"
     )
+    # Investigation metadata store: "tiger" (default) or "memory" (local UI demos
+    # without applying migration 002). Production should use tiger after review.
+    ripple_investigation_store: str = "tiger"
 
 
 @lru_cache
