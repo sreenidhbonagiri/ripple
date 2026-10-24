@@ -52,3 +52,18 @@ Thumbs.db
 coverage/
 .coverage
 htmlcov/
+
+# Allow research tree despite broad data ignores
+!research/
+!research/**/
+!research/**/*.md
+!research/**/*.py
+!research/**/*.json
+!research/**/*.toml
+
+# Research bulky / regenerable outputs
+research/**/outputs/plots/
+research/**/outputs/*.npy
+research/**/outputs/cache/
+research/**/__pycache__/
+research/**/tests/__pycache__/
