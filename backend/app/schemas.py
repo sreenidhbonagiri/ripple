@@ -132,7 +132,9 @@ class ReplayWindowResponse(BaseModel):
     data_start: datetime | None = None
     data_end: datetime | None = None
     sensor_count: int
+    # Timescale approximate_row_count — coverage subtitle only (not Tiger evidence).
     reading_count: int
+    reading_count_estimated: bool = True
     # Presenter playback preset (not expanded to full imported month)
     presenter_start: datetime
     presenter_end: datetime

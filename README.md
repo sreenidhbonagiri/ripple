@@ -101,11 +101,11 @@ At cursor `T`, each sensor uses the latest **raw** reading with `ts <= T` (never
 | `GET` | `/api/tiger/evidence` | Live counts/size + **saved** January raw/CAGG artifact (lazy; no re-bench) |
 | `GET` | `/api/ready` | Readiness (DB reachable); `/api/health` stays liveness-only |
 
-`/api/replay/window` returns **presenter** playback bounds (Jan 12 14:00–17:00) plus separate **data_start/data_end** database coverage.
+`/api/replay/window` returns **presenter** playback bounds (Jan 12 14:00–17:00) plus separate **data_start/data_end** database coverage. Coverage `reading_count` is Timescale **estimated** (`reading_count_estimated`); exact totals stay on `/api/tiger/evidence`.
 
 Presenter UI: Jan 12 preset buttons + illustrative sensor **n54** at **15:00** (verified fresh 30-minute pressure drop — observation only). Tiger panel loads evidence on expand.
 
-Demo script: [`docs/PRESENTER_90S.md`](docs/PRESENTER_90S.md). Deploy: [`deploy/VULTR_CHECKLIST.md`](deploy/VULTR_CHECKLIST.md), `docker-compose.yml`.
+Demo script: [`docs/PRESENTER_90S.md`](docs/PRESENTER_90S.md). Loading metrics: [`docs/LOADING_PERFORMANCE.md`](docs/LOADING_PERFORMANCE.md) (DOM-poll vs mark definitions are not interchangeable). Deploy: [`deploy/VULTR_CHECKLIST.md`](deploy/VULTR_CHECKLIST.md), `docker-compose.yml`.
 
 Timestamps are **TIMESTAMP WITHOUT TIME ZONE** (naive BattLeDIM clock). Do not attach a geographic timezone.
 

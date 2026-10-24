@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import cytoscape, { type Core, type ElementDefinition } from "cytoscape";
+import type { Core, ElementDefinition } from "cytoscape";
 import type {
   FreshnessStatus,
   NetworkLink,
@@ -40,10 +40,9 @@ function toElements(
   nodes: NetworkNode[],
   links: NetworkLink[],
   sensors: Sensor[],
-  observations: SnapshotObservation[],
 ): ElementDefinition[] {
-  const nodeIds = new Set(nodes.map((n) => n.id));
-  const obsBySensor = new Map(observations.map((o) => [o.sensor_id, o]));
+  const nodeById = new Map(nodes.map((n) => [n.id, n]));
+  const nodeIds = new Set(nodeById.keys());
   const sensorByElement = new Map(sensors.map((s) => [s.network_element_id, s]));
   const elements: ElementDefinition[] = [];
 
@@ -65,6 +64,7 @@ function toElements(
       position: pos,
       selectable: true,
       grabbable: false,
+      classes: [`ntype-${node.type}`, sensor ? "has-sensor" : ""].filter(Boolean).join(" "),
     });
   }
 
@@ -84,25 +84,23 @@ function toElements(
         sensorId: sensor?.id ?? null,
       },
       selectable: true,
+      classes: [`ltype-${link.type}`, sensor ? "has-sensor" : ""].filter(Boolean).join(" "),
     });
   }
 
-  // Sensor markers as overlay nodes near mapped elements
   for (const sensor of sensors) {
-    const obs = obsBySensor.get(sensor.id);
-    const status: FreshnessStatus = obs?.status ?? "missing";
     let position: { x: number; y: number } | undefined;
 
     if (sensor.network_element_kind === "node") {
-      const host = nodes.find((n) => n.id === sensor.network_element_id);
+      const host = nodeById.get(sensor.network_element_id);
       if (host?.coordinates) {
         position = { x: host.coordinates.x + 8, y: -host.coordinates.y - 8 };
       }
     } else {
       const link = links.find((l) => l.id === sensor.network_element_id);
       if (link) {
-        const a = nodes.find((n) => n.id === link.start_node)?.coordinates;
-        const b = nodes.find((n) => n.id === link.end_node)?.coordinates;
+        const a = nodeById.get(link.start_node)?.coordinates;
+        const b = nodeById.get(link.end_node)?.coordinates;
         if (a && b) {
           position = { x: (a.x + b.x) / 2, y: -((a.y + b.y) / 2) };
         }
@@ -116,15 +114,22 @@ function toElements(
         label: sensor.id,
         nodeType: "Sensor",
         sensorRaw: sensor,
-        freshness: status,
+        freshness: "missing" as FreshnessStatus,
       },
       position,
       selectable: true,
       grabbable: false,
+      classes: "ntype-Sensor freshness-missing",
     });
   }
 
   return elements;
+}
+
+function yieldToPaint(): Promise<void> {
+  return new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+  });
 }
 
 export default function NetworkMap({
@@ -141,147 +146,196 @@ export default function NetworkMap({
   onSelectRef.current = onSelect;
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-    const cy = cytoscape({
-      container: containerRef.current,
-      elements: toElements(nodes, links, sensors, observations),
-      layout: { name: "preset", fit: true, padding: 40 },
-      wheelSensitivity: 0.35,
-      minZoom: 0.05,
-      maxZoom: 8,
-      style: [
-        {
-          selector: "node",
-          style: {
-            label: "data(label)",
-            "font-size": 7,
-            "font-family": "DM Sans, sans-serif",
-            color: "#1a2a30",
-            "text-outline-width": 2,
-            "text-outline-color": "#f2f6f4",
-            "background-color": (ele) => {
-              if (ele.data("nodeType") === "Sensor") {
-                return STATUS_COLOR[ele.data("freshness") as FreshnessStatus] ?? "#8b3a2a";
-              }
-              return NODE_COLORS[ele.data("nodeType") as NetworkNode["type"]] ?? "#1a6b7a";
+    let cancelled = false;
+    let cy: Core | null = null;
+
+    const run = async () => {
+      // Let React paint map-meta / presenter chrome before heavy map work.
+      await yieldToPaint();
+      if (cancelled) return;
+
+      const { default: cytoscape } = await import("cytoscape");
+      if (cancelled || !containerRef.current) return;
+
+      performance.mark("ripple-cy-import-done");
+      cy = cytoscape({
+        container: containerRef.current,
+        elements: toElements(nodes, links, sensors),
+        layout: { name: "preset", fit: true, padding: 40 },
+        textureOnViewport: true,
+        hideEdgesOnViewport: true,
+        pixelRatio: 1,
+        wheelSensitivity: 0.35,
+        minZoom: 0.05,
+        maxZoom: 8,
+        style: [
+          {
+            selector: "node",
+            style: {
+              label: "",
+              "background-color": NODE_COLORS.Junction,
+              width: 10,
+              height: 10,
+              "border-width": 1,
+              "border-color": "#0a1a1e",
             },
-            width: 10,
-            height: 10,
-            "border-width": 1,
-            "border-color": "#0a1a1e",
           },
-        },
-        {
-          selector: 'node[nodeType = "Reservoir"]',
-          style: { shape: "diamond", width: 16, height: 16 },
-        },
-        {
-          selector: 'node[nodeType = "Tank"]',
-          style: { shape: "round-rectangle", width: 14, height: 14 },
-        },
-        {
-          selector: 'node[nodeType = "Sensor"]',
-          style: {
-            shape: "triangle",
-            width: 12,
-            height: 12,
-            "font-size": 8,
-            "z-index": 20,
+          {
+            selector: "node.ntype-Reservoir",
+            style: {
+              shape: "diamond",
+              width: 16,
+              height: 16,
+              "background-color": NODE_COLORS.Reservoir,
+            },
           },
-        },
-        {
-          selector: "node[hasSensor]",
-          style: {
-            "border-width": 2,
-            "border-color": "#c45c26",
+          {
+            selector: "node.ntype-Tank",
+            style: {
+              shape: "round-rectangle",
+              width: 14,
+              height: 14,
+              "background-color": NODE_COLORS.Tank,
+            },
           },
-        },
-        {
-          selector: "edge",
-          style: {
-            width: 1.5,
-            "line-color": (ele) =>
-              LINK_COLORS[ele.data("linkType") as NetworkLink["type"]] ?? "#5a7a86",
-            "curve-style": "haystack",
-            "haystack-radius": 0,
-            opacity: 0.85,
+          {
+            selector: "node.ntype-Sensor",
+            style: {
+              shape: "triangle",
+              width: 12,
+              height: 12,
+              label: "data(label)",
+              "font-size": 8,
+              "font-family": "DM Sans, sans-serif",
+              color: "#1a2a30",
+              "text-outline-width": 1,
+              "text-outline-color": "#f2f6f4",
+              "z-index": 20,
+              "background-color": STATUS_COLOR.missing,
+            },
           },
-        },
-        {
-          selector: 'edge[linkType = "Pump"]',
-          style: { width: 2.5, "line-style": "dashed" },
-        },
-        {
-          selector: 'edge[linkType = "Valve"]',
-          style: { width: 2.5 },
-        },
-        {
-          selector: "edge[hasSensor]",
-          style: { width: 3, "line-color": "#c45c26" },
-        },
-        {
-          selector: ":selected",
-          style: {
-            "border-width": 3,
-            "border-color": "#c45c26",
-            "line-color": "#c45c26",
-            "background-color": "#c45c26",
-            "z-index": 999,
+          {
+            selector: "node.ntype-Sensor.freshness-current",
+            style: { "background-color": STATUS_COLOR.current },
           },
-        },
-      ],
-    });
+          {
+            selector: "node.ntype-Sensor.freshness-stale",
+            style: { "background-color": STATUS_COLOR.stale },
+          },
+          {
+            selector: "node.ntype-Sensor.freshness-missing",
+            style: { "background-color": STATUS_COLOR.missing },
+          },
+          {
+            selector: "node.has-sensor",
+            style: { "border-width": 2, "border-color": "#c45c26" },
+          },
+          {
+            selector: "edge",
+            style: {
+              width: 1.5,
+              "line-color": LINK_COLORS.Pipe,
+              "curve-style": "haystack",
+              "haystack-radius": 0,
+              opacity: 0.85,
+            },
+          },
+          {
+            selector: "edge.ltype-Pump",
+            style: {
+              width: 2.5,
+              "line-style": "dashed",
+              "line-color": LINK_COLORS.Pump,
+            },
+          },
+          {
+            selector: "edge.ltype-Valve",
+            style: { width: 2.5, "line-color": LINK_COLORS.Valve },
+          },
+          {
+            selector: "edge.has-sensor",
+            style: { width: 3, "line-color": "#c45c26" },
+          },
+          {
+            selector: ":selected",
+            style: {
+              "border-width": 3,
+              "border-color": "#c45c26",
+              "line-color": "#c45c26",
+              "background-color": "#c45c26",
+              "z-index": 999,
+            },
+          },
+        ],
+      });
 
-    cy.on("tap", "node", (evt) => {
-      if (evt.target.data("nodeType") === "Sensor") {
-        onSelectRef.current({ kind: "sensor", data: evt.target.data("sensorRaw") as Sensor });
+      cy.on("tap", "node", (evt) => {
+        if (evt.target.data("nodeType") === "Sensor") {
+          onSelectRef.current({
+            kind: "sensor",
+            data: evt.target.data("sensorRaw") as Sensor,
+          });
+          return;
+        }
+        const sensorId = evt.target.data("sensorId") as string | null;
+        if (sensorId) {
+          const sensor = sensors.find((s) => s.id === sensorId);
+          if (sensor) {
+            onSelectRef.current({ kind: "sensor", data: sensor });
+            return;
+          }
+        }
+        onSelectRef.current({ kind: "node", data: evt.target.data("raw") as NetworkNode });
+      });
+
+      cy.on("tap", "edge", (evt) => {
+        const sensorId = evt.target.data("sensorId") as string | null;
+        if (sensorId) {
+          const sensor = sensors.find((s) => s.id === sensorId);
+          if (sensor) {
+            onSelectRef.current({ kind: "sensor", data: sensor });
+            return;
+          }
+        }
+        onSelectRef.current({ kind: "link", data: evt.target.data("raw") as NetworkLink });
+      });
+
+      cy.on("tap", (evt) => {
+        if (evt.target === cy) onSelectRef.current(null);
+      });
+
+      if (cancelled) {
+        cy.destroy();
         return;
       }
-      const sensorId = evt.target.data("sensorId") as string | null;
-      if (sensorId) {
-        const sensor = sensors.find((s) => s.id === sensorId);
-        if (sensor) {
-          onSelectRef.current({ kind: "sensor", data: sensor });
-          return;
-        }
-      }
-      onSelectRef.current({ kind: "node", data: evt.target.data("raw") as NetworkNode });
-    });
+      cyRef.current = cy;
+      performance.mark("ripple-cy-ready");
+    };
 
-    cy.on("tap", "edge", (evt) => {
-      const sensorId = evt.target.data("sensorId") as string | null;
-      if (sensorId) {
-        const sensor = sensors.find((s) => s.id === sensorId);
-        if (sensor) {
-          onSelectRef.current({ kind: "sensor", data: sensor });
-          return;
-        }
-      }
-      onSelectRef.current({ kind: "link", data: evt.target.data("raw") as NetworkLink });
-    });
+    void run();
 
-    cy.on("tap", (evt) => {
-      if (evt.target === cy) onSelectRef.current(null);
-    });
-
-    cyRef.current = cy;
     return () => {
-      cy.destroy();
+      cancelled = true;
+      cy?.destroy();
       cyRef.current = null;
     };
-  }, [nodes, links, sensors]); // rebuild topology when network/sensors change
+  }, [nodes, links, sensors]);
 
-  // Update freshness colors without full rebuild
   useEffect(() => {
     const cy = cyRef.current;
     if (!cy) return;
     const obsBySensor = new Map(observations.map((o) => [o.sensor_id, o]));
-    cy.nodes().forEach((ele) => {
-      if (ele.data("nodeType") !== "Sensor") return;
-      const sensor = ele.data("sensorRaw") as Sensor;
-      const status = obsBySensor.get(sensor.id)?.status ?? "missing";
-      ele.data("freshness", status);
+    cy.batch(() => {
+      cy.nodes(".ntype-Sensor").forEach((ele) => {
+        const sensor = ele.data("sensorRaw") as Sensor;
+        const status = obsBySensor.get(sensor.id)?.status ?? "missing";
+        ele.data("freshness", status);
+        ele.removeClass("freshness-current freshness-stale freshness-missing");
+        ele.addClass(`freshness-${status}`);
+      });
     });
   }, [observations]);
 

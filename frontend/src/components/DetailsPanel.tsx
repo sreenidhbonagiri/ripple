@@ -1,11 +1,13 @@
-import PressureHistoryPanel from "./PressureHistoryPanel";
-import SensorChart from "./SensorChart";
+import { lazy, Suspense } from "react";
 import type { ReadingPoint } from "../investigation";
 import type {
   NetworkCounts,
   Selection,
   SnapshotObservation,
 } from "../types";
+
+const SensorChart = lazy(() => import("./SensorChart"));
+const PressureHistoryPanel = lazy(() => import("./PressureHistoryPanel"));
 
 interface Props {
   selection: Selection;
@@ -128,15 +130,17 @@ export default function DetailsPanel({
             </>
           )}
           <h3 className="details-section">Detailed replay chart (5-minute)</h3>
-          <SensorChart
-            sensor={selection.data}
-            series={series}
-            loading={seriesLoading}
-            error={seriesError}
-          />
-          {selection.data.measurement_type === "pressure" && cursor && (
-            <PressureHistoryPanel sensor={selection.data} cursor={cursor} />
-          )}
+          <Suspense fallback={<p className="channel-note">Loading chart…</p>}>
+            <SensorChart
+              sensor={selection.data}
+              series={series}
+              loading={seriesLoading}
+              error={seriesError}
+            />
+            {selection.data.measurement_type === "pressure" && cursor && (
+              <PressureHistoryPanel sensor={selection.data} cursor={cursor} />
+            )}
+          </Suspense>
         </div>
       )}
     </aside>

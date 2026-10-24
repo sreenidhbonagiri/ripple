@@ -93,7 +93,7 @@ export default function TigerEvidencePanel() {
                   <dd>{live?.sensors ?? "—"}</dd>
                 </div>
                 <div className="detail-row">
-                  <dt>Readings</dt>
+                  <dt>Readings (exact)</dt>
                   <dd>{live?.readings_total?.toLocaleString() ?? "—"}</dd>
                 </div>
                 <div className="detail-row">

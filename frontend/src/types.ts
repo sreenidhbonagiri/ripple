@@ -106,7 +106,10 @@ export interface ReplayWindowResponse {
   data_start: string | null;
   data_end: string | null;
   sensor_count: number;
+  /** Timescale approximate_row_count — coverage subtitle only */
   reading_count: number;
+  /** True when reading_count comes from approximate_row_count */
+  reading_count_estimated: boolean;
   /** Presenter playback preset (Jan 12 14:00–17:00) */
   presenter_start: string;
   presenter_end: string;

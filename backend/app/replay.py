@@ -84,16 +84,22 @@ def sensor_readings(
 
 
 def replay_window() -> ReplayWindowResponse:
+    """Coverage for the UI.
+
+    Avoid ``COUNT(DISTINCT sensor_id)`` over the readings hypertable — that full
+    scan dominated bootstrap (~600–800 ms). Prefer indexed MIN/MAX, Timescale
+    ``approximate_row_count`` (coverage subtitle only; labeled estimated), and
+    ``sensors`` cardinality. Exact reading totals stay on ``/api/tiger/evidence``.
+    """
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
                 """
                 SELECT
-                    MIN(ts) AS data_start,
-                    MAX(ts) AS data_end,
-                    COUNT(*)::INT AS reading_count,
-                    COUNT(DISTINCT sensor_id)::INT AS sensor_count
-                FROM readings
+                  (SELECT MIN(ts) FROM readings) AS data_start,
+                  (SELECT MAX(ts) FROM readings) AS data_end,
+                  (SELECT COALESCE(approximate_row_count('readings'), 0)::BIGINT) AS reading_count,
+                  (SELECT COUNT(*)::INT FROM sensors) AS sensor_count
                 """
             )
             row = cur.fetchone()
@@ -101,8 +107,9 @@ def replay_window() -> ReplayWindowResponse:
     return ReplayWindowResponse(
         data_start=row["data_start"],
         data_end=row["data_end"],
-        sensor_count=row["sensor_count"] or 0,
-        reading_count=row["reading_count"] or 0,
+        sensor_count=int(row["sensor_count"] or 0),
+        reading_count=int(row["reading_count"] or 0),
+        reading_count_estimated=True,
         presenter_start=PRESENTER_START,
         presenter_end=PRESENTER_END,
         start=PRESENTER_START,

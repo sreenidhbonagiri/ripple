@@ -33,6 +33,7 @@ def test_replay_window_populated(require_db):
     assert window.data_start is not None
     assert window.data_end is not None
     assert window.reading_count >= 1369
+    assert window.reading_count_estimated is True
     assert window.sensor_count == 37
     assert window.step_seconds == 300
     # Presenter preset stays on Jan 12 afternoon even if more data is imported

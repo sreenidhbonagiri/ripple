@@ -55,6 +55,7 @@ export default function App() {
     start: string | null;
     end: string | null;
     readingCount: number;
+    readingCountEstimated: boolean;
     sensorCount: number;
   } | null>(null);
   const [stepSeconds, setStepSeconds] = useState(300);
@@ -68,6 +69,9 @@ export default function App() {
   const [seriesError, setSeriesError] = useState<string | null>(null);
   const snapshotReq = useRef(0);
   const seriesReq = useRef(0);
+  const loadReq = useRef(0);
+  /** When set, the next cursor-driven snapshot effect skips (bootstrap already fetched it). */
+  const skipSnapshotCursorRef = useRef<string | null>(null);
 
   const timestamps = useMemo(() => {
     if (!windowStart || !windowEnd) return [];
@@ -87,10 +91,29 @@ export default function App() {
     selectedSensor?.measurement_type === "pressure" ? selectedSensor : null;
 
   const load = useCallback(() => {
+    const loadId = ++loadReq.current;
     setState({ status: "loading" });
     setSelection(null);
-    Promise.all([fetchNetwork(), fetchSensors(), fetchReplayWindow()])
-      .then(([network, sensorsRes, windowRes]) => {
+    setObservations([]);
+    setPlaying(false);
+    // Clear cursor so replay controls cannot seek while bootstrap is in flight
+    // (avoids applying a parallel 14:00 snapshot over a newer cursor).
+    setCursor(null);
+    // Known presenter start — fetch initial snapshot in parallel with bootstrap
+    // (avoids waiting for setCursor → effect waterfall). Tiger evidence stays lazy.
+    // Snapshot is always for PRESENTER.windowStart; applied only if the API
+    // playback preset still matches that cursor and this load was not superseded.
+    const bootstrapCursor = PRESENTER.windowStart;
+    skipSnapshotCursorRef.current = bootstrapCursor;
+    Promise.all([
+      fetchNetwork(),
+      fetchSensors(),
+      fetchReplayWindow(),
+      fetchReplaySnapshot(bootstrapCursor),
+    ])
+      .then(([network, sensorsRes, windowRes, snap]) => {
+        if (loadId !== loadReq.current) return;
+        performance.mark("ripple-bootstrap-ready");
         setState({ status: "ready", network });
         setSensors(sensorsRes.sensors);
         // Playback uses the presenter preset — not the full imported data range.
@@ -106,11 +129,25 @@ export default function App() {
           start: windowRes.data_start ? normalizeNaive(windowRes.data_start) : null,
           end: windowRes.data_end ? normalizeNaive(windowRes.data_end) : null,
           readingCount: windowRes.reading_count,
+          readingCountEstimated: windowRes.reading_count_estimated !== false,
           sensorCount: windowRes.sensor_count,
         });
+        // Apply parallel snapshot only when it still matches the selected preset
+        // and skip token was not cleared. Bump snapshotReq so any stray in-flight
+        // cursor fetch cannot overwrite these observations.
+        const presetMatchesBootstrap = start === bootstrapCursor;
+        const skipStillHeld = skipSnapshotCursorRef.current === bootstrapCursor;
+        if (presetMatchesBootstrap && skipStillHeld) {
+          snapshotReq.current += 1;
+          setObservations(snap.observations);
+        } else {
+          skipSnapshotCursorRef.current = null;
+        }
         if (start) setCursor(start);
       })
       .catch((err: unknown) => {
+        if (loadId !== loadReq.current) return;
+        skipSnapshotCursorRef.current = null;
         const message = err instanceof Error ? err.message : String(err);
         setState({ status: "error", message });
       });
@@ -124,6 +161,10 @@ export default function App() {
   // showing a previous cursor's observations under a newer cursor label.
   useEffect(() => {
     if (!cursor) return;
+    if (skipSnapshotCursorRef.current === cursor) {
+      skipSnapshotCursorRef.current = null;
+      return;
+    }
     const id = ++snapshotReq.current;
     const controller = new AbortController();
     setObservations([]);
@@ -275,7 +316,11 @@ export default function App() {
               {dataCoverage.start && dataCoverage.end
                 ? `${dataCoverage.start} → ${dataCoverage.end}`
                 : "empty"}
-              {` (${dataCoverage.readingCount.toLocaleString()} readings, ${dataCoverage.sensorCount} sensors)`}
+              {` (${dataCoverage.readingCount.toLocaleString()} ${
+                dataCoverage.readingCountEstimated
+                  ? "estimated readings"
+                  : "readings"
+              }, ${dataCoverage.sensorCount} sensors)`}
             </p>
           )}
         </>
