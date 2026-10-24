@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
+  ApiError,
+  fetchInvestigation,
   fetchNetwork,
   fetchReplaySnapshot,
   fetchReplayWindow,
@@ -10,6 +12,7 @@ import DetailsPanel from "./components/DetailsPanel";
 import InvestigationPanels from "./components/InvestigationPanels";
 import NetworkMap from "./components/NetworkMap";
 import ReplayControls from "./components/ReplayControls";
+import SaveInvestigationPanel from "./components/SaveInvestigationPanel";
 import TigerEvidencePanel from "./components/TigerEvidencePanel";
 import {
   chartSeriesInWindow,
@@ -20,6 +23,11 @@ import {
   type PressureComparison,
   type ReadingPoint,
 } from "./investigation";
+import {
+  readInvestigationIdFromUrl,
+  replaceInvestigationQuery,
+  type SavedInvestigation,
+} from "./investigations";
 import { PRESENTER } from "./presenter";
 import { addSeconds, clampTs, normalizeNaive, parseNaive } from "./time";
 import type {
@@ -29,6 +37,8 @@ import type {
   Sensor,
   SnapshotObservation,
 } from "./types";
+
+type RestoreStatus = "idle" | "loading" | "ready" | "not_found" | "error";
 
 type LoadState =
   | { status: "loading" }
@@ -85,6 +95,10 @@ export default function App() {
   const loadReq = useRef(0);
   /** When set, the next cursor-driven snapshot effect skips (bootstrap already fetched it). */
   const skipSnapshotCursorRef = useRef<string | null>(null);
+  const [restoreStatus, setRestoreStatus] = useState<RestoreStatus>("idle");
+  const [restoreError, setRestoreError] = useState<string | null>(null);
+  const [openedInvestigation, setOpenedInvestigation] =
+    useState<SavedInvestigation | null>(null);
 
   const timestamps = useMemo(() => {
     if (!windowStart || !windowEnd) return [];
@@ -103,6 +117,31 @@ export default function App() {
   const selectedPressure =
     selectedSensor?.measurement_type === "pressure" ? selectedSensor : null;
 
+  const applyPresenterBootstrap = useCallback(
+    (
+      start: string,
+      end: string,
+      bootstrapCursor: string,
+      snap: ReplaySnapshotResponse,
+    ) => {
+      setWindowStart(start);
+      setWindowEnd(end);
+      const presetMatchesBootstrap = start === bootstrapCursor;
+      const skipStillHeld = skipSnapshotCursorRef.current === bootstrapCursor;
+      if (presetMatchesBootstrap && skipStillHeld) {
+        snapshotReq.current += 1;
+        setObservations(snap.observations);
+        setSnapshotForCursor(bootstrapCursor);
+        setSnapshotStatus("ready");
+        setSnapshotError(null);
+      } else {
+        skipSnapshotCursorRef.current = null;
+      }
+      if (start) setCursor(start);
+    },
+    [],
+  );
+
   const load = useCallback(() => {
     const loadId = ++loadReq.current;
     setState({ status: "loading" });
@@ -118,15 +157,19 @@ export default function App() {
     setSeriesForCursor(null);
     setSeriesError(null);
     setPlaying(false);
+    setOpenedInvestigation(null);
+    setRestoreError(null);
     // Clear cursor so replay controls cannot seek while bootstrap is in flight
     // (avoids applying a parallel 14:00 snapshot over a newer cursor).
     setCursor(null);
+    const restoreId = readInvestigationIdFromUrl();
+    setRestoreStatus(restoreId ? "loading" : "idle");
     // Known presenter start — fetch initial snapshot in parallel with bootstrap
     // (avoids waiting for setCursor → effect waterfall). Tiger evidence stays lazy.
     // Snapshot is always for PRESENTER.windowStart; applied only if the API
     // playback preset still matches that cursor and this load was not superseded.
     const bootstrapCursor = PRESENTER.windowStart;
-    skipSnapshotCursorRef.current = bootstrapCursor;
+    skipSnapshotCursorRef.current = restoreId ? null : bootstrapCursor;
     Promise.all([
       fetchNetwork(),
       fetchSensors(),
@@ -143,8 +186,6 @@ export default function App() {
           windowRes.presenter_start || windowRes.start || "",
         );
         const end = normalizeNaive(windowRes.presenter_end || windowRes.end || "");
-        setWindowStart(start);
-        setWindowEnd(end);
         setStepSeconds(windowRes.step_seconds || 300);
         setReplayLabel(windowRes.label || "Historical benchmark replay");
         setDataCoverage({
@@ -154,21 +195,48 @@ export default function App() {
           readingCountEstimated: windowRes.reading_count_estimated !== false,
           sensorCount: windowRes.sensor_count,
         });
-        // Apply parallel snapshot only when it still matches the selected preset
-        // and skip token was not cleared. Bump snapshotReq so any stray in-flight
-        // cursor fetch cannot overwrite these observations.
-        const presetMatchesBootstrap = start === bootstrapCursor;
-        const skipStillHeld = skipSnapshotCursorRef.current === bootstrapCursor;
-        if (presetMatchesBootstrap && skipStillHeld) {
-          snapshotReq.current += 1;
-          setObservations(snap.observations);
-          setSnapshotForCursor(bootstrapCursor);
-          setSnapshotStatus("ready");
-          setSnapshotError(null);
-        } else {
-          skipSnapshotCursorRef.current = null;
+
+        if (!restoreId) {
+          applyPresenterBootstrap(start, end, bootstrapCursor, snap);
+          return;
         }
-        if (start) setCursor(start);
+
+        fetchInvestigation(restoreId)
+          .then((row) => {
+            if (loadId !== loadReq.current) return;
+            const ws = normalizeNaive(row.window_start);
+            const we = normalizeNaive(row.window_end);
+            const cur = normalizeNaive(row.cursor);
+            const sensor = sensorsRes.sensors.find((s) => s.id === row.sensor_id);
+            if (!sensor) {
+              setRestoreStatus("error");
+              setRestoreError(
+                `Saved sensor ${row.sensor_id} is not in the catalog.`,
+              );
+              applyPresenterBootstrap(start, end, bootstrapCursor, snap);
+              return;
+            }
+            setWindowStart(ws);
+            setWindowEnd(we);
+            setSelection({ kind: "sensor", data: sensor });
+            setOpenedInvestigation(row);
+            setRestoreStatus("ready");
+            setReplayLabel(`Saved investigation — ${row.title}`);
+            setCursor(cur);
+          })
+          .catch((err: unknown) => {
+            if (loadId !== loadReq.current) return;
+            if (err instanceof ApiError && err.status === 404) {
+              setRestoreStatus("not_found");
+              setRestoreError("Saved investigation not found.");
+            } else {
+              setRestoreStatus("error");
+              setRestoreError(
+                err instanceof Error ? err.message : String(err),
+              );
+            }
+            applyPresenterBootstrap(start, end, bootstrapCursor, snap);
+          });
       })
       .catch((err: unknown) => {
         if (loadId !== loadReq.current) return;
@@ -177,8 +245,12 @@ export default function App() {
         setState({ status: "error", message });
         setSnapshotStatus("error");
         setSnapshotError(message);
+        if (restoreId) {
+          setRestoreStatus("error");
+          setRestoreError(message);
+        }
       });
-  }, []);
+  }, [applyPresenterBootstrap]);
 
   useEffect(() => {
     load();
@@ -317,10 +389,19 @@ export default function App() {
     return () => window.clearInterval(handle);
   }, [playing, speed, stepSeconds, cursor, windowStart, windowEnd]);
 
-  const seekTo = (ts: string) => {
-    if (!windowStart || !windowEnd) return;
+  const seekTo = (
+    ts: string,
+    bounds?: { start: string; end: string },
+  ) => {
+    const ws = bounds?.start ?? windowStart;
+    const we = bounds?.end ?? windowEnd;
+    if (!ws || !we) return;
     setPlaying(false);
-    setCursor(clampTs(ts, windowStart, windowEnd));
+    if (bounds) {
+      setWindowStart(bounds.start);
+      setWindowEnd(bounds.end);
+    }
+    setCursor(clampTs(ts, ws, we));
   };
 
   const onStep = (direction: -1 | 1) => {
@@ -328,9 +409,16 @@ export default function App() {
     seekTo(addSeconds(cursor, direction * stepSeconds));
   };
 
+  const presenterBounds = {
+    start: PRESENTER.windowStart,
+    end: PRESENTER.windowEnd,
+  };
+
   const applyIllustrativeBookmark = () => {
     const sensor = sensors.find((s) => s.id === PRESENTER.illustrativeSensorId);
-    seekTo(PRESENTER.bookmarks[1].cursor);
+    // Presenter bookmarks stay on the Jan 12 illustrative window.
+    setReplayLabel(PRESENTER.label);
+    seekTo(PRESENTER.bookmarks[1].cursor, presenterBounds);
     if (sensor) {
       setSelection({ kind: "sensor", data: sensor });
     }
@@ -340,6 +428,8 @@ export default function App() {
     selection?.kind === "sensor"
       ? observations.find((o) => o.sensor_id === selection.data.id) ?? null
       : null;
+
+  const selectedSensorId = selectedSensor?.id ?? null;
 
   return (
     <div className="app">
@@ -367,6 +457,54 @@ export default function App() {
         </div>
       </header>
 
+      {restoreStatus === "loading" && (
+        <div className="restore-banner" role="status">
+          Opening saved investigation…
+        </div>
+      )}
+      {restoreStatus === "not_found" && (
+        <div className="restore-banner restore-banner-error" role="alert">
+          Saved investigation not found. Showing the Jan 12 presenter window.
+          The opaque link id is not authentication.
+        </div>
+      )}
+      {restoreStatus === "error" && restoreError && (
+        <div className="restore-banner restore-banner-error" role="alert">
+          Could not open saved investigation: {restoreError}
+        </div>
+      )}
+      {restoreStatus === "ready" && openedInvestigation && (
+        <div className="restore-banner" role="status">
+          <p className="restore-banner-title">
+            Opened saved investigation (metadata only)
+          </p>
+          <p className="save-investigation-note-plain">{openedInvestigation.title}</p>
+          {openedInvestigation.note ? (
+            <p className="save-investigation-note-plain">{openedInvestigation.note}</p>
+          ) : null}
+          <p className="restore-banner-meta">
+            Source {openedInvestigation.source_id} · created{" "}
+            {normalizeNaive(openedInvestigation.created_at)} · measurements load
+            live from historical tables (not a frozen evidence snapshot). Notes are
+            public; the link id is not authentication.
+          </p>
+        </div>
+      )}
+
+      <SaveInvestigationPanel
+        sensorId={selectedSensorId}
+        cursor={cursor}
+        windowStart={windowStart}
+        windowEnd={windowEnd}
+        disabled={state.status !== "ready" || restoreStatus === "loading"}
+        onSaved={(row) => {
+          setOpenedInvestigation(row);
+          setRestoreStatus("ready");
+          replaceInvestigationQuery(row.id);
+          setReplayLabel(`Saved investigation — ${row.title}`);
+        }}
+      />
+
       {windowStart && windowEnd && cursor && (
         <>
           <ReplayControls
@@ -381,9 +519,22 @@ export default function App() {
             onStep={onStep}
             onSpeedChange={setSpeed}
             onSeek={seekTo}
-            onWindowStart={() => seekTo(windowStart)}
+            onWindowStart={() => {
+              setReplayLabel(PRESENTER.label);
+              seekTo(PRESENTER.windowStart, presenterBounds);
+            }}
             onMidpoint={() => {
-              if (midpointTs) seekTo(midpointTs);
+              setReplayLabel(PRESENTER.label);
+              seekTo(
+                midpointTimestamp(
+                  buildTimestamps(
+                    PRESENTER.windowStart,
+                    PRESENTER.windowEnd,
+                    stepSeconds,
+                  ),
+                ) ?? PRESENTER.bookmarks[2].cursor,
+                presenterBounds,
+              );
             }}
             onIllustrativeBookmark={applyIllustrativeBookmark}
             index={cursorIndex}
@@ -393,7 +544,7 @@ export default function App() {
           />
           {dataCoverage && (
             <p className="data-coverage">
-              Presenter window {windowStart} → {windowEnd}
+              Playback window {windowStart} → {windowEnd}
               {" · "}
               Database coverage{" "}
               {dataCoverage.start && dataCoverage.end

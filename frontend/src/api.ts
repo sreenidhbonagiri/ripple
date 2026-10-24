@@ -1,4 +1,8 @@
 import type {
+  InvestigationCreateBody,
+  SavedInvestigation,
+} from "./investigations";
+import type {
   HealthResponse,
   HourlyHistoryResponse,
   NetworkResponse,
@@ -11,18 +15,31 @@ import type {
 
 const API_BASE = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/$/, "");
 
-async function fetchJson<T>(path: string, signal?: AbortSignal): Promise<T> {
+export class ApiError extends Error {
+  status: number;
+
+  constructor(status: number, message: string) {
+    super(message);
+    this.status = status;
+  }
+}
+
+async function fetchJson<T>(
+  path: string,
+  signal?: AbortSignal,
+  init?: RequestInit,
+): Promise<T> {
   const url = `${API_BASE}${path}`;
-  const res = await fetch(url, { signal });
+  const res = await fetch(url, { signal, ...init });
   if (!res.ok) {
     let detail = res.statusText;
     try {
       const body = (await res.json()) as { detail?: string };
-      if (body.detail) detail = body.detail;
+      if (body.detail) detail = typeof body.detail === "string" ? body.detail : res.statusText;
     } catch {
       /* ignore */
     }
-    throw new Error(`${res.status}: ${detail}`);
+    throw new ApiError(res.status, `${res.status}: ${detail}`);
   }
   return res.json() as Promise<T>;
 }
@@ -82,4 +99,25 @@ export function fetchTigerEvidence(
   signal?: AbortSignal,
 ): Promise<TigerEvidenceResponse> {
   return fetchJson<TigerEvidenceResponse>("/api/tiger/evidence", signal);
+}
+
+export function fetchInvestigation(
+  id: string,
+  signal?: AbortSignal,
+): Promise<SavedInvestigation> {
+  return fetchJson<SavedInvestigation>(
+    `/api/investigations/${encodeURIComponent(id)}`,
+    signal,
+  );
+}
+
+export function createInvestigation(
+  body: InvestigationCreateBody,
+  signal?: AbortSignal,
+): Promise<SavedInvestigation> {
+  return fetchJson<SavedInvestigation>("/api/investigations", signal, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
 }

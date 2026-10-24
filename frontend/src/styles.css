@@ -643,6 +643,121 @@ body {
 .swatch.stale { background: #b07a12; border-radius: 50%; }
 .swatch.missing { background: #8b3a2a; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 
+.restore-banner {
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: rgba(232, 241, 240, 0.92);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.restore-banner-error {
+  background: rgba(255, 236, 230, 0.95);
+  border-color: rgba(139, 58, 42, 0.25);
+}
+
+.restore-banner-title {
+  margin: 0 0 0.35rem;
+  font-weight: 600;
+}
+
+.restore-banner-meta {
+  margin: 0.4rem 0 0;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+
+.save-investigation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.save-investigation-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.save-investigation-hint {
+  color: rgba(232, 241, 240, 0.78);
+  font-size: 0.85rem;
+}
+
+.save-investigation-form {
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: rgba(242, 246, 244, 0.96);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  max-width: 40rem;
+}
+
+.save-investigation-public {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.save-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+}
+
+.save-field input,
+.save-field textarea {
+  font: inherit;
+  padding: 0.45rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid rgba(18, 34, 38, 0.18);
+  background: #fff;
+  color: var(--ink);
+}
+
+.save-investigation-meta {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+
+.save-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.save-investigation-error {
+  margin: 0;
+  color: #8b3a2a;
+  font-size: 0.88rem;
+}
+
+.save-investigation-result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--line);
+}
+
+.save-investigation-result-title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.save-investigation-note-plain {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 0.92rem;
+}
+
 @media (max-width: 900px) {
   .workspace {
     grid-template-columns: 1fr;

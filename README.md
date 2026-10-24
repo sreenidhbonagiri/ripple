@@ -99,7 +99,11 @@ At cursor `T`, each sensor uses the latest **raw** reading with `ts <= T` (never
 | `GET` | `/api/sensors/{id}/hourly-history?at=&days=` | Hourly pressure context from `readings_15m` (≤30 days before cursor; bucket_end ≤ cursor) |
 | `GET` | `/api/presenter/preset` | Jan 12 illustrative bookmarks (not alerts/leaks) |
 | `GET` | `/api/tiger/evidence` | Live counts/size + **saved** January raw/CAGG artifact (lazy; no re-bench) |
+| `POST` | `/api/investigations` | Save investigation **metadata** (public notes; rate-limited; no edit/delete) |
+| `GET` | `/api/investigations/{id}` | Reopen saved metadata; measurements still come from time-series APIs |
 | `GET` | `/api/ready` | Readiness (DB reachable); `/api/health` stays liveness-only |
+
+Saved investigations store title/note/sensor/cursor/window/source only. Share via `/?i=<opaque_id>` (not authentication). Notes are public plain text — do not enter private data. Migration `002_saved_investigations.sql` must be applied before Tiger-backed saves (not auto-run on deploy).
 
 `/api/replay/window` returns **presenter** playback bounds (Jan 12 14:00–17:00) plus separate **data_start/data_end** database coverage. Coverage `reading_count` is Timescale **estimated** (`reading_count_estimated`); exact totals stay on `/api/tiger/evidence`.
 
