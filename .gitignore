@@ -53,11 +53,6 @@ coverage/
 .coverage
 htmlcov/
 
-# Retrospective-review bulky / regenerable outputs
-research/retrospective-review/outputs/plots/
-research/retrospective-review/outputs/*.npy
-research/retrospective-review/outputs/cache/
-
 # Allow research tree despite broad data ignores
 !research/
 !research/**/
@@ -65,3 +60,9 @@ research/retrospective-review/outputs/cache/
 !research/**/*.py
 !research/**/*.json
 !research/**/*.toml
+
+# Retrospective-review bulky / regenerable outputs (after allow rules)
+research/retrospective-review/outputs/plots/
+research/retrospective-review/outputs/*.npy
+research/retrospective-review/outputs/cache/
+research/retrospective-review/**/__pycache__/
