@@ -1,0 +1,557 @@
+{
+  "generated_at": "2026-10-24T19:51:08-04:00",
+  "holdout_honesty": "2019 not evaluated; 2018 DEV\u2192DIAG only.",
+  "frozen_per_sensor": {
+    "frozen_at": "2026-10-24T19:51:01-04:00",
+    "settings": {
+      "train_days": 14,
+      "n_refs": 3,
+      "cusum_k": 0.5,
+      "cusum_h": 8.0,
+      "recover_hours": 24.0
+    },
+    "gate_met": true,
+    "unmatched_cap": 3.0,
+    "selection_rule": "max abrupt recall among unmatched/wk<=3 on DEV; ties: lower unmatched/wk, larger h, larger K; else best-of-pool gate_met=false",
+    "dev_snapshot": {
+      "abrupt_recall": 0.6666666666666666,
+      "incipient_recall": 0.8333333333333334,
+      "unmatched_per_week": 1.7790055248618784,
+      "n_episodes": 53
+    }
+  },
+  "frozen_global": {
+    "frozen_at": "2026-10-24T19:51:05-04:00",
+    "settings": {
+      "train_days": 14,
+      "cusum_k": 0.5,
+      "cusum_h": 8.0,
+      "recover_hours": 12.0,
+      "n_refs": null
+    },
+    "gate_met": true,
+    "unmatched_cap": 3.0
+  },
+  "DEV_grid_per_sensor": [
+    {
+      "settings": {
+        "train_days": 14,
+        "n_refs": 3,
+        "cusum_k": 0.5,
+        "cusum_h": 4.0,
+        "recover_hours": 12.0
+      },
+      "abrupt_recall": 1.0,
+      "incipient_recall": 1.0,
+      "unmatched_per_week": 8.624309392265193,
+      "n_episodes": 232
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "n_refs": 3,
+        "cusum_k": 0.5,
+        "cusum_h": 4.0,
+        "recover_hours": 24.0
+      },
+      "abrupt_recall": 0.6666666666666666,
+      "incipient_recall": 0.5,
+      "unmatched_per_week": 1.9723756906077348,
+      "n_episodes": 56
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "n_refs": 3,
+        "cusum_k": 0.5,
+        "cusum_h": 6.0,
+        "recover_hours": 12.0
+      },
+      "abrupt_recall": 1.0,
+      "incipient_recall": 1.0,
+      "unmatched_per_week": 8.198895027624308,
+      "n_episodes": 221
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "n_refs": 3,
+        "cusum_k": 0.5,
+        "cusum_h": 6.0,
+        "recover_hours": 24.0
+      },
+      "abrupt_recall": 0.6666666666666666,
+      "incipient_recall": 0.6666666666666666,
+      "unmatched_per_week": 1.856353591160221,
+      "n_episodes": 54
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "n_refs": 3,
+        "cusum_k": 0.5,
+        "cusum_h": 8.0,
+        "recover_hours": 12.0
+      },
+      "abrupt_recall": 1.0,
+      "incipient_recall": 1.0,
+      "unmatched_per_week": 7.850828729281768,
+      "n_episodes": 212
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "n_refs": 3,
+        "cusum_k": 0.5,
+        "cusum_h": 8.0,
+        "recover_hours": 24.0
+      },
+      "abrupt_recall": 0.6666666666666666,
+      "incipient_recall": 0.8333333333333334,
+      "unmatched_per_week": 1.7790055248618784,
+      "n_episodes": 53
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "n_refs": 5,
+        "cusum_k": 0.5,
+        "cusum_h": 4.0,
+        "recover_hours": 12.0
+      },
+      "abrupt_recall": 1.0,
+      "incipient_recall": 1.0,
+      "unmatched_per_week": 14.348066298342541,
+      "n_episodes": 380
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "n_refs": 5,
+        "cusum_k": 0.5,
+        "cusum_h": 4.0,
+        "recover_hours": 24.0
+      },
+      "abrupt_recall": 0.6666666666666666,
+      "incipient_recall": 0.5,
+      "unmatched_per_week": 2.2430939226519335,
+      "n_episodes": 63
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "n_refs": 5,
+        "cusum_k": 0.5,
+        "cusum_h": 6.0,
+        "recover_hours": 12.0
+      },
+      "abrupt_recall": 1.0,
+      "incipient_recall": 1.0,
+      "unmatched_per_week": 13.458563535911601,
+      "n_episodes": 357
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "n_refs": 5,
+        "cusum_k": 0.5,
+        "cusum_h": 6.0,
+        "recover_hours": 24.0
+      },
+      "abrupt_recall": 0.6666666666666666,
+      "incipient_recall": 0.6666666666666666,
+      "unmatched_per_week": 2.2044198895027622,
+      "n_episodes": 63
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "n_refs": 5,
+        "cusum_k": 0.5,
+        "cusum_h": 8.0,
+        "recover_hours": 12.0
+      },
+      "abrupt_recall": 1.0,
+      "incipient_recall": 1.0,
+      "unmatched_per_week": 12.80110497237569,
+      "n_episodes": 340
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "n_refs": 5,
+        "cusum_k": 0.5,
+        "cusum_h": 8.0,
+        "recover_hours": 24.0
+      },
+      "abrupt_recall": 0.6666666666666666,
+      "incipient_recall": 0.5,
+      "unmatched_per_week": 2.2430939226519335,
+      "n_episodes": 63
+    }
+  ],
+  "DEV_grid_global": [
+    {
+      "settings": {
+        "train_days": 14,
+        "cusum_k": 0.5,
+        "cusum_h": 4.0,
+        "recover_hours": 12.0,
+        "n_refs": null
+      },
+      "abrupt_recall": 0.0,
+      "incipient_recall": 0.3333333333333333,
+      "unmatched_per_week": 0.0,
+      "n_episodes": 2
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "cusum_k": 0.5,
+        "cusum_h": 4.0,
+        "recover_hours": 24.0,
+        "n_refs": null
+      },
+      "abrupt_recall": 0.0,
+      "incipient_recall": 0.16666666666666666,
+      "unmatched_per_week": 0.0,
+      "n_episodes": 1
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "cusum_k": 0.5,
+        "cusum_h": 6.0,
+        "recover_hours": 12.0,
+        "n_refs": null
+      },
+      "abrupt_recall": 0.0,
+      "incipient_recall": 0.3333333333333333,
+      "unmatched_per_week": 0.0,
+      "n_episodes": 2
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "cusum_k": 0.5,
+        "cusum_h": 6.0,
+        "recover_hours": 24.0,
+        "n_refs": null
+      },
+      "abrupt_recall": 0.0,
+      "incipient_recall": 0.16666666666666666,
+      "unmatched_per_week": 0.0,
+      "n_episodes": 1
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "cusum_k": 0.5,
+        "cusum_h": 8.0,
+        "recover_hours": 12.0,
+        "n_refs": null
+      },
+      "abrupt_recall": 0.0,
+      "incipient_recall": 0.3333333333333333,
+      "unmatched_per_week": 0.0,
+      "n_episodes": 2
+    },
+    {
+      "settings": {
+        "train_days": 14,
+        "cusum_k": 0.5,
+        "cusum_h": 8.0,
+        "recover_hours": 24.0,
+        "n_refs": null
+      },
+      "abrupt_recall": 0.0,
+      "incipient_recall": 0.16666666666666666,
+      "unmatched_per_week": 0.0,
+      "n_episodes": 1
+    }
+  ],
+  "DIAG_per_sensor": {
+    "method": "per_sensor",
+    "period": "DIAG",
+    "settings": {
+      "train_days": 14,
+      "n_refs": 3,
+      "cusum_k": 0.5,
+      "cusum_h": 8.0,
+      "recover_hours": 24.0
+    },
+    "n_onsets": 5,
+    "n_abrupt": 3,
+    "n_incipient": 2,
+    "abrupt_recall": 1.0,
+    "incipient_recall": 1.0,
+    "onset_recall": 1.0,
+    "n_episodes": 37,
+    "n_matched_episodes": 5,
+    "n_unmatched_episodes": 32,
+    "unmatched_per_week": 1.2173913043478262,
+    "time_in_alarm_hours": 105314.5,
+    "longest_episode_hours": 4076.8333333333335,
+    "median_episode_hours": 3800.6666666666665,
+    "duplicate_unmatched_within_24h": 27,
+    "abrupt_delay_hours": {
+      "n": 3,
+      "median": 0.3333333333333333,
+      "p90": 1.0666666666666667,
+      "max": 1.25
+    },
+    "period_weeks": 26.285714285714285,
+    "runtime_seconds": 1.6879842078778893,
+    "matches": [
+      {
+        "pipe": "p654",
+        "leak_type": "incipient",
+        "onset": "2018-07-05 03:40",
+        "matched": true,
+        "notify_time": "2018-07-15 02:55",
+        "delay_hours": 239.25,
+        "stream_id": "n31",
+        "refs_used": [
+          "n1",
+          "n4",
+          "n549"
+        ],
+        "change_estimate_time": "2018-07-15 00:00",
+        "open_leaks_at_notify": 4,
+        "episode_end": "2018-07-24 09:00"
+      },
+      {
+        "pipe": "p810",
+        "leak_type": "incipient",
+        "onset": "2018-07-28 03:05",
+        "matched": true,
+        "notify_time": "2018-07-29 09:20",
+        "delay_hours": 30.25,
+        "stream_id": "n740",
+        "refs_used": [
+          "n722",
+          "n769",
+          "n296"
+        ],
+        "change_estimate_time": "2018-07-29 07:25",
+        "open_leaks_at_notify": 5,
+        "episode_end": "2018-12-31 23:55"
+      },
+      {
+        "pipe": "p183",
+        "leak_type": "abrupt",
+        "onset": "2018-08-07 02:35",
+        "matched": true,
+        "notify_time": "2018-08-07 03:50",
+        "delay_hours": 1.25,
+        "stream_id": "n726",
+        "refs_used": [
+          "n752",
+          "n769",
+          "n288"
+        ],
+        "change_estimate_time": "2018-08-07 02:25",
+        "open_leaks_at_notify": 6,
+        "episode_end": "2018-11-11 21:05"
+      },
+      {
+        "pipe": "p158",
+        "leak_type": "abrupt",
+        "onset": "2018-10-06 02:35",
+        "matched": true,
+        "notify_time": "2018-10-06 02:55",
+        "delay_hours": 0.3333333333333333,
+        "stream_id": "n288",
+        "refs_used": [
+          "n726",
+          "n752",
+          "n679"
+        ],
+        "change_estimate_time": "2018-10-05 23:45",
+        "open_leaks_at_notify": 5,
+        "episode_end": "2018-12-31 23:55"
+      },
+      {
+        "pipe": "p369",
+        "leak_type": "abrupt",
+        "onset": "2018-10-26 02:05",
+        "matched": true,
+        "notify_time": "2018-10-26 02:15",
+        "delay_hours": 0.16666666666666666,
+        "stream_id": "n410",
+        "refs_used": [
+          "n429",
+          "n415",
+          "n342"
+        ],
+        "change_estimate_time": "2018-10-26 02:00",
+        "open_leaks_at_notify": 5,
+        "episode_end": "2018-12-31 23:55"
+      }
+    ],
+    "missed": []
+  },
+  "DIAG_global": {
+    "method": "global",
+    "period": "DIAG",
+    "settings": {
+      "train_days": 14,
+      "cusum_k": 0.5,
+      "cusum_h": 8.0,
+      "recover_hours": 12.0,
+      "n_refs": null
+    },
+    "n_onsets": 5,
+    "n_abrupt": 3,
+    "n_incipient": 2,
+    "abrupt_recall": 0.0,
+    "incipient_recall": 0.5,
+    "onset_recall": 0.2,
+    "n_episodes": 1,
+    "n_matched_episodes": 1,
+    "n_unmatched_episodes": 0,
+    "unmatched_per_week": 0.0,
+    "time_in_alarm_hours": 4072.75,
+    "longest_episode_hours": 4072.75,
+    "median_episode_hours": 4072.75,
+    "duplicate_unmatched_within_24h": 0,
+    "abrupt_delay_hours": {
+      "n": 0,
+      "median": null,
+      "p90": null,
+      "max": null
+    },
+    "period_weeks": 26.285714285714285,
+    "runtime_seconds": 0.8246924169361591,
+    "matches": [
+      {
+        "pipe": "p654",
+        "leak_type": "incipient",
+        "onset": "2018-07-05 03:40",
+        "matched": true,
+        "notify_time": "2018-07-15 07:10",
+        "delay_hours": 243.5,
+        "stream_id": "GLOBAL",
+        "refs_used": [],
+        "change_estimate_time": "2018-07-15 06:35",
+        "open_leaks_at_notify": 4,
+        "episode_end": "2018-12-31 23:55"
+      },
+      {
+        "pipe": "p810",
+        "leak_type": "incipient",
+        "onset": "2018-07-28 03:05",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null,
+        "refs_used": null,
+        "pre_onset_notifications_nearby": 0
+      },
+      {
+        "pipe": "p183",
+        "leak_type": "abrupt",
+        "onset": "2018-08-07 02:35",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null,
+        "refs_used": null,
+        "pre_onset_notifications_nearby": 0
+      },
+      {
+        "pipe": "p158",
+        "leak_type": "abrupt",
+        "onset": "2018-10-06 02:35",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null,
+        "refs_used": null,
+        "pre_onset_notifications_nearby": 0
+      },
+      {
+        "pipe": "p369",
+        "leak_type": "abrupt",
+        "onset": "2018-10-26 02:05",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null,
+        "refs_used": null,
+        "pre_onset_notifications_nearby": 0
+      }
+    ],
+    "missed": [
+      {
+        "pipe": "p810",
+        "leak_type": "incipient",
+        "onset": "2018-07-28 03:05",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null,
+        "refs_used": null,
+        "pre_onset_notifications_nearby": 0
+      },
+      {
+        "pipe": "p183",
+        "leak_type": "abrupt",
+        "onset": "2018-08-07 02:35",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null,
+        "refs_used": null,
+        "pre_onset_notifications_nearby": 0
+      },
+      {
+        "pipe": "p158",
+        "leak_type": "abrupt",
+        "onset": "2018-10-06 02:35",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null,
+        "refs_used": null,
+        "pre_onset_notifications_nearby": 0
+      },
+      {
+        "pipe": "p369",
+        "leak_type": "abrupt",
+        "onset": "2018-10-26 02:05",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null,
+        "refs_used": null,
+        "pre_onset_notifications_nearby": 0
+      }
+    ]
+  },
+  "null_per_sensor": {
+    "n_abrupt_onsets": 3,
+    "observed_abrupt_matches": 3,
+    "null_n_valid_shifts": 89,
+    "null_match_median": 1.0,
+    "null_match_min": 0,
+    "null_match_max": 3,
+    "null_match_mean": 1.1910112359550562,
+    "fraction_shifts_ge_observed": 0.11235955056179775,
+    "caveat": "Overlapping daily shifts are dependent probes; n abrupt events is small. Descriptive only \u2014 beating null is necessary, not sufficient."
+  },
+  "DIAG_ordinary_controls_per_sensor": {
+    "sampled_large_context_moves": 40,
+    "within_6h_of_notification": 0,
+    "fraction": 0.0
+  },
+  "plots": [
+    "outputs/plots/event_p654.png",
+    "outputs/plots/event_p810.png",
+    "outputs/plots/event_p183.png",
+    "outputs/plots/event_p158.png",
+    "outputs/plots/event_p369.png"
+  ],
+  "failure_notes": "Missed abrupt/incipient listed above. Per-sensor episodes=37 vs global=1. Common-mode and reference disturbance can suppress or spur signals (see DESIGN). Duplicate unmatched=27.",
+  "recommendation": "**Limited research signal:** per-sensor signed residuals improve abrupt notification metrics vs global aggregation under equivalent rules, and beat the descriptive null. **Not** validated leak detection \u2014 independent evaluation required before any productization. Alert burden must remain explicit. Caveat: longest episode ~4077 h and total time-in-alarm ~105315 h show non-recovery / multi-sensor persistence \u2014 improvement is not free of burden. Per-sensor DIAG abrupt_recall=1.00 (unmatched/wk=1.22) vs global 0.00 (unmatched/wk=0.00). Null frac\u2265obs abrupt matches=0.11."
+}

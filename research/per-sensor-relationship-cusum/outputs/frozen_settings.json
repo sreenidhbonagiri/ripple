@@ -1,0 +1,19 @@
+{
+  "frozen_at": "2026-10-24T19:51:01-04:00",
+  "settings": {
+    "train_days": 14,
+    "n_refs": 3,
+    "cusum_k": 0.5,
+    "cusum_h": 8.0,
+    "recover_hours": 24.0
+  },
+  "gate_met": true,
+  "unmatched_cap": 3.0,
+  "selection_rule": "max abrupt recall among unmatched/wk<=3 on DEV; ties: lower unmatched/wk, larger h, larger K; else best-of-pool gate_met=false",
+  "dev_snapshot": {
+    "abrupt_recall": 0.6666666666666666,
+    "incipient_recall": 0.8333333333333334,
+    "unmatched_per_week": 1.7790055248618784,
+    "n_episodes": 53
+  }
+}
