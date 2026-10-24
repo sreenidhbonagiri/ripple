@@ -13,6 +13,15 @@ from psycopg.rows import dict_row
 from app.config import get_settings
 
 
+class PassThroughError(Exception):
+    """Domain errors raised inside ``get_connection`` that must not be wrapped.
+
+    ``get_connection`` sanitizes unexpected DB failures as ``RuntimeError``.
+    Subclass this for validation / application errors that should propagate
+    unchanged (avoids circular imports with feature modules).
+    """
+
+
 def sanitize_db_error(message: str, database_url: str | None = None) -> str:
     text = message
     url = database_url or get_settings().database_url
@@ -46,6 +55,9 @@ def get_connection(*, connect_timeout: int = 10) -> Iterator[psycopg.Connection]
             row_factory=dict_row,
         )
         yield conn
+    except PassThroughError:
+        # Preserve intentional validation / domain errors (e.g. unknown sensor).
+        raise
     except Exception as exc:  # noqa: BLE001
         raise RuntimeError(sanitize_db_error(str(exc), settings.database_url)) from None
     finally:

@@ -15,24 +15,25 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 from typing import Protocol
 
-from app.db import get_connection
+from app.db import PassThroughError, get_connection
 
 TITLE_MAX = 120
 NOTE_MAX = 1000
 SOURCE_MAX = 64
 DEFAULT_SOURCE_ID = "battledim-ltown-zenodo-4017659"
+# Only the official BattLeDIM L-Town Zenodo release used by this workspace.
+ALLOWED_SOURCE_IDS = frozenset({DEFAULT_SOURCE_ID})
 MIN_WINDOW = timedelta(minutes=5)
 MAX_WINDOW = timedelta(hours=24)
 STEP_SECONDS = 300
 ID_BYTES = 18  # token_urlsafe → opaque, unguessable-ish; still not auth
 
 _TITLE_RE = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f]")
-_SOURCE_RE = re.compile(r"^[a-z0-9][a-z0-9._-]{0,63}$")
 _SENSOR_RE = re.compile(r"^[A-Za-z0-9_]{1,64}$")
 
 
-class InvestigationValidationError(ValueError):
-    pass
+class InvestigationValidationError(PassThroughError, ValueError):
+    """Input / catalog validation — must remain HTTP 400, not wrapped DB 500."""
 
 
 class InvestigationRateLimitError(Exception):
@@ -69,7 +70,12 @@ def _strip_controls(text: str) -> str:
     return _TITLE_RE.sub("", text)
 
 
-def validate_create(payload: InvestigationCreate) -> InvestigationCreate:
+def validate_create(
+    payload: InvestigationCreate,
+    *,
+    coverage_start: datetime | None = None,
+    coverage_end: datetime | None = None,
+) -> InvestigationCreate:
     title = _strip_controls(payload.title).strip()
     if not title:
         raise InvestigationValidationError("title is required")
@@ -91,9 +97,9 @@ def validate_create(payload: InvestigationCreate) -> InvestigationCreate:
         raise InvestigationValidationError("sensor_id is invalid")
 
     source_id = payload.source_id.strip().lower()
-    if not _SOURCE_RE.fullmatch(source_id):
+    if source_id not in ALLOWED_SOURCE_IDS:
         raise InvestigationValidationError(
-            "source_id must be a short lowercase benchmark identifier"
+            "source_id is not a supported benchmark identifier for this workspace"
         )
 
     for label, ts in (
@@ -126,6 +132,12 @@ def validate_create(payload: InvestigationCreate) -> InvestigationCreate:
     if not (payload.window_start <= payload.cursor_ts <= payload.window_end):
         raise InvestigationValidationError("cursor must lie within the investigation window")
 
+    if coverage_start is not None and coverage_end is not None:
+        if payload.window_start < coverage_start or payload.window_end > coverage_end:
+            raise InvestigationValidationError(
+                "investigation window is outside available benchmark coverage"
+            )
+
     return InvestigationCreate(
         title=title,
         note=note,
@@ -142,16 +154,29 @@ def new_opaque_id() -> str:
 
 
 class RateLimiter:
-    """Simple per-key sliding window (process-local; enough for the public demo)."""
+    """Per-key sliding window.
 
-    def __init__(self, *, max_events: int, period_seconds: float) -> None:
+    Process-local only (not shared across uvicorn workers / replicas). Keys are
+    pruned after idle periods; the map is hard-capped so spoofed keys cannot
+    grow memory without bound.
+    """
+
+    def __init__(
+        self,
+        *,
+        max_events: int,
+        period_seconds: float,
+        max_keys: int = 4096,
+    ) -> None:
         self.max_events = max_events
         self.period_seconds = period_seconds
+        self.max_keys = max_keys
         self._lock = threading.Lock()
         self._events: dict[str, list[float]] = {}
 
     def check(self, key: str) -> None:
         now = time.monotonic()
+        key = (key or "unknown")[:128]
         with self._lock:
             cutoff = now - self.period_seconds
             alive = [t for t in self._events.get(key, []) if t >= cutoff]
@@ -161,10 +186,63 @@ class RateLimiter:
                 raise InvestigationRateLimitError(retry)
             alive.append(now)
             self._events[key] = alive
+            self._prune_locked(now)
+
+    def _prune_locked(self, now: float) -> None:
+        cutoff = now - self.period_seconds
+        stale = [k for k, times in self._events.items() if not any(t >= cutoff for t in times)]
+        for k in stale:
+            del self._events[k]
+        if len(self._events) <= self.max_keys:
+            return
+        # Evict keys whose newest event is oldest (bounded memory under key flood).
+        ranked = sorted(
+            self._events.items(),
+            key=lambda item: max(item[1]) if item[1] else 0.0,
+        )
+        overflow = len(self._events) - self.max_keys
+        for k, _ in ranked[:overflow]:
+            del self._events[k]
 
 
-# Demo default: 10 creates / hour / client key
-CREATE_RATE_LIMITER = RateLimiter(max_events=10, period_seconds=3600.0)
+# Demo default: 10 creates / hour / resolved client key
+CREATE_RATE_LIMITER = RateLimiter(max_events=10, period_seconds=3600.0, max_keys=4096)
+
+# Proxies in the public path: Caddy (host) → nginx (127.0.0.1:8080) → backend.
+# Never treat these as the end-user identity when walking X-Forwarded-For.
+_TRUSTED_PROXY_HOPS = frozenset(
+    {
+        "127.0.0.1",
+        "::1",
+        "localhost",
+    }
+)
+
+
+def client_rate_limit_key(
+    *,
+    x_forwarded_for: str | None,
+    x_real_ip: str | None,
+    peer_host: str | None,
+) -> str:
+    """Resolve a rate-limit key for Caddy → nginx → FastAPI.
+
+    ``nginx`` sets ``X-Forwarded-For`` via ``$proxy_add_x_forwarded_for``, which
+    *appends* the immediate peer (Caddy on loopback). Clients can place spoofed
+    values on the **left**. Walk from the **right**, skip trusted proxy hops,
+    and use the first remaining address. Do not trust the leftmost value.
+    """
+    parts = [p.strip() for p in (x_forwarded_for or "").split(",") if p.strip()]
+    for hop in reversed(parts):
+        if hop not in _TRUSTED_PROXY_HOPS:
+            return hop
+    real = (x_real_ip or "").strip()
+    if real and real not in _TRUSTED_PROXY_HOPS:
+        return real
+    peer = (peer_host or "").strip()
+    if peer:
+        return peer
+    return "unknown"
 
 
 class InvestigationStore(Protocol):
@@ -176,13 +254,30 @@ class InvestigationStore(Protocol):
 
 
 class MemoryInvestigationStore:
-    def __init__(self) -> None:
+    """In-process store for unit tests / local demos without migration 002."""
+
+    def __init__(
+        self,
+        *,
+        known_sensors: set[str] | None = None,
+        coverage_start: datetime | None = None,
+        coverage_end: datetime | None = None,
+    ) -> None:
         self._rows: dict[str, SavedInvestigation] = {}
+        self._known_sensors = known_sensors
+        self._coverage_start = coverage_start
+        self._coverage_end = coverage_end
 
     def create(
         self, payload: InvestigationCreate, *, investigation_id: str | None = None
     ) -> SavedInvestigation:
-        validated = validate_create(payload)
+        validated = validate_create(
+            payload,
+            coverage_start=self._coverage_start,
+            coverage_end=self._coverage_end,
+        )
+        if self._known_sensors is not None and validated.sensor_id not in self._known_sensors:
+            raise InvestigationValidationError(f"Unknown sensor: {validated.sensor_id}")
         iid = investigation_id or new_opaque_id()
         row = SavedInvestigation(
             id=iid,
@@ -206,10 +301,32 @@ class TigerInvestigationStore:
     def create(
         self, payload: InvestigationCreate, *, investigation_id: str | None = None
     ) -> SavedInvestigation:
-        validated = validate_create(payload)
+        # Structural validation first (no DB). Coverage + sensor checked inside
+        # the connection; InvestigationValidationError subclasses PassThroughError
+        # so get_connection will not convert it into a sanitized RuntimeError.
+        pre = validate_create(payload)
         iid = investigation_id or new_opaque_id()
         with get_connection() as conn:
             with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT
+                      (SELECT MIN(ts) FROM readings) AS coverage_start,
+                      (SELECT MAX(ts) FROM readings) AS coverage_end
+                    """
+                )
+                cov = cur.fetchone()
+                coverage_start = cov["coverage_start"] if cov else None
+                coverage_end = cov["coverage_end"] if cov else None
+                if coverage_start is None or coverage_end is None:
+                    raise InvestigationValidationError(
+                        "benchmark coverage is unavailable; cannot save investigation"
+                    )
+                validated = validate_create(
+                    pre,
+                    coverage_start=coverage_start,
+                    coverage_end=coverage_end,
+                )
                 cur.execute(
                     "SELECT 1 FROM sensors WHERE id = %s",
                     (validated.sensor_id,),

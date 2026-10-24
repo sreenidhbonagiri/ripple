@@ -17,6 +17,7 @@ from app.investigations import (
     InvestigationCreate,
     InvestigationRateLimitError,
     InvestigationValidationError,
+    client_rate_limit_key,
     get_investigation_store,
 )
 from app.replay import (
@@ -235,12 +236,13 @@ def get_tiger_evidence() -> dict:
 
 
 def _client_rate_key(request: Request) -> str:
-    forwarded = request.headers.get("x-forwarded-for")
-    if forwarded:
-        return forwarded.split(",")[0].strip() or "unknown"
-    if request.client and request.client.host:
-        return request.client.host
-    return "unknown"
+    """Rate-limit identity for Caddy → nginx → FastAPI (see client_rate_limit_key)."""
+    peer = request.client.host if request.client else None
+    return client_rate_limit_key(
+        x_forwarded_for=request.headers.get("x-forwarded-for"),
+        x_real_ip=request.headers.get("x-real-ip"),
+        peer_host=peer,
+    )
 
 
 def _investigation_response(row) -> SavedInvestigationResponse:
