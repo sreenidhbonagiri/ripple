@@ -1,12 +1,18 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import { fetchHourlyHistory } from "../api";
+import { paddedValueExtent } from "../investigation";
 import { normalizeNaive } from "../time";
 import type { HourlyHistoryResponse, Sensor } from "../types";
 
 interface Props {
   sensor: Sensor;
   cursor: string;
+}
+
+function conciseTs(ts: string): string {
+  const n = normalizeNaive(ts);
+  return `${n.slice(5, 10)} ${n.slice(11, 16)}`;
 }
 
 export default function PressureHistoryPanel({ sensor, cursor }: Props) {
@@ -18,13 +24,17 @@ export default function PressureHistoryPanel({ sensor, cursor }: Props) {
   useEffect(() => {
     if (sensor.measurement_type !== "pressure") {
       setData(null);
+      setError(null);
+      setLoading(false);
       return;
     }
     const id = ++reqId.current;
+    const requestCursor = normalizeNaive(cursor);
     const controller = new AbortController();
     setLoading(true);
     setError(null);
-    fetchHourlyHistory(sensor.id, cursor, 30, controller.signal)
+    setData(null);
+    fetchHourlyHistory(sensor.id, requestCursor, 30, controller.signal)
       .then((res) => {
         if (id !== reqId.current) return;
         setData(res);
@@ -33,68 +43,93 @@ export default function PressureHistoryPanel({ sensor, cursor }: Props) {
       .catch((err: unknown) => {
         if (controller.signal.aborted) return;
         if (id !== reqId.current) return;
+        setData(null);
         setError(err instanceof Error ? err.message : String(err));
         setLoading(false);
       });
     return () => controller.abort();
   }, [sensor.id, sensor.measurement_type, cursor]);
 
+  const dataMatched =
+    Boolean(data) && normalizeNaive(data!.cursor) === normalizeNaive(cursor);
+
   const option = useMemo(() => {
-    if (!data) return null;
-    const labels = data.hours.map((h) =>
-      normalizeNaive(h.hour_start).slice(0, 16),
-    );
+    if (!data || !dataMatched) return null;
+    const categories = data.hours.map((h) => normalizeNaive(h.hour_start));
+    const means = data.hours.map((h) => h.mean_m);
+    const mins = data.hours.map((h) => h.min_m);
+    const maxs = data.hours.map((h) => h.max_m);
+    const y = paddedValueExtent([...means, ...mins, ...maxs]);
     return {
       animation: false,
-      grid: { left: 48, right: 16, top: 36, bottom: 48 },
-      title: {
-        text: `${data.title} · ${data.sensor_id}`,
-        left: 0,
-        textStyle: { fontSize: 12, fontWeight: 600, color: "#122226" },
-      },
+      grid: { left: 56, right: 20, top: 36, bottom: 48, containLabel: false },
       legend: {
         data: ["Hourly mean", "Observed min", "Observed max"],
-        top: 18,
-        textStyle: { fontSize: 10 },
+        top: 0,
+        left: 0,
+        itemWidth: 12,
+        itemHeight: 8,
+        textStyle: { fontSize: 10, color: "#3d555c" },
       },
-      tooltip: { trigger: "axis" },
+      tooltip: {
+        trigger: "axis",
+        confine: true,
+        valueFormatter: (v: number | string) =>
+          typeof v === "number" ? `${v.toFixed(2)} m` : String(v),
+      },
       xAxis: {
         type: "category",
-        data: labels,
-        axisLabel: { fontSize: 9, color: "#3d555c", rotate: 45 },
+        data: categories,
+        boundaryGap: false,
+        axisLabel: {
+          fontSize: 10,
+          color: "#3d555c",
+          hideOverlap: true,
+          showMinLabel: true,
+          showMaxLabel: true,
+          formatter: (value: string) => conciseTs(value),
+        },
       },
       yAxis: {
         type: "value",
         name: "m",
+        nameLocation: "middle",
+        nameGap: 42,
         nameTextStyle: { fontSize: 10, color: "#3d555c" },
-        axisLabel: { fontSize: 10, color: "#3d555c" },
+        min: y.min,
+        max: y.max,
+        axisLabel: {
+          fontSize: 10,
+          color: "#3d555c",
+          formatter: (v: number) => v.toFixed(2),
+        },
         splitLine: { lineStyle: { color: "rgba(18,34,38,0.08)" } },
       },
       series: [
         {
           name: "Hourly mean",
           type: "line",
-          data: data.hours.map((h) => h.mean_m),
+          data: means,
           showSymbol: false,
           lineStyle: { width: 2, color: "#1a6b7a" },
         },
         {
           name: "Observed min",
           type: "line",
-          data: data.hours.map((h) => h.min_m),
+          data: mins,
           showSymbol: false,
           lineStyle: { width: 1, type: "dashed", color: "#6b5a8a" },
         },
         {
           name: "Observed max",
           type: "line",
-          data: data.hours.map((h) => h.max_m),
+          data: maxs,
           showSymbol: false,
           lineStyle: { width: 1, type: "dashed", color: "#b35c1e" },
         },
       ],
     };
-  }, [data]);
+  }, [data, dataMatched]);
 
   if (sensor.measurement_type !== "pressure") return null;
 
@@ -104,9 +139,10 @@ export default function PressureHistoryPanel({ sensor, cursor }: Props) {
         <p className="eyebrow">Available history — up to 30 days</p>
         <p className="history-cursor">Investigation cursor {normalizeNaive(cursor)}</p>
       </header>
+      <p className="chart-title">Hourly observed pressure (m)</p>
       {loading && <p className="chart-status">Loading historical context…</p>}
       {error && <p className="chart-status chart-error">{error}</p>}
-      {data && !loading && (
+      {dataMatched && data && !loading && (
         <>
           <p className="history-meta">
             Coverage:{" "}
@@ -121,13 +157,18 @@ export default function PressureHistoryPanel({ sensor, cursor }: Props) {
           </p>
           <p className="history-note">{data.limit_note}</p>
           {data.hour_count === 0 ? (
-            <p className="chart-status">No completed 15-minute buckets at or before the cursor.</p>
+            <p className="chart-status">
+              No completed 15-minute buckets at or before the cursor.
+            </p>
           ) : (
-            option && <ReactECharts option={option} style={{ height: 240, width: "100%" }} />
+            option && (
+              <ReactECharts option={option} style={{ height: 260, width: "100%" }} />
+            )
           )}
           <p className="history-footnote">
-            Distinct from the detailed 5-minute replay chart. Incomplete hours are included and
-            labeled in the API; empty hours are omitted. Min/max are observed, not limits.
+            Distinct from the detailed 5-minute replay chart. Incomplete hours are
+            included and labeled in the API; empty hours are omitted. Min/max are
+            observed, not limits. Observation only — not a confirmed leak.
           </p>
         </>
       )}

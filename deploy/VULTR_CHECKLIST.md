@@ -76,6 +76,7 @@ Open **http://127.0.0.1:8080/** (Vite :5173 and local uvicorn :8000 can keep run
 - [ ] Decide region, instance size, and single-VM Docker vs managed containers
 - [ ] Set `RIPPLE_CORS_ORIGINS` to the public frontend origin(s) if the UI is not same-origin with the API proxy
 - [ ] Plan TLS (Caddy/nginx) in front of published port 80/443; do **not** publish backend 8000
+- [ ] HTTPS runbook: [`docs/HTTPS_CADDY.md`](../docs/HTTPS_CADDY.md) (`deploy/Caddyfile`, `deploy/docker-compose.caddy.yml`)
 
 ## Suggested single-VM Docker path (later — not provisioned yet)
 

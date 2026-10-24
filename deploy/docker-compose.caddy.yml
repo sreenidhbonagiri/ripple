@@ -1,0 +1,18 @@
+# Deployment-only Compose overlay for HTTPS behind host Caddy.
+# Does not change the default local `docker compose up` (still publishes 0.0.0.0:8080).
+#
+# On the VM:
+#   docker compose -f docker-compose.yml -f deploy/docker-compose.caddy.yml up -d
+#
+# Binds the frontend to loopback only so the public edge is Caddy :80/:443.
+# Backend remains unpublished.
+
+services:
+  backend:
+    environment:
+      # Same-origin browser calls go through Caddy → nginx /api; list public HTTPS origins.
+      RIPPLE_CORS_ORIGINS: ${RIPPLE_CORS_ORIGINS:-https://followtheripple.us,https://www.followtheripple.us}
+
+  frontend:
+    ports: !override
+      - "127.0.0.1:8080:80"

@@ -9,6 +9,8 @@ import type {
 const SensorChart = lazy(() => import("./SensorChart"));
 const PressureHistoryPanel = lazy(() => import("./PressureHistoryPanel"));
 
+type PanelAsync = "idle" | "loading" | "ready" | "error";
+
 interface Props {
   selection: Selection;
   counts: NetworkCounts | null;
@@ -16,11 +18,11 @@ interface Props {
   source: string | null;
   coordinateSystem: string | null;
   observation: SnapshotObservation | null;
-  windowStart: string | null;
-  windowEnd: string | null;
+  observationStatus: PanelAsync;
+  observationError: string | null;
   cursor: string | null;
   series: ReadingPoint[];
-  seriesLoading: boolean;
+  seriesStatus: PanelAsync;
   seriesError: string | null;
 }
 
@@ -47,9 +49,11 @@ export default function DetailsPanel({
   source,
   coordinateSystem,
   observation,
+  observationStatus,
+  observationError,
   cursor,
   series,
-  seriesLoading,
+  seriesStatus,
   seriesError,
 }: Props) {
   return (
@@ -120,22 +124,33 @@ export default function DetailsPanel({
           <Row label="Type" value={selection.data.measurement_type} />
           <Row label="Unit" value={selection.data.unit} />
           <Row label="Network element" value={selection.data.network_element_id} />
-          {observation && (
+          <h3 className="details-section">At cursor</h3>
+          {observationStatus === "loading" && (
+            <p className="channel-note">Loading observation…</p>
+          )}
+          {observationStatus === "error" && (
+            <p className="channel-note chart-error">
+              Snapshot error{observationError ? `: ${observationError}` : ""}
+            </p>
+          )}
+          {observationStatus === "ready" && observation && (
             <>
-              <h3 className="details-section">At cursor</h3>
               <Row label="Status" value={observation.status} />
               <Row label="Value" value={observation.value} />
               <Row label="Observed" value={observation.observation_ts} />
               <Row label="Age (s)" value={observation.age_seconds} />
             </>
           )}
+          {observationStatus === "ready" && !observation && (
+            <p className="channel-note">No observation ≤ cursor for this sensor.</p>
+          )}
           <h3 className="details-section">Detailed replay chart (5-minute)</h3>
           <Suspense fallback={<p className="channel-note">Loading chart…</p>}>
             <SensorChart
               sensor={selection.data}
               series={series}
-              loading={seriesLoading}
-              error={seriesError}
+              loading={seriesStatus === "loading"}
+              error={seriesStatus === "error" ? seriesError : null}
             />
             {selection.data.measurement_type === "pressure" && cursor && (
               <PressureHistoryPanel sensor={selection.data} cursor={cursor} />

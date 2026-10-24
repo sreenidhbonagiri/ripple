@@ -116,3 +116,23 @@ def test_pressure_change_at_data_start_prior_missing(require_db):
     result = pressure_comparison_from_db("n1", datetime(2019, 1, 1, 0, 0, 0))
     assert result.available is False
     assert result.prior_status == "missing"
+
+
+def test_n54_comparison_prior_before_presenter_window(require_db):
+    """Prior −30 min at 14:05 is 13:35 — before presenter start; DB still has it."""
+    cursor = datetime(2019, 1, 12, 14, 5, 0)
+    result = pressure_comparison_from_db("n54", cursor)
+    assert result.prior_cursor == datetime(2019, 1, 12, 13, 35, 0)
+    assert result.prior_status == "current"
+    assert result.prior_ts is not None
+    assert result.prior_ts <= result.prior_cursor
+    assert result.current_status == "current"
+    assert result.available is True
+    assert result.delta_m is not None
+
+
+def test_n54_illustrative_15_00_delta(require_db):
+    result = pressure_comparison_from_db("n54", datetime(2019, 1, 12, 15, 0, 0))
+    assert result.available is True
+    assert result.current_value == pytest.approx(36.41, abs=0.02)
+    assert result.delta_m == pytest.approx(-0.95, abs=0.02)

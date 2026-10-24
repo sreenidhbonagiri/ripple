@@ -90,6 +90,70 @@ export function latestAtOrBefore(
   return chosen;
 }
 
+/** Earliest ts needed so a −30 min comparison can evaluate freshness. */
+export function comparisonLookbackStart(cursor: string): string {
+  return addSeconds(
+    normalizeNaive(cursor),
+    -(COMPARE_OFFSET_SECONDS + FRESH_SECONDS),
+  );
+}
+
+export function earlierTs(a: string, b: string): string {
+  const an = normalizeNaive(a);
+  const bn = normalizeNaive(b);
+  return parseNaive(an).getTime() <= parseNaive(bn).getTime() ? an : bn;
+}
+
+/** Detailed replay chart stays inside the presenter playback window. */
+export function chartSeriesInWindow(
+  points: ReadingPoint[],
+  windowStart: string,
+  cursor: string,
+): ReadingPoint[] {
+  const startMs = parseNaive(normalizeNaive(windowStart)).getTime();
+  const endMs = parseNaive(normalizeNaive(cursor)).getTime();
+  return points
+    .map((p) => ({ ts: normalizeNaive(p.ts), value: p.value }))
+    .filter((p) => {
+      const t = parseNaive(p.ts).getTime();
+      return t >= startMs && t <= endMs;
+    })
+    .sort((a, b) => parseNaive(a.ts).getTime() - parseNaive(b.ts).getTime());
+}
+
+/** Pad y-extent so small pressure changes remain visible without exaggeration. */
+export function paddedValueExtent(
+  values: number[],
+  padRatio = 0.15,
+): { min: number; max: number } {
+  if (values.length === 0) return { min: 0, max: 1 };
+  let lo = Math.min(...values);
+  let hi = Math.max(...values);
+  if (!Number.isFinite(lo) || !Number.isFinite(hi)) return { min: 0, max: 1 };
+  if (lo === hi) {
+    const pad = Math.max(Math.abs(lo) * 0.02, 0.25);
+    return { min: lo - pad, max: hi + pad };
+  }
+  const pad = (hi - lo) * padRatio;
+  return { min: lo - pad, max: hi + pad };
+}
+
+/** Concise category labels; most slots blank to reduce density. */
+export function sparseCategoryLabels(
+  timestamps: string[],
+  maxLabels = 7,
+): string[] {
+  const n = timestamps.length;
+  if (n === 0) return [];
+  const step = Math.max(1, Math.ceil(n / maxLabels));
+  return timestamps.map((ts, i) => {
+    if (i !== 0 && i !== n - 1 && i % step !== 0) return "";
+    const norm = normalizeNaive(ts);
+    // MM-DD HH:mm
+    return `${norm.slice(5, 10)} ${norm.slice(11, 16)}`;
+  });
+}
+
 export function pressureChange30m(
   points: ReadingPoint[],
   cursor: string,

@@ -1,14 +1,20 @@
-import type { PressureComparison, ReadingPoint } from "../investigation";
+import type { PressureComparison } from "../investigation";
 import { CONTEXT, DISCLAIMER, findObservation } from "../investigation";
 import type { Sensor, SnapshotObservation } from "../types";
+
+type PanelAsync = "idle" | "loading" | "ready" | "error";
 
 interface Props {
   cursor: string | null;
   observations: SnapshotObservation[];
+  snapshotStatus: PanelAsync;
+  snapshotMatched: boolean;
+  snapshotError: string | null;
   selectedPressure: Sensor | null;
-  pressureSeries: ReadingPoint[];
   pressureComparison: PressureComparison | null;
-  seriesLoading: boolean;
+  seriesStatus: PanelAsync;
+  seriesMatched: boolean;
+  seriesError: string | null;
 }
 
 function fmt(value: number | null | undefined, digits = 2): string {
@@ -20,13 +26,23 @@ function ChannelCard({
   title,
   unit,
   observation,
+  loading,
   footnote,
 }: {
   title: string;
   unit: string;
   observation: SnapshotObservation | null;
+  loading: boolean;
   footnote?: string;
 }) {
+  if (loading) {
+    return (
+      <article className="channel-card status-loading">
+        <h3>{title}</h3>
+        <p className="channel-note">Loading…</p>
+      </article>
+    );
+  }
   const status = observation?.status ?? "missing";
   return (
     <article className={`channel-card status-${status}`}>
@@ -51,10 +67,18 @@ function ChannelCard({
 export default function InvestigationPanels({
   cursor,
   observations,
+  snapshotStatus,
+  snapshotMatched,
+  snapshotError,
   selectedPressure,
   pressureComparison,
-  seriesLoading,
+  seriesStatus,
+  seriesMatched,
+  seriesError,
 }: Props) {
+  const channelsLoading = Boolean(cursor) && !snapshotMatched && snapshotStatus === "loading";
+  const channelsError = Boolean(cursor) && snapshotStatus === "error" && !snapshotMatched;
+
   const p227 = findObservation(observations, CONTEXT.externalInflows[0].sensorId);
   const p235 = findObservation(observations, CONTEXT.externalInflows[1].sensorId);
   const pump = findObservation(observations, CONTEXT.internalTransfer.sensorId);
@@ -63,6 +87,9 @@ export default function InvestigationPanels({
     ? findObservation(observations, selectedPressure.id)
     : null;
 
+  const comparisonLoading =
+    Boolean(selectedPressure) && !seriesMatched && seriesStatus === "loading";
+
   return (
     <section className="investigation" aria-label="Coordinated investigation evidence">
       <div className="investigation-header">
@@ -70,8 +97,18 @@ export default function InvestigationPanels({
         <p className="investigation-disclaimer">{DISCLAIMER}</p>
       </div>
 
+      {channelsError && (
+        <p className="channel-note chart-error" role="alert">
+          Snapshot error{snapshotError ? `: ${snapshotError}` : ""}
+        </p>
+      )}
+
       <div className="channel-grid">
-        <article className={`channel-card status-${selectedObs?.status ?? "missing"}`}>
+        <article
+          className={`channel-card status-${
+            channelsLoading ? "loading" : (selectedObs?.status ?? "missing")
+          }`}
+        >
           <h3>
             {selectedPressure
               ? `Pressure ${selectedPressure.id}`
@@ -80,7 +117,10 @@ export default function InvestigationPanels({
           {!selectedPressure && (
             <p className="channel-note">Select a pressure sensor on the map.</p>
           )}
-          {selectedPressure && (
+          {selectedPressure && channelsLoading && (
+            <p className="channel-note">Loading snapshot…</p>
+          )}
+          {selectedPressure && !channelsLoading && snapshotMatched && (
             <>
               <p className="channel-value">
                 {fmt(selectedObs?.value)}
@@ -96,8 +136,15 @@ export default function InvestigationPanels({
               </p>
               <div className="pressure-delta">
                 <h4>Change vs 30 minutes earlier</h4>
-                {seriesLoading && <p className="channel-note">Loading comparison…</p>}
-                {!seriesLoading && pressureComparison && (
+                {comparisonLoading && (
+                  <p className="channel-note">Loading comparison…</p>
+                )}
+                {!comparisonLoading && seriesStatus === "error" && (
+                  <p className="channel-note chart-error">
+                    Comparison error{seriesError ? `: ${seriesError}` : ""}
+                  </p>
+                )}
+                {!comparisonLoading && seriesMatched && pressureComparison && (
                   <>
                     {pressureComparison.available ? (
                       <p className="channel-value delta">
@@ -132,28 +179,37 @@ export default function InvestigationPanels({
         <ChannelCard
           title={CONTEXT.externalInflows[0].label}
           unit="m³/h"
-          observation={p227}
+          observation={snapshotMatched ? p227 : null}
+          loading={channelsLoading}
         />
         <ChannelCard
           title={CONTEXT.externalInflows[1].label}
           unit="m³/h"
-          observation={p235}
+          observation={snapshotMatched ? p235 : null}
+          loading={channelsLoading}
         />
         <ChannelCard
           title={CONTEXT.internalTransfer.label}
           unit="m³/h"
-          observation={pump}
+          observation={snapshotMatched ? pump : null}
+          loading={channelsLoading}
           footnote="Internal transfer to tank — not external supply."
         />
         <ChannelCard
           title={CONTEXT.tankLevel.label}
           unit="m"
-          observation={tank}
+          observation={snapshotMatched ? tank : null}
+          loading={channelsLoading}
         />
       </div>
 
-      {cursor && (
-        <p className="investigation-cursor">Panels synchronized to cursor {cursor}</p>
+      {cursor && snapshotMatched && (
+        <p className="investigation-cursor">
+          Panels synchronized to cursor {cursor}
+        </p>
+      )}
+      {cursor && channelsLoading && (
+        <p className="investigation-cursor">Loading panels for cursor {cursor}…</p>
       )}
     </section>
   );

@@ -394,6 +394,17 @@ body {
 .pill-stale { color: #b07a12; border-color: rgba(176, 122, 18, 0.35); }
 .pill-missing { color: #8b3a2a; border-color: rgba(139, 58, 42, 0.35); }
 
+.channel-card.status-loading {
+  opacity: 0.85;
+}
+
+.chart-title {
+  margin: 0 0 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #122226;
+}
+
 .investigation-cursor {
   margin: 0.65rem 0 0;
   font-size: 0.75rem;

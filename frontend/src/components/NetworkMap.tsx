@@ -14,6 +14,8 @@ interface Props {
   links: NetworkLink[];
   sensors: Sensor[];
   observations: SnapshotObservation[];
+  /** When true, withhold freshness colors (cursor snapshot still loading). */
+  observationsPending?: boolean;
   onSelect: (selection: Selection) => void;
   fitToken: number;
 }
@@ -137,6 +139,7 @@ export default function NetworkMap({
   links,
   sensors,
   observations,
+  observationsPending = false,
   onSelect,
   fitToken,
 }: Props) {
@@ -330,14 +333,18 @@ export default function NetworkMap({
     const obsBySensor = new Map(observations.map((o) => [o.sensor_id, o]));
     cy.batch(() => {
       cy.nodes(".ntype-Sensor").forEach((ele) => {
+        ele.removeClass("freshness-current freshness-stale freshness-missing");
+        if (observationsPending) {
+          ele.data("freshness", "pending");
+          return;
+        }
         const sensor = ele.data("sensorRaw") as Sensor;
         const status = obsBySensor.get(sensor.id)?.status ?? "missing";
         ele.data("freshness", status);
-        ele.removeClass("freshness-current freshness-stale freshness-missing");
         ele.addClass(`freshness-${status}`);
       });
     });
-  }, [observations]);
+  }, [observations, observationsPending]);
 
   useEffect(() => {
     const cy = cyRef.current;

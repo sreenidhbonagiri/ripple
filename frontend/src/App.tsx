@@ -12,6 +12,9 @@ import NetworkMap from "./components/NetworkMap";
 import ReplayControls from "./components/ReplayControls";
 import TigerEvidencePanel from "./components/TigerEvidencePanel";
 import {
+  chartSeriesInWindow,
+  comparisonLookbackStart,
+  earlierTs,
   midpointTimestamp,
   pressureChange30m,
   type PressureComparison,
@@ -31,6 +34,8 @@ type LoadState =
   | { status: "loading" }
   | { status: "error"; message: string }
   | { status: "ready"; network: NetworkResponse };
+
+type AsyncStatus = "idle" | "loading" | "ready" | "error";
 
 function buildTimestamps(start: string, end: string, stepSeconds: number): string[] {
   const out: string[] = [];
@@ -64,8 +69,16 @@ export default function App() {
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState(1);
   const [observations, setObservations] = useState<SnapshotObservation[]>([]);
-  const [series, setSeries] = useState<ReadingPoint[]>([]);
-  const [seriesLoading, setSeriesLoading] = useState(false);
+  const [snapshotStatus, setSnapshotStatus] = useState<AsyncStatus>("idle");
+  const [snapshotForCursor, setSnapshotForCursor] = useState<string | null>(null);
+  const [snapshotError, setSnapshotError] = useState<string | null>(null);
+  /** Full fetch (may extend before presenter window) for −30 min comparison. */
+  const [compareSeries, setCompareSeries] = useState<ReadingPoint[]>([]);
+  /** Chart-only slice bounded to presenter window → cursor. */
+  const [chartSeries, setChartSeries] = useState<ReadingPoint[]>([]);
+  const [seriesStatus, setSeriesStatus] = useState<AsyncStatus>("idle");
+  const [seriesForSensor, setSeriesForSensor] = useState<string | null>(null);
+  const [seriesForCursor, setSeriesForCursor] = useState<string | null>(null);
   const [seriesError, setSeriesError] = useState<string | null>(null);
   const snapshotReq = useRef(0);
   const seriesReq = useRef(0);
@@ -95,6 +108,15 @@ export default function App() {
     setState({ status: "loading" });
     setSelection(null);
     setObservations([]);
+    setSnapshotStatus("loading");
+    setSnapshotForCursor(null);
+    setSnapshotError(null);
+    setCompareSeries([]);
+    setChartSeries([]);
+    setSeriesStatus("idle");
+    setSeriesForSensor(null);
+    setSeriesForCursor(null);
+    setSeriesError(null);
     setPlaying(false);
     // Clear cursor so replay controls cannot seek while bootstrap is in flight
     // (avoids applying a parallel 14:00 snapshot over a newer cursor).
@@ -140,6 +162,9 @@ export default function App() {
         if (presetMatchesBootstrap && skipStillHeld) {
           snapshotReq.current += 1;
           setObservations(snap.observations);
+          setSnapshotForCursor(bootstrapCursor);
+          setSnapshotStatus("ready");
+          setSnapshotError(null);
         } else {
           skipSnapshotCursorRef.current = null;
         }
@@ -150,6 +175,8 @@ export default function App() {
         skipSnapshotCursorRef.current = null;
         const message = err instanceof Error ? err.message : String(err);
         setState({ status: "error", message });
+        setSnapshotStatus("error");
+        setSnapshotError(message);
       });
   }, []);
 
@@ -157,8 +184,8 @@ export default function App() {
     load();
   }, [load]);
 
-  // Snapshot at cursor — ignore stale responses; clear while in-flight to avoid
-  // showing a previous cursor's observations under a newer cursor label.
+  // Snapshot at cursor — ignore stale responses; show loading (not old/missing
+  // values labeled as synchronized to the new cursor).
   useEffect(() => {
     if (!cursor) return;
     if (skipSnapshotCursorRef.current === cursor) {
@@ -166,55 +193,111 @@ export default function App() {
       return;
     }
     const id = ++snapshotReq.current;
+    const requestCursor = cursor;
     const controller = new AbortController();
+    setSnapshotStatus("loading");
+    setSnapshotError(null);
     setObservations([]);
-    fetchReplaySnapshot(cursor, controller.signal)
+    setSnapshotForCursor(null);
+    fetchReplaySnapshot(requestCursor, controller.signal)
       .then((snap: ReplaySnapshotResponse) => {
         if (id !== snapshotReq.current) return;
         setObservations(snap.observations);
+        setSnapshotForCursor(requestCursor);
+        setSnapshotStatus("ready");
+        setSnapshotError(null);
       })
-      .catch(() => {
+      .catch((err: unknown) => {
         if (controller.signal.aborted) return;
         if (id !== snapshotReq.current) return;
+        setObservations([]);
+        setSnapshotForCursor(null);
+        setSnapshotStatus("error");
+        setSnapshotError(err instanceof Error ? err.message : String(err));
       });
     return () => controller.abort();
   }, [cursor]);
 
-  // Shared series fetch for chart + 30-minute comparison (one request)
+  // Series: fetch enough pre-window history for −30 min comparison; chart slice
+  // stays bounded to the presenter playback window.
   useEffect(() => {
     if (!selectedSensor || !cursor || !windowStart || !windowEnd) {
-      setSeries([]);
+      setCompareSeries([]);
+      setChartSeries([]);
       setSeriesError(null);
-      setSeriesLoading(false);
+      setSeriesStatus("idle");
+      setSeriesForSensor(null);
+      setSeriesForCursor(null);
       return;
     }
     const id = ++seriesReq.current;
+    const requestSensor = selectedSensor.id;
+    const requestCursor = cursor;
     const controller = new AbortController();
-    setSeriesLoading(true);
+    setSeriesStatus("loading");
     setSeriesError(null);
-    const end = clampTs(cursor, windowStart, windowEnd);
-    fetchSensorReadings(selectedSensor.id, windowStart, end, controller.signal)
+    setCompareSeries([]);
+    setChartSeries([]);
+    setSeriesForSensor(null);
+    setSeriesForCursor(null);
+    const end = clampTs(requestCursor, windowStart, windowEnd);
+    const fetchStart = earlierTs(windowStart, comparisonLookbackStart(requestCursor));
+    fetchSensorReadings(requestSensor, fetchStart, end, controller.signal)
       .then((res) => {
         if (id !== seriesReq.current) return;
         const points = res.readings
           .map((r) => ({ ts: normalizeNaive(r.ts), value: r.value }))
-          .filter((p) => parseNaive(p.ts).getTime() <= parseNaive(cursor).getTime());
-        setSeries(points);
-        setSeriesLoading(false);
+          .filter(
+            (p) =>
+              parseNaive(p.ts).getTime() <= parseNaive(requestCursor).getTime(),
+          );
+        setCompareSeries(points);
+        setChartSeries(chartSeriesInWindow(points, windowStart, requestCursor));
+        setSeriesForSensor(requestSensor);
+        setSeriesForCursor(requestCursor);
+        setSeriesStatus("ready");
+        setSeriesError(null);
       })
       .catch((err: unknown) => {
         if (controller.signal.aborted) return;
         if (id !== seriesReq.current) return;
+        setCompareSeries([]);
+        setChartSeries([]);
+        setSeriesForSensor(null);
+        setSeriesForCursor(null);
+        setSeriesStatus("error");
         setSeriesError(err instanceof Error ? err.message : String(err));
-        setSeriesLoading(false);
       });
     return () => controller.abort();
   }, [selectedSensor, cursor, windowStart, windowEnd]);
 
+  const snapshotMatched =
+    Boolean(cursor) &&
+    snapshotStatus === "ready" &&
+    snapshotForCursor === cursor;
+  // Between setCursor and the effect flipping status→loading, treat mismatch as pending
+  // so panels never show "missing" under a newer cursor label.
+  const snapshotPending =
+    Boolean(cursor) &&
+    !snapshotMatched &&
+    snapshotStatus !== "error";
+
+  const seriesMatched =
+    Boolean(selectedSensor) &&
+    Boolean(cursor) &&
+    seriesStatus === "ready" &&
+    seriesForSensor === selectedSensor?.id &&
+    seriesForCursor === cursor;
+  const seriesPending =
+    Boolean(selectedSensor) &&
+    Boolean(cursor) &&
+    !seriesMatched &&
+    seriesStatus !== "error";
+
   const pressureComparison: PressureComparison | null = useMemo(() => {
-    if (!selectedPressure || !cursor) return null;
-    return pressureChange30m(series, cursor);
-  }, [selectedPressure, cursor, series]);
+    if (!selectedPressure || !cursor || !seriesMatched) return null;
+    return pressureChange30m(compareSeries, cursor);
+  }, [selectedPressure, cursor, seriesMatched, compareSeries]);
 
   // Play loop
   useEffect(() => {
@@ -329,10 +412,14 @@ export default function App() {
       <InvestigationPanels
         cursor={cursor}
         observations={observations}
+        snapshotStatus={snapshotPending ? "loading" : snapshotStatus}
+        snapshotMatched={snapshotMatched}
+        snapshotError={snapshotError}
         selectedPressure={selectedPressure}
-        pressureSeries={series}
         pressureComparison={pressureComparison}
-        seriesLoading={seriesLoading}
+        seriesStatus={seriesPending ? "loading" : seriesStatus}
+        seriesMatched={seriesMatched}
+        seriesError={seriesError}
       />
 
       <TigerEvidencePanel />
@@ -369,7 +456,8 @@ export default function App() {
                 nodes={state.network.nodes}
                 links={state.network.links}
                 sensors={sensors}
-                observations={observations}
+                observations={snapshotMatched ? observations : []}
+                observationsPending={snapshotPending}
                 onSelect={setSelection}
                 fitToken={fitToken}
               />
@@ -393,12 +481,28 @@ export default function App() {
           coordinateSystem={
             state.status === "ready" ? state.network.coordinate_system : null
           }
-          observation={selectedObservation}
-          windowStart={windowStart}
-          windowEnd={windowEnd}
+          observation={snapshotMatched ? selectedObservation : null}
+          observationStatus={
+            !cursor
+              ? "idle"
+              : snapshotMatched
+                ? "ready"
+                : snapshotStatus === "error"
+                  ? "error"
+                  : "loading"
+          }
+          observationError={snapshotError}
           cursor={cursor}
-          series={series}
-          seriesLoading={seriesLoading}
+          series={seriesMatched ? chartSeries : []}
+          seriesStatus={
+            !selectedSensor
+              ? "idle"
+              : seriesMatched
+                ? "ready"
+                : seriesStatus === "error"
+                  ? "error"
+                  : "loading"
+          }
           seriesError={seriesError}
         />
       </main>

@@ -1,0 +1,13 @@
+# Ripple production TLS terminator (host Caddy → Docker frontend on loopback).
+# Install to /etc/caddy/Caddyfile on the VM. Validate before reload:
+#   sudo caddy validate --config /etc/caddy/Caddyfile
+#   sudo systemctl reload caddy
+
+followtheripple.us {
+	encode gzip
+	reverse_proxy 127.0.0.1:8080
+}
+
+www.followtheripple.us {
+	redir https://followtheripple.us{uri} permanent
+}
