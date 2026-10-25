@@ -1,0 +1,18 @@
+{
+  "frozen_at": "2026-10-24T20:48:21-04:00",
+  "gate_met": false,
+  "selected_h": null,
+  "unmatched_cap": 3.0,
+  "selection_rule": "among unmatched/wk<=3: max abrupt recall, then min median delay, then min unmatched/wk; else selection failure",
+  "signal": "build_signals.z",
+  "fixed": {
+    "train_days": 14,
+    "n_refs": 3,
+    "cusum_k": 0.5,
+    "recover_hours": 24.0,
+    "residual_recover_steps": 12,
+    "recovery_mode": "residual_le_k"
+  },
+  "dev_snapshot": null,
+  "note": "No DEV setting met provisional unmatched/week \u2264 3; DIAG not run for a new h."
+}

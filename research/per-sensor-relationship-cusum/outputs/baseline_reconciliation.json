@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-10-24T20:48:07-04:00",
+  "pressures_sha256": "7782d890a7195699be94ddc01cba392da7ca285908afff619065a9616e04dcae",
+  "flows_sha256": "7f7e8625c9d92b083ee079a54cffb9ef803876de1e35017c1da0455968daf3ff",
+  "levels_sha256": "a1fc5f0229448a620b6220f4d079b3162a255b3070acdce448608fbfc760903c",
+  "authoritative_signal": "build_signals.z (per-pair normalize then median)",
+  "context_baseline_signal": "aggregate raw r then normalize (dual.z_base) \u2014 DIFFERENT",
+  "reproduction_build_signals_h8": {
+    "unmatched_per_week": 77.22826086956522,
+    "n_episodes": 2034,
+    "summed_sensor_alarm_pct": 25.71610714993068,
+    "union_alarm_pct": 99.85089869281046,
+    "null_2h_frac_ge_obs": 0.47191011235955055,
+    "null_2h_obs": 3,
+    "null_2h_median": 2.0,
+    "z_sha256_16": "97404bab2df615d8"
+  },
+  "variant_report": {
+    "unmatched_per_week": 77.22826086956522,
+    "n_episodes": 2034,
+    "summed_sensor_alarm_pct": 25.71610714993068,
+    "null_2h_frac_ge_obs": 0.47191011235955055
+  },
+  "context_baseline_report": {
+    "unmatched_per_week": 88.98369565217392,
+    "n_episodes": 2343,
+    "summed_sensor_alarm_pct": 31.389631610219844,
+    "null_2h_frac_ge_obs": 0.15730337078651685
+  },
+  "delta_repro_minus_variant": {
+    "unmatched_per_week": 0.0,
+    "summed_sensor_alarm_pct": 0.0,
+    "null_2h_frac": 0.0
+  },
+  "unexplained_differences_remain": false,
+  "conclusion": "VARIANT residual-recovery baseline reproduces exactly on build_signals.z. CONTEXT 'baseline' differed because it used aggregate-then-normalize z_base."
+}
