@@ -40,3 +40,11 @@ Operating-context residual correction (paired; residual-recovery policy fixed):
 .venv/bin/python -m pytest research/per-sensor-relationship-cusum/tests -q
 .venv/bin/python research/per-sensor-relationship-cusum/run_context_experiment.py
 ```
+
+Baseline reconciliation + DEV-only CUSUM-h calibration (original `build_signals.z`):
+`outputs/BASELINE_RECONCILIATION.md`, `THRESHOLD_CALIBRATION.md`,
+`outputs/THRESHOLD_CALIBRATION_RESULTS.md`
+
+```bash
+.venv/bin/python research/per-sensor-relationship-cusum/run_threshold_calibration.py
+```
