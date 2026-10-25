@@ -21,7 +21,7 @@ explicit engineering reconstructions or intentional scope limits.
 | Topic | Published method | This package |
 |-------|------------------|--------------|
 | Demand TSA | Unsupervised AMR clusters → residential/commercial (+mixed); multiplicative T·S; R neglected | AMR→type by **correlation with INP weekly patterns**; T·S blended 50% AMR-derived / 50% INP; R neglected |
-| Area C demands | Combined AMR + inferred unmeasured | Measured AMR (L/h→m³/s) at 82 nodes; unmeasured Area-C bases × `area_c_unmeasured_scale` from (PUMP_1 − dV_tank/dt − AMR) on FIT only, clipped to [0.5, 1.5] |
+| Area C demands | Combined AMR + inferred unmeasured | Measured AMR (L/h→m³/s) at 82 nodes; unmeasured Area-C bases × `area_c_unmeasured_scale` from **signed** mean of (PUMP_1 − dV_tank/dt − AMR) on FIT only (aligned finite mask; **no** per-sample clip before averaging — see AREA_C_SCALE_AUDIT.md), then clip to unchanged bounds [0.5, 1.5]; nonpositive aggregate flagged `physically_inconsistent` |
 | Areas A/B | Inferred from patterns / base demands | INP pattern shape × single `ab_scale` from FIT external-inflow mass balance, clipped [0.7, 1.3]; **no leak timeseries in the objective** |
 | Diameter correction | OD→ID table for plastics | **Not applied** — use INP diameters as shipped |
 | Roughness clusters | 6 clusters by material/diameter/zone with C₀∈{90,120,140,146} | 6 clusters on local INP (C₀∈{120,140}): Area C, Area B (PRV-3 downstream), Zone A partitions by diameter/C₀ |

@@ -90,6 +90,90 @@ def _estimate_S_from_amr(amr_lh: pd.DataFrame, kind_map: dict[str, str], kind: s
     return S / max(S.mean(), 1e-12)
 
 
+# Physical band for Area-C unmeasured scale (unchanged; do not widen for fit quality).
+AREA_C_SCALE_BOUNDS: tuple[float, float] = (0.5, 1.5)
+AB_SCALE_BOUNDS: tuple[float, float] = (0.7, 1.3)
+
+
+def estimate_area_c_unmeasured_scale(
+    q_area_c_m3h: pd.Series,
+    amr_total_m3h: pd.Series,
+    base_unmeasured_m3h: float,
+    *,
+    bounds: tuple[float, float] = AREA_C_SCALE_BOUNDS,
+) -> dict[str, Any]:
+    """Estimate Area-C unmeasured demand scale from **signed** residuals.
+
+    residual(t) = Q_C(t) − ΣAMR(t). Mean is taken over timestamps where both
+    series are finite (identical mask). Individual residuals are **not** clipped
+    before averaging (that induced the superseded ~2.8 upward bias).
+
+    Returns dict with signed mean residual, raw scale, clipped scale, bound flag,
+    and ``physically_inconsistent`` when the signed aggregate residual (hence raw
+    scale) is ≤ 0 — unmeasured demand cannot be negative; bounds still applied.
+    """
+    lo, hi = bounds
+    q = q_area_c_m3h.astype(float)
+    amr = amr_total_m3h.astype(float)
+    aligned = pd.concat({"q_c": q, "amr": amr}, axis=1)
+    # Identical mask: require both finite on the same timestamp.
+    mask = aligned["q_c"].notna() & aligned["amr"].notna()
+    n_total = int(len(aligned))
+    n_used = int(mask.sum())
+    residual = aligned.loc[mask, "q_c"] - aligned.loc[mask, "amr"]
+
+    if n_used == 0 or base_unmeasured_m3h <= 0:
+        mean_residual = float("nan")
+        raw_scale = float("nan")
+        physically_inconsistent = True
+        inconsistency_reason = "no_aligned_samples_or_nonpositive_base"
+    else:
+        mean_residual = float(residual.mean())  # signed; no per-sample clip
+        raw_scale = mean_residual / float(base_unmeasured_m3h)
+        physically_inconsistent = bool(mean_residual <= 0.0 or raw_scale <= 0.0)
+        inconsistency_reason = (
+            "nonpositive_signed_mean_residual"
+            if physically_inconsistent
+            else None
+        )
+
+    if not np.isfinite(raw_scale):
+        clipped = float(lo)  # fail-closed to lower physical bound
+        bound_hit = "lower_fallback_nonfinite"
+    else:
+        clipped = float(np.clip(raw_scale, lo, hi))
+        if raw_scale < lo:
+            bound_hit = "lower"
+        elif raw_scale > hi:
+            bound_hit = "upper"
+        else:
+            bound_hit = "interior"
+
+    # Legacy (buggy) statistic for regression tests / audit continuity only.
+    clipped_before_mean = float(residual.clip(lower=0.0).mean()) if n_used else float("nan")
+    legacy_raw_if_clip_before_mean = (
+        clipped_before_mean / float(base_unmeasured_m3h)
+        if n_used and base_unmeasured_m3h > 0
+        else float("nan")
+    )
+
+    return {
+        "mean_residual_signed_m3h": mean_residual,
+        "raw_scale": raw_scale,
+        "scale": clipped,
+        "bounds": [lo, hi],
+        "bound_hit": bound_hit,
+        "physically_inconsistent": physically_inconsistent,
+        "inconsistency_reason": inconsistency_reason,
+        "n_timestamps_total": n_total,
+        "n_timestamps_used": n_used,
+        "frac_residual_negative": float((residual < 0).mean()) if n_used else float("nan"),
+        "legacy_clip_before_mean_residual_m3h": clipped_before_mean,
+        "legacy_raw_scale_if_clip_before_mean": legacy_raw_if_clip_before_mean,
+        "base_unmeasured_m3h": float(base_unmeasured_m3h),
+    }
+
+
 def fit_demand_model(
     wn: wntr.network.WaterNetworkModel,
     amr_fit_lh: pd.DataFrame,
@@ -112,27 +196,45 @@ def fit_demand_model(
 
     tank = wn.get_node("T1")
     area = np.pi * (tank.diameter / 2.0) ** 2
+    # Align pump, level, AMR on a common index before any residual math.
     lvl = levels_fit_m["T1"].astype(float)
-    dV_dt = area * (lvl.diff().fillna(0.0) * 12.0)  # m³/h
     q_pump = flows_fit_m3h["PUMP_1"].astype(float)
-    q_area_c = q_pump - dV_dt
-    amr_m3h = amr_fit_lh.sum(axis=1) / 1000.0
-    residual_c = (q_area_c - amr_m3h).clip(lower=0.0)
-
-    base_unmeas = 0.0
-    for n in unmeas:
-        for ts in wn.get_node(n).demand_timeseries_list:
-            base_unmeas += float(ts.base_value) * 3600.0
-    raw_scale = float(np.nanmean(residual_c) / max(base_unmeas, 1e-12))
-    area_c_unmeasured_scale = float(np.clip(raw_scale, 0.5, 1.5))
+    amr_m3h = (amr_fit_lh.sum(axis=1) / 1000.0).astype(float)
+    aligned = pd.concat(
+        {"pump": q_pump, "level": lvl, "amr_m3h": amr_m3h},
+        axis=1,
+    )
+    mask = aligned["pump"].notna() & aligned["level"].notna() & aligned["amr_m3h"].notna()
+    aligned = aligned.loc[mask]
+    dV_dt = area * (aligned["level"].diff() * 12.0)  # m³/h; first step NaN
+    # Drop the first diff NaN under the same mask discipline.
+    q_area_c = aligned["pump"] - dV_dt
+    scale_info = estimate_area_c_unmeasured_scale(
+        q_area_c,
+        aligned["amr_m3h"],
+        base_unmeasured_m3h=sum(
+            float(ts.base_value) * 3600.0
+            for n in unmeas
+            for ts in wn.get_node(n).demand_timeseries_list
+        ),
+        bounds=AREA_C_SCALE_BOUNDS,
+    )
+    area_c_unmeasured_scale = float(scale_info["scale"])
 
     q_ext = flows_fit_m3h["p227"].astype(float) + flows_fit_m3h["p235"].astype(float)
+    ext_aligned = pd.concat({"ext": q_ext, "level": levels_fit_m["T1"].astype(float)}, axis=1)
+    ext_mask = ext_aligned["ext"].notna() & ext_aligned["level"].notna()
+    ext_aligned = ext_aligned.loc[ext_mask]
+    dV_ext = area * (ext_aligned["level"].diff() * 12.0)
+    target_series = ext_aligned["ext"] - dV_ext
+    target = float(target_series.dropna().mean())
     total_base_m3h = 0.0
     for n in wn.junction_name_list:
         for ts in wn.get_node(n).demand_timeseries_list:
             total_base_m3h += float(ts.base_value) * 3600.0
-    target = float((q_ext - dV_dt).mean())
-    ab_scale = float(np.clip(target / max(total_base_m3h * 0.85, 1e-6), 0.7, 1.3))
+    ab_raw = target / max(total_base_m3h * 0.85, 1e-6)
+    ab_lo, ab_hi = AB_SCALE_BOUNDS
+    ab_scale = float(np.clip(ab_raw, ab_lo, ab_hi))
 
     return DemandModel(
         S_residential=S_res.tolist(),
@@ -145,10 +247,23 @@ def fit_demand_model(
             "n_amr": len(amr_nodes),
             "n_area_c_unmeasured": len(unmeas),
             "mean_q_ext_m3h": float(q_ext.mean()),
-            "mean_q_area_c_m3h": float(q_area_c.mean()),
-            "mean_amr_m3h": float(amr_m3h.mean()),
-            "mean_residual_c_m3h": float(residual_c.mean()),
-            "area_c_unmeasured_scale_raw": raw_scale,
+            "mean_q_area_c_m3h": float(q_area_c.dropna().mean()),
+            "mean_amr_m3h": float(aligned["amr_m3h"].mean()),
+            "mean_residual_c_signed_m3h": scale_info["mean_residual_signed_m3h"],
+            "area_c_unmeasured_scale_raw": scale_info["raw_scale"],
+            "area_c_scale_bound_hit": scale_info["bound_hit"],
+            "area_c_physically_inconsistent": scale_info["physically_inconsistent"],
+            "area_c_inconsistency_reason": scale_info["inconsistency_reason"],
+            "area_c_n_timestamps_used": scale_info["n_timestamps_used"],
+            "area_c_frac_residual_negative": scale_info["frac_residual_negative"],
+            "legacy_clip_before_mean_residual_m3h": scale_info[
+                "legacy_clip_before_mean_residual_m3h"
+            ],
+            "legacy_raw_scale_if_clip_before_mean": scale_info[
+                "legacy_raw_scale_if_clip_before_mean"
+            ],
+            "ab_scale_raw": ab_raw,
+            "estimator": "signed_mean_residual_no_preclip_v2",
         },
     )
 
