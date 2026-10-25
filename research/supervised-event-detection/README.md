@@ -49,6 +49,9 @@ Arm A synthetic-test miss audit (diagnostic; no refit):
 
 Results: `outputs/arm_a_synth_miss_audit/ARM_A_SYNTH_MISS_AUDIT.md`
 
+Shared t≈199 pre-onset trigger audit (diagnostic; no refit):
+`outputs/t199_trigger_audit/T199_TRIGGER_AUDIT.md`
+
 ## Boundary
 
 - Preserves production and frozen FMR3C evaluations

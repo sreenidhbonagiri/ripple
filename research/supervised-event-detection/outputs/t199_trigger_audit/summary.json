@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-10-24T23:16:00-04:00",
+  "frozen_arm": "outputs/change_only_ablation/arm_A_frozen_model.json",
+  "tau": 0.7,
+  "decision": "2",
+  "decision_label": "legitimate_operating_transition_misclassified_as_onset",
+  "not_implementation_artifact": true,
+  "evidence": {
+    "n_notify_exact_199": 20,
+    "n_notify_199_leaks": 18,
+    "n_notify_199_control_demand": 2,
+    "n_first_cross_in_195_205": 29,
+    "n_ok_scenarios": 40,
+    "mean_q_at_warm_start_t144": 0.232,
+    "frac_ge_tau_at_t144": 0.0,
+    "typical_q_198_to_199_trigger": [0.69, 0.71],
+    "top_contrib_features_at_199": [
+      "P_p90",
+      "P_p10",
+      "P_min",
+      "pump1_on",
+      "Pd_d24_median",
+      "F_p227",
+      "L_T1"
+    ],
+    "largest_delta_contrib_198_to_199": [
+      "Pd_d24_median",
+      "Pd_d24_p90",
+      "Fd_p227_d24",
+      "Fd_p235_d24",
+      "P_p10"
+    ],
+    "leak_onset_after_199_by_split": {
+      "train": "3/4",
+      "synthetic_dev": "5/5",
+      "synthetic_test": "15/15"
+    },
+    "pump_control": "T1 level < 2.4 open; > 3.9 closed",
+    "pattern_alignment": "all scenarios share L-TOWN pattern clock at sim t=0"
+  },
+  "recommended_correction": {
+    "action": "randomize_per_scenario_pattern_time_origin",
+    "implemented": false,
+    "rationale": "Break shared diurnal/tank-pump phase alignment that produces synchronized pre-onset latching on leaks and controls; Arm B already showed absolute-feature removal alone is insufficient."
+  },
+  "preserves": [
+    "outputs/change_only_ablation/",
+    "outputs/episode_objective/",
+    "outputs/arm_a_synth_miss_audit/",
+    "outputs/pilot_*"
+  ]
+}
