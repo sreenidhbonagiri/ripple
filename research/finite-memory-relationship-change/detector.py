@@ -76,24 +76,20 @@ def score_series(
     return s
 
 
-def run_target_episodes(
-    z: np.ndarray,
+def episodes_from_score(
+    s: np.ndarray,
     *,
     analysis_offset: int,
     stream_id: str,
     target_idx: int,
     refs: list[str],
-    n_q: int,
-    n_r: int,
-    sigma: float,
     tau: float,
     recover_steps: int = RECOVER_STEPS,
-) -> tuple[list[Episode], np.ndarray]:
+) -> list[Episode]:
     """Notify on s>=tau while inactive; recover after recover_steps with s<tau/2.
 
     Missing s: hold state; do not notify; do not advance recovery.
     """
-    s = score_series(z, n_q=n_q, n_r=n_r, sigma=sigma)
     tau_clear = tau / 2.0
     episodes: list[Episode] = []
     active = False
@@ -127,7 +123,6 @@ def run_target_episodes(
     for t in range(s.shape[0]):
         st = s[t]
         if not np.isfinite(st):
-            # missing: hold; break recovery streak; no notify / no clear
             recover_run = 0
             continue
         if active:
@@ -139,18 +134,109 @@ def run_target_episodes(
             if recover_run >= recover_steps:
                 close(t)
             continue
-        # inactive
         if st >= tau:
             active = True
             notify_local = t
-            change_local = t  # diagnostic: first exceedance
+            change_local = t
             peak = st
             recover_run = 0
 
     if active:
         close(s.shape[0] - 1)
+    return episodes
 
-    return episodes, s
+
+def run_target_episodes(
+    z: np.ndarray,
+    *,
+    analysis_offset: int,
+    stream_id: str,
+    target_idx: int,
+    refs: list[str],
+    n_q: int,
+    n_r: int,
+    sigma: float,
+    tau: float,
+    recover_steps: int = RECOVER_STEPS,
+) -> tuple[list[Episode], np.ndarray]:
+    """Notify on s>=tau while inactive; recover after recover_steps with s<tau/2."""
+    s = score_series(z, n_q=n_q, n_r=n_r, sigma=sigma)
+    return (
+        episodes_from_score(
+            s,
+            analysis_offset=analysis_offset,
+            stream_id=stream_id,
+            target_idx=target_idx,
+            refs=refs,
+            tau=tau,
+            recover_steps=recover_steps,
+        ),
+        s,
+    )
+
+
+def run_all_targets_from_scores(
+    score_bundle: dict,
+    *,
+    tau: float,
+    recover_steps: int = RECOVER_STEPS,
+) -> list[Episode]:
+    """Episode pipeline from precomputed per-target scores (same semantics)."""
+    episodes: list[Episode] = []
+    for sid, info in score_bundle["per_target"].items():
+        eps = episodes_from_score(
+            info["s"],
+            analysis_offset=score_bundle["analysis_offset"],
+            stream_id=sid,
+            target_idx=info["target_idx"],
+            refs=info["refs"],
+            tau=tau,
+            recover_steps=recover_steps,
+        )
+        episodes.extend(eps)
+    episodes.sort(key=lambda e: (e.notify_idx, e.target_idx))
+    return episodes
+
+
+def build_score_bundle(
+    z: np.ndarray,
+    sensor_ids: list[str],
+    target_models,
+    *,
+    analysis_offset: int,
+    train_z: np.ndarray,
+    l_q_hours: float,
+    l_r_hours: float,
+) -> dict:
+    """Compute frozen-signal scores once (train-only scales)."""
+    n_q = hours_to_steps(l_q_hours)
+    n_r = hours_to_steps(l_r_hours)
+    scale_meta: dict = {}
+    per_target: dict = {}
+    for tm in target_models:
+        i = tm.target
+        sid = sensor_ids[i]
+        refs = [sensor_ids[j] for j in tm.refs]
+        sigma, meta = sigma_from_train(train_z[:, i], n_q, n_r)
+        scale_meta[sid] = meta
+        if not meta.get("eligible", False):
+            continue
+        s = score_series(z[:, i], n_q=n_q, n_r=n_r, sigma=sigma)
+        per_target[sid] = {
+            "s": s,
+            "target_idx": i,
+            "refs": refs,
+            "sigma": sigma,
+        }
+    return {
+        "analysis_offset": analysis_offset,
+        "n_q": n_q,
+        "n_r": n_r,
+        "l_q_hours": l_q_hours,
+        "l_r_hours": l_r_hours,
+        "scale_meta": scale_meta,
+        "per_target": per_target,
+    }
 
 
 def run_all_targets(

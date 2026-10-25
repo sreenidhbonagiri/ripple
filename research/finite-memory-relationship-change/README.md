@@ -15,6 +15,14 @@ frozen results.
 Outputs: `outputs/RESULTS.md`, `outputs/summary.json`, `outputs/frozen_settings.json`,
 `outputs/synthetic_calibration.json`.
 
+Empirical DEV percentile threshold calibration (frozen LQ=2h, LR=48h; preserves
+`RESULTS.md`): `EMPIRICAL_THRESHOLD_CALIBRATION.md`,
+`outputs/EMPIRICAL_CALIBRATION_RESULTS.md`
+
+```bash
+.venv/bin/python research/finite-memory-relationship-change/run_empirical_calibration.py
+```
+
 ## Boundary
 
 No production/UI/Tiger/main changes. No 2019. No CUSUM retuning.
