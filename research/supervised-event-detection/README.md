@@ -62,6 +62,9 @@ Protocol: `PHASE_CORRECTION_PROTOCOL.md`
 Results: `outputs/phase_correction/PHASE_CORRECTION_RESULTS.md`  
 Scenarios: `outputs/synthetic_scenarios_phase/` (original `synthetic_scenarios/` untouched)
 
+Phase-matched pair audit (frozen model; no refit):
+`outputs/phase_pair_audit/PHASE_PAIR_AUDIT.md`
+
 ## Boundary
 
 - Preserves production and frozen FMR3C evaluations

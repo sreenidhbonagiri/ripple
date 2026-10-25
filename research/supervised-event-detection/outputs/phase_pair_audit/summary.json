@@ -1,0 +1,5117 @@
+{
+  "generated_at": "2026-10-24T23:39:06-04:00",
+  "experiment": "phase_matched_pair_audit",
+  "frozen": {
+    "C": 10.0,
+    "tau": 0.7,
+    "source": "/Users/sreenidhbonagiri/Desktop/rippple/research/supervised-event-detection/outputs/phase_correction/frozen_model.json"
+  },
+  "n_pairs": 16,
+  "summary_train_dev": {
+    "label": "train_and_synthetic_dev",
+    "n_pairs": 8,
+    "n_episode_6h_hit": 2,
+    "episode_6h_recall": 0.25,
+    "n_useful_physical_delta": 3,
+    "n_classifier_ignores_delta": 1,
+    "frac_useful_physical": 0.375,
+    "frac_classifier_ignores": 0.125,
+    "mean_abs_delta_change_feats": {
+      "pre_mean": 0.21265537248728977,
+      "credit_mean": 0.3188985544063456,
+      "lift_credit_minus_pre": 0.10624318191905585
+    },
+    "frac_change_feats_exceed_2x_ctrl_std": {
+      "pre_mean": 0.044642857142857144,
+      "credit_mean": 0.026785714285714284,
+      "lift_credit_minus_pre": -0.01785714285714286
+    },
+    "q_gap_leak_minus_ctrl": {
+      "pre_mean": 0.011188871382477344,
+      "credit_mean": 0.07613389469837173,
+      "lift_credit_minus_pre": 0.06494502331589438
+    },
+    "sum_abs_logit_contrib_from_delta": {
+      "pre_mean": 41.4353954318644,
+      "credit_mean": 47.19934865359737,
+      "lift_credit_minus_pre": 5.763953221732969
+    },
+    "net_logit_contrib_from_delta": {
+      "pre_mean": 0.04511487594925106,
+      "credit_mean": 0.31629931658400795,
+      "lift_credit_minus_pre": 0.2711844406347569
+    },
+    "pump_delta_over_ctrl": {
+      "pre_mean": -0.23979230647402822,
+      "credit_mean": 0.15200830868119397
+    }
+  },
+  "summary_test": {
+    "label": "synthetic_test_diagnostic",
+    "n_pairs": 8,
+    "n_episode_6h_hit": 3,
+    "episode_6h_recall": 0.375,
+    "n_useful_physical_delta": 5,
+    "n_classifier_ignores_delta": 3,
+    "frac_useful_physical": 0.625,
+    "frac_classifier_ignores": 0.375,
+    "mean_abs_delta_change_feats": {
+      "pre_mean": 0.30162690341119164,
+      "credit_mean": 0.26499784842917506,
+      "lift_credit_minus_pre": -0.03662905498201657
+    },
+    "frac_change_feats_exceed_2x_ctrl_std": {
+      "pre_mean": 0.06845238095238095,
+      "credit_mean": 0.05952380952380952,
+      "lift_credit_minus_pre": -0.008928571428571425
+    },
+    "q_gap_leak_minus_ctrl": {
+      "pre_mean": 0.0601928912349273,
+      "credit_mean": 0.06986564851265029,
+      "lift_credit_minus_pre": 0.009672757277722988
+    },
+    "sum_abs_logit_contrib_from_delta": {
+      "pre_mean": 66.5555359806707,
+      "credit_mean": 47.90060744588087,
+      "lift_credit_minus_pre": -18.654928534789825
+    },
+    "net_logit_contrib_from_delta": {
+      "pre_mean": 7.117319161674741,
+      "credit_mean": 2.51667791784491,
+      "lift_credit_minus_pre": -4.600641243829831
+    },
+    "pump_delta_over_ctrl": {
+      "pre_mean": -0.1474723742586023,
+      "credit_mean": 3.29229308500079
+    }
+  },
+  "pairs": [
+    {
+      "pair_id": "pair_000",
+      "split": "synthetic_dev",
+      "leak_id": "leak_000_p578",
+      "control_id": "ctrl_000_control_tank",
+      "control_kind": "control_tank",
+      "phase_hours": 11.668958137304262,
+      "onset_hour": 29.76139879075503,
+      "onset_idx": 357,
+      "leak_demand_scale": 0.92,
+      "ctrl_demand_scale": 1.2,
+      "episode_6h_hit": false,
+      "blocked_at_onset": true,
+      "pre_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 1.1958380909453084,
+        "mean_abs_delta_change_feats": 0.10094433296767494,
+        "mean_abs_delta_abs_feats": 5.376341530496273,
+        "frac_feats_exceed_2x_ctrl_std": 0.20754716981132076,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.07142857142857142,
+        "sum_abs_logit_contrib_from_delta": 52.559391791683666,
+        "net_logit_contrib_from_delta": 0.8005034435607636,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -29.00994550436735,
+            "ctrl_temporal_std": 7.472248702535545,
+            "exceed_2x": true,
+            "logit_contrib": 3.1808551904501856
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -27.414019964635372,
+            "ctrl_temporal_std": 7.428942892911675,
+            "exceed_2x": true,
+            "logit_contrib": -0.7924876793696621
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 1.514723151922226,
+            "ctrl_temporal_std": 4.792677629764284,
+            "exceed_2x": false,
+            "logit_contrib": 0.2510964362883761
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 1.50875523686409,
+            "ctrl_temporal_std": 4.8460602482575315,
+            "exceed_2x": false,
+            "logit_contrib": -0.18883926405727064
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.6305917210049093,
+            "ctrl_temporal_std": 0.19006844714792825,
+            "exceed_2x": true,
+            "logit_contrib": -1.1613990428873546
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.5954743491278754,
+            "ctrl_temporal_std": 0.16817038885984079,
+            "exceed_2x": true,
+            "logit_contrib": 11.739295449104167
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.49586087332831497,
+            "ctrl_temporal_std": 0.1351572276466381,
+            "exceed_2x": true,
+            "logit_contrib": -2.592870896164628
+          },
+          {
+            "name": "P_max",
+            "delta_mean": 0.4583271344502767,
+            "ctrl_temporal_std": 0.12752421283882037,
+            "exceed_2x": true,
+            "logit_contrib": -14.805199758087909
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": 0.3417377360165119,
+            "ctrl_temporal_std": 2.0991257981513955,
+            "exceed_2x": false,
+            "logit_contrib": 0.05524654351396781
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": 0.33658966422080994,
+            "ctrl_temporal_std": 2.1262269382748635,
+            "exceed_2x": false,
+            "logit_contrib": -0.06418848669305663
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": 0.4583271344502767,
+            "logit_contrib": -14.805199758087909
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.5954743491278754,
+            "logit_contrib": 11.739295449104167
+          },
+          {
+            "name": "P_min",
+            "delta_mean": 0.18213857544793022,
+            "logit_contrib": 8.94534373055798
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": 0.08854929606119792,
+            "logit_contrib": -4.402823180300391
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -29.00994550436735,
+            "logit_contrib": 3.1808551904501856
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.49586087332831497,
+            "logit_contrib": -2.592870896164628
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.6305917210049093,
+            "logit_contrib": -1.1613990428873546
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -27.414019964635372,
+            "logit_contrib": -0.7924876793696621
+          },
+          {
+            "name": "Pd_d24_p90",
+            "delta_mean": -0.053089920679728196,
+            "logit_contrib": -0.5937153744574963
+          },
+          {
+            "name": "P_spread_p90_p10",
+            "delta_mean": -0.13473084767659435,
+            "logit_contrib": 0.551426883122606
+          }
+        ],
+        "ql_mean": 0.7357708169270764,
+        "qc_mean": 0.5647757862199455,
+        "q_gap_leak_minus_ctrl": 0.17099503070713085,
+        "frac_leak_active": 1.0,
+        "frac_ctrl_active": 1.0,
+        "frac_leak_q_ge_tau": 0.6805555555555556,
+        "frac_ctrl_q_ge_tau": 0.05555555555555555
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 1.2043350126258483,
+        "mean_abs_delta_change_feats": 0.12081491038222951,
+        "mean_abs_delta_abs_feats": 5.341411766646938,
+        "frac_feats_exceed_2x_ctrl_std": 0.32075471698113206,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.14285714285714285,
+        "sum_abs_logit_contrib_from_delta": 68.66702948693738,
+        "net_logit_contrib_from_delta": 0.711355473323643,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -28.114892542362213,
+            "ctrl_temporal_std": 6.589765111924446,
+            "exceed_2x": true,
+            "logit_contrib": 3.0827152660062307
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -26.57276252284646,
+            "ctrl_temporal_std": 6.568292862403316,
+            "exceed_2x": true,
+            "logit_contrib": -0.7681685113433824
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": -1.2385356239974499,
+            "ctrl_temporal_std": 0.047584570336025526,
+            "exceed_2x": true,
+            "logit_contrib": -0.024361160273772758
+          },
+          {
+            "name": "Fd_PUMP_1_d6",
+            "delta_mean": -1.2266224715858698,
+            "ctrl_temporal_std": 0.017251606775272838,
+            "exceed_2x": true,
+            "logit_contrib": 0.016727613667691217
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -1.1475649196654558,
+            "ctrl_temporal_std": 0.026236954286563485,
+            "exceed_2x": true,
+            "logit_contrib": 0.13826015605716413
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.6276013374328618,
+            "ctrl_temporal_std": 0.16733874256306278,
+            "exceed_2x": true,
+            "logit_contrib": -1.1558914719777535
+          },
+          {
+            "name": "Fd_PUMP_1_d1",
+            "delta_mean": -0.611360464245081,
+            "ctrl_temporal_std": 0.003105326712607422,
+            "exceed_2x": true,
+            "logit_contrib": 0.07007079157251088
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.5495911174350314,
+            "ctrl_temporal_std": 0.1475761172141589,
+            "exceed_2x": true,
+            "logit_contrib": 10.834744625393832
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.45847471025255015,
+            "ctrl_temporal_std": 0.11786619627235931,
+            "exceed_2x": true,
+            "logit_contrib": -2.397377564521516
+          },
+          {
+            "name": "P_max",
+            "delta_mean": 0.4250565105014377,
+            "ctrl_temporal_std": 0.11148947495199595,
+            "exceed_2x": true,
+            "logit_contrib": -13.73046907641097
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_min",
+            "delta_mean": 0.3750612470838759,
+            "logit_contrib": 18.42032511194285
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": 0.287620120578342,
+            "logit_contrib": -14.300966696877277
+          },
+          {
+            "name": "P_max",
+            "delta_mean": 0.4250565105014377,
+            "logit_contrib": -13.73046907641097
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.5495911174350314,
+            "logit_contrib": 10.834744625393832
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -28.114892542362213,
+            "logit_contrib": 3.0827152660062307
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.45847471025255015,
+            "logit_contrib": -2.397377564521516
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.6276013374328618,
+            "logit_contrib": -1.1558914719777535
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -26.57276252284646,
+            "logit_contrib": -0.7681685113433824
+          },
+          {
+            "name": "P_spread_p90_p10",
+            "delta_mean": -0.16912662718031168,
+            "logit_contrib": 0.6922020493995582
+          },
+          {
+            "name": "Pd_d1_p90",
+            "delta_mean": 0.003893221749199759,
+            "logit_contrib": -0.30564917573879885
+          }
+        ],
+        "ql_mean": 0.6518643480648594,
+        "qc_mean": 0.4976232429876982,
+        "q_gap_leak_minus_ctrl": 0.15424110507716116,
+        "frac_leak_active": 1.0,
+        "frac_ctrl_active": 1.0,
+        "frac_leak_q_ge_tau": 0.4583333333333333,
+        "frac_ctrl_q_ge_tau": 0.027777777777777776
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 44.068199349567294,
+        "pump_ctrl_mean_m3h": 43.93808078020811,
+        "pump_delta_mean_m3h": 0.1301185693591833,
+        "pump_delta_over_ctrl_abs": 0.0029614076010435935
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 42.722166143357754,
+        "pump_ctrl_mean_m3h": 43.86973106302321,
+        "pump_delta_mean_m3h": -1.1475649196654558,
+        "pump_delta_over_ctrl_abs": -0.026158466571367826
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": false,
+        "classifier_ignores_delta": false
+      }
+    },
+    {
+      "pair_id": "pair_001",
+      "split": "synthetic_test",
+      "leak_id": "leak_001_p567",
+      "control_id": "ctrl_001_control_sensor",
+      "control_kind": "control_sensor",
+      "phase_hours": 6.100302732884086,
+      "onset_hour": 24.656669466958554,
+      "onset_idx": 295,
+      "leak_demand_scale": 1.0,
+      "ctrl_demand_scale": 1.2,
+      "episode_6h_hit": true,
+      "blocked_at_onset": false,
+      "pre_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.44538357572124493,
+        "mean_abs_delta_change_feats": 0.1931366828651426,
+        "mean_abs_delta_abs_feats": 1.408508075717272,
+        "frac_feats_exceed_2x_ctrl_std": 0.018867924528301886,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.023809523809523808,
+        "sum_abs_logit_contrib_from_delta": 19.030035553704984,
+        "net_logit_contrib_from_delta": 1.595068179580491,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -7.9103106167167425,
+            "ctrl_temporal_std": 14.62728649350758,
+            "exceed_2x": false,
+            "logit_contrib": 0.8673422905764739
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -7.178623788058758,
+            "ctrl_temporal_std": 14.538763783319213,
+            "exceed_2x": false,
+            "logit_contrib": -0.20752049185801363
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 3.0052165035158396,
+            "ctrl_temporal_std": 25.484996119011814,
+            "exceed_2x": false,
+            "logit_contrib": -0.37613978662054937
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 2.8061043471097946,
+            "ctrl_temporal_std": 25.225566565618376,
+            "exceed_2x": false,
+            "logit_contrib": 0.4651693614892128
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": 1.2103956658393145,
+            "ctrl_temporal_std": 0.10292430138098523,
+            "exceed_2x": true,
+            "logit_contrib": 0.023807666278521305
+          },
+          {
+            "name": "Pd_d24_max_abs",
+            "delta_mean": -0.24866205359437632,
+            "ctrl_temporal_std": 0.7061081655788113,
+            "exceed_2x": false,
+            "logit_contrib": 0.780411456899588
+          },
+          {
+            "name": "Pd_d24_topneg1",
+            "delta_mean": 0.14140373182565932,
+            "ctrl_temporal_std": 0.542714012038742,
+            "exceed_2x": false,
+            "logit_contrib": 1.2242090856630576
+          },
+          {
+            "name": "Pd_d24_min",
+            "delta_mean": 0.14140373182565932,
+            "ctrl_temporal_std": 0.542714012038742,
+            "exceed_2x": false,
+            "logit_contrib": 1.2242090856630576
+          },
+          {
+            "name": "Pd_d24_p90",
+            "delta_mean": -0.10568697553056332,
+            "ctrl_temporal_std": 0.3129352651601401,
+            "exceed_2x": false,
+            "logit_contrib": -1.1819189301664992
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.07962308459811752,
+            "ctrl_temporal_std": 0.15588110776121555,
+            "exceed_2x": false,
+            "logit_contrib": -0.4163514199690011
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_min",
+            "delta_mean": 0.054492049747043185,
+            "logit_contrib": 2.676259624690644
+          },
+          {
+            "name": "P_max",
+            "delta_mean": 0.07239617241753472,
+            "logit_contrib": -2.3385911803981534
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": 0.03864606221516927,
+            "logit_contrib": -1.9215486301628366
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.06410211986965603,
+            "logit_contrib": 1.2637214771146825
+          },
+          {
+            "name": "Pd_d24_min",
+            "delta_mean": 0.14140373182565932,
+            "logit_contrib": 1.2242090856630576
+          },
+          {
+            "name": "Pd_d24_topneg1",
+            "delta_mean": 0.14140373182565932,
+            "logit_contrib": 1.2242090856630576
+          },
+          {
+            "name": "Pd_d24_p90",
+            "delta_mean": -0.10568697553056332,
+            "logit_contrib": -1.1819189301664992
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.03882651782973539,
+            "logit_contrib": -0.8813048436054187
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -7.9103106167167425,
+            "logit_contrib": 0.8673422905764739
+          },
+          {
+            "name": "Pd_d24_max_abs",
+            "delta_mean": -0.24866205359437632,
+            "logit_contrib": 0.780411456899588
+          }
+        ],
+        "ql_mean": 0.1556153925744655,
+        "qc_mean": 0.14536035994229513,
+        "q_gap_leak_minus_ctrl": 0.010255032632170369,
+        "frac_leak_active": 0.0,
+        "frac_ctrl_active": 0.1111111111111111,
+        "frac_leak_q_ge_tau": 0.0,
+        "frac_ctrl_q_ge_tau": 0.0
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 2.0908983872840246,
+        "mean_abs_delta_change_feats": 0.6544639081048665,
+        "mean_abs_delta_abs_feats": 7.575466398695352,
+        "frac_feats_exceed_2x_ctrl_std": 0.11320754716981132,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 65.64903735464097,
+        "net_logit_contrib_from_delta": 1.018120649409008,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -31.887889746576548,
+            "ctrl_temporal_std": 11.884753843052373,
+            "exceed_2x": true,
+            "logit_contrib": 3.4964133110016085
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -29.845658037811518,
+            "ctrl_temporal_std": 10.912631143841097,
+            "exceed_2x": true,
+            "logit_contrib": -0.8627817557643027
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -18.149184389039874,
+            "ctrl_temporal_std": 16.285851883737163,
+            "exceed_2x": false,
+            "logit_contrib": 2.186638004471614
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": -8.676362736150622,
+            "ctrl_temporal_std": 34.761033975254676,
+            "exceed_2x": false,
+            "logit_contrib": 1.085953449410431
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": -8.087114710360765,
+            "ctrl_temporal_std": 34.190269841393686,
+            "exceed_2x": false,
+            "logit_contrib": -1.3406051667263055
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": -7.278604619204998,
+            "ctrl_temporal_std": 16.19602321076406,
+            "exceed_2x": false,
+            "logit_contrib": -0.14316524310021844
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.873364448547363,
+            "ctrl_temporal_std": 0.39732822335894047,
+            "exceed_2x": true,
+            "logit_contrib": -1.6085283089640385
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": -0.7810662500560284,
+            "ctrl_temporal_std": 10.704409993525193,
+            "exceed_2x": false,
+            "logit_contrib": -0.12626996091800372
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": -0.7288974709808826,
+            "ctrl_temporal_std": 10.097861306558302,
+            "exceed_2x": false,
+            "logit_contrib": 0.1390025618432712
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.6859982278611925,
+            "ctrl_temporal_std": 0.2813202824979786,
+            "exceed_2x": true,
+            "logit_contrib": 13.523900544530502
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": 0.5135141478644477,
+            "logit_contrib": -16.587888794444147
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.6859982278611925,
+            "logit_contrib": 13.523900544530502
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -31.887889746576548,
+            "logit_contrib": 3.4964133110016085
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.5435258759392629,
+            "logit_contrib": -2.8421125780218452
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.1160948011610243,
+            "logit_contrib": -2.6351812189106636
+          },
+          {
+            "name": "Pd_d24_topneg5",
+            "delta_mean": 0.19991864098442924,
+            "logit_contrib": -2.547790807803677
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.050496419270833336,
+            "logit_contrib": 2.5107687489027417
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -18.149184389039874,
+            "logit_contrib": 2.186638004471614
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": 0.026820977528889973,
+            "logit_contrib": -1.8414571779714675
+          },
+          {
+            "name": "P_min",
+            "delta_mean": 0.03399385346306695,
+            "logit_contrib": 1.6695348758796291
+          }
+        ],
+        "ql_mean": 0.6950868579008288,
+        "qc_mean": 0.46768956086094465,
+        "q_gap_leak_minus_ctrl": 0.22739729703988415,
+        "frac_leak_active": 0.8194444444444444,
+        "frac_ctrl_active": 0.1527777777777778,
+        "frac_leak_q_ge_tau": 0.4305555555555556,
+        "frac_ctrl_q_ge_tau": 0.1527777777777778
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 44.22866147942841,
+        "pump_ctrl_mean_m3h": 44.212889624759555,
+        "pump_delta_mean_m3h": 0.015771854668855667,
+        "pump_delta_over_ctrl_abs": 0.0003567252546935556
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 18.266778951510787,
+        "pump_ctrl_mean_m3h": 36.41596334055066,
+        "pump_delta_mean_m3h": -18.149184389039874,
+        "pump_delta_over_ctrl_abs": -0.4983853844790269
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": true,
+        "classifier_ignores_delta": false
+      }
+    },
+    {
+      "pair_id": "pair_002",
+      "split": "synthetic_test",
+      "leak_id": "leak_002_p157",
+      "control_id": "ctrl_002_control_demand",
+      "control_kind": "control_demand",
+      "phase_hours": 15.156119935836301,
+      "onset_hour": 14.29083726830487,
+      "onset_idx": 171,
+      "leak_demand_scale": 0.97,
+      "ctrl_demand_scale": 0.9,
+      "episode_6h_hit": true,
+      "blocked_at_onset": false,
+      "pre_6h": {
+        "n_finite": 27,
+        "mean_abs_delta": 0.0874868663789341,
+        "mean_abs_delta_change_feats": 0.034693979000183214,
+        "mean_abs_delta_abs_feats": 0.2890597090978011,
+        "frac_feats_exceed_2x_ctrl_std": 0.0,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 3.995546928952565,
+        "net_logit_contrib_from_delta": -0.14573923204978342,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": 1.628341277440389,
+            "ctrl_temporal_std": 15.679239744973485,
+            "exceed_2x": false,
+            "logit_contrib": -0.17854283122975145
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": 1.4392033219337463,
+            "ctrl_temporal_std": 15.04588873402226,
+            "exceed_2x": false,
+            "logit_contrib": 0.04160465711383141
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": -0.6611287593841553,
+            "ctrl_temporal_std": 8.590153343791801,
+            "exceed_2x": false,
+            "logit_contrib": 0.08274839107017236
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": -0.6300841147700945,
+            "ctrl_temporal_std": 8.389711267854818,
+            "exceed_2x": false,
+            "logit_contrib": -0.10444936791248723
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": -0.05598869174718857,
+            "ctrl_temporal_std": 3.0339094299773546,
+            "exceed_2x": false,
+            "logit_contrib": -0.009051331968652501
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": -0.051689520478248596,
+            "ctrl_temporal_std": 2.950861821949542,
+            "exceed_2x": false,
+            "logit_contrib": 0.009857320203427115
+          },
+          {
+            "name": "P_min",
+            "delta_mean": -0.027938701488353587,
+            "ctrl_temporal_std": 0.05781256286531728,
+            "exceed_2x": false,
+            "logit_contrib": -1.37214913196805
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.02570060447410301,
+            "ctrl_temporal_std": 0.0788862200684029,
+            "exceed_2x": false,
+            "logit_contrib": 1.277878223313138
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": -0.023455556233723536,
+            "ctrl_temporal_std": 0.026366347183012166,
+            "exceed_2x": false,
+            "logit_contrib": 0.04319952142223726
+          },
+          {
+            "name": "P_spread_p90_p10",
+            "delta_mean": 0.016264428032768678,
+            "ctrl_temporal_std": 0.12806761318154936,
+            "exceed_2x": false,
+            "logit_contrib": -0.06656710775998197
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_min",
+            "delta_mean": -0.027938701488353587,
+            "logit_contrib": -1.37214913196805
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.02570060447410301,
+            "logit_contrib": 1.277878223313138
+          },
+          {
+            "name": "P_max",
+            "delta_mean": -0.006171191180193865,
+            "logit_contrib": 0.19934608121708886
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": 1.628341277440389,
+            "logit_contrib": -0.17854283122975145
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.005390591091579861,
+            "logit_contrib": -0.1062711459562391
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": -0.6300841147700945,
+            "logit_contrib": -0.10444936791248723
+          },
+          {
+            "name": "Pd_d24_p90",
+            "delta_mean": 0.007632389775028936,
+            "logit_contrib": 0.08535456627678031
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": -0.6611287593841553,
+            "logit_contrib": 0.08274839107017236
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": -0.0035338931613498265,
+            "logit_contrib": 0.08021417664955954
+          },
+          {
+            "name": "P_spread_p90_p10",
+            "delta_mean": 0.016264428032768678,
+            "logit_contrib": -0.06656710775998197
+          }
+        ],
+        "ql_mean": 0.3909980059181765,
+        "qc_mean": 0.42605554193555983,
+        "q_gap_leak_minus_ctrl": -0.03505753601738332,
+        "frac_leak_active": 0.0,
+        "frac_ctrl_active": 0.0,
+        "frac_leak_q_ge_tau": 0.0,
+        "frac_ctrl_q_ge_tau": 0.0
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.30404571154012305,
+        "mean_abs_delta_change_feats": 0.11468947657714129,
+        "mean_abs_delta_abs_feats": 1.0270422450351446,
+        "frac_feats_exceed_2x_ctrl_std": 0.0,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 15.795076209358133,
+        "net_logit_contrib_from_delta": 0.13848746277714502,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": 5.596065055578947,
+            "ctrl_temporal_std": 23.2452260603223,
+            "exceed_2x": false,
+            "logit_contrib": -0.6135920722586476
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": 5.328871659003198,
+            "ctrl_temporal_std": 22.426173246140234,
+            "exceed_2x": false,
+            "logit_contrib": 0.15404764205140448
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 1.7097570234909654,
+            "ctrl_temporal_std": 20.65494988267288,
+            "exceed_2x": false,
+            "logit_contrib": -0.21399710844010666
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 1.6600291011855006,
+            "ctrl_temporal_std": 20.65117844555578,
+            "exceed_2x": false,
+            "logit_contrib": 0.27518387826429513
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": 0.4237272311002016,
+            "ctrl_temporal_std": 6.711029179441556,
+            "exceed_2x": false,
+            "logit_contrib": 0.06850125825700236
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": 0.40996656753122807,
+            "ctrl_temporal_std": 6.737245342567647,
+            "exceed_2x": false,
+            "logit_contrib": -0.07818164477954098
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": -0.07072202894422751,
+            "ctrl_temporal_std": 0.22758427357979935,
+            "exceed_2x": false,
+            "logit_contrib": 0.369807541652488
+          },
+          {
+            "name": "Fd_p235_d1",
+            "delta_mean": 0.06917731370776892,
+            "ctrl_temporal_std": 1.1637446203836057,
+            "exceed_2x": false,
+            "logit_contrib": 0.03378881935259959
+          },
+          {
+            "name": "Fd_p227_d1",
+            "delta_mean": 0.0668385298922658,
+            "ctrl_temporal_std": 1.167608083405573,
+            "exceed_2x": false,
+            "logit_contrib": -0.020360824107378123
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": -0.06634861628214564,
+            "ctrl_temporal_std": 0.23373858331853611,
+            "exceed_2x": false,
+            "logit_contrib": 0.12219827327289695
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_min",
+            "delta_mean": -0.06464995278252496,
+            "logit_contrib": -3.1751431479124426
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.04663308461507162,
+            "logit_contrib": 2.31867711032111
+          },
+          {
+            "name": "P_max",
+            "delta_mean": -0.06489615970187718,
+            "logit_contrib": 2.096320587851432
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.05490472581651476,
+            "logit_contrib": -1.0824022879509647
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": -0.03896694713168674,
+            "logit_contrib": 0.8844923821978977
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": -0.009084701538085938,
+            "logit_contrib": 0.6237315116131465
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": 5.596065055578947,
+            "logit_contrib": -0.6135920722586476
+          },
+          {
+            "name": "Pd_d24_topneg5",
+            "delta_mean": -0.03627080387539334,
+            "logit_contrib": 0.46224014054084406
+          },
+          {
+            "name": "Pd_d6_median",
+            "delta_mean": -0.00746419694688585,
+            "logit_contrib": -0.41041586418609616
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": -0.07072202894422751,
+            "logit_contrib": 0.369807541652488
+          }
+        ],
+        "ql_mean": 0.4955792735930551,
+        "qc_mean": 0.46367485537139097,
+        "q_gap_leak_minus_ctrl": 0.03190441822166412,
+        "frac_leak_active": 0.375,
+        "frac_ctrl_active": 0.0,
+        "frac_leak_q_ge_tau": 0.013888888888888888,
+        "frac_ctrl_q_ge_tau": 0.0
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 0.0,
+        "pump_ctrl_mean_m3h": 0.0,
+        "pump_delta_mean_m3h": 0.0,
+        "pump_delta_over_ctrl_abs": 0.0
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 0.0,
+        "pump_ctrl_mean_m3h": 0.0,
+        "pump_delta_mean_m3h": 0.0,
+        "pump_delta_over_ctrl_abs": 0.0
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": true,
+        "classifier_ignores_delta": false
+      }
+    },
+    {
+      "pair_id": "pair_003",
+      "split": "synthetic_dev",
+      "leak_id": "leak_003_p596",
+      "control_id": "ctrl_003_control_pump",
+      "control_kind": "control_pump",
+      "phase_hours": 19.30250641307495,
+      "onset_hour": 24.470824516608708,
+      "onset_idx": 293,
+      "leak_demand_scale": 1.0,
+      "ctrl_demand_scale": 0.85,
+      "episode_6h_hit": false,
+      "blocked_at_onset": true,
+      "pre_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.6064652318513684,
+        "mean_abs_delta_change_feats": 0.03859751679239765,
+        "mean_abs_delta_abs_feats": 2.7746874166219824,
+        "frac_feats_exceed_2x_ctrl_std": 0.11320754716981132,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 56.5126429521858,
+        "net_logit_contrib_from_delta": -0.3526585790106762,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": 11.181965470314026,
+            "ctrl_temporal_std": 5.546358346928774,
+            "exceed_2x": true,
+            "logit_contrib": -1.2260696215485287
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": 10.726957954466343,
+            "ctrl_temporal_std": 4.949220327994572,
+            "exceed_2x": true,
+            "logit_contrib": 0.3100961488682581
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -6.725884927436709,
+            "ctrl_temporal_std": 13.064861357318026,
+            "exceed_2x": false,
+            "logit_contrib": 0.8103436099815803
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": -0.44516026973724365,
+            "ctrl_temporal_std": 8.076736645597075,
+            "exceed_2x": false,
+            "logit_contrib": 0.05571727982826529
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": -0.42442549020051956,
+            "ctrl_temporal_std": 7.028384291920788,
+            "exceed_2x": false,
+            "logit_contrib": -0.07035723189683543
+          },
+          {
+            "name": "P_min",
+            "delta_mean": -0.4063115649753147,
+            "ctrl_temporal_std": 0.20079513628345705,
+            "exceed_2x": true,
+            "logit_contrib": -19.955117148943504
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.36442406972249347,
+            "ctrl_temporal_std": 0.20137715745862383,
+            "exceed_2x": false,
+            "logit_contrib": 18.119791042999445
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": -0.31313018798828174,
+            "ctrl_temporal_std": 0.07868576375908648,
+            "exceed_2x": true,
+            "logit_contrib": 0.5767108709406868
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.1872918340894911,
+            "ctrl_temporal_std": 0.08070943555437723,
+            "exceed_2x": true,
+            "logit_contrib": -3.6923071141540986
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": -0.1667121887207031,
+            "ctrl_temporal_std": 0.07443599642107272,
+            "exceed_2x": true,
+            "logit_contrib": 0.8717428726900373
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_min",
+            "delta_mean": -0.4063115649753147,
+            "logit_contrib": -19.955117148943504
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.36442406972249347,
+            "logit_contrib": 18.119791042999445
+          },
+          {
+            "name": "P_max",
+            "delta_mean": -0.1496876080830892,
+            "logit_contrib": 4.835312536401743
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.1872918340894911,
+            "logit_contrib": -3.6923071141540986
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": -0.06012296676635742,
+            "logit_contrib": 1.3647029088593272
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": 11.181965470314026,
+            "logit_contrib": -1.2260696215485287
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": -0.1667121887207031,
+            "logit_contrib": 0.8717428726900373
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -6.725884927436709,
+            "logit_contrib": 0.8103436099815803
+          },
+          {
+            "name": "P_spread_p90_p10",
+            "delta_mean": 0.14641799926757867,
+            "logit_contrib": -0.5992600979025459
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": -0.31313018798828174,
+            "logit_contrib": 0.5767108709406868
+          }
+        ],
+        "ql_mean": 0.6244322588121035,
+        "qc_mean": 0.688014409416025,
+        "q_gap_leak_minus_ctrl": -0.06358215060392147,
+        "frac_leak_active": 1.0,
+        "frac_ctrl_active": 0.6388888888888888,
+        "frac_leak_q_ge_tau": 0.4166666666666667,
+        "frac_ctrl_q_ge_tau": 0.6388888888888888
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 1.349877257523297,
+        "mean_abs_delta_change_feats": 0.5801022212370915,
+        "mean_abs_delta_abs_feats": 4.289018305161536,
+        "frac_feats_exceed_2x_ctrl_std": 0.03773584905660377,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 70.56983224457092,
+        "net_logit_contrib_from_delta": -0.7877162522128597,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": 17.904240917414427,
+            "ctrl_temporal_std": 24.23232074276215,
+            "exceed_2x": false,
+            "logit_contrib": -1.9631473504372672
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": 16.534671932458878,
+            "ctrl_temporal_std": 23.019244951644314,
+            "exceed_2x": false,
+            "logit_contrib": 0.47798622040097827
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": 10.45080996118486,
+            "ctrl_temporal_std": 18.68182810176952,
+            "exceed_2x": false,
+            "logit_contrib": -1.2591275590564568
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": 10.411587497219443,
+            "ctrl_temporal_std": 18.671058571763304,
+            "exceed_2x": false,
+            "logit_contrib": 0.20478890296714924
+          },
+          {
+            "name": "Fd_PUMP_1_d6",
+            "delta_mean": 3.673797333613038,
+            "ctrl_temporal_std": 12.159844996845903,
+            "exceed_2x": false,
+            "logit_contrib": -0.05010006249976884
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 3.5441926680505276,
+            "ctrl_temporal_std": 19.069645795595576,
+            "exceed_2x": false,
+            "logit_contrib": -0.44359927890154244
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 2.9572774656116962,
+            "ctrl_temporal_std": 17.921656069083962,
+            "exceed_2x": false,
+            "logit_contrib": 0.49022940712874546
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": 1.2850756756961346,
+            "ctrl_temporal_std": 8.07823722483463,
+            "exceed_2x": false,
+            "logit_contrib": 0.2077499256115448
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": 1.0784505866467953,
+            "ctrl_temporal_std": 7.3523386341300005,
+            "exceed_2x": false,
+            "logit_contrib": -0.20566321099118617
+          },
+          {
+            "name": "Fd_PUMP_1_d1",
+            "delta_mean": 0.6123273633420467,
+            "ctrl_temporal_std": 5.149425661672925,
+            "exceed_2x": false,
+            "logit_contrib": -0.07018161225696387
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_min",
+            "delta_mean": -0.4956844117906358,
+            "logit_contrib": -24.34447197383673
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.4636853535970052,
+            "logit_contrib": 23.05523266691748
+          },
+          {
+            "name": "P_max",
+            "delta_mean": -0.20490900675455728,
+            "logit_contrib": 6.619112309096177
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.22328106562296549,
+            "logit_contrib": -4.401805722408917
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": 17.904240917414427,
+            "logit_contrib": -1.9631473504372672
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": 10.45080996118486,
+            "logit_contrib": -1.2591275590564568
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": -0.2187910927666554,
+            "logit_contrib": 1.1440649732391817
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": 0.010071065690782335,
+            "logit_contrib": -0.6914526581343748
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": -0.3329037984212234,
+            "logit_contrib": 0.613129129326079
+          },
+          {
+            "name": "pump1_on",
+            "delta_mean": 0.2361111111111111,
+            "logit_contrib": 0.5690221177340825
+          }
+        ],
+        "ql_mean": 0.40330889529457337,
+        "qc_mean": 0.5455926809107267,
+        "q_gap_leak_minus_ctrl": -0.1422837856161533,
+        "frac_leak_active": 0.7638888888888888,
+        "frac_ctrl_active": 1.0,
+        "frac_leak_q_ge_tau": 0.1111111111111111,
+        "frac_ctrl_q_ge_tau": 0.3055555555555556
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 33.08574757538736,
+        "pump_ctrl_mean_m3h": 39.81163250282407,
+        "pump_delta_mean_m3h": -6.725884927436709,
+        "pump_delta_over_ctrl_abs": -0.16894270181000245
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 44.053665827959776,
+        "pump_ctrl_mean_m3h": 33.60285586677492,
+        "pump_delta_mean_m3h": 10.45080996118486,
+        "pump_delta_over_ctrl_abs": 0.3110095669132876
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": true,
+        "classifier_ignores_delta": true
+      }
+    },
+    {
+      "pair_id": "pair_004",
+      "split": "synthetic_test",
+      "leak_id": "leak_004_p244",
+      "control_id": "ctrl_004_control_pump",
+      "control_kind": "control_pump",
+      "phase_hours": 10.763449367252573,
+      "onset_hour": 34.45919623074087,
+      "onset_idx": 413,
+      "leak_demand_scale": 1.0,
+      "ctrl_demand_scale": 1.1,
+      "episode_6h_hit": false,
+      "blocked_at_onset": true,
+      "pre_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.42657527890704594,
+        "mean_abs_delta_change_feats": 0.010118733051789817,
+        "mean_abs_delta_abs_feats": 2.016682090354387,
+        "frac_feats_exceed_2x_ctrl_std": 0.20754716981132076,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.07142857142857142,
+        "sum_abs_logit_contrib_from_delta": 38.578396227978466,
+        "net_logit_contrib_from_delta": 0.5444714982822433,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -10.653891414403915,
+            "ctrl_temporal_std": 2.7425074735415436,
+            "exceed_2x": true,
+            "logit_contrib": 1.1681678546723766
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -10.066277906298637,
+            "ctrl_temporal_std": 2.9366015372947305,
+            "exceed_2x": true,
+            "logit_contrib": -0.2909971331509831
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.2717662387424045,
+            "ctrl_temporal_std": 0.15570004519266037,
+            "exceed_2x": false,
+            "logit_contrib": 13.512684445635351
+          },
+          {
+            "name": "P_min",
+            "delta_mean": -0.23771497938368055,
+            "ctrl_temporal_std": 0.14257832998145292,
+            "exceed_2x": false,
+            "logit_contrib": -11.67485907507514
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.23485769695705846,
+            "ctrl_temporal_std": 0.0677109223972984,
+            "exceed_2x": true,
+            "logit_contrib": -0.4325516738881076
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.20897881189982095,
+            "ctrl_temporal_std": 0.05910187984594625,
+            "exceed_2x": true,
+            "logit_contrib": 4.119848351298062
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.17489176856146907,
+            "ctrl_temporal_std": 0.044399341686885495,
+            "exceed_2x": true,
+            "logit_contrib": -0.9145141330430083
+          },
+          {
+            "name": "P_max",
+            "delta_mean": 0.1610653665330675,
+            "ctrl_temporal_std": 0.04348822479373216,
+            "exceed_2x": true,
+            "logit_contrib": -5.202844750817201
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 0.1547977328300476,
+            "ctrl_temporal_std": 6.983308925599947,
+            "exceed_2x": false,
+            "logit_contrib": -0.01937483909326336
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 0.13740258291363716,
+            "ctrl_temporal_std": 7.096486406744383,
+            "exceed_2x": false,
+            "logit_contrib": 0.022777296869496772
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "L_T1",
+            "delta_mean": -0.2717662387424045,
+            "logit_contrib": 13.512684445635351
+          },
+          {
+            "name": "P_min",
+            "delta_mean": -0.23771497938368055,
+            "logit_contrib": -11.67485907507514
+          },
+          {
+            "name": "P_max",
+            "delta_mean": 0.1610653665330675,
+            "logit_contrib": -5.202844750817201
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.20897881189982095,
+            "logit_contrib": 4.119848351298062
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -10.653891414403915,
+            "logit_contrib": 1.1681678546723766
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.17489176856146907,
+            "logit_contrib": -0.9145141330430083
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.23485769695705846,
+            "logit_contrib": -0.4325516738881076
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -10.066277906298637,
+            "logit_contrib": -0.2909971331509831
+          },
+          {
+            "name": "P_spread_p90_p10",
+            "delta_mean": -0.05996592839558939,
+            "logit_contrib": 0.24542876081434806
+          },
+          {
+            "name": "Pd_d24_p90",
+            "delta_mean": -0.010788069831000432,
+            "logit_contrib": -0.12064517779232123
+          }
+        ],
+        "ql_mean": 0.7100497521957839,
+        "qc_mean": 0.5946064743817482,
+        "q_gap_leak_minus_ctrl": 0.11544327781403574,
+        "frac_leak_active": 1.0,
+        "frac_ctrl_active": 1.0,
+        "frac_leak_q_ge_tau": 0.7083333333333334,
+        "frac_ctrl_q_ge_tau": 0.08333333333333333
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.4667964259822477,
+        "mean_abs_delta_change_feats": 0.1673702738661733,
+        "mean_abs_delta_abs_feats": 1.610059915879986,
+        "frac_feats_exceed_2x_ctrl_std": 0.20754716981132076,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.19047619047619047,
+        "sum_abs_logit_contrib_from_delta": 34.2156495888323,
+        "net_logit_contrib_from_delta": -0.5682281806631103,
+        "top_abs_delta_features": [
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": 15.241345763206482,
+            "ctrl_temporal_std": 5.12139985872964,
+            "exceed_2x": true,
+            "logit_contrib": -1.8362977184388387
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 2.2573376540094614,
+            "ctrl_temporal_std": 6.456079868875642,
+            "exceed_2x": false,
+            "logit_contrib": -0.28253355540817365
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 2.203983091749251,
+            "ctrl_temporal_std": 6.132773351038208,
+            "exceed_2x": false,
+            "logit_contrib": 0.3653554111692148
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": 0.9444387629628181,
+            "ctrl_temporal_std": 26.573778345506827,
+            "exceed_2x": false,
+            "logit_contrib": -0.10355493224833436
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": 0.6378417834639549,
+            "ctrl_temporal_std": 5.121442549203141,
+            "exceed_2x": false,
+            "logit_contrib": 0.10311578187392678
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": 0.6212729262188077,
+            "ctrl_temporal_std": 4.517792010524627,
+            "exceed_2x": false,
+            "logit_contrib": -0.11847829329420856
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": 0.6044080248102546,
+            "ctrl_temporal_std": 25.80397885884584,
+            "exceed_2x": false,
+            "logit_contrib": 0.017472297517554195
+          },
+          {
+            "name": "pump1_on",
+            "delta_mean": 0.3472222222222222,
+            "ctrl_temporal_std": 0.11702985796078294,
+            "exceed_2x": true,
+            "logit_contrib": 0.8367972319618859
+          },
+          {
+            "name": "P_min",
+            "delta_mean": 0.19470535384284127,
+            "ctrl_temporal_std": 0.09301333738538112,
+            "exceed_2x": true,
+            "logit_contrib": 9.562533977334484
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": 0.1762882868448893,
+            "ctrl_temporal_std": 0.1527838103191391,
+            "exceed_2x": false,
+            "logit_contrib": -8.765356589618753
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_min",
+            "delta_mean": 0.19470535384284127,
+            "logit_contrib": 9.562533977334484
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": 0.1762882868448893,
+            "logit_contrib": -8.765356589618753
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.10196336110432942,
+            "logit_contrib": -2.314418315997263
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": 15.241345763206482,
+            "logit_contrib": -1.8362977184388387
+          },
+          {
+            "name": "P_max",
+            "delta_mean": -0.03735902574327257,
+            "logit_contrib": 1.2067970611430274
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.05821010801527235,
+            "logit_contrib": -1.1475652261367237
+          },
+          {
+            "name": "Pd_d24_topneg3",
+            "delta_mean": 0.10634798473782009,
+            "logit_contrib": 0.9768115102784981
+          },
+          {
+            "name": "pump1_on",
+            "delta_mean": 0.3472222222222222,
+            "logit_contrib": 0.8367972319618859
+          },
+          {
+            "name": "Pd_d24_p90",
+            "delta_mean": -0.06737760967678492,
+            "logit_contrib": -0.7534975047453432
+          },
+          {
+            "name": "Pd_d6_median",
+            "delta_mean": -0.013336976369222006,
+            "logit_contrib": -0.733328276458124
+          }
+        ],
+        "ql_mean": 0.503220451790862,
+        "qc_mean": 0.6115335226489418,
+        "q_gap_leak_minus_ctrl": -0.10831307085807984,
+        "frac_leak_active": 1.0,
+        "frac_ctrl_active": 1.0,
+        "frac_leak_q_ge_tau": 0.09722222222222222,
+        "frac_ctrl_q_ge_tau": 0.3472222222222222
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 43.954199785366654,
+        "pump_ctrl_mean_m3h": 43.84010690264404,
+        "pump_delta_mean_m3h": 0.1140928827226162,
+        "pump_delta_over_ctrl_abs": 0.0026024772333129945
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 15.849144104868174,
+        "pump_ctrl_mean_m3h": 0.6077983416616917,
+        "pump_delta_mean_m3h": 15.241345763206482,
+        "pump_delta_over_ctrl_abs": 25.076278828367002
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": true,
+        "classifier_ignores_delta": true
+      }
+    },
+    {
+      "pair_id": "pair_005",
+      "split": "train",
+      "leak_id": "leak_005_p790",
+      "control_id": "ctrl_005_control_demand",
+      "control_kind": "control_demand",
+      "phase_hours": 6.266268750348765,
+      "onset_hour": 24.821437615504582,
+      "onset_idx": 297,
+      "leak_demand_scale": 1.0,
+      "ctrl_demand_scale": 1.15,
+      "episode_6h_hit": true,
+      "blocked_at_onset": false,
+      "pre_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.44388852092814274,
+        "mean_abs_delta_change_feats": 0.23360406901372016,
+        "mean_abs_delta_abs_feats": 1.2467927918741195,
+        "frac_feats_exceed_2x_ctrl_std": 0.018867924528301886,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.023809523809523808,
+        "sum_abs_logit_contrib_from_delta": 12.164500268974447,
+        "net_logit_contrib_from_delta": 0.12661580623803187,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -7.008180487900972,
+            "ctrl_temporal_std": 17.3174012795922,
+            "exceed_2x": false,
+            "logit_contrib": 0.7684263756095486
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -6.395700108259916,
+            "ctrl_temporal_std": 17.405080797371824,
+            "exceed_2x": false,
+            "logit_contrib": -0.18488764301177574
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": 3.0629798769950867,
+            "ctrl_temporal_std": 0.11140517969266499,
+            "exceed_2x": true,
+            "logit_contrib": 0.0602467480571812
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 2.8797789942473173,
+            "ctrl_temporal_std": 29.26571260954709,
+            "exceed_2x": false,
+            "logit_contrib": -0.36043974041247206
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 2.5989269837737083,
+            "ctrl_temporal_std": 28.994760476888533,
+            "exceed_2x": false,
+            "logit_contrib": 0.43082546336677596
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": -0.31433310359716415,
+            "ctrl_temporal_std": 10.695619172588737,
+            "exceed_2x": false,
+            "logit_contrib": 0.05994410518855834
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": -0.2918955869972706,
+            "ctrl_temporal_std": 10.754492574211179,
+            "exceed_2x": false,
+            "logit_contrib": -0.04718888360576225
+          },
+          {
+            "name": "Pd_d24_max_abs",
+            "delta_mean": -0.08592904938591851,
+            "ctrl_temporal_std": 0.21082841966270838,
+            "exceed_2x": false,
+            "logit_contrib": 0.269683345938465
+          },
+          {
+            "name": "Pd_d24_p90",
+            "delta_mean": -0.08001924090915258,
+            "ctrl_temporal_std": 0.2527805388553071,
+            "exceed_2x": false,
+            "logit_contrib": -0.8948714364593651
+          },
+          {
+            "name": "Fd_p227_d1",
+            "delta_mean": -0.0777706503868103,
+            "ctrl_temporal_std": 1.8412112493191,
+            "exceed_2x": false,
+            "logit_contrib": 0.02369104371078446
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": 0.06554465823703343,
+            "logit_contrib": -2.117268835585731
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.06253714031643337,
+            "logit_contrib": 1.2328691702537826
+          },
+          {
+            "name": "Pd_d24_p90",
+            "delta_mean": -0.08001924090915258,
+            "logit_contrib": -0.8948714364593651
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": 0.012705326080322266,
+            "logit_contrib": -0.8723139894463727
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -7.008180487900972,
+            "logit_contrib": 0.7684263756095486
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.010457144843207465,
+            "logit_contrib": 0.519947213172794
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 2.5989269837737083,
+            "logit_contrib": 0.43082546336677596
+          },
+          {
+            "name": "Pd_d6_median",
+            "delta_mean": 0.0070922109815809466,
+            "logit_contrib": 0.38996236563801634
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.07172721227010026,
+            "logit_contrib": -0.37506367443318384
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 2.8797789942473173,
+            "logit_contrib": -0.36043974041247206
+          }
+        ],
+        "ql_mean": 0.18334905352356257,
+        "qc_mean": 0.16287530894984592,
+        "q_gap_leak_minus_ctrl": 0.020473744573716646,
+        "frac_leak_active": 0.0,
+        "frac_ctrl_active": 0.0,
+        "frac_leak_q_ge_tau": 0.0,
+        "frac_ctrl_q_ge_tau": 0.0
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 1.3218490943437602,
+        "mean_abs_delta_change_feats": 0.2495041352405987,
+        "mean_abs_delta_abs_feats": 5.4162571200103775,
+        "frac_feats_exceed_2x_ctrl_std": 0.07547169811320754,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 46.78366851385819,
+        "net_logit_contrib_from_delta": 0.6392803758981568,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -24.484459031373262,
+            "ctrl_temporal_std": 10.774956251348721,
+            "exceed_2x": true,
+            "logit_contrib": 2.684648910615284
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -23.02845772355795,
+            "ctrl_temporal_std": 9.922097207243736,
+            "exceed_2x": true,
+            "logit_contrib": -0.6657093357467229
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -9.664243599399924,
+            "ctrl_temporal_std": 20.384721455615175,
+            "exceed_2x": false,
+            "logit_contrib": 1.164360991983803
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": -3.9000044111162424,
+            "ctrl_temporal_std": 35.60955148738972,
+            "exceed_2x": false,
+            "logit_contrib": 0.4881334923125391
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": -3.700206521898508,
+            "ctrl_temporal_std": 34.57126990610143,
+            "exceed_2x": false,
+            "logit_contrib": -0.6133851390603342
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": -0.6171898916363716,
+            "ctrl_temporal_std": 20.275086927749737,
+            "exceed_2x": false,
+            "logit_contrib": -0.012139708845013444
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.6131159994337296,
+            "ctrl_temporal_std": 0.42921123967838287,
+            "exceed_2x": false,
+            "logit_contrib": -1.1292129458764553
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.500018490685357,
+            "ctrl_temporal_std": 0.2716854748286807,
+            "exceed_2x": false,
+            "logit_contrib": 9.857460360412635
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": -0.4775082692503929,
+            "ctrl_temporal_std": 9.155285359206918,
+            "exceed_2x": false,
+            "logit_contrib": -0.07719569305669725
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": -0.43566105887293816,
+            "ctrl_temporal_std": 8.511045305737973,
+            "exceed_2x": false,
+            "logit_contrib": 0.08308164822851868
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": 0.38183535469902885,
+            "logit_contrib": -12.33430943991551
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.500018490685357,
+            "logit_contrib": 9.857460360412635
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -24.484459031373262,
+            "logit_contrib": 2.684648910615284
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.40724987453884576,
+            "logit_contrib": -2.1295214120661528
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.08801001972622341,
+            "logit_contrib": -1.9976979911169583
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.036386595831976995,
+            "logit_contrib": 1.8092040784890075
+          },
+          {
+            "name": "P_min",
+            "delta_mean": 0.0349733034769694,
+            "logit_contrib": 1.7176384531680216
+          },
+          {
+            "name": "Pd_d24_topneg5",
+            "delta_mean": 0.12232629458109538,
+            "logit_contrib": -1.5589432148584557
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -9.664243599399924,
+            "logit_contrib": 1.164360991983803
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.6131159994337296,
+            "logit_contrib": -1.1292129458764553
+          }
+        ],
+        "ql_mean": 0.7222136577554645,
+        "qc_mean": 0.5838108216283724,
+        "q_gap_leak_minus_ctrl": 0.13840283612709214,
+        "frac_leak_active": 0.8888888888888888,
+        "frac_ctrl_active": 0.3055555555555556,
+        "frac_leak_q_ge_tau": 0.4861111111111111,
+        "frac_ctrl_q_ge_tau": 0.3055555555555556
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 44.225743785500526,
+        "pump_ctrl_mean_m3h": 44.20125689357519,
+        "pump_delta_mean_m3h": 0.02448689192533493,
+        "pump_delta_over_ctrl_abs": 0.0005539863137898206
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 20.089246006682515,
+        "pump_ctrl_mean_m3h": 29.75348960608244,
+        "pump_delta_mean_m3h": -9.664243599399924,
+        "pump_delta_over_ctrl_abs": -0.3248104139224688
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": false,
+        "classifier_ignores_delta": false
+      }
+    },
+    {
+      "pair_id": "pair_006",
+      "split": "train",
+      "leak_id": "leak_006_p142",
+      "control_id": "ctrl_006_control_sensor",
+      "control_kind": "control_sensor",
+      "phase_hours": 4.382353554857654,
+      "onset_hour": 35.16169767645635,
+      "onset_idx": 421,
+      "leak_demand_scale": 1.08,
+      "ctrl_demand_scale": 0.9,
+      "episode_6h_hit": false,
+      "blocked_at_onset": true,
+      "pre_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.7055537296978432,
+        "mean_abs_delta_change_feats": 0.02617175747793187,
+        "mean_abs_delta_abs_feats": 3.299557623628414,
+        "frac_feats_exceed_2x_ctrl_std": 0.2641509433962264,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.21428571428571427,
+        "sum_abs_logit_contrib_from_delta": 38.64897110235338,
+        "net_logit_contrib_from_delta": 0.2789710254854843,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": 17.95355211943388,
+            "ctrl_temporal_std": 3.483024023510141,
+            "exceed_2x": true,
+            "logit_contrib": -1.9685541786875063
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": 17.00244750827551,
+            "ctrl_temporal_std": 3.526294620462216,
+            "exceed_2x": true,
+            "logit_contrib": 0.4915087311827953
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": -0.2550521638658309,
+            "ctrl_temporal_std": 0.13109267972750843,
+            "exceed_2x": false,
+            "logit_contrib": 0.46974504918661725
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": -0.2516047371758354,
+            "ctrl_temporal_std": 0.045741574192926175,
+            "exceed_2x": true,
+            "logit_contrib": 1.3156484720834727
+          },
+          {
+            "name": "P_max",
+            "delta_mean": -0.2296068933275011,
+            "ctrl_temporal_std": 0.04306418878902669,
+            "exceed_2x": true,
+            "logit_contrib": 7.416920505099244
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.22258811526828343,
+            "ctrl_temporal_std": 0.035938600989252036,
+            "exceed_2x": true,
+            "logit_contrib": -4.388144766303776
+          },
+          {
+            "name": "P_min",
+            "delta_mean": -0.21732725037468803,
+            "ctrl_temporal_std": 0.18606995039721275,
+            "exceed_2x": false,
+            "logit_contrib": -10.6735596884823
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": -0.19539743661880493,
+            "ctrl_temporal_std": 4.394196461199954,
+            "exceed_2x": false,
+            "logit_contrib": -0.03239113360920289
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": -0.16884580254554749,
+            "ctrl_temporal_std": 1.2907725218603319,
+            "exceed_2x": false,
+            "logit_contrib": 0.03219931477980088
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": -0.1604716293513775,
+            "ctrl_temporal_std": 1.3223861673016777,
+            "exceed_2x": false,
+            "logit_contrib": -0.02594241700392675
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_min",
+            "delta_mean": -0.21732725037468803,
+            "logit_contrib": -10.6735596884823
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.1595076455010308,
+            "logit_contrib": 7.930994262921248
+          },
+          {
+            "name": "P_max",
+            "delta_mean": -0.2296068933275011,
+            "logit_contrib": 7.416920505099244
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.22258811526828343,
+            "logit_contrib": -4.388144766303776
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": 17.95355211943388,
+            "logit_contrib": -1.9685541786875063
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": -0.2516047371758354,
+            "logit_contrib": 1.3156484720834727
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": -0.04048792521158854,
+            "logit_contrib": 0.9190163473578261
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": 17.00244750827551,
+            "logit_contrib": 0.4915087311827953
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": -0.2550521638658309,
+            "logit_contrib": 0.46974504918661725
+          },
+          {
+            "name": "Pd_d24_topneg3",
+            "delta_mean": -0.040182537502712674,
+            "logit_contrib": -0.3690785983543755
+          }
+        ],
+        "ql_mean": 0.5242948981982265,
+        "qc_mean": 0.4556668469093606,
+        "q_gap_leak_minus_ctrl": 0.0686280512888659,
+        "frac_leak_active": 1.0,
+        "frac_ctrl_active": 1.0,
+        "frac_leak_q_ge_tau": 0.0,
+        "frac_ctrl_q_ge_tau": 0.0
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 1.4570932792089644,
+        "mean_abs_delta_change_feats": 0.18958695143382384,
+        "mean_abs_delta_abs_feats": 6.29666289435041,
+        "frac_feats_exceed_2x_ctrl_std": 0.09433962264150944,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 41.364691992689856,
+        "net_logit_contrib_from_delta": 1.0466342857135584,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": 25.706168822944164,
+            "ctrl_temporal_std": 11.361894372066365,
+            "exceed_2x": true,
+            "logit_contrib": -2.8186057955448707
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": 23.824425972998142,
+            "ctrl_temporal_std": 10.454057838250666,
+            "exceed_2x": true,
+            "logit_contrib": 0.6887192785301792
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": 17.730502504855394,
+            "ctrl_temporal_std": 19.13261410841735,
+            "exceed_2x": false,
+            "logit_contrib": -2.1361946511992524
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": 3.6409685853868723,
+            "ctrl_temporal_std": 19.13261410841735,
+            "exceed_2x": false,
+            "logit_contrib": 0.07161539607080683
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 1.7627374269068241,
+            "ctrl_temporal_std": 12.014670824775317,
+            "exceed_2x": false,
+            "logit_contrib": -0.2206282571818355
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 1.5928655862808228,
+            "ctrl_temporal_std": 11.114212357006776,
+            "exceed_2x": false,
+            "logit_contrib": 0.26405014783985137
+          },
+          {
+            "name": "pump1_on",
+            "delta_mean": 0.4027777777777778,
+            "ctrl_temporal_std": 0.4330127018922193,
+            "exceed_2x": false,
+            "logit_contrib": 0.9706847890757878
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.3967994583977593,
+            "ctrl_temporal_std": 0.16018050229762704,
+            "exceed_2x": true,
+            "logit_contrib": -7.822580574626059
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": -0.3675430615742997,
+            "ctrl_temporal_std": 0.1499174044154142,
+            "exceed_2x": true,
+            "logit_contrib": 1.9218933348109908
+          },
+          {
+            "name": "P_max",
+            "delta_mean": -0.347490045759413,
+            "ctrl_temporal_std": 0.14919138372891633,
+            "exceed_2x": true,
+            "logit_contrib": 11.224863541159934
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": -0.347490045759413,
+            "logit_contrib": 11.224863541159934
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.3967994583977593,
+            "logit_contrib": -7.822580574626059
+          },
+          {
+            "name": "P_min",
+            "delta_mean": -0.08463523122999403,
+            "logit_contrib": -4.156677042222664
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": 25.706168822944164,
+            "logit_contrib": -2.8186057955448707
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": 17.730502504855394,
+            "logit_contrib": -2.1361946511992524
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": -0.3675430615742997,
+            "logit_contrib": 1.9218933348109908
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.03540590074327257,
+            "logit_contrib": 1.760442233263604
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": -0.04892314804924859,
+            "logit_contrib": 1.110483498141755
+          },
+          {
+            "name": "pump1_on",
+            "delta_mean": 0.4027777777777778,
+            "logit_contrib": 0.9706847890757878
+          },
+          {
+            "name": "Pd_d24_topneg5",
+            "delta_mean": -0.07529799143473308,
+            "logit_contrib": 0.9596080159350161
+          }
+        ],
+        "ql_mean": 0.62103268010006,
+        "qc_mean": 0.37933421627230435,
+        "q_gap_leak_minus_ctrl": 0.24169846382775562,
+        "frac_leak_active": 1.0,
+        "frac_ctrl_active": 0.4305555555555556,
+        "frac_leak_q_ge_tau": 0.2638888888888889,
+        "frac_ctrl_q_ge_tau": 0.0
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 0.0,
+        "pump_ctrl_mean_m3h": 0.0,
+        "pump_delta_mean_m3h": 0.0,
+        "pump_delta_over_ctrl_abs": 0.0
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 28.776721796020865,
+        "pump_ctrl_mean_m3h": 11.046219291165471,
+        "pump_delta_mean_m3h": 17.730502504855394,
+        "pump_delta_over_ctrl_abs": 1.605119401704841
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": true,
+        "classifier_ignores_delta": false
+      }
+    },
+    {
+      "pair_id": "pair_007",
+      "split": "synthetic_test",
+      "leak_id": "leak_007_p886",
+      "control_id": "ctrl_007_control_tank",
+      "control_kind": "control_tank",
+      "phase_hours": 10.092454850319282,
+      "onset_hour": 25.605507126389018,
+      "onset_idx": 307,
+      "leak_demand_scale": 1.03,
+      "ctrl_demand_scale": 1.15,
+      "episode_6h_hit": false,
+      "blocked_at_onset": true,
+      "pre_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.695166391575127,
+        "mean_abs_delta_change_feats": 0.20261414289701157,
+        "mean_abs_delta_abs_feats": 2.5758204319824776,
+        "frac_feats_exceed_2x_ctrl_std": 0.0,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 28.946745727642522,
+        "net_logit_contrib_from_delta": 0.0920183677303914,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -12.226453330367804,
+            "ctrl_temporal_std": 32.748061956349005,
+            "exceed_2x": false,
+            "logit_contrib": 1.3405946429938154
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -11.515865940600634,
+            "ctrl_temporal_std": 30.84372137030106,
+            "exceed_2x": false,
+            "logit_contrib": -0.3329019927384485
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -3.631909703835845,
+            "ctrl_temporal_std": 17.415812901394922,
+            "exceed_2x": false,
+            "logit_contrib": 0.4375773377459653
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": -2.9746192740276456,
+            "ctrl_temporal_std": 35.45007935777226,
+            "exceed_2x": false,
+            "logit_contrib": 0.3723101672379176
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": -2.8700426453724504,
+            "ctrl_temporal_std": 34.44617073269202,
+            "exceed_2x": false,
+            "logit_contrib": -0.47576844609138724
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": -0.7095981854945421,
+            "ctrl_temporal_std": 12.546429425106671,
+            "exceed_2x": false,
+            "logit_contrib": -0.11471617822874157
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": -0.68209667224437,
+            "ctrl_temporal_std": 12.048166073392668,
+            "exceed_2x": false,
+            "logit_contrib": 0.1300775330433603
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.23227453231811523,
+            "ctrl_temporal_std": 0.48951700163265444,
+            "exceed_2x": false,
+            "logit_contrib": 4.579104648551863
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.2068897141350641,
+            "ctrl_temporal_std": 0.27372385750126393,
+            "exceed_2x": false,
+            "logit_contrib": -0.3810413425612215
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.19753888448079426,
+            "ctrl_temporal_std": 0.451557145029338,
+            "exceed_2x": false,
+            "logit_contrib": -1.032936559388402
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": 0.18565236197577584,
+            "logit_contrib": -5.997070864916028
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.23227453231811523,
+            "logit_contrib": 4.579104648551863
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.09718492296006945,
+            "logit_contrib": -2.2059547988754677
+          },
+          {
+            "name": "P_min",
+            "delta_mean": 0.04101888338724772,
+            "logit_contrib": 2.014554085757098
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": 0.021472321616278753,
+            "logit_contrib": -1.4742326496272504
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -12.226453330367804,
+            "logit_contrib": 1.3405946429938154
+          },
+          {
+            "name": "Pd_d24_topneg5",
+            "delta_mean": 0.0875138176812066,
+            "logit_contrib": -1.1152881949680267
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.19753888448079426,
+            "logit_contrib": -1.032936559388402
+          },
+          {
+            "name": "Pd_d6_median",
+            "delta_mean": 0.015621132320827909,
+            "logit_contrib": 0.8589216719010548
+          },
+          {
+            "name": "Pd_d24_topneg3",
+            "delta_mean": 0.09109557999504937,
+            "logit_contrib": 0.8367174168276946
+          }
+        ],
+        "ql_mean": 0.6428075661991713,
+        "qc_mean": 0.6221758494002451,
+        "q_gap_leak_minus_ctrl": 0.02063171679892628,
+        "frac_leak_active": 0.7222222222222222,
+        "frac_ctrl_active": 0.8055555555555556,
+        "frac_leak_q_ge_tau": 0.6527777777777778,
+        "frac_ctrl_q_ge_tau": 0.3055555555555556
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.4464266678095801,
+        "mean_abs_delta_change_feats": 0.03698256094816817,
+        "mean_abs_delta_abs_feats": 2.009758712189517,
+        "frac_feats_exceed_2x_ctrl_std": 0.018867924528301886,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 22.68930307266022,
+        "net_logit_contrib_from_delta": 0.2850057784084917,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -10.81890445202589,
+            "ctrl_temporal_std": 6.870332725101253,
+            "exceed_2x": false,
+            "logit_contrib": 1.1862610488541028
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -10.191501770168543,
+            "ctrl_temporal_std": 6.821762392724355,
+            "exceed_2x": false,
+            "logit_contrib": -0.29461711918032074
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 0.5629805848002434,
+            "ctrl_temporal_std": 4.787764334357573,
+            "exceed_2x": false,
+            "logit_contrib": -0.07046394054822198
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 0.5558572709560394,
+            "ctrl_temporal_std": 4.794493300451994,
+            "exceed_2x": false,
+            "logit_contrib": 0.09214474582033075
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.24993657006157774,
+            "ctrl_temporal_std": 0.16754677978139243,
+            "exceed_2x": false,
+            "logit_contrib": -0.4603233496143613
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.22093523873223198,
+            "ctrl_temporal_std": 0.14756380408764966,
+            "exceed_2x": false,
+            "logit_contrib": 4.355559641476789
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.18564828236897807,
+            "ctrl_temporal_std": 0.11870032391582756,
+            "exceed_2x": false,
+            "logit_contrib": -0.9707602558888748
+          },
+          {
+            "name": "P_max",
+            "delta_mean": 0.17154020733303493,
+            "ctrl_temporal_std": 0.11191671797152986,
+            "exceed_2x": false,
+            "logit_contrib": -5.541210295470572
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": 0.1204557716846466,
+            "ctrl_temporal_std": 2.08143573037801,
+            "exceed_2x": false,
+            "logit_contrib": 0.019473310467424815
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": 0.11711865663528442,
+            "ctrl_temporal_std": 2.108621529751518,
+            "exceed_2x": false,
+            "logit_contrib": -0.022334819312844
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": 0.17154020733303493,
+            "logit_contrib": -5.541210295470572
+          },
+          {
+            "name": "P_min",
+            "delta_mean": 0.09912225935194227,
+            "logit_contrib": 4.868176217322638
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.22093523873223198,
+            "logit_contrib": 4.355559641476789
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": 0.06354067060682508,
+            "logit_contrib": -3.1593513430780455
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -10.81890445202589,
+            "logit_contrib": 1.1862610488541028
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.18564828236897807,
+            "logit_contrib": -0.9707602558888748
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.24993657006157774,
+            "logit_contrib": -0.4603233496143613
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -10.191501770168543,
+            "logit_contrib": -0.29461711918032074
+          },
+          {
+            "name": "P_spread_p90_p10",
+            "delta_mean": -0.06428828769259967,
+            "logit_contrib": 0.26311932801546617
+          },
+          {
+            "name": "Pd_d24_p90",
+            "delta_mean": -0.020888540479871945,
+            "logit_contrib": -0.2336007941638016
+          }
+        ],
+        "ql_mean": 0.6482096073657002,
+        "qc_mean": 0.5852363351181636,
+        "q_gap_leak_minus_ctrl": 0.06297327224753657,
+        "frac_leak_active": 1.0,
+        "frac_ctrl_active": 1.0,
+        "frac_leak_q_ge_tau": 0.4027777777777778,
+        "frac_ctrl_q_ge_tau": 0.19444444444444445
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 31.816076720133424,
+        "pump_ctrl_mean_m3h": 35.44798642396927,
+        "pump_delta_mean_m3h": -3.631909703835845,
+        "pump_delta_over_ctrl_abs": -0.10245743038658425
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 43.990280060097575,
+        "pump_ctrl_mean_m3h": 43.948351964354515,
+        "pump_delta_mean_m3h": 0.04192809574306011,
+        "pump_delta_over_ctrl_abs": 0.0009540311050351993
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": false,
+        "classifier_ignores_delta": false
+      }
+    },
+    {
+      "pair_id": "pair_008",
+      "split": "train",
+      "leak_id": "leak_008_p836",
+      "control_id": "ctrl_008_control_tank",
+      "control_kind": "control_tank",
+      "phase_hours": 18.323739886883295,
+      "onset_hour": 35.4038684751684,
+      "onset_idx": 424,
+      "leak_demand_scale": 0.97,
+      "ctrl_demand_scale": 1.2,
+      "episode_6h_hit": false,
+      "blocked_at_onset": true,
+      "pre_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.9040847349435529,
+        "mean_abs_delta_change_feats": 0.31454511640800376,
+        "mean_abs_delta_abs_feats": 3.155054187533831,
+        "frac_feats_exceed_2x_ctrl_std": 0.03773584905660377,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.047619047619047616,
+        "sum_abs_logit_contrib_from_delta": 31.06249623798643,
+        "net_logit_contrib_from_delta": 0.31163265652772226,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -13.92310622613877,
+            "ctrl_temporal_std": 26.925275309989907,
+            "exceed_2x": false,
+            "logit_contrib": 1.5266276422317129
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -12.547587580047548,
+            "ctrl_temporal_std": 25.094296046316394,
+            "exceed_2x": false,
+            "logit_contrib": -0.36272712195537854
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -7.3457063641399145,
+            "ctrl_temporal_std": 19.746687773594523,
+            "exceed_2x": false,
+            "logit_contrib": 0.8850205255073211
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 3.76805339474231,
+            "ctrl_temporal_std": 6.374755605450763,
+            "exceed_2x": false,
+            "logit_contrib": -0.47161820062384036
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 3.699562232941389,
+            "ctrl_temporal_std": 6.314024144129565,
+            "exceed_2x": false,
+            "logit_contrib": 0.6132783349483965
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": -2.4755519814789295,
+            "ctrl_temporal_std": 19.7880705597874,
+            "exceed_2x": false,
+            "logit_contrib": -0.04869243759999276
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": 1.0520241921767592,
+            "ctrl_temporal_std": 7.048679475358444,
+            "exceed_2x": false,
+            "logit_contrib": 0.1700739900378807
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": 0.9967247024178505,
+            "ctrl_temporal_std": 6.425097372213471,
+            "exceed_2x": false,
+            "logit_contrib": -0.19007788146405452
+          },
+          {
+            "name": "pump1_on",
+            "delta_mean": -0.16666666666666666,
+            "ctrl_temporal_std": 0.4479032082388083,
+            "exceed_2x": false,
+            "logit_contrib": -0.40166267134170525
+          },
+          {
+            "name": "Fd_p235_d1",
+            "delta_mean": 0.16312659718096256,
+            "ctrl_temporal_std": 2.884682057510313,
+            "exceed_2x": false,
+            "logit_contrib": 0.07967720670733158
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_min",
+            "delta_mean": 0.11433143085903591,
+            "logit_contrib": 5.615141908985553
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": 0.0961870617336697,
+            "logit_contrib": -4.782586015740897
+          },
+          {
+            "name": "P_max",
+            "delta_mean": 0.1139783329433865,
+            "logit_contrib": -3.6818068590782085
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.10301685333251953,
+            "logit_contrib": 2.0308939911159407
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -13.92310622613877,
+            "logit_contrib": 1.5266276422317129
+          },
+          {
+            "name": "Pd_d24_p90",
+            "delta_mean": -0.12136317359076604,
+            "logit_contrib": -1.3572290395473365
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": -0.05259471469455295,
+            "logit_contrib": 1.193822660368884
+          },
+          {
+            "name": "Pd_d6_median",
+            "delta_mean": -0.020787186092800565,
+            "logit_contrib": -1.142975058801649
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -7.3457063641399145,
+            "logit_contrib": 0.8850205255073211
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": -0.012148857116699219,
+            "logit_contrib": 0.8341083063657228
+          }
+        ],
+        "ql_mean": 0.2815710617605148,
+        "qc_mean": 0.21770846623742057,
+        "q_gap_leak_minus_ctrl": 0.0638625955230942,
+        "frac_leak_active": 0.2361111111111111,
+        "frac_ctrl_active": 0.16666666666666666,
+        "frac_leak_q_ge_tau": 0.027777777777777776,
+        "frac_ctrl_q_ge_tau": 0.0
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 1.2504125372313384,
+        "mean_abs_delta_change_feats": 0.4612396502138051,
+        "mean_abs_delta_abs_feats": 4.263618105843739,
+        "frac_feats_exceed_2x_ctrl_std": 0.0,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 57.133729636525835,
+        "net_logit_contrib_from_delta": 1.1059950040273527,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -23.293333360925317,
+            "ctrl_temporal_std": 27.183838692497776,
+            "exceed_2x": false,
+            "logit_contrib": 2.554045484602215
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -22.083411389030516,
+            "ctrl_temporal_std": 26.07014026809193,
+            "exceed_2x": false,
+            "logit_contrib": -0.6383898263310079
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": -5.556219001300633,
+            "ctrl_temporal_std": 29.688256396820528,
+            "exceed_2x": false,
+            "logit_contrib": 0.6954291070614197
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": -5.447833891957998,
+            "ctrl_temporal_std": 29.337705469647446,
+            "exceed_2x": false,
+            "logit_contrib": -0.9030902274291799
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": 2.449561096727848,
+            "ctrl_temporal_std": 10.099799155478197,
+            "exceed_2x": false,
+            "logit_contrib": 0.04818121442900745
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": -1.6774289077147841,
+            "ctrl_temporal_std": 9.218062480915938,
+            "exceed_2x": false,
+            "logit_contrib": -0.27117915107032436
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": -1.609108317643404,
+            "ctrl_temporal_std": 9.218968300522214,
+            "exceed_2x": false,
+            "logit_contrib": 0.3068609610275568
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.3481273121303982,
+            "ctrl_temporal_std": 0.32254034069222864,
+            "exceed_2x": false,
+            "logit_contrib": 6.863048554461973
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.3361331091986761,
+            "ctrl_temporal_std": 0.3798688358119494,
+            "exceed_2x": false,
+            "logit_contrib": -0.6190767469702538
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.33186109330919017,
+            "ctrl_temporal_std": 0.3441876363158929,
+            "exceed_2x": false,
+            "logit_contrib": -1.7353112872873202
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": 0.30556858910454643,
+            "logit_contrib": -9.870687684498632
+          },
+          {
+            "name": "P_min",
+            "delta_mean": 0.14117529657151964,
+            "logit_contrib": 6.933520540555308
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.3481273121303982,
+            "logit_contrib": 6.863048554461973
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.17307930522494847,
+            "logit_contrib": -3.928645640886908
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": 0.05591699812147352,
+            "logit_contrib": -2.7802892451216
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": 0.04036630524529351,
+            "logit_contrib": -2.7714434517558546
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -23.293333360925317,
+            "logit_contrib": 2.554045484602215
+          },
+          {
+            "name": "Pd_d24_topneg5",
+            "delta_mean": 0.1569819450378418,
+            "logit_contrib": -2.0005996168696756
+          },
+          {
+            "name": "Pd_d6_median",
+            "delta_mean": 0.03315122922261556,
+            "logit_contrib": 1.8228069927747048
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.33186109330919017,
+            "logit_contrib": -1.7353112872873202
+          }
+        ],
+        "ql_mean": 0.6446238973467651,
+        "qc_mean": 0.38772580134347573,
+        "q_gap_leak_minus_ctrl": 0.25689809600328933,
+        "frac_leak_active": 1.0,
+        "frac_ctrl_active": 0.0,
+        "frac_leak_q_ge_tau": 0.3333333333333333,
+        "frac_ctrl_q_ge_tau": 0.0
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 24.494840251281857,
+        "pump_ctrl_mean_m3h": 31.840546615421772,
+        "pump_delta_mean_m3h": -7.3457063641399145,
+        "pump_delta_over_ctrl_abs": -0.23070289031656185
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 0.0,
+        "pump_ctrl_mean_m3h": 0.0,
+        "pump_delta_mean_m3h": 0.0,
+        "pump_delta_over_ctrl_abs": 0.0
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": true,
+        "classifier_ignores_delta": false
+      }
+    },
+    {
+      "pair_id": "pair_009",
+      "split": "synthetic_test",
+      "leak_id": "leak_009_p278",
+      "control_id": "ctrl_009_control_pump",
+      "control_kind": "control_pump",
+      "phase_hours": 8.077160484587399,
+      "onset_hour": 27.862979649027757,
+      "onset_idx": 334,
+      "leak_demand_scale": 0.97,
+      "ctrl_demand_scale": 0.9,
+      "episode_6h_hit": false,
+      "blocked_at_onset": true,
+      "pre_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.5749811254113725,
+        "mean_abs_delta_change_feats": 0.2838516809312361,
+        "mean_abs_delta_abs_feats": 1.6865662770628027,
+        "frac_feats_exceed_2x_ctrl_std": 0.05660377358490566,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.023809523809523808,
+        "sum_abs_logit_contrib_from_delta": 58.487120899204704,
+        "net_logit_contrib_from_delta": -0.2522617560854954,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": 8.703034184873104,
+            "ctrl_temporal_std": 16.775465045593407,
+            "exceed_2x": false,
+            "logit_contrib": -0.9542620979915807
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": 8.297372004017234,
+            "ctrl_temporal_std": 15.994169096363368,
+            "exceed_2x": false,
+            "logit_contrib": 0.2398613954762209
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 3.7445890717208385,
+            "ctrl_temporal_std": 20.555020525957282,
+            "exceed_2x": false,
+            "logit_contrib": -0.4686813521657787
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 3.524953033775091,
+            "ctrl_temporal_std": 20.73520785058884,
+            "exceed_2x": false,
+            "logit_contrib": 0.5843332781581931
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": 2.458823285996914,
+            "ctrl_temporal_std": 0.0839348835802109,
+            "exceed_2x": true,
+            "logit_contrib": 0.04836339544414972
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": 0.5631649401038885,
+            "ctrl_temporal_std": 6.737653067911109,
+            "exceed_2x": false,
+            "logit_contrib": 0.09104325653836266
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": 0.5440712906420231,
+            "ctrl_temporal_std": 6.7988277876393735,
+            "exceed_2x": false,
+            "logit_contrib": -0.10375574924528681
+          },
+          {
+            "name": "P_min",
+            "delta_mean": -0.3963966899447971,
+            "ctrl_temporal_std": 0.15650225475706894,
+            "exceed_2x": true,
+            "logit_contrib": -19.46816942260169
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.3681823942396376,
+            "ctrl_temporal_std": 0.18158761604869775,
+            "exceed_2x": true,
+            "logit_contrib": 18.306661397019397
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": -0.22985329098171636,
+            "ctrl_temporal_std": 0.20051933401643116,
+            "exceed_2x": false,
+            "logit_contrib": 0.42333475568829376
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_min",
+            "delta_mean": -0.3963966899447971,
+            "logit_contrib": -19.46816942260169
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.3681823942396376,
+            "logit_contrib": 18.306661397019397
+          },
+          {
+            "name": "P_max",
+            "delta_mean": -0.12580553690592447,
+            "logit_contrib": 4.063857372965076
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.16138219833374023,
+            "logit_contrib": -3.181519588946836
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": -0.08760420481363933,
+            "logit_contrib": 1.988486589527044
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": -0.01476181877983941,
+            "logit_contrib": 1.013507323615222
+          },
+          {
+            "name": "Pd_d24_topneg5",
+            "delta_mean": -0.0765326288011339,
+            "logit_contrib": 0.9753424052725864
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": 8.703034184873104,
+            "logit_contrib": -0.9542620979915807
+          },
+          {
+            "name": "Pd_d24_topneg1",
+            "delta_mean": -0.09472844335767958,
+            "logit_contrib": -0.8201157036800781
+          },
+          {
+            "name": "Pd_d24_min",
+            "delta_mean": -0.09472844335767958,
+            "logit_contrib": -0.8201157036800781
+          }
+        ],
+        "ql_mean": 0.6727853408464105,
+        "qc_mean": 0.7210091855827535,
+        "q_gap_leak_minus_ctrl": -0.048223844736343,
+        "frac_leak_active": 0.7083333333333334,
+        "frac_ctrl_active": 0.8611111111111112,
+        "frac_leak_q_ge_tau": 0.5277777777777778,
+        "frac_ctrl_q_ge_tau": 0.7777777777777778
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 2.137787183599871,
+        "mean_abs_delta_change_feats": 0.8197034092649582,
+        "mean_abs_delta_abs_feats": 7.170470685605901,
+        "frac_feats_exceed_2x_ctrl_std": 0.0,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 59.50574227515559,
+        "net_logit_contrib_from_delta": -0.24220205219229302,
+        "top_abs_delta_features": [
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": 29.273246554657817,
+            "ctrl_temporal_std": 20.449465081748194,
+            "exceed_2x": false,
+            "logit_contrib": -3.5268798893980917
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": 24.406130705028772,
+            "ctrl_temporal_std": 15.390356089188742,
+            "exceed_2x": false,
+            "logit_contrib": -2.6760604400380252
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": 22.26690324023366,
+            "ctrl_temporal_std": 14.237156706381532,
+            "exceed_2x": false,
+            "logit_contrib": 0.6436942301189533
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": 14.002846693620086,
+            "ctrl_temporal_std": 20.66769110643644,
+            "exceed_2x": false,
+            "logit_contrib": 0.2754265488879068
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 6.9419908337295055,
+            "ctrl_temporal_std": 12.953322579415767,
+            "exceed_2x": false,
+            "logit_contrib": -0.8688754862972431
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 6.157729122787714,
+            "ctrl_temporal_std": 11.865927883253473,
+            "exceed_2x": false,
+            "logit_contrib": 1.020769925117334
+          },
+          {
+            "name": "Fd_PUMP_1_d6",
+            "delta_mean": 3.041502507403493,
+            "ctrl_temporal_std": 12.117836389336087,
+            "exceed_2x": false,
+            "logit_contrib": -0.04147737392042237
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": 1.5126346610486507,
+            "ctrl_temporal_std": 6.870443609074386,
+            "exceed_2x": false,
+            "logit_contrib": 0.2445379243055629
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": 1.3452725484967232,
+            "ctrl_temporal_std": 6.233576191897661,
+            "exceed_2x": false,
+            "logit_contrib": -0.2565468231997409
+          },
+          {
+            "name": "pump1_on",
+            "delta_mean": 0.6666666666666666,
+            "ctrl_temporal_std": 0.46626139809984746,
+            "exceed_2x": false,
+            "logit_contrib": 1.606650685366821
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": -0.3322618272569444,
+            "logit_contrib": 10.732951105822076
+          },
+          {
+            "name": "P_min",
+            "delta_mean": -0.15971491071912977,
+            "logit_contrib": -7.844053747342683
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.37910085254245335,
+            "logit_contrib": -7.473666866626751
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.13362206353081596,
+            "logit_contrib": 6.64391864060053
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": 29.273246554657817,
+            "logit_contrib": -3.5268798893980917
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": 24.406130705028772,
+            "logit_contrib": -2.6760604400380252
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.090250915951199,
+            "logit_contrib": -2.048563039220128
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": -0.34438763724433014,
+            "logit_contrib": 1.800812949035588
+          },
+          {
+            "name": "Pd_d24_p90",
+            "delta_mean": -0.1496725188361274,
+            "logit_contrib": -1.6738182018177201
+          },
+          {
+            "name": "pump1_on",
+            "delta_mean": 0.6666666666666666,
+            "logit_contrib": 1.606650685366821
+          }
+        ],
+        "ql_mean": 0.6289911754747397,
+        "qc_mean": 0.6819472094054261,
+        "q_gap_leak_minus_ctrl": -0.052956033930686375,
+        "frac_leak_active": 1.0,
+        "frac_ctrl_active": 1.0,
+        "frac_leak_q_ge_tau": 0.2916666666666667,
+        "frac_ctrl_q_ge_tau": 0.4166666666666667
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 44.02325451374054,
+        "pump_ctrl_mean_m3h": 43.98290505632758,
+        "pump_delta_mean_m3h": 0.040349457412958145,
+        "pump_delta_over_ctrl_abs": 0.0009173895276788626
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 43.28355877660215,
+        "pump_ctrl_mean_m3h": 14.010312221944332,
+        "pump_delta_mean_m3h": 29.273246554657817,
+        "pump_delta_over_ctrl_abs": 2.089407002607706
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": true,
+        "classifier_ignores_delta": true
+      }
+    },
+    {
+      "pair_id": "pair_010",
+      "split": "train",
+      "leak_id": "leak_010_p48",
+      "control_id": "ctrl_010_control_demand",
+      "control_kind": "control_demand",
+      "phase_hours": 21.477032025988024,
+      "onset_hour": 29.64658003391207,
+      "onset_idx": 355,
+      "leak_demand_scale": 1.08,
+      "ctrl_demand_scale": 0.85,
+      "episode_6h_hit": true,
+      "blocked_at_onset": false,
+      "pre_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.81818234561718,
+        "mean_abs_delta_change_feats": 0.30230091821461447,
+        "mean_abs_delta_abs_feats": 2.787911432063339,
+        "frac_feats_exceed_2x_ctrl_std": 0.018867924528301886,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 40.0874930951335,
+        "net_logit_contrib_from_delta": -0.44885461486542466,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": 15.260330261662602,
+            "ctrl_temporal_std": 19.4761525621139,
+            "exceed_2x": false,
+            "logit_contrib": -1.6732503242202181
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": 14.207451744005084,
+            "ctrl_temporal_std": 19.057981451259444,
+            "exceed_2x": false,
+            "logit_contrib": 0.4107106683692387
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": -4.504962870851159,
+            "ctrl_temporal_std": 9.528513072545543,
+            "exceed_2x": false,
+            "logit_contrib": 0.5638514799160197
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": -4.411423252895474,
+            "ctrl_temporal_std": 9.259381624096257,
+            "exceed_2x": false,
+            "logit_contrib": -0.7312839025111858
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": -1.2642217800021172,
+            "ctrl_temporal_std": 2.3837487073368546,
+            "exceed_2x": false,
+            "logit_contrib": -0.20437861031776167
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": -1.2347075156867504,
+            "ctrl_temporal_std": 2.3174862701415964,
+            "exceed_2x": false,
+            "logit_contrib": 0.23546179626146715
+          },
+          {
+            "name": "Fd_p235_d1",
+            "delta_mean": -0.21851612254977226,
+            "ctrl_temporal_std": 0.4478310351001586,
+            "exceed_2x": false,
+            "logit_contrib": -0.10673154817278749
+          },
+          {
+            "name": "Fd_p227_d1",
+            "delta_mean": -0.21340386010706425,
+            "ctrl_temporal_std": 0.433377532372132,
+            "exceed_2x": false,
+            "logit_contrib": 0.065008588107475
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.20809523264567056,
+            "ctrl_temporal_std": 0.18385076433919273,
+            "exceed_2x": false,
+            "logit_contrib": -4.102429300532295
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": -0.19862555397881484,
+            "ctrl_temporal_std": 0.21035108704615402,
+            "exceed_2x": false,
+            "logit_contrib": 1.0386187857279296
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "L_T1",
+            "delta_mean": 0.17428980933295357,
+            "logit_contrib": -8.66598885315726
+          },
+          {
+            "name": "P_min",
+            "delta_mean": 0.13791335953606498,
+            "logit_contrib": 6.77331753063377
+          },
+          {
+            "name": "P_max",
+            "delta_mean": -0.1821997430589464,
+            "logit_contrib": 5.8855419832286655
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.20809523264567056,
+            "logit_contrib": -4.102429300532295
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": 15.260330261662602,
+            "logit_contrib": -1.6732503242202181
+          },
+          {
+            "name": "Pd_d6_median",
+            "delta_mean": 0.022842142317030165,
+            "logit_contrib": 1.2559659995060817
+          },
+          {
+            "name": "Pd_d24_p90",
+            "delta_mean": 0.10969430605570474,
+            "logit_contrib": 1.226733721992281
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": 0.01686419381035699,
+            "logit_contrib": -1.1578508169336332
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": -0.19862555397881484,
+            "logit_contrib": 1.0386187857279296
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.03832938936021593,
+            "logit_contrib": -0.8700207585890151
+          }
+        ],
+        "ql_mean": 0.24254662227978663,
+        "qc_mean": 0.3254162007351774,
+        "q_gap_leak_minus_ctrl": -0.08286957845539078,
+        "frac_leak_active": 0.5277777777777778,
+        "frac_ctrl_active": 0.5972222222222222,
+        "frac_leak_q_ge_tau": 0.0,
+        "frac_ctrl_q_ge_tau": 0.09722222222222222
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.7637036070653259,
+        "mean_abs_delta_change_feats": 0.3366988235798778,
+        "mean_abs_delta_abs_feats": 2.394085507646128,
+        "frac_feats_exceed_2x_ctrl_std": 0.0,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 30.840098288012328,
+        "net_logit_contrib_from_delta": -0.049133116272826655,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": 10.957613936625421,
+            "ctrl_temporal_std": 23.31798726092869,
+            "exceed_2x": false,
+            "logit_contrib": -1.2014701358200421
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": 10.43831086717546,
+            "ctrl_temporal_std": 23.1956916035077,
+            "exceed_2x": false,
+            "logit_contrib": 0.30175190527833384
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 4.6484783757478,
+            "ctrl_temporal_std": 29.81148089969534,
+            "exceed_2x": false,
+            "logit_contrib": -0.5818142094982008
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 4.624732816591859,
+            "ctrl_temporal_std": 28.61306548966839,
+            "exceed_2x": false,
+            "logit_contrib": 0.7666443386426464
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -4.2972915805876255,
+            "ctrl_temporal_std": 19.771918507705536,
+            "exceed_2x": false,
+            "logit_contrib": 0.5177434360126578
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": 1.4166497625410557,
+            "ctrl_temporal_std": 10.400697533819411,
+            "exceed_2x": false,
+            "logit_contrib": 0.2290206626361422
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": 1.3907290063798428,
+            "ctrl_temporal_std": 9.783927718161546,
+            "exceed_2x": false,
+            "logit_contrib": -0.2652154828530272
+          },
+          {
+            "name": "Fd_p235_d1",
+            "delta_mean": 0.24368176236748695,
+            "ctrl_temporal_std": 3.0602874273692433,
+            "exceed_2x": false,
+            "logit_contrib": 0.11902339953442621
+          },
+          {
+            "name": "Fd_p227_d1",
+            "delta_mean": 0.23874598555266857,
+            "ctrl_temporal_std": 2.767968398056831,
+            "exceed_2x": false,
+            "logit_contrib": -0.07272848499235199
+          },
+          {
+            "name": "Pd_d24_max_abs",
+            "delta_mean": 0.14803801642523873,
+            "ctrl_temporal_std": 0.10616550197119866,
+            "exceed_2x": false,
+            "logit_contrib": -0.4646087426889911
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": -0.11651505364312066,
+            "logit_contrib": 3.7637497637571706
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": -0.12330892350938585,
+            "logit_contrib": 2.798931184742108
+          },
+          {
+            "name": "P_min",
+            "delta_mean": -0.051573250028822154,
+            "logit_contrib": -2.5329090648439347
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": -0.03162969483269586,
+            "logit_contrib": 2.1716109535521975
+          },
+          {
+            "name": "P_median",
+            "delta_mean": -0.10638168123033312,
+            "logit_contrib": -2.0972288532064307
+          },
+          {
+            "name": "Pd_d24_topneg5",
+            "delta_mean": -0.11118883556789821,
+            "logit_contrib": 1.4170058969756074
+          },
+          {
+            "name": "Pd_d6_median",
+            "delta_mean": -0.024057759179009333,
+            "logit_contrib": -1.3228062032786418
+          },
+          {
+            "name": "Pd_d24_min",
+            "delta_mean": -0.14001056883070204,
+            "logit_contrib": -1.2121477151870717
+          },
+          {
+            "name": "Pd_d24_topneg1",
+            "delta_mean": -0.14001056883070204,
+            "logit_contrib": -1.2121477151870717
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": 10.957613936625421,
+            "logit_contrib": -1.2014701358200421
+          }
+        ],
+        "ql_mean": 0.5010078587500185,
+        "qc_mean": 0.5144680392135429,
+        "q_gap_leak_minus_ctrl": -0.013460180463524374,
+        "frac_leak_active": 0.3055555555555556,
+        "frac_ctrl_active": 0.7222222222222222,
+        "frac_leak_q_ge_tau": 0.1388888888888889,
+        "frac_ctrl_q_ge_tau": 0.2222222222222222
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 44.07945838756859,
+        "pump_ctrl_mean_m3h": 44.17895288206637,
+        "pump_delta_mean_m3h": -0.09949449449777603,
+        "pump_delta_over_ctrl_abs": -0.0022520790049346097
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 7.964730355888605,
+        "pump_ctrl_mean_m3h": 12.26202193647623,
+        "pump_delta_mean_m3h": -4.2972915805876255,
+        "pump_delta_over_ctrl_abs": -0.350455353317301
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": false,
+        "classifier_ignores_delta": false
+      }
+    },
+    {
+      "pair_id": "pair_011",
+      "split": "train",
+      "leak_id": "leak_011_p287",
+      "control_id": "ctrl_011_control_pump",
+      "control_kind": "control_pump",
+      "phase_hours": 3.4465836877370997,
+      "onset_hour": 31.57596134454591,
+      "onset_idx": 378,
+      "leak_demand_scale": 1.08,
+      "ctrl_demand_scale": 1.1,
+      "episode_6h_hit": false,
+      "blocked_at_onset": true,
+      "pre_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 1.1100558559580138,
+        "mean_abs_delta_change_feats": 0.13300167307573024,
+        "mean_abs_delta_abs_feats": 4.840626372417642,
+        "frac_feats_exceed_2x_ctrl_std": 0.0,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 47.539894734815064,
+        "net_logit_contrib_from_delta": 0.4894972728005391,
+        "top_abs_delta_features": [
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -21.362207923084497,
+            "ctrl_temporal_std": 21.944845046584017,
+            "exceed_2x": false,
+            "logit_contrib": 2.573747376342145
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -15.742281591519713,
+            "ctrl_temporal_std": 25.78395462565918,
+            "exceed_2x": false,
+            "logit_contrib": 1.7260948698568024
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -14.351640944369137,
+            "ctrl_temporal_std": 25.698819835678464,
+            "exceed_2x": false,
+            "logit_contrib": -0.41487890655298865
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": -1.4380197506397963,
+            "ctrl_temporal_std": 28.869629750509237,
+            "exceed_2x": false,
+            "logit_contrib": 0.17998584845018228
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": -1.4028568752110004,
+            "ctrl_temporal_std": 28.67094928150833,
+            "exceed_2x": false,
+            "logit_contrib": -0.23255230603764865
+          },
+          {
+            "name": "pump1_on",
+            "delta_mean": -0.4861111111111111,
+            "ctrl_temporal_std": 0.4992277987669841,
+            "exceed_2x": false,
+            "logit_contrib": -1.1715161247466404
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": -0.36814729683101177,
+            "ctrl_temporal_std": 11.084152080555366,
+            "exceed_2x": false,
+            "logit_contrib": -0.05951600748283002
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.35805501937866197,
+            "ctrl_temporal_std": 0.3854359090788193,
+            "exceed_2x": false,
+            "logit_contrib": -0.6594516593790704
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": -0.3580179996788502,
+            "ctrl_temporal_std": 10.767384024307626,
+            "exceed_2x": false,
+            "logit_contrib": 0.06827492359713352
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.21864371829562718,
+            "ctrl_temporal_std": 0.3309250943513562,
+            "exceed_2x": false,
+            "logit_contrib": 4.310384168389892
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": 0.19238646825154623,
+            "logit_contrib": -6.21460061847198
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.09685262044270833,
+            "logit_contrib": 4.815678738578364
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.21864371829562718,
+            "logit_contrib": 4.310384168389892
+          },
+          {
+            "name": "P_min",
+            "delta_mean": -0.08065568076239692,
+            "logit_contrib": -3.961229994620516
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.12192379103766547,
+            "logit_contrib": -2.7674907150683783
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -21.362207923084497,
+            "logit_contrib": 2.573747376342145
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": 0.03210229343838162,
+            "logit_contrib": -2.204058320312114
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -15.742281591519713,
+            "logit_contrib": 1.7260948698568024
+          },
+          {
+            "name": "Pd_d24_p90",
+            "delta_mean": -0.1540211889478896,
+            "logit_contrib": -1.7224502636241878
+          },
+          {
+            "name": "Pd_d6_p90",
+            "delta_mean": -0.05716589291890464,
+            "logit_contrib": 1.3573313859801377
+          }
+        ],
+        "ql_mean": 0.584018943780986,
+        "qc_mean": 0.46863952073992554,
+        "q_gap_leak_minus_ctrl": 0.11537942304106041,
+        "frac_leak_active": 0.625,
+        "frac_ctrl_active": 0.3888888888888889,
+        "frac_leak_q_ge_tau": 0.20833333333333334,
+        "frac_ctrl_q_ge_tau": 0.16666666666666666
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.23229006970266122,
+        "mean_abs_delta_change_feats": 0.01975621434037017,
+        "mean_abs_delta_abs_feats": 1.0437829719950453,
+        "frac_feats_exceed_2x_ctrl_std": 0.0,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 29.848268632609795,
+        "net_logit_contrib_from_delta": -0.1581497278271146,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -5.403379164636135,
+            "ctrl_temporal_std": 7.048364747197063,
+            "exceed_2x": false,
+            "logit_contrib": 0.5924646311112766
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -5.103599838912487,
+            "ctrl_temporal_std": 6.995490197843381,
+            "exceed_2x": false,
+            "logit_contrib": -0.14753545806082707
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 0.27327127754688263,
+            "ctrl_temporal_std": 4.634944710786981,
+            "exceed_2x": false,
+            "logit_contrib": 0.04530032028949745
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 0.2686893567442894,
+            "ctrl_temporal_std": 4.794087373057467,
+            "exceed_2x": false,
+            "logit_contrib": -0.03362977582306392
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.23520607418484157,
+            "ctrl_temporal_std": 0.23536701691844525,
+            "exceed_2x": false,
+            "logit_contrib": 11.694850231816336
+          },
+          {
+            "name": "P_min",
+            "delta_mean": -0.21699733204311794,
+            "ctrl_temporal_std": 0.21065192382383832,
+            "exceed_2x": false,
+            "logit_contrib": -10.657356460409122
+          },
+          {
+            "name": "P_spread_p90_p10",
+            "delta_mean": 0.18315565321180532,
+            "ctrl_temporal_std": 0.18357936920111345,
+            "exceed_2x": false,
+            "logit_contrib": -0.7496200960547812
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": -0.10266900592380078,
+            "ctrl_temporal_std": 0.08293583393151052,
+            "exceed_2x": false,
+            "logit_contrib": 0.18909173914316274
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.08282613754272461,
+            "ctrl_temporal_std": 0.1109441762849318,
+            "exceed_2x": false,
+            "logit_contrib": 1.6328503502228633
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.08048664728800453,
+            "ctrl_temporal_std": 0.10373866434199114,
+            "exceed_2x": false,
+            "logit_contrib": -0.4208670143343971
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "L_T1",
+            "delta_mean": -0.23520607418484157,
+            "logit_contrib": 11.694850231816336
+          },
+          {
+            "name": "P_min",
+            "delta_mean": -0.21699733204311794,
+            "logit_contrib": -10.657356460409122
+          },
+          {
+            "name": "P_max",
+            "delta_mean": 0.07329283820258246,
+            "logit_contrib": -2.3675558980987477
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.08282613754272461,
+            "logit_contrib": 1.6328503502228633
+          },
+          {
+            "name": "P_spread_p90_p10",
+            "delta_mean": 0.18315565321180532,
+            "logit_contrib": -0.7496200960547812
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -5.403379164636135,
+            "logit_contrib": 0.5924646311112766
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.08048664728800453,
+            "logit_contrib": -0.4208670143343971
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.01119746102227105,
+            "logit_contrib": -0.25416589451276106
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": -0.10266900592380078,
+            "logit_contrib": 0.18909173914316274
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -5.103599838912487,
+            "logit_contrib": -0.14753545806082707
+          }
+        ],
+        "ql_mean": 0.5276382879116609,
+        "qc_mean": 0.562499947624587,
+        "q_gap_leak_minus_ctrl": -0.034861659712926096,
+        "frac_leak_active": 1.0,
+        "frac_ctrl_active": 1.0,
+        "frac_leak_q_ge_tau": 0.0,
+        "frac_ctrl_q_ge_tau": 0.19444444444444445
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 1.8373222555965185,
+        "pump_ctrl_mean_m3h": 23.199530178681016,
+        "pump_delta_mean_m3h": -21.362207923084497,
+        "pump_delta_over_ctrl_abs": -0.9208034316967185
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 0.0,
+        "pump_ctrl_mean_m3h": 0.0,
+        "pump_delta_mean_m3h": 0.0,
+        "pump_delta_over_ctrl_abs": 0.0
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": false,
+        "classifier_ignores_delta": false
+      }
+    },
+    {
+      "pair_id": "pair_012",
+      "split": "synthetic_test",
+      "leak_id": "leak_012_p489",
+      "control_id": "ctrl_012_control_sensor",
+      "control_kind": "control_sensor",
+      "phase_hours": 14.909647747226948,
+      "onset_hour": 25.979592832245878,
+      "onset_idx": 311,
+      "leak_demand_scale": 0.97,
+      "ctrl_demand_scale": 1.15,
+      "episode_6h_hit": false,
+      "blocked_at_onset": true,
+      "pre_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 1.2846181342608645,
+        "mean_abs_delta_change_feats": 0.5014332296001532,
+        "mean_abs_delta_abs_feats": 4.274960497510855,
+        "frac_feats_exceed_2x_ctrl_std": 0.49056603773584906,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.42857142857142855,
+        "sum_abs_logit_contrib_from_delta": 51.22415992778824,
+        "net_logit_contrib_from_delta": 0.33636826836260303,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -21.507999394088984,
+            "ctrl_temporal_std": 7.224512642840817,
+            "exceed_2x": true,
+            "logit_contrib": 2.3582888667814945
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -20.232035778462887,
+            "ctrl_temporal_std": 7.206750918516156,
+            "exceed_2x": true,
+            "logit_contrib": -0.5848700447319196
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": 4.30469261482358,
+            "ctrl_temporal_std": 18.679543407880054,
+            "exceed_2x": false,
+            "logit_contrib": 0.08467040001689857
+          },
+          {
+            "name": "Fd_PUMP_1_d6",
+            "delta_mean": 3.672947408631444,
+            "ctrl_temporal_std": 0.009684067659002388,
+            "exceed_2x": true,
+            "logit_contrib": -0.050088471959836664
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -3.5724686458706856,
+            "ctrl_temporal_std": 0.014435162254821176,
+            "exceed_2x": true,
+            "logit_contrib": 0.43041579959711557
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 3.1952641904354095,
+            "ctrl_temporal_std": 13.767731125720639,
+            "exceed_2x": false,
+            "logit_contrib": -0.39992659077327036
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 2.98092607408762,
+            "ctrl_temporal_std": 12.551113678917282,
+            "exceed_2x": false,
+            "logit_contrib": 0.49414964912408826
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": 2.2033674642443657,
+            "ctrl_temporal_std": 1.7579693802329275,
+            "exceed_2x": false,
+            "logit_contrib": 0.35620425742141526
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": 2.0035192370414734,
+            "ctrl_temporal_std": 1.7681218949589577,
+            "exceed_2x": false,
+            "logit_contrib": -0.3820761049922002
+          },
+          {
+            "name": "Fd_PUMP_1_d1",
+            "delta_mean": 0.6121302489191294,
+            "ctrl_temporal_std": 0.0017901794487759672,
+            "exceed_2x": true,
+            "logit_contrib": -0.07015902008024986
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": 0.33965057796902126,
+            "logit_contrib": -10.971627636257521
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.4431258307562934,
+            "logit_contrib": 8.735867558353476
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": -0.05727524227566189,
+            "logit_contrib": 3.9323662194998854
+          },
+          {
+            "name": "P_min",
+            "delta_mean": 0.0560202333662245,
+            "logit_contrib": 2.7513130708009275
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -21.507999394088984,
+            "logit_contrib": 2.3582888667814945
+          },
+          {
+            "name": "Pd_d6_median",
+            "delta_mean": -0.037074910269843206,
+            "logit_contrib": -2.0385490155599415
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.3664352734883624,
+            "logit_contrib": -1.9161006787624
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": -0.08259280522664388,
+            "logit_contrib": 1.8747351903253662
+          },
+          {
+            "name": "Pd_d6_topneg1",
+            "delta_mean": -0.08163028293185765,
+            "logit_contrib": -1.3119467596571137
+          },
+          {
+            "name": "Pd_d6_min",
+            "delta_mean": -0.08163028293185765,
+            "logit_contrib": -1.3119467596571137
+          }
+        ],
+        "ql_mean": 0.6240830426046391,
+        "qc_mean": 0.5527548152133999,
+        "q_gap_leak_minus_ctrl": 0.07132822739123923,
+        "frac_leak_active": 0.7361111111111112,
+        "frac_ctrl_active": 0.6944444444444444,
+        "frac_leak_q_ge_tau": 0.3611111111111111,
+        "frac_ctrl_q_ge_tau": 0.2222222222222222
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.721961430354001,
+        "mean_abs_delta_change_feats": 0.011930980527448273,
+        "mean_abs_delta_abs_feats": 3.4329867842372015,
+        "frac_feats_exceed_2x_ctrl_std": 0.20754716981132076,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.07142857142857142,
+        "sum_abs_logit_contrib_from_delta": 38.64156028124212,
+        "net_logit_contrib_from_delta": 0.4900716060814429,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -18.46115868538618,
+            "ctrl_temporal_std": 3.8351175760591336,
+            "exceed_2x": true,
+            "logit_contrib": 2.024211745495858
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -17.466726899147034,
+            "ctrl_temporal_std": 3.828166696839443,
+            "exceed_2x": true,
+            "logit_contrib": -0.5049301738433603
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.40909120771619967,
+            "ctrl_temporal_std": 0.0967814741667407,
+            "exceed_2x": true,
+            "logit_contrib": -0.7534481048023898
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.3653923140631782,
+            "ctrl_temporal_std": 0.08512099265482719,
+            "exceed_2x": true,
+            "logit_contrib": 7.203414111626778
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.30480493969387495,
+            "ctrl_temporal_std": 0.06805909738584094,
+            "exceed_2x": true,
+            "logit_contrib": -1.5938338748824479
+          },
+          {
+            "name": "P_max",
+            "delta_mean": 0.28112755881415474,
+            "ctrl_temporal_std": 0.0642913618473166,
+            "exceed_2x": true,
+            "logit_contrib": -9.08117663759817
+          },
+          {
+            "name": "P_min",
+            "delta_mean": 0.18251795238918728,
+            "ctrl_temporal_std": 0.14394169140429683,
+            "exceed_2x": false,
+            "logit_contrib": 8.96397601169143
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": 0.1223390367296007,
+            "ctrl_temporal_std": 0.14103053521278938,
+            "exceed_2x": false,
+            "logit_contrib": -6.082907157121222
+          },
+          {
+            "name": "P_spread_p90_p10",
+            "delta_mean": -0.10428626802232473,
+            "ctrl_temporal_std": 0.028924278892091763,
+            "exceed_2x": true,
+            "logit_contrib": 0.42682320136570556
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": 0.08072387427091599,
+            "ctrl_temporal_std": 2.8600687362295916,
+            "exceed_2x": false,
+            "logit_contrib": 0.013050109960079865
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": 0.28112755881415474,
+            "logit_contrib": -9.08117663759817
+          },
+          {
+            "name": "P_min",
+            "delta_mean": 0.18251795238918728,
+            "logit_contrib": 8.96397601169143
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.3653923140631782,
+            "logit_contrib": 7.203414111626778
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": 0.1223390367296007,
+            "logit_contrib": -6.082907157121222
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -18.46115868538618,
+            "logit_contrib": 2.024211745495858
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.30480493969387495,
+            "logit_contrib": -1.5938338748824479
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.40909120771619967,
+            "logit_contrib": -0.7534481048023898
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -17.466726899147034,
+            "logit_contrib": -0.5049301738433603
+          },
+          {
+            "name": "P_spread_p90_p10",
+            "delta_mean": -0.10428626802232473,
+            "logit_contrib": 0.42682320136570556
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.010076363881429037,
+            "logit_contrib": -0.22871863847221113
+          }
+        ],
+        "ql_mean": 0.6720473585382921,
+        "qc_mean": 0.568993281334756,
+        "q_gap_leak_minus_ctrl": 0.1030540772035361,
+        "frac_leak_active": 1.0,
+        "frac_ctrl_active": 1.0,
+        "frac_leak_q_ge_tau": 0.5694444444444444,
+        "frac_ctrl_q_ge_tau": 0.2777777777777778
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 40.4240055475384,
+        "pump_ctrl_mean_m3h": 43.996474193409085,
+        "pump_delta_mean_m3h": -3.5724686458706856,
+        "pump_delta_over_ctrl_abs": -0.08119897401248774
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 43.985779443755746,
+        "pump_ctrl_mean_m3h": 43.92036967910826,
+        "pump_delta_mean_m3h": 0.06540976464748383,
+        "pump_delta_over_ctrl_abs": 0.00148928079695369
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": false,
+        "classifier_ignores_delta": false
+      }
+    },
+    {
+      "pair_id": "pair_013",
+      "split": "synthetic_test",
+      "leak_id": "leak_013_p33",
+      "control_id": "ctrl_013_control_sensor",
+      "control_kind": "control_sensor",
+      "phase_hours": 16.291339143318307,
+      "onset_hour": 16.91639253300671,
+      "onset_idx": 202,
+      "leak_demand_scale": 1.0,
+      "ctrl_demand_scale": 1.2,
+      "episode_6h_hit": false,
+      "blocked_at_onset": true,
+      "pre_6h": {
+        "n_finite": 58,
+        "mean_abs_delta": 1.1676773298742718,
+        "mean_abs_delta_change_feats": 0.7917370254368001,
+        "mean_abs_delta_abs_feats": 2.6030857649991628,
+        "frac_feats_exceed_2x_ctrl_std": 0.0,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 292.89207230530457,
+        "net_logit_contrib_from_delta": 54.29945739334635,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -14.348506721956976,
+            "ctrl_temporal_std": 40.26875251364425,
+            "exceed_2x": false,
+            "logit_contrib": 1.5732715552628391
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -13.600332177533158,
+            "ctrl_temporal_std": 39.60810817917033,
+            "exceed_2x": false,
+            "logit_contrib": -0.39315998528978063
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": -6.321224820768011,
+            "ctrl_temporal_std": 35.5851165684816,
+            "exceed_2x": false,
+            "logit_contrib": 0.7911789890953087
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": -6.227597892926685,
+            "ctrl_temporal_std": 34.89163307295203,
+            "exceed_2x": false,
+            "logit_contrib": -1.032352107093944
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": -1.7774074242032807,
+            "ctrl_temporal_std": 9.538759548419373,
+            "exceed_2x": false,
+            "logit_contrib": -0.28734203529267666
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": -1.7359218592273777,
+            "ctrl_temporal_std": 9.46643926823696,
+            "exceed_2x": false,
+            "logit_contrib": 0.3310446190293732
+          },
+          {
+            "name": "Pd_d1_max_abs",
+            "delta_mean": -1.565098677864395,
+            "ctrl_temporal_std": 1.9274677134500104,
+            "exceed_2x": false,
+            "logit_contrib": -43.600891518244964
+          },
+          {
+            "name": "Pd_d6_max_abs",
+            "delta_mean": -1.3321524279621897,
+            "ctrl_temporal_std": 1.691061852473238,
+            "exceed_2x": false,
+            "logit_contrib": -5.853135699755113
+          },
+          {
+            "name": "Pd_d1_min",
+            "delta_mean": 1.2189496640977386,
+            "ctrl_temporal_std": 1.5842559533821055,
+            "exceed_2x": false,
+            "logit_contrib": 33.15825927340635
+          },
+          {
+            "name": "Pd_d1_topneg1",
+            "delta_mean": 1.2189496640977386,
+            "ctrl_temporal_std": 1.5842559533821055,
+            "exceed_2x": false,
+            "logit_contrib": 33.15825927340635
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "Pd_d1_max_abs",
+            "delta_mean": -1.565098677864395,
+            "logit_contrib": -43.600891518244964
+          },
+          {
+            "name": "Pd_d1_min",
+            "delta_mean": 1.2189496640977386,
+            "logit_contrib": 33.15825927340635
+          },
+          {
+            "name": "Pd_d1_topneg1",
+            "delta_mean": 1.2189496640977386,
+            "logit_contrib": 33.15825927340635
+          },
+          {
+            "name": "Pd_d6_topneg1",
+            "delta_mean": 1.01896215001404,
+            "logit_contrib": 16.37657059255943
+          },
+          {
+            "name": "Pd_d6_min",
+            "delta_mean": 1.01896215001404,
+            "logit_contrib": 16.37657059255943
+          },
+          {
+            "name": "Pd_d1_topneg3",
+            "delta_mean": 0.4559513060230099,
+            "logit_contrib": -15.7886459712934
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.6858925743162032,
+            "logit_contrib": -15.568752536312092
+          },
+          {
+            "name": "Pd_d1_p90",
+            "delta_mean": -0.18805750241877542,
+            "logit_contrib": 14.764024324484124
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": 0.18262179657515465,
+            "logit_contrib": -12.538328172235026
+          },
+          {
+            "name": "Pd_d1_topneg5",
+            "delta_mean": 0.18042125481625113,
+            "logit_contrib": -9.922856321775539
+          }
+        ],
+        "ql_mean": 0.540478435931818,
+        "qc_mean": 0.29472393288013204,
+        "q_gap_leak_minus_ctrl": 0.24575450305168595,
+        "frac_leak_active": 0.27586206896551724,
+        "frac_ctrl_active": 0.22413793103448276,
+        "frac_leak_q_ge_tau": 0.08620689655172414,
+        "frac_ctrl_q_ge_tau": 0.017241379310344827
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 1.228450161352078,
+        "mean_abs_delta_change_feats": 0.16041771260335574,
+        "mean_abs_delta_abs_feats": 5.306392238392655,
+        "frac_feats_exceed_2x_ctrl_std": 0.09433962264150944,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 109.01558602216859,
+        "net_logit_contrib_from_delta": 18.591501299618184,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -25.846125464886427,
+            "ctrl_temporal_std": 9.424114816876088,
+            "exceed_2x": true,
+            "logit_contrib": 2.8339516296448695
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -24.329365324229002,
+            "ctrl_temporal_std": 8.15321035336416,
+            "exceed_2x": true,
+            "logit_contrib": -0.703316124056504
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -6.054260162636638,
+            "ctrl_temporal_std": 21.683340251642697,
+            "exceed_2x": false,
+            "logit_contrib": 0.7294253602147741
+          },
+          {
+            "name": "Pd_d24_max_abs",
+            "delta_mean": -0.9373729317166668,
+            "ctrl_temporal_std": 1.165109458214017,
+            "exceed_2x": false,
+            "logit_contrib": 2.9418906693843305
+          },
+          {
+            "name": "Pd_d24_topneg1",
+            "delta_mean": 0.8184552219950051,
+            "ctrl_temporal_std": 1.1633253517603885,
+            "exceed_2x": false,
+            "logit_contrib": 7.085812418373833
+          },
+          {
+            "name": "Pd_d24_min",
+            "delta_mean": 0.8184552219950051,
+            "ctrl_temporal_std": 1.1633253517603885,
+            "exceed_2x": false,
+            "logit_contrib": 7.085812418373833
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.533590210808648,
+            "ctrl_temporal_std": 0.24127799422973195,
+            "exceed_2x": true,
+            "logit_contrib": 10.519299685379622
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.4962691298517329,
+            "ctrl_temporal_std": 0.7882114913846783,
+            "exceed_2x": false,
+            "logit_contrib": -11.264579269975687
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.4355101479424373,
+            "ctrl_temporal_std": 0.17870457227088435,
+            "exceed_2x": true,
+            "logit_contrib": -2.277295201786625
+          },
+          {
+            "name": "P_max",
+            "delta_mean": 0.401616778471066,
+            "ctrl_temporal_std": 0.1746071035368097,
+            "exceed_2x": true,
+            "logit_contrib": -12.973302657708887
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": 0.401616778471066,
+            "logit_contrib": -12.973302657708887
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.4962691298517329,
+            "logit_contrib": -11.264579269975687
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.533590210808648,
+            "logit_contrib": 10.519299685379622
+          },
+          {
+            "name": "P_min",
+            "delta_mean": 0.1694396323033146,
+            "logit_contrib": 8.32166249683781
+          },
+          {
+            "name": "Pd_d24_topneg1",
+            "delta_mean": 0.8184552219950051,
+            "logit_contrib": 7.085812418373833
+          },
+          {
+            "name": "Pd_d24_min",
+            "delta_mean": 0.8184552219950051,
+            "logit_contrib": 7.085812418373833
+          },
+          {
+            "name": "Pd_d6_min",
+            "delta_mean": 0.3304140552499634,
+            "logit_contrib": 5.310353383097006
+          },
+          {
+            "name": "Pd_d6_topneg1",
+            "delta_mean": 0.3304140552499634,
+            "logit_contrib": 5.310353383097006
+          },
+          {
+            "name": "Pd_d1_max_abs",
+            "delta_mean": -0.15822303938442073,
+            "logit_contrib": -4.407815093998086
+          },
+          {
+            "name": "Pd_d1_min",
+            "delta_mean": 0.12385697786146072,
+            "logit_contrib": 3.3691971914121344
+          }
+        ],
+        "ql_mean": 0.49663963325113136,
+        "qc_mean": 0.2993637792404187,
+        "q_gap_leak_minus_ctrl": 0.19727585401071268,
+        "frac_leak_active": 1.0,
+        "frac_ctrl_active": 0.9305555555555556,
+        "frac_leak_q_ge_tau": 0.041666666666666664,
+        "frac_ctrl_q_ge_tau": 0.041666666666666664
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 0.0,
+        "pump_ctrl_mean_m3h": 0.0,
+        "pump_delta_mean_m3h": 0.0,
+        "pump_delta_over_ctrl_abs": 0.0
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 19.60181277245283,
+        "pump_ctrl_mean_m3h": 25.65607293508947,
+        "pump_delta_mean_m3h": -6.054260162636638,
+        "pump_delta_over_ctrl_abs": -0.23597765495820103
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": false,
+        "classifier_ignores_delta": false
+      }
+    },
+    {
+      "pair_id": "pair_014",
+      "split": "synthetic_dev",
+      "leak_id": "leak_014_p712",
+      "control_id": "ctrl_014_control_demand",
+      "control_kind": "control_demand",
+      "phase_hours": 4.689770800246792,
+      "onset_hour": 16.415110116168723,
+      "onset_idx": 196,
+      "leak_demand_scale": 0.97,
+      "ctrl_demand_scale": 1.15,
+      "episode_6h_hit": false,
+      "blocked_at_onset": false,
+      "pre_6h": {
+        "n_finite": 52,
+        "mean_abs_delta": 1.6503270948476036,
+        "mean_abs_delta_change_feats": 0.5520775959482451,
+        "mean_abs_delta_abs_feats": 5.843643363372428,
+        "frac_feats_exceed_2x_ctrl_std": 0.0,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 52.90777327178289,
+        "net_logit_contrib_from_delta": -0.8447880031424319,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -24.406457635072563,
+            "ctrl_temporal_std": 13.973658169040245,
+            "exceed_2x": false,
+            "logit_contrib": 2.6760962869556466
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -22.6678956586581,
+            "ctrl_temporal_std": 13.00719735818006,
+            "exceed_2x": false,
+            "logit_contrib": -0.6552861656151687
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -15.231267935954607,
+            "ctrl_temporal_std": 21.723680532041378,
+            "exceed_2x": false,
+            "logit_contrib": 1.8350835283353562
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": -10.144103082040182,
+            "ctrl_temporal_std": 20.77758522754908,
+            "exceed_2x": false,
+            "logit_contrib": -0.19952766495133278
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": -5.672823580411764,
+            "ctrl_temporal_std": 16.256184724413277,
+            "exceed_2x": false,
+            "logit_contrib": 0.7100236034827351
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": -5.1598794758319855,
+            "ctrl_temporal_std": 15.282680608699033,
+            "exceed_2x": false,
+            "logit_contrib": -0.8553558757022748
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.40189699026254505,
+            "ctrl_temporal_std": 0.30242533392071536,
+            "exceed_2x": false,
+            "logit_contrib": 7.92307429481667
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.3669648390549876,
+            "ctrl_temporal_std": 0.2210771388018098,
+            "exceed_2x": false,
+            "logit_contrib": -1.9188697924779001
+          },
+          {
+            "name": "pump1_on",
+            "delta_mean": -0.34615384615384615,
+            "ctrl_temporal_std": 0.49300664859163484,
+            "exceed_2x": false,
+            "logit_contrib": -0.8342224712481571
+          },
+          {
+            "name": "P_max",
+            "delta_mean": 0.3457607856163612,
+            "ctrl_temporal_std": 0.21909851389528476,
+            "exceed_2x": false,
+            "logit_contrib": -11.16900378526246
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": 0.3457607856163612,
+            "logit_contrib": -11.16900378526246
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.40189699026254505,
+            "logit_contrib": 7.92307429481667
+          },
+          {
+            "name": "P_min",
+            "delta_mean": 0.09977168303269607,
+            "logit_contrib": 4.900071262273001
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.19073141538179839,
+            "logit_contrib": -4.3293225764109575
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -24.406457635072563,
+            "logit_contrib": 2.6760962869556466
+          },
+          {
+            "name": "Pd_d24_topneg5",
+            "delta_mean": 0.1835517149705153,
+            "logit_contrib": -2.339208439271567
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": 0.04694278423602764,
+            "logit_contrib": -2.334075907722425
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.3669648390549876,
+            "logit_contrib": -1.9188697924779001
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -15.231267935954607,
+            "logit_contrib": 1.8350835283353562
+          },
+          {
+            "name": "Pd_d24_min",
+            "delta_mean": 0.2109670639038086,
+            "logit_contrib": 1.8264567212775336
+          }
+        ],
+        "ql_mean": 0.3775310134567532,
+        "qc_mean": 0.5809071584714902,
+        "q_gap_leak_minus_ctrl": -0.203376145014737,
+        "frac_leak_active": 0.0,
+        "frac_ctrl_active": 1.0,
+        "frac_leak_q_ge_tau": 0.0,
+        "frac_ctrl_q_ge_tau": 0.019230769230769232
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.8992683354968233,
+        "mean_abs_delta_change_feats": 0.5934855288229686,
+        "mean_abs_delta_abs_feats": 2.0668026882515407,
+        "frac_feats_exceed_2x_ctrl_std": 0.07547169811320754,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.07142857142857142,
+        "sum_abs_logit_contrib_from_delta": 32.38747043357461,
+        "net_logit_contrib_from_delta": 0.022128490022153734,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -11.363184079527855,
+            "ctrl_temporal_std": 26.551132958672987,
+            "exceed_2x": false,
+            "logit_contrib": 1.2459397089858593
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -10.60080649331212,
+            "ctrl_temporal_std": 26.000812082483634,
+            "exceed_2x": false,
+            "logit_contrib": -0.30644934774867877
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": 7.334959739819169,
+            "ctrl_temporal_std": 0.04607664942409673,
+            "exceed_2x": true,
+            "logit_contrib": 0.14427371030853223
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 7.214038912206888,
+            "ctrl_temporal_std": 13.282718075884398,
+            "exceed_2x": false,
+            "logit_contrib": -0.902925647431823
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 6.73488425090909,
+            "ctrl_temporal_std": 13.019714879584747,
+            "exceed_2x": false,
+            "logit_contrib": 1.116445227678683
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": 0.9448312222957611,
+            "ctrl_temporal_std": 3.35390629942362,
+            "exceed_2x": false,
+            "logit_contrib": 0.15274479150115294
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": 0.9237796068191528,
+            "ctrl_temporal_std": 3.284041193722912,
+            "exceed_2x": false,
+            "logit_contrib": -0.17616707018290625
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.1712680392795139,
+            "ctrl_temporal_std": 0.3766162353243064,
+            "exceed_2x": false,
+            "logit_contrib": 3.3764109521017023
+          },
+          {
+            "name": "Pd_d24_topneg3",
+            "delta_mean": -0.16420242521497938,
+            "ctrl_temporal_std": 0.09566513396375416,
+            "exceed_2x": false,
+            "logit_contrib": -1.5082074132486651
+          },
+          {
+            "name": "Fd_p235_d1",
+            "delta_mean": 0.16211019828915596,
+            "ctrl_temporal_std": 0.6628404966088868,
+            "exceed_2x": false,
+            "logit_contrib": 0.07918075900352925
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": 0.14491664038764107,
+            "logit_contrib": -4.681197441612047
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": -0.15948539310031468,
+            "logit_contrib": 3.620083831364783
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.1712680392795139,
+            "logit_contrib": 3.3764109521017023
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": -0.054426087273491755,
+            "logit_contrib": 2.706158595492056
+          },
+          {
+            "name": "Pd_d24_topneg5",
+            "delta_mean": -0.14207866456773546,
+            "logit_contrib": 1.810670149557949
+          },
+          {
+            "name": "Pd_d24_topneg3",
+            "delta_mean": -0.16420242521497938,
+            "logit_contrib": -1.5082074132486651
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -11.363184079527855,
+            "logit_contrib": 1.2459397089858593
+          },
+          {
+            "name": "Pd_d24_min",
+            "delta_mean": -0.14352949460347494,
+            "logit_contrib": -1.2426129712816831
+          },
+          {
+            "name": "Pd_d24_topneg1",
+            "delta_mean": -0.14352949460347494,
+            "logit_contrib": -1.2426129712816831
+          },
+          {
+            "name": "P_min",
+            "delta_mean": -0.0242564943101671,
+            "logit_contrib": -1.191305459423666
+          }
+        ],
+        "ql_mean": 0.2192403174264027,
+        "qc_mean": 0.2108040350821233,
+        "q_gap_leak_minus_ctrl": 0.0084362823442794,
+        "frac_leak_active": 0.0,
+        "frac_ctrl_active": 0.4861111111111111,
+        "frac_leak_q_ge_tau": 0.0,
+        "frac_ctrl_q_ge_tau": 0.0
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 7.359498320147395,
+        "pump_ctrl_mean_m3h": 18.35985849611461,
+        "pump_delta_mean_m3h": -11.000360175967216,
+        "pump_delta_over_ctrl_abs": -0.5991527428788416
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 44.19026835821569,
+        "pump_ctrl_mean_m3h": 44.130174769088626,
+        "pump_delta_mean_m3h": 0.06009358912706375,
+        "pump_delta_over_ctrl_abs": 0.0013617346425607677
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": false,
+        "classifier_ignores_delta": false
+      }
+    },
+    {
+      "pair_id": "pair_015",
+      "split": "synthetic_test",
+      "leak_id": "leak_015_p73",
+      "control_id": "ctrl_015_control_demand",
+      "control_kind": "control_demand",
+      "phase_hours": 13.338010719455742,
+      "onset_hour": 19.69657430035768,
+      "onset_idx": 236,
+      "leak_demand_scale": 1.03,
+      "ctrl_demand_scale": 1.2,
+      "episode_6h_hit": true,
+      "blocked_at_onset": false,
+      "pre_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.7147236584761889,
+        "mean_abs_delta_change_feats": 0.39542975350721643,
+        "mean_abs_delta_abs_feats": 1.9338458410849926,
+        "frac_feats_exceed_2x_ctrl_std": 0.0,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.0,
+        "sum_abs_logit_contrib_from_delta": 39.290210274789494,
+        "net_logit_contrib_from_delta": 0.46917057423112923,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -10.005480167455971,
+            "ctrl_temporal_std": 40.616015522650954,
+            "exceed_2x": false,
+            "logit_contrib": 1.0970714687763692
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -9.394054673612118,
+            "ctrl_temporal_std": 39.853121589122686,
+            "exceed_2x": false,
+            "logit_contrib": -0.2715644257123315
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": -3.89534430578351,
+            "ctrl_temporal_std": 36.06159226436203,
+            "exceed_2x": false,
+            "logit_contrib": 0.4875502228464516
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": -3.8004695903509855,
+            "ctrl_temporal_std": 35.28206337114433,
+            "exceed_2x": false,
+            "logit_contrib": -0.6300057995076285
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": -1.6361931338906288,
+            "ctrl_temporal_std": 10.030691415868976,
+            "exceed_2x": false,
+            "logit_contrib": -0.264512828528765
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": -1.5506374184042215,
+            "ctrl_temporal_std": 9.822659094021738,
+            "exceed_2x": false,
+            "logit_contrib": 0.2957104150164851
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": -1.2220229487866163,
+            "ctrl_temporal_std": 7.2295852671883125,
+            "exceed_2x": false,
+            "logit_contrib": -0.024036367090948085
+          },
+          {
+            "name": "Fd_PUMP_1_d6",
+            "delta_mean": -1.2220229487866163,
+            "ctrl_temporal_std": 7.2295852671883125,
+            "exceed_2x": false,
+            "logit_contrib": 0.01666488936398416
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -1.2220229487866163,
+            "ctrl_temporal_std": 7.2295852671883125,
+            "exceed_2x": false,
+            "logit_contrib": 0.14723095897174057
+          },
+          {
+            "name": "Fd_PUMP_1_d1",
+            "delta_mean": -0.6109882146120071,
+            "ctrl_temporal_std": 5.148675722542874,
+            "exceed_2x": false,
+            "logit_contrib": 0.07002812635619815
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_min",
+            "delta_mean": 0.08324771457248265,
+            "logit_contrib": 4.08853215087941
+          },
+          {
+            "name": "P_max",
+            "delta_mean": 0.11286354064941406,
+            "logit_contrib": -3.645796068181364
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": 0.04589234458075629,
+            "logit_contrib": -3.1508466554265513
+          },
+          {
+            "name": "Pd_d24_topneg2",
+            "delta_mean": 0.12437378035651313,
+            "logit_contrib": -2.823101868840926
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": 0.05262056986490885,
+            "logit_contrib": -2.6163851669890135
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.12968905766805014,
+            "logit_contrib": 2.556714939461159
+          },
+          {
+            "name": "Pd_d6_median",
+            "delta_mean": 0.03179735607571072,
+            "logit_contrib": 1.748364822834759
+          },
+          {
+            "name": "Pd_d24_topneg5",
+            "delta_mean": 0.1094980239868164,
+            "logit_contrib": -1.3954579603610135
+          },
+          {
+            "name": "Pd_d24_min",
+            "delta_mean": 0.1319388813442654,
+            "logit_contrib": 1.142266722444167
+          },
+          {
+            "name": "Pd_d24_topneg1",
+            "delta_mean": 0.1319388813442654,
+            "logit_contrib": 1.142266722444167
+          }
+        ],
+        "ql_mean": 0.39936292953832037,
+        "qc_mean": 0.2979511765932332,
+        "q_gap_leak_minus_ctrl": 0.10141175294508714,
+        "frac_leak_active": 0.0,
+        "frac_ctrl_active": 0.0,
+        "frac_leak_q_ge_tau": 0.0,
+        "frac_ctrl_q_ge_tau": 0.0
+      },
+      "credit_6h": {
+        "n_finite": 72,
+        "mean_abs_delta": 0.9416734712475625,
+        "mean_abs_delta_change_feats": 0.1544244655412893,
+        "mean_abs_delta_abs_feats": 3.9475333112169695,
+        "frac_feats_exceed_2x_ctrl_std": 0.33962264150943394,
+        "frac_change_feats_exceed_2x_ctrl_std": 0.21428571428571427,
+        "sum_abs_logit_contrib_from_delta": 37.69290476298908,
+        "net_logit_contrib_from_delta": 0.42066677932041424,
+        "top_abs_delta_features": [
+          {
+            "name": "F_p235",
+            "delta_mean": -19.28666466847062,
+            "ctrl_temporal_std": 3.2675961831532887,
+            "exceed_2x": true,
+            "logit_contrib": 2.1147260482768306
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -18.17203275859356,
+            "ctrl_temporal_std": 3.3621640776818382,
+            "exceed_2x": true,
+            "logit_contrib": -0.5253192377062907
+          },
+          {
+            "name": "F_PUMP_1",
+            "delta_mean": -4.1943630669265985,
+            "ctrl_temporal_std": 0.01116148341041862,
+            "exceed_2x": true,
+            "logit_contrib": 0.5053424710496871
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "delta_mean": 1.2478962074965239,
+            "ctrl_temporal_std": 20.257806016197684,
+            "exceed_2x": false,
+            "logit_contrib": 0.02454527663704778
+          },
+          {
+            "name": "Fd_PUMP_1_d6",
+            "delta_mean": 1.2277794070541859,
+            "ctrl_temporal_std": 10.075497603085282,
+            "exceed_2x": false,
+            "logit_contrib": -0.016743390950433656
+          },
+          {
+            "name": "Fd_p235_d6",
+            "delta_mean": 0.721401534974575,
+            "ctrl_temporal_std": 6.248168713913164,
+            "exceed_2x": false,
+            "logit_contrib": 0.11662434988183552
+          },
+          {
+            "name": "Fd_p227_d6",
+            "delta_mean": 0.666522141546011,
+            "ctrl_temporal_std": 5.6493068686099255,
+            "exceed_2x": false,
+            "logit_contrib": -0.1271074312762829
+          },
+          {
+            "name": "Fd_PUMP_1_d1",
+            "delta_mean": 0.6118965335190296,
+            "ctrl_temporal_std": 0.001513081030576167,
+            "exceed_2x": true,
+            "logit_contrib": -0.07013223289978032
+          },
+          {
+            "name": "Fd_p227_d24",
+            "delta_mean": 0.475071556866169,
+            "ctrl_temporal_std": 16.100105613642043,
+            "exceed_2x": false,
+            "logit_contrib": 0.07875285642771408
+          },
+          {
+            "name": "Fd_p235_d24",
+            "delta_mean": 0.46568112447857857,
+            "ctrl_temporal_std": 17.776444356856068,
+            "exceed_2x": false,
+            "logit_contrib": -0.05828571704889375
+          }
+        ],
+        "top_logit_contrib_features": [
+          {
+            "name": "P_max",
+            "delta_mean": 0.32405932744344074,
+            "logit_contrib": -10.467988289688014
+          },
+          {
+            "name": "P_median",
+            "delta_mean": 0.4250730408562554,
+            "logit_contrib": 8.379971398212348
+          },
+          {
+            "name": "P_min",
+            "delta_mean": 0.0777342054578993,
+            "logit_contrib": 3.8177480291181634
+          },
+          {
+            "name": "F_p235",
+            "delta_mean": -19.28666466847062,
+            "logit_contrib": 2.1147260482768306
+          },
+          {
+            "name": "P_p90",
+            "delta_mean": 0.3483439339531794,
+            "logit_contrib": -1.8215005393350854
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "delta_mean": -0.01584805382622613,
+            "logit_contrib": 1.0880853408026434
+          },
+          {
+            "name": "L_T1",
+            "delta_mean": 0.015503247578938803,
+            "logit_contrib": -0.77084811338662
+          },
+          {
+            "name": "P_p10",
+            "delta_mean": 0.4151069429185657,
+            "logit_contrib": -0.764527649416705
+          },
+          {
+            "name": "Pd_d6_median",
+            "delta_mean": -0.010752677917480469,
+            "logit_contrib": -0.5912316664766841
+          },
+          {
+            "name": "F_p227",
+            "delta_mean": -18.17203275859356,
+            "logit_contrib": -0.5253192377062907
+          }
+        ],
+        "ql_mean": 0.6134098035643607,
+        "qc_mean": 0.5158204293977258,
+        "q_gap_leak_minus_ctrl": 0.09758937416663493,
+        "frac_leak_active": 0.7083333333333334,
+        "frac_ctrl_active": 0.0,
+        "frac_leak_q_ge_tau": 0.16666666666666666,
+        "frac_ctrl_q_ge_tau": 0.0
+      },
+      "pump_pre": {
+        "pump_leak_mean_m3h": 0.0,
+        "pump_ctrl_mean_m3h": 1.2220229487866163,
+        "pump_delta_mean_m3h": -1.2220229487866163,
+        "pump_delta_over_ctrl_abs": -0.9999991816854319
+      },
+      "pump_credit": {
+        "pump_leak_mean_m3h": 39.761834824457765,
+        "pump_ctrl_mean_m3h": 43.95619789138436,
+        "pump_delta_mean_m3h": -4.1943630669265985,
+        "pump_delta_over_ctrl_abs": -0.0954214234331512
+      },
+      "leak_flow_note": "Emitter/leak discharge was not stored in NPZs; PUMP_1 flow is the external-inflow proxy. Leak-induced effect is measured as paired leak\u2212control feature/pump deltas at identical timestamps.",
+      "flags": {
+        "useful_physical_delta": true,
+        "classifier_ignores_delta": true
+      }
+    }
+  ],
+  "preserves": [
+    "outputs/phase_correction/",
+    "outputs/synthetic_scenarios_phase/",
+    "outputs/synthetic_scenarios/"
+  ],
+  "decision": {
+    "decision": "2",
+    "label": "Existing features do not reliably distinguish leaks from operations",
+    "evidence": [
+      "Train/DEV: mean fraction of change-features with |leak\u2212ctrl| > 2\u00d7 control temporal std in credit window = 0.0268.",
+      "Train/DEV: lift in mean |\u0394| change-features (credit\u2212pre) = 0.1062.",
+      "Train/DEV: lift in mean (q_leak\u2212q_ctrl) (credit\u2212pre) = 0.06495.",
+      "Train/DEV: frac useful_physical=0.375; frac classifier_ignores=0.125 (n=8).",
+      "Test diagnostic (not for decision): frac useful_physical=0.625; frac classifier_ignores=0.375; q_gap lift=0.009672757277722988."
+    ],
+    "recommended_next_intervention": "Prioritize stronger leak-sensitive representations on phase-corrected matched pairs (global absolute/context features remain confounded with operations) \u2014 do not implement yet.",
+    "decision_basis_split_group": "train_and_synthetic_dev",
+    "test_is_diagnostic_only": true
+  }
+}
