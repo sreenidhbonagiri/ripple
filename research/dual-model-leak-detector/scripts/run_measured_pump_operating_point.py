@@ -71,12 +71,21 @@ def score_distribution(s: pd.Series, period: str) -> dict:
     }
 
 
-def event_diagnostics(scores: pd.Series, tau: float, period: str) -> list[dict]:
+def event_diagnostics(
+    scores: pd.Series,
+    tau: float,
+    period: str,
+    *,
+    recover_steps: int | None = None,
+) -> list[dict]:
+    from dual_model.detection_protocol import RECOVER_STEPS
+
     start, end = period_bounds(period)
     s = scores.loc[(scores.index >= start) & (scores.index <= end)].astype(float)
     index = s.index
     events = eligible_events(period, index)
-    eps = episodes_from_scores(s.to_numpy(), tau=tau)
+    rec = RECOVER_STEPS if recover_steps is None else int(recover_steps)
+    eps = episodes_from_scores(s.to_numpy(), tau=tau, recover_steps=rec)
     notify_times = [index[ep.notify_idx] for ep in eps if 0 <= ep.notify_idx < len(index)]
 
     # Active mask for pre-onset blocking

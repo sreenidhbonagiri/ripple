@@ -140,6 +140,9 @@ def run_dual_window(
     timestep_sec: int = 3600,
     pump_boundary: str = "inp_controls",
     pump_flow_m3h: pd.Series | None = None,
+    pressure_fill: str = "interpolate",
+    causal_fill_max_age_steps: int = 2,
+    demand_fill: str = "legacy",
 ) -> DualSimulationResult:
     """Dual EPS: VR heads = measured P + elevation; demands/roughness as specified.
 
@@ -148,19 +151,33 @@ def run_dual_window(
       - ``measured_pump1``: close PUMP_1, drop its controls, impose measured
         internal transfer n54→T1 (see PUMP1_MEASURED_BOUNDARY.md). Requires
         ``pump_flow_m3h`` aligned to ``timestamps``.
+
+    ``pressure_fill``:
+      - ``interpolate`` (default, hourly legacy): linear interpolate(limit=2).
+      - ``causal_ffill``: past-only bounded ffill; stamps where any required
+        sensor is stale/missing are marked unavailable and q_v set to NaN.
+    ``demand_fill``: forwarded to ``apply_demand_model`` (``legacy`` | ``causal_ffill``).
     """
     from .area_topology import apply_cluster_roughness
+    from .causal_fill import causal_ffill_frame, causal_ffill_series, row_all_available
     from .pump_boundary import impose_measured_internal_pump_transfer
 
     if pump_boundary not in ("inp_controls", "measured_pump1"):
         raise ValueError(f"Unknown pump_boundary={pump_boundary!r}")
+    if pressure_fill not in ("interpolate", "causal_ffill"):
+        raise ValueError(f"Unknown pressure_fill={pressure_fill!r}")
 
     sensors = load_pressure_sensors()
     wn = clone_wn(wn_template, scratch)
     configure_time(wn, timestamps, timestep_sec)
-    set_tank_init_from_measurement(wn, float(levels_m.iloc[0]))
+    _lvl0 = float(levels_m.iloc[0]) if np.isfinite(float(levels_m.iloc[0])) else None
+    if _lvl0 is not None:
+        set_tank_init_from_measurement(wn, _lvl0)
     if demand_model is not None:
-        apply_demand_model(wn, demand_model, timestamps, amr_lh)
+        apply_demand_model(
+            wn, demand_model, timestamps, amr_lh, fill_mode=demand_fill,
+            causal_fill_max_age_steps=causal_fill_max_age_steps,
+        )
     if roughness is not None and clusters is not None:
         apply_cluster_roughness(wn, clusters, roughness)
 
@@ -169,7 +186,72 @@ def run_dual_window(
         raise ValueError("pump_flow_m3h required when pump_boundary='measured_pump1'")
 
     elev = sensor_elevations(wn, sensors)
-    P = pressures_m[list(sensors)].reindex(timestamps).interpolate(limit=2)
+    fill_notes: dict[str, Any] = {"pressure_fill": pressure_fill}
+    unavailable_mask = pd.Series(False, index=timestamps)
+    tank_init = float(levels_m.iloc[0])
+
+    if pressure_fill == "causal_ffill":
+        P_fill = causal_ffill_frame(
+            pressures_m[list(sensors)],
+            index=timestamps,
+            max_age_steps=causal_fill_max_age_steps,
+        )
+        P = P_fill.values.copy()
+        unavail_p = ~row_all_available(P_fill.available, list(sensors))
+        # Solver needs a numeric pattern; use past-only unlimited ffill then 0.
+        # Stale stamps are cleared from q_v after the solve (unavailable).
+        P = P.ffill().fillna(0.0)
+        unavailable_mask = unavailable_mask | unavail_p
+        fill_notes["pressure_fill_stats"] = P_fill.notes
+        fill_notes["n_unavailable_pressure"] = int(unavail_p.sum())
+
+        lvl_fill = causal_ffill_series(
+            levels_m.astype(float),
+            index=timestamps,
+            max_age_steps=causal_fill_max_age_steps,
+        )
+        if not bool(lvl_fill.available.iloc[0, 0]):
+            empty = pd.DataFrame(
+                np.nan, index=timestamps, columns=list(sensors), dtype=float
+            )
+            return DualSimulationResult(
+                q_v_m3s=empty,
+                q_v_sum_m3s=empty.sum(axis=1),
+                spec=DualModelSpec(sensor_nodes=sensors, tcv_setting=tcv_setting),
+                notes={
+                    "timestep_sec": timestep_sec,
+                    "n": 0,
+                    "converged": False,
+                    "error": "tank_init_level_unavailable_causal",
+                    **pump_notes,
+                    **fill_notes,
+                },
+            )
+        tank_init = float(lvl_fill.values.iloc[0, 0])
+        unavail_lvl = ~lvl_fill.available.iloc[:, 0]
+        unavailable_mask = unavailable_mask | unavail_lvl
+        fill_notes["level_fill_stats"] = lvl_fill.notes
+    else:
+        P = pressures_m[list(sensors)].reindex(timestamps).interpolate(limit=2)
+
+    if pump_boundary == "measured_pump1":
+        assert pump_flow_m3h is not None
+        if pressure_fill == "causal_ffill":
+            pump_fill = causal_ffill_series(
+                pump_flow_m3h.astype(float),
+                index=timestamps,
+                max_age_steps=causal_fill_max_age_steps,
+            )
+            q_pump_series = pump_fill.values.iloc[:, 0].ffill().fillna(0.0)
+            unavail_pump = ~pump_fill.available.iloc[:, 0]
+            unavailable_mask = unavailable_mask | unavail_pump
+            fill_notes["pump_fill_stats"] = pump_fill.notes
+            fill_notes["n_unavailable_pump"] = int(unavail_pump.sum())
+        else:
+            q_pump_series = pump_flow_m3h.reindex(timestamps).astype(float)
+    else:
+        q_pump_series = None
+
     head_ts = {s: (P[s].astype(float) + elev[s]).tolist() for s in sensors}
     spec = DualModelSpec(sensor_nodes=sensors, tcv_setting=tcv_setting)
     try:
@@ -181,14 +263,13 @@ def run_dual_window(
             scratch_dir=scratch,
         )
         configure_time(wd, timestamps, timestep_sec)
-        set_tank_init_from_measurement(wd, float(levels_m.iloc[0]))
+        set_tank_init_from_measurement(wd, tank_init)
         # Impose after VR attach so the dual clone carries the measured transfer
         # without a second INP round-trip that could drop demand categories.
         if pump_boundary == "measured_pump1":
-            assert pump_flow_m3h is not None
-            q_pump = pump_flow_m3h.reindex(timestamps).astype(float)
+            assert q_pump_series is not None
             pump_notes.update(
-                impose_measured_internal_pump_transfer(wd, q_pump.tolist())
+                impose_measured_internal_pump_transfer(wd, q_pump_series.tolist())
             )
 
         res = wntr.sim.EpanetSimulator(wd).run_sim()
@@ -196,11 +277,23 @@ def run_dual_window(
         n = min(len(qv), len(timestamps))
         qv = qv.iloc[:n].copy()
         qv.index = timestamps[:n]
+        # Required stale boundaries → result unavailable at those stamps
+        if pressure_fill == "causal_ffill":
+            bad = unavailable_mask.reindex(qv.index).fillna(True).to_numpy()
+            if bad.any():
+                qv.loc[bad] = np.nan
+            fill_notes["n_qv_cleared_stale"] = int(bad.sum())
         return DualSimulationResult(
             q_v_m3s=qv,
             q_v_sum_m3s=qv.sum(axis=1),
             spec=spec,
-            notes={"timestep_sec": timestep_sec, "n": n, "converged": True, **pump_notes},
+            notes={
+                "timestep_sec": timestep_sec,
+                "n": n,
+                "converged": True,
+                **pump_notes,
+                **fill_notes,
+            },
         )
     except Exception as exc:  # noqa: BLE001
         empty = pd.DataFrame(
@@ -216,6 +309,7 @@ def run_dual_window(
                 "converged": False,
                 "error": str(exc),
                 **pump_notes,
+                **fill_notes,
             },
         )
 

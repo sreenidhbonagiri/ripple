@@ -21,6 +21,15 @@ CREDIT_HOURS = 6
 RECOVER_STEPS = 1  # 1 h on hourly grid
 WARMUP_HOURS = 25  # ref + gap + margin
 
+# Native five-minute Method M (METHOD_M_5MIN_PROTOCOL.md): same physical
+# durations; sample counts scaled by 12 relative to the hourly grid.
+TIMESTEP_SEC_5MIN = 300
+SAMPLES_PER_HOUR_5MIN = 12
+REF_MIN_SAMPLES_5MIN = REF_MIN_SAMPLES * SAMPLES_PER_HOUR_5MIN  # 144
+MIN_SCALE_SAMPLES_5MIN = 24 * SAMPLES_PER_HOUR_5MIN  # 288
+RECOVER_STEPS_5MIN = RECOVER_STEPS * SAMPLES_PER_HOUR_5MIN  # 12 ≈ 1 h
+CAUSAL_FILL_MAX_AGE_STEPS_5MIN = 2  # ≤10 min past-only ffill
+
 TAU_GRID = (1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0)
 GATE_RECALL = 2.0 / 3.0
 GATE_UNMATCHED_PER_WEEK = 3.0

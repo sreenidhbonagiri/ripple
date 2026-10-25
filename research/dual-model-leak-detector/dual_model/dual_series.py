@@ -130,3 +130,111 @@ def build_dual_qv_hourly(
         "chunks": chunk_notes,
     }
     return qv, flows, levels, meta
+
+
+def build_dual_qv_5min(
+    start: str,
+    end: str,
+    *,
+    frozen_path: Path,
+    scratch: Path,
+    chunk_days: int = 3,
+    pump_boundary: str = "measured_pump1",
+    scada_year: int = 2018,
+    causal_fill_max_age_steps: int = 2,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, dict]:
+    """Native 5-minute dual q_v under frozen calibration (no hourly subsample).
+
+    Uses ``timestep_sec=300``, causal pressure/pump/AMR fills, and clears q_v
+    where required boundaries are stale. See METHOD_M_5MIN_PROTOCOL.md.
+    """
+    from .detection_protocol import TIMESTEP_SEC_5MIN
+
+    dm, roughness, tcv = load_frozen(frozen_path)
+    wn = load_nominal_wn()
+    clusters = build_roughness_clusters(wn)
+
+    if scada_year == 2018:
+        P = load_pressures_2018()
+        F = load_flows_2018()
+        L = load_levels_2018()
+        A = load_amr_demands_2018()
+    elif scada_year == 2019:
+        P = load_pressures_2019()
+        F = load_flows_2019()
+        L = load_levels_2019()
+        A = load_amr_demands_2019()
+    else:
+        raise ValueError(f"Unsupported scada_year={scada_year}")
+
+    start_ts = pd.Timestamp(start)
+    end_ts = pd.Timestamp(end)
+    chunks = []
+    chunk_notes: list[dict] = []
+    n_fail = 0
+    n_qv_cleared = 0
+    cur = start_ts
+    while cur <= end_ts:
+        chunk_end = min(cur + pd.Timedelta(days=chunk_days) - pd.Timedelta(minutes=5), end_ts)
+        Pc = P.loc[cur:chunk_end]
+        if len(Pc) < 2:
+            cur = chunk_end + pd.Timedelta(minutes=5)
+            continue
+        Fc = F.loc[cur:chunk_end]
+        Lc = L.loc[cur:chunk_end]
+        Ac = A.loc[cur:chunk_end]
+        idx = Pc.index.intersection(Fc.index).intersection(Lc.index).intersection(Ac.index)
+        Pc, Fc, Lc, Ac = Pc.loc[idx], Fc.loc[idx], Lc.loc[idx], Ac.loc[idx]
+        if len(idx) < 2:
+            cur = chunk_end + pd.Timedelta(minutes=5)
+            continue
+        dual = run_dual_window(
+            wn,
+            Pc.index,
+            Pc,
+            demand_model=dm,
+            amr_lh=Ac,
+            levels_m=Lc["T1"],
+            scratch=scratch,
+            roughness=roughness,
+            clusters=clusters,
+            tcv_setting=tcv,
+            timestep_sec=TIMESTEP_SEC_5MIN,
+            pump_boundary=pump_boundary,
+            pump_flow_m3h=Fc["PUMP_1"] if pump_boundary == "measured_pump1" else None,
+            pressure_fill="causal_ffill",
+            causal_fill_max_age_steps=causal_fill_max_age_steps,
+            demand_fill="causal_ffill",
+        )
+        note = {"chunk_start": str(cur), "chunk_end": str(chunk_end), **dual.notes}
+        chunk_notes.append(note)
+        if not dual.notes.get("converged", True):
+            n_fail += 1
+        n_qv_cleared += int(dual.notes.get("n_qv_cleared_stale", 0) or 0)
+        qvh = dual.q_v_m3h
+        qvh.index = Pc.index[: len(qvh)]
+        chunks.append(qvh)
+        cur = chunk_end + pd.Timedelta(minutes=5)
+
+    if not chunks:
+        raise RuntimeError("build_dual_qv_5min produced no chunks")
+    qv = pd.concat(chunks).sort_index()
+    qv = qv[~qv.index.duplicated(keep="first")]
+    flows = F.loc[start_ts:end_ts].reindex(qv.index)
+    levels = L.loc[start_ts:end_ts]["T1"].reindex(qv.index)
+    step = qv.index.to_series().diff().median()
+    meta = {
+        "pump_boundary": pump_boundary,
+        "scada_year": scada_year,
+        "timestep_sec": TIMESTEP_SEC_5MIN,
+        "pressure_fill": "causal_ffill",
+        "demand_fill": "causal_ffill",
+        "causal_fill_max_age_steps": causal_fill_max_age_steps,
+        "n_chunks": len(chunk_notes),
+        "n_solver_failures": n_fail,
+        "n_qv_cleared_stale_total": n_qv_cleared,
+        "median_index_step": str(step),
+        "n_timestamps": int(len(qv)),
+        "chunks": chunk_notes,
+    }
+    return qv, flows, levels, meta

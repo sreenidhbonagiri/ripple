@@ -70,11 +70,13 @@ def score_M_maxabs_local_change(
     sigma_m3h: pd.Series,
     raw_max_median: float,
     eps_sigma: float = EPS_SIGMA,
+    ref_min_samples: int = REF_MIN_SAMPLES,
 ) -> pd.Series:
     """Network max |δ_i/σ_i| with training σ_i and empirical max calibration.
 
     Not equivalent to Method B (L2 / mean rolling σ). See METHOD_M_PROTOCOL.md.
     ``sigma_m3h`` indexed by sensor; ``raw_max_median`` = median SCALE raw max.
+    ``ref_min_samples``: use ``REF_MIN_SAMPLES_5MIN`` (144) on the 5-minute grid.
     """
     cols = [c for c in qv_m3h.columns if c in sigma_m3h.index and np.isfinite(sigma_m3h[c])]
     out = pd.Series(np.nan, index=qv_m3h.index, dtype=float)
@@ -84,13 +86,13 @@ def score_M_maxabs_local_change(
     cal = float(raw_max_median) if np.isfinite(raw_max_median) and raw_max_median > 1e-6 else 1.0
     for t in qv_m3h.index:
         ref_idx = _ref_slice(qv_m3h.index, t)
-        if len(ref_idx) < REF_MIN_SAMPLES:
+        if len(ref_idx) < ref_min_samples:
             continue
         row = qv_m3h.loc[t, cols].astype(float)
         ref = qv_m3h.loc[ref_idx, cols].astype(float)
         # eligible: finite recent + enough finite ref samples
         n_ref = ref.notna().sum(axis=0)
-        ok = row.notna() & (n_ref >= REF_MIN_SAMPLES)
+        ok = row.notna() & (n_ref >= ref_min_samples)
         if not bool(ok.any()):
             continue
         mu = ref.loc[:, ok.index[ok]].mean(axis=0)
@@ -109,6 +111,7 @@ def estimate_method_m_scales(
     *,
     min_scale_samples: int = 24,
     eps_sigma: float = EPS_SIGMA,
+    ref_min_samples: int = REF_MIN_SAMPLES,
 ) -> tuple[pd.Series, float, dict]:
     """Training-only σ_i from causal δ_i on SCALE hours; median raw max for calibration."""
     cols = list(qv_m3h.columns)
@@ -116,12 +119,12 @@ def estimate_method_m_scales(
     deltas = pd.DataFrame(np.nan, index=qv_m3h.index, columns=cols, dtype=float)
     for t in qv_m3h.index:
         ref_idx = _ref_slice(qv_m3h.index, t)
-        if len(ref_idx) < REF_MIN_SAMPLES:
+        if len(ref_idx) < ref_min_samples:
             continue
         row = qv_m3h.loc[t, cols].astype(float)
         ref = qv_m3h.loc[ref_idx, cols].astype(float)
         n_ref = ref.notna().sum(axis=0)
-        ok = row.notna() & (n_ref >= REF_MIN_SAMPLES)
+        ok = row.notna() & (n_ref >= ref_min_samples)
         if not bool(ok.any()):
             continue
         mu = ref.loc[:, ok.index[ok]].mean(axis=0)
@@ -159,6 +162,8 @@ def estimate_method_m_scales(
         "raw_max_median": med,
         "raw_max_p90": float(np.quantile(raw_max, 0.9)) if raw_max else None,
         "n_raw_max": len(raw_max),
+        "ref_min_samples": int(ref_min_samples),
+        "min_scale_samples": int(min_scale_samples),
     }
     return sigma, med, meta
 

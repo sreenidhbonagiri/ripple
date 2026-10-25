@@ -79,12 +79,16 @@ def evaluate_scores(
     tank_area_m2: float | None = None,
     rng: np.random.Generator | None = None,
     n_nulls: int = N_TIMING_NULLS,
+    recover_steps: int | None = None,
 ) -> dict[str, Any]:
+    from .detection_protocol import RECOVER_STEPS
+
     start, end = period_bounds(period)
     s = scores.loc[(scores.index >= start) & (scores.index <= end)].astype(float)
     index = s.index
     events = eligible_events(period, index)
-    episodes = episodes_from_scores(s.to_numpy(), tau=tau)
+    rec = RECOVER_STEPS if recover_steps is None else int(recover_steps)
+    episodes = episodes_from_scores(s.to_numpy(), tau=tau, recover_steps=rec)
 
     # Map episode notify times
     notify_times = [index[ep.notify_idx] for ep in episodes if 0 <= ep.notify_idx < len(index)]
@@ -154,11 +158,13 @@ def evaluate_scores(
         period=period,
         rng=rng or np.random.default_rng(0),
         n_nulls=n_nulls,
+        recover_steps=rec,
     )
 
     return {
         "period": period,
         "tau": tau,
+        "recover_steps": rec,
         "n_eligible_abrupt": n_ev,
         "n_hit": n_hit,
         "abrupt_6h_recall": recall,
@@ -183,8 +189,11 @@ def timing_nulls(
     period: str,
     rng: np.random.Generator,
     n_nulls: int,
+    recover_steps: int | None = None,
 ) -> dict[str, Any]:
     """Density-matched (hour-of-day) timing nulls for abrupt 6h recall."""
+    from .detection_protocol import RECOVER_STEPS
+
     if not events:
         return {"n_nulls": 0, "null_recall_mean": None, "true_percentile": None}
     start, end = period_bounds(period)
@@ -198,9 +207,10 @@ def timing_nulls(
     hod = np.array([t.hour for t in true_onsets], dtype=int)
     # Candidate pools by hour-of-day
     pools = {h: eligible_hours[eligible_hours.hour == h] for h in range(24)}
+    rec = RECOVER_STEPS if recover_steps is None else int(recover_steps)
 
     def recall_for_onsets(onsets: list[pd.Timestamp]) -> float:
-        episodes = episodes_from_scores(scores.to_numpy(), tau=tau)
+        episodes = episodes_from_scores(scores.to_numpy(), tau=tau, recover_steps=rec)
         notify_times = [
             index[ep.notify_idx] for ep in episodes if 0 <= ep.notify_idx < len(index)
         ]

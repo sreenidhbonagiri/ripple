@@ -291,6 +291,8 @@ def apply_demand_model(
     amr_lh: pd.DataFrame | None,
     *,
     pattern_prefix: str = "CAL",
+    fill_mode: str = "legacy",
+    causal_fill_max_age_steps: int = 2,
 ) -> None:
     """Write calibrated demands into ``wn`` for an EPS over ``timestamps``.
 
@@ -298,13 +300,33 @@ def apply_demand_model(
       - ``{prefix}_RES``, ``{prefix}_COM``: length n, values = T(t)*S(t)
       - ``{prefix}_AMR_{node}``: measured AMR m³/s for Area-C metered nodes
     Base demands carry physical scales (m³/s for AMR patterns with base=1).
+
+    ``fill_mode``:
+      - ``legacy``: interpolate + bfill/ffill (hourly Method M path).
+      - ``causal_ffill``: past-only bounded ffill; no future observations.
+        Leading gaps before any observation use T=1 / AMR=0 (non-sensor
+        demand assist); pressure/pump staleness gates dual availability.
     """
+    from .causal_fill import causal_ffill_frame, causal_ffill_series
+
+    if fill_mode not in ("legacy", "causal_ffill"):
+        raise ValueError(f"Unknown fill_mode={fill_mode!r}")
+
     n = len(timestamps)
     ac = area_c_junctions(wn)
     amr_set = set(load_amr_nodes())
 
     if amr_lh is not None:
-        tot = amr_lh.sum(axis=1).reindex(timestamps).interpolate(limit=12).bfill().ffill()
+        if fill_mode == "causal_ffill":
+            tot_raw = amr_lh.sum(axis=1)
+            tot_fill = causal_ffill_series(
+                tot_raw.astype(float),
+                index=timestamps,
+                max_age_steps=causal_fill_max_age_steps,
+            )
+            tot = tot_fill.values.iloc[:, 0].ffill().fillna(float(model.T_weekly_mean_amr_lh))
+        else:
+            tot = amr_lh.sum(axis=1).reindex(timestamps).interpolate(limit=12).bfill().ffill()
         T = (tot / model.T_weekly_mean_amr_lh).clip(0.5, 1.5).fillna(1.0)
     else:
         T = pd.Series(1.0, index=timestamps)
@@ -322,7 +344,15 @@ def apply_demand_model(
 
     amr_m3s = None
     if amr_lh is not None:
-        amr_m3s = lh_to_m3s(amr_lh.reindex(timestamps).interpolate(limit=3).bfill().ffill())
+        if fill_mode == "causal_ffill":
+            amr_fill = causal_ffill_frame(
+                amr_lh.astype(float),
+                index=timestamps,
+                max_age_steps=causal_fill_max_age_steps,
+            )
+            amr_m3s = lh_to_m3s(amr_fill.values.ffill().fillna(0.0))
+        else:
+            amr_m3s = lh_to_m3s(amr_lh.reindex(timestamps).interpolate(limit=3).bfill().ffill())
 
     for jname in list(wn.junction_name_list):
         node = wn.get_node(jname)
