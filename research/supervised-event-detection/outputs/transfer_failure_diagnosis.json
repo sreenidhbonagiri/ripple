@@ -1,0 +1,1474 @@
+{
+  "generated_at": "2026-10-24T22:37:37-04:00",
+  "preserves_frozen_pilot": true,
+  "feature_set": "pressure_context_v1",
+  "frozen_selected": {
+    "C": 0.01,
+    "tau": 0.3
+  },
+  "catalog": [
+    {
+      "name": "P_median",
+      "kind": "absolute_level",
+      "unit": "m",
+      "temporal_window": "instant t",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "network-wide percentile/extremum of 33 junction pressures"
+    },
+    {
+      "name": "P_p10",
+      "kind": "absolute_level",
+      "unit": "m",
+      "temporal_window": "instant t",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "network-wide percentile/extremum of 33 junction pressures"
+    },
+    {
+      "name": "P_p90",
+      "kind": "absolute_level",
+      "unit": "m",
+      "temporal_window": "instant t",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "network-wide percentile/extremum of 33 junction pressures"
+    },
+    {
+      "name": "P_max",
+      "kind": "absolute_level",
+      "unit": "m",
+      "temporal_window": "instant t",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "network-wide percentile/extremum of 33 junction pressures"
+    },
+    {
+      "name": "P_min",
+      "kind": "absolute_level",
+      "unit": "m",
+      "temporal_window": "instant t",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "network-wide percentile/extremum of 33 junction pressures"
+    },
+    {
+      "name": "P_spread_p90_p10",
+      "kind": "spread",
+      "unit": "m",
+      "temporal_window": "instant t",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "P_p90 - P_p10 at t"
+    },
+    {
+      "name": "Pd_d1_median",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-1 steps) = 0.0833333 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "median across sensors"
+    },
+    {
+      "name": "Pd_d1_p10",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-1 steps) = 0.0833333 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "10th pct of deltas"
+    },
+    {
+      "name": "Pd_d1_p90",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-1 steps) = 0.0833333 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "90th pct of deltas"
+    },
+    {
+      "name": "Pd_d1_min",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-1 steps) = 0.0833333 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "most negative delta (largest drop)"
+    },
+    {
+      "name": "Pd_d1_max_abs",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-1 steps) = 0.0833333 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "max |delta|"
+    },
+    {
+      "name": "Pd_d1_topneg1",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-1 steps) = 0.0833333 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "1-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "Pd_d1_topneg2",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-1 steps) = 0.0833333 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "2-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "Pd_d1_topneg3",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-1 steps) = 0.0833333 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "3-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "Pd_d1_topneg4",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-1 steps) = 0.0833333 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "4-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "Pd_d1_topneg5",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-1 steps) = 0.0833333 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "5-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "Pd_d6_median",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-6 steps) = 0.5 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "median across sensors"
+    },
+    {
+      "name": "Pd_d6_p10",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-6 steps) = 0.5 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "10th pct of deltas"
+    },
+    {
+      "name": "Pd_d6_p90",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-6 steps) = 0.5 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "90th pct of deltas"
+    },
+    {
+      "name": "Pd_d6_min",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-6 steps) = 0.5 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "most negative delta (largest drop)"
+    },
+    {
+      "name": "Pd_d6_max_abs",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-6 steps) = 0.5 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "max |delta|"
+    },
+    {
+      "name": "Pd_d6_topneg1",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-6 steps) = 0.5 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "1-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "Pd_d6_topneg2",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-6 steps) = 0.5 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "2-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "Pd_d6_topneg3",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-6 steps) = 0.5 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "3-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "Pd_d6_topneg4",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-6 steps) = 0.5 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "4-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "Pd_d6_topneg5",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-6 steps) = 0.5 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "5-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "Pd_d24_median",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-24 steps) = 2 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "median across sensors"
+    },
+    {
+      "name": "Pd_d24_p10",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-24 steps) = 2 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "10th pct of deltas"
+    },
+    {
+      "name": "Pd_d24_p90",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-24 steps) = 2 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "90th pct of deltas"
+    },
+    {
+      "name": "Pd_d24_min",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-24 steps) = 2 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "most negative delta (largest drop)"
+    },
+    {
+      "name": "Pd_d24_max_abs",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-24 steps) = 2 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "max |delta|"
+    },
+    {
+      "name": "Pd_d24_topneg1",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-24 steps) = 2 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "1-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "Pd_d24_topneg2",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-24 steps) = 2 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "2-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "Pd_d24_topneg3",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-24 steps) = 2 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "3-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "Pd_d24_topneg4",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-24 steps) = 2 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "4-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "Pd_d24_topneg5",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "P(t)-P(t-24 steps) = 2 h causal delta per sensor, then aggregate",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "5-th most negative sensor delta (value only; no sensor id)"
+    },
+    {
+      "name": "F_p227",
+      "kind": "absolute_level",
+      "unit": "m3/h",
+      "temporal_window": "instant t",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "SCADA-aligned link flow (signed\u2192nonneg in both domains here)"
+    },
+    {
+      "name": "Fd_p227_d1",
+      "kind": "change",
+      "unit": "m3/h",
+      "temporal_window": "F(t)-F(t-1) over 0.0833333 h",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "causal flow change"
+    },
+    {
+      "name": "Fd_p227_d6",
+      "kind": "change",
+      "unit": "m3/h",
+      "temporal_window": "F(t)-F(t-6) over 0.5 h",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "causal flow change"
+    },
+    {
+      "name": "Fd_p227_d24",
+      "kind": "change",
+      "unit": "m3/h",
+      "temporal_window": "F(t)-F(t-24) over 2 h",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "causal flow change"
+    },
+    {
+      "name": "F_p235",
+      "kind": "absolute_level",
+      "unit": "m3/h",
+      "temporal_window": "instant t",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "SCADA-aligned link flow (signed\u2192nonneg in both domains here)"
+    },
+    {
+      "name": "Fd_p235_d1",
+      "kind": "change",
+      "unit": "m3/h",
+      "temporal_window": "F(t)-F(t-1) over 0.0833333 h",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "causal flow change"
+    },
+    {
+      "name": "Fd_p235_d6",
+      "kind": "change",
+      "unit": "m3/h",
+      "temporal_window": "F(t)-F(t-6) over 0.5 h",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "causal flow change"
+    },
+    {
+      "name": "Fd_p235_d24",
+      "kind": "change",
+      "unit": "m3/h",
+      "temporal_window": "F(t)-F(t-24) over 2 h",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "causal flow change"
+    },
+    {
+      "name": "F_PUMP_1",
+      "kind": "absolute_level",
+      "unit": "m3/h",
+      "temporal_window": "instant t",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "SCADA-aligned link flow (signed\u2192nonneg in both domains here)"
+    },
+    {
+      "name": "Fd_PUMP_1_d1",
+      "kind": "change",
+      "unit": "m3/h",
+      "temporal_window": "F(t)-F(t-1) over 0.0833333 h",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "causal flow change"
+    },
+    {
+      "name": "Fd_PUMP_1_d6",
+      "kind": "change",
+      "unit": "m3/h",
+      "temporal_window": "F(t)-F(t-6) over 0.5 h",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "causal flow change"
+    },
+    {
+      "name": "Fd_PUMP_1_d24",
+      "kind": "change",
+      "unit": "m3/h",
+      "temporal_window": "F(t)-F(t-24) over 2 h",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "causal flow change"
+    },
+    {
+      "name": "pump1_on",
+      "kind": "binary",
+      "unit": "{0,1}",
+      "temporal_window": "instant t",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "1{F_PUMP_1 > 1 m3/h}"
+    },
+    {
+      "name": "L_T1",
+      "kind": "absolute_level",
+      "unit": "m",
+      "temporal_window": "instant t",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "tank water level (SCADA level; sim=head\u2212elevation)"
+    },
+    {
+      "name": "Ld_T1_d1",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "L(t)-L(t-1) over 0.0833333 h",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "causal tank-level change"
+    },
+    {
+      "name": "Ld_T1_d6",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "L(t)-L(t-6) over 0.5 h",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "causal tank-level change"
+    },
+    {
+      "name": "Ld_T1_d24",
+      "kind": "change",
+      "unit": "m",
+      "temporal_window": "L(t)-L(t-24) over 2 h",
+      "missingness": "NaN until lag available (causal); rows with any NaN dropped at train",
+      "notes": "causal tank-level change"
+    }
+  ],
+  "scaling": {
+    "method": "StandardScaler fit on synthetic train rows only (mean/var)",
+    "applied_at_inference": "(x - mean) / scale  then  logit = z\u00b7coef + intercept;  q=sigmoid(logit)",
+    "per_feature": [
+      {
+        "name": "P_median",
+        "train_mean": 47.3718265675207,
+        "train_scale": 0.3101791305164255,
+        "coef_standardized": 0.4140700263927188,
+        "coef_per_raw_unit": 1.3349383812615716
+      },
+      {
+        "name": "P_p10",
+        "train_mean": 36.560227468907854,
+        "train_scale": 0.4417494558538388,
+        "coef_standardized": 0.07789771630429264,
+        "coef_per_raw_unit": 0.17633913357907244
+      },
+      {
+        "name": "P_p90",
+        "train_mean": 54.7141239177606,
+        "train_scale": 0.3073277515833097,
+        "coef_standardized": 0.279250157581479,
+        "coef_per_raw_unit": 0.9086395749906122
+      },
+      {
+        "name": "P_max",
+        "train_mean": 56.311876330169746,
+        "train_scale": 0.2895250990415764,
+        "coef_standardized": 0.25821346773069903,
+        "coef_per_raw_unit": 0.8918517551171583
+      },
+      {
+        "name": "P_min",
+        "train_mean": 28.320793658426123,
+        "train_scale": 0.46275063785723525,
+        "coef_standardized": -0.3012993749238971,
+        "coef_per_raw_unit": -0.6511052611814053
+      },
+      {
+        "name": "P_spread_p90_p10",
+        "train_mean": 18.153896448853146,
+        "train_scale": 0.24860860717685246,
+        "coef_standardized": 0.20679110772925757,
+        "coef_per_raw_unit": 0.8317938388277635
+      },
+      {
+        "name": "Pd_d1_median",
+        "train_mean": 0.0005277092657543746,
+        "train_scale": 0.025673239496852972,
+        "coef_standardized": -0.0852024483565781,
+        "coef_per_raw_unit": -3.3187260363859505
+      },
+      {
+        "name": "Pd_d1_p10",
+        "train_mean": -0.009430703540916126,
+        "train_scale": 0.09867447034823286,
+        "coef_standardized": 0.01083275987707044,
+        "coef_per_raw_unit": 0.10978280236864166
+      },
+      {
+        "name": "Pd_d1_p90",
+        "train_mean": 0.010923119529705871,
+        "train_scale": 0.09191397814137484,
+        "coef_standardized": -0.059979000258719176,
+        "coef_per_raw_unit": -0.6525558078496418
+      },
+      {
+        "name": "Pd_d1_min",
+        "train_mean": -0.04234172965985234,
+        "train_scale": 0.33930345687814695,
+        "coef_standardized": 0.03172338013386315,
+        "coef_per_raw_unit": 0.09349559956076686
+      },
+      {
+        "name": "Pd_d1_max_abs",
+        "train_mean": 0.057184799158105384,
+        "train_scale": 0.3973342255141626,
+        "coef_standardized": -0.04477314559782865,
+        "coef_per_raw_unit": -0.11268383824698422
+      },
+      {
+        "name": "Pd_d1_topneg1",
+        "train_mean": -0.04234172965985234,
+        "train_scale": 0.33930345687814695,
+        "coef_standardized": 0.03172338013386315,
+        "coef_per_raw_unit": 0.09349559956076686
+      },
+      {
+        "name": "Pd_d1_topneg2",
+        "train_mean": -0.028502101948928816,
+        "train_scale": 0.223398913640298,
+        "coef_standardized": 0.024799425999991218,
+        "coef_per_raw_unit": 0.11100960875719205
+      },
+      {
+        "name": "Pd_d1_topneg3",
+        "train_mean": -0.019626768789699964,
+        "train_scale": 0.14890401915593332,
+        "coef_standardized": 0.014316787540146644,
+        "coef_per_raw_unit": 0.09614775760454125
+      },
+      {
+        "name": "Pd_d1_topneg4",
+        "train_mean": -0.010379088631222878,
+        "train_scale": 0.10957917367469269,
+        "coef_standardized": 0.010805494518688168,
+        "coef_per_raw_unit": 0.0986090162603927
+      },
+      {
+        "name": "Pd_d1_topneg5",
+        "train_mean": -0.005637163179689146,
+        "train_scale": 0.0668778012798546,
+        "coef_standardized": 0.009096524747200262,
+        "coef_per_raw_unit": 0.13601710243336573
+      },
+      {
+        "name": "Pd_d6_median",
+        "train_mean": 0.0028735502498552423,
+        "train_scale": 0.08324646553795366,
+        "coef_standardized": -0.14355486938304482,
+        "coef_per_raw_unit": -1.7244560289180735
+      },
+      {
+        "name": "Pd_d6_p10",
+        "train_mean": -0.028052960791416785,
+        "train_scale": 0.14547981557267586,
+        "coef_standardized": 0.019221545142716897,
+        "coef_per_raw_unit": 0.1321251684781975
+      },
+      {
+        "name": "Pd_d6_p90",
+        "train_mean": 0.03359477163544393,
+        "train_scale": 0.09681216363134593,
+        "coef_standardized": -0.2338776842250788,
+        "coef_per_raw_unit": -2.415788217642454
+      },
+      {
+        "name": "Pd_d6_min",
+        "train_mean": -0.09840869633711324,
+        "train_scale": 0.362321142637637,
+        "coef_standardized": 0.04874524198113776,
+        "coef_per_raw_unit": 0.13453601306918112
+      },
+      {
+        "name": "Pd_d6_max_abs",
+        "train_mean": 0.15027770012260985,
+        "train_scale": 0.41112624142525334,
+        "coef_standardized": -0.1093664339430308,
+        "coef_per_raw_unit": -0.2660166706067938
+      },
+      {
+        "name": "Pd_d6_topneg1",
+        "train_mean": -0.09840869633711324,
+        "train_scale": 0.362321142637637,
+        "coef_standardized": 0.04874524198113776,
+        "coef_per_raw_unit": 0.13453601306918112
+      },
+      {
+        "name": "Pd_d6_topneg2",
+        "train_mean": -0.07208743778940122,
+        "train_scale": 0.24173772639813296,
+        "coef_standardized": 0.02227337471008166,
+        "coef_per_raw_unit": 0.09213859599803734
+      },
+      {
+        "name": "Pd_d6_topneg3",
+        "train_mean": -0.06192471546094066,
+        "train_scale": 0.1892317906868481,
+        "coef_standardized": 0.011136204728055871,
+        "coef_per_raw_unit": 0.05884954471780441
+      },
+      {
+        "name": "Pd_d6_topneg4",
+        "train_mean": -0.029671158591963346,
+        "train_scale": 0.15205133033395113,
+        "coef_standardized": 0.01931397448802032,
+        "coef_per_raw_unit": 0.12702272611229995
+      },
+      {
+        "name": "Pd_d6_topneg5",
+        "train_mean": -0.021580169589230418,
+        "train_scale": 0.12709501010246974,
+        "coef_standardized": 0.017584263539239472,
+        "coef_per_raw_unit": 0.13835526292544645
+      },
+      {
+        "name": "Pd_d24_median",
+        "train_mean": 0.0068301995778468905,
+        "train_scale": 0.23924061117374432,
+        "coef_standardized": 0.044976375451262506,
+        "coef_per_raw_unit": 0.1879964075940234
+      },
+      {
+        "name": "Pd_d24_p10",
+        "train_mean": -0.08918489712709442,
+        "train_scale": 0.2941625860167745,
+        "coef_standardized": 0.10879897278708632,
+        "coef_per_raw_unit": 0.3698599956585985
+      },
+      {
+        "name": "Pd_d24_p90",
+        "train_mean": 0.09759592870417888,
+        "train_scale": 0.21172369880139008,
+        "coef_standardized": 0.07192112647352246,
+        "coef_per_raw_unit": 0.3396933214405484
+      },
+      {
+        "name": "Pd_d24_min",
+        "train_mean": -0.28385499406863934,
+        "train_scale": 0.4261942312179518,
+        "coef_standardized": 0.027958969693644607,
+        "coef_per_raw_unit": 0.06560147380161663
+      },
+      {
+        "name": "Pd_d24_max_abs",
+        "train_mean": 0.4301786088462272,
+        "train_scale": 0.4151037651374205,
+        "coef_standardized": -0.10450593189836854,
+        "coef_per_raw_unit": -0.25175857382014294
+      },
+      {
+        "name": "Pd_d24_topneg1",
+        "train_mean": -0.28385499406863934,
+        "train_scale": 0.4261942312179518,
+        "coef_standardized": 0.027958969693644607,
+        "coef_per_raw_unit": 0.06560147380161663
+      },
+      {
+        "name": "Pd_d24_topneg2",
+        "train_mean": -0.22653338931788694,
+        "train_scale": 0.3542571034379168,
+        "coef_standardized": -0.0033921902279925665,
+        "coef_per_raw_unit": -0.009575503765691024
+      },
+      {
+        "name": "Pd_d24_topneg3",
+        "train_mean": -0.2075855538162627,
+        "train_scale": 0.32690463172377565,
+        "coef_standardized": -0.03238178431244234,
+        "coef_per_raw_unit": -0.09905575256518222
+      },
+      {
+        "name": "Pd_d24_topneg4",
+        "train_mean": -0.09281271644852143,
+        "train_scale": 0.2962288587824475,
+        "coef_standardized": 0.10887646508914658,
+        "coef_per_raw_unit": 0.36754172276343344
+      },
+      {
+        "name": "Pd_d24_topneg5",
+        "train_mean": -0.07467361984138665,
+        "train_scale": 0.28985270804520497,
+        "coef_standardized": 0.10699755802781977,
+        "coef_per_raw_unit": 0.36914458639845654
+      },
+      {
+        "name": "F_p227",
+        "train_mean": 92.16158178502175,
+        "train_scale": 24.33195166169558,
+        "coef_standardized": -0.013425696945820438,
+        "coef_per_raw_unit": -0.0005517723005736427
+      },
+      {
+        "name": "Fd_p227_d1",
+        "train_mean": -0.03604259331787481,
+        "train_scale": 1.9503401980157784,
+        "coef_standardized": -0.035886549856456985,
+        "coef_per_raw_unit": -0.018400148801202457
+      },
+      {
+        "name": "Fd_p227_d6",
+        "train_mean": -0.17633178395907617,
+        "train_scale": 6.667130173093115,
+        "coef_standardized": -0.06201455462780549,
+        "coef_per_raw_unit": -0.009301536495879571
+      },
+      {
+        "name": "Fd_p227_d24",
+        "train_mean": -0.248744793638271,
+        "train_scale": 19.336598162782572,
+        "coef_standardized": -0.10137542700630282,
+        "coef_per_raw_unit": -0.005242671236837386
+      },
+      {
+        "name": "F_p235",
+        "train_mean": 98.35959912760528,
+        "train_scale": 25.297107111135904,
+        "coef_standardized": -0.02389083409466654,
+        "coef_per_raw_unit": -0.0009444097299232166
+      },
+      {
+        "name": "Fd_p235_d1",
+        "train_mean": -0.03170546331176381,
+        "train_scale": 2.144361024692998,
+        "coef_standardized": -0.03500394372991189,
+        "coef_per_raw_unit": -0.016323717567531943
+      },
+      {
+        "name": "Fd_p235_d6",
+        "train_mean": -0.1494241255422913,
+        "train_scale": 7.050761632719784,
+        "coef_standardized": -0.06150106826458884,
+        "coef_per_raw_unit": -0.00872261345202578
+      },
+      {
+        "name": "Fd_p235_d24",
+        "train_mean": -0.13825745110048257,
+        "train_scale": 19.978819068084803,
+        "coef_standardized": -0.09436504042932349,
+        "coef_per_raw_unit": -0.0047232541677134
+      },
+      {
+        "name": "F_PUMP_1",
+        "train_mean": 21.09987726237577,
+        "train_scale": 22.037737974525733,
+        "coef_standardized": 0.14109600161409427,
+        "coef_per_raw_unit": 0.006402472058484068
+      },
+      {
+        "name": "Fd_PUMP_1_d1",
+        "train_mean": 0.10195641711732807,
+        "train_scale": 3.6731847473170576,
+        "coef_standardized": 0.06218396017820557,
+        "coef_per_raw_unit": 0.016929167590501826
+      },
+      {
+        "name": "Fd_PUMP_1_d6",
+        "train_mean": 0.6116612054722014,
+        "train_scale": 8.979859416336195,
+        "coef_standardized": 0.15458153967200358,
+        "coef_per_raw_unit": 0.017214249411387026
+      },
+      {
+        "name": "Fd_PUMP_1_d24",
+        "train_mean": 2.445652604465997,
+        "train_scale": 17.83208520322523,
+        "coef_standardized": 0.42768830025967186,
+        "coef_per_raw_unit": 0.02398420013057796
+      },
+      {
+        "name": "pump1_on",
+        "train_mean": 0.4782699979004829,
+        "train_scale": 0.4995275838317356,
+        "coef_standardized": 0.14103221129664037,
+        "coef_per_raw_unit": 0.2823311782200733
+      },
+      {
+        "name": "L_T1",
+        "train_mean": 2.993931980361314,
+        "train_scale": 0.4333266495263101,
+        "coef_standardized": -0.3663311300475857,
+        "coef_per_raw_unit": -0.8453925703578112
+      },
+      {
+        "name": "Ld_T1_d1",
+        "train_mean": -3.6282472292115e-05,
+        "train_scale": 0.010143197516326339,
+        "coef_standardized": 0.15428141244352891,
+        "coef_per_raw_unit": 15.210333052787334
+      },
+      {
+        "name": "Ld_T1_d6",
+        "train_mean": -0.000977895201291203,
+        "train_scale": 0.06025358526821019,
+        "coef_standardized": 0.10009657965106052,
+        "coef_per_raw_unit": 1.6612551635806394
+      },
+      {
+        "name": "Ld_T1_d24",
+        "train_mean": -0.014457939703775359,
+        "train_scale": 0.231817990173886,
+        "coef_standardized": 0.00046146685443739096,
+        "coef_per_raw_unit": 0.001990642978533487
+      }
+    ],
+    "intercept": -0.6448833368681749,
+    "note": "coef_standardized is the contribution per 1\u03c3 of the *synthetic training* feature. coef_per_raw_unit is \u2202logit/\u2202x in physical units."
+  },
+  "identity_checks": {
+    "pressure_unit": "m junction pressure in both; sensor lists identical (33)",
+    "pressure_averaging": "Network-wide nanmedian / percentiles over the same PRESSURE_SENSORS order; not a single-sensor or nearest-to-leak average",
+    "flow_unit_and_direction": "Both domains use m\u00b3/h for ['p227', 'p235', 'PUMP_1']. Synthetic: WNTR m\u00b3/s\u00d73600. Measured SCADA already m\u00b3/h. Empirical sign: no negative samples in either 2018 SCADA or pilot scenarios for these three links (direction encoding matches as non-negative magnitudes on these sensors)",
+    "tank_level": "Measured: SCADA Levels T1 in m. Synthetic: head(T1)\u2212elevation. Ranges overlap (~2\u20134 m)",
+    "timestamp_grid": "5-minute steps both; synthetic timestamps are scenario-relative seconds",
+    "feature_code_path": "Identical build_feature_matrix() for synthetic NPZ and measured arrays",
+    "bug_check_flow_conversion": "Present and consistent; not implicated as a unit bug",
+    "bug_check_sensor_mapping": "PRESSURE_SENSORS / FLOW_SENSORS / LEVEL_SENSORS shared schema"
+  },
+  "n_absolute": 9,
+  "n_change": 42,
+  "n_other": 2,
+  "coef_mass_absolute": 0.36434119818050587,
+  "coef_mass_change": 0.5680885036441417,
+  "top_coefs": [
+    {
+      "rank": 1,
+      "name": "Fd_PUMP_1_d24",
+      "coef_z": 0.42768830025967186,
+      "coef_per_raw_unit": 0.02398420013057796,
+      "train_mean": 2.445652604465997,
+      "train_scale": 17.83208520322523,
+      "kind": "change"
+    },
+    {
+      "rank": 2,
+      "name": "P_median",
+      "coef_z": 0.4140700263927188,
+      "coef_per_raw_unit": 1.3349383812615716,
+      "train_mean": 47.3718265675207,
+      "train_scale": 0.3101791305164255,
+      "kind": "absolute_level"
+    },
+    {
+      "rank": 3,
+      "name": "L_T1",
+      "coef_z": -0.3663311300475857,
+      "coef_per_raw_unit": -0.8453925703578112,
+      "train_mean": 2.993931980361314,
+      "train_scale": 0.4333266495263101,
+      "kind": "absolute_level"
+    },
+    {
+      "rank": 4,
+      "name": "P_min",
+      "coef_z": -0.3012993749238971,
+      "coef_per_raw_unit": -0.6511052611814053,
+      "train_mean": 28.320793658426123,
+      "train_scale": 0.46275063785723525,
+      "kind": "absolute_level"
+    },
+    {
+      "rank": 5,
+      "name": "P_p90",
+      "coef_z": 0.279250157581479,
+      "coef_per_raw_unit": 0.9086395749906122,
+      "train_mean": 54.7141239177606,
+      "train_scale": 0.3073277515833097,
+      "kind": "absolute_level"
+    },
+    {
+      "rank": 6,
+      "name": "P_max",
+      "coef_z": 0.25821346773069903,
+      "coef_per_raw_unit": 0.8918517551171583,
+      "train_mean": 56.311876330169746,
+      "train_scale": 0.2895250990415764,
+      "kind": "absolute_level"
+    },
+    {
+      "rank": 7,
+      "name": "Pd_d6_p90",
+      "coef_z": -0.2338776842250788,
+      "coef_per_raw_unit": -2.415788217642454,
+      "train_mean": 0.03359477163544393,
+      "train_scale": 0.09681216363134593,
+      "kind": "change"
+    },
+    {
+      "rank": 8,
+      "name": "P_spread_p90_p10",
+      "coef_z": 0.20679110772925757,
+      "coef_per_raw_unit": 0.8317938388277635,
+      "train_mean": 18.153896448853146,
+      "train_scale": 0.24860860717685246,
+      "kind": "spread"
+    },
+    {
+      "rank": 9,
+      "name": "Fd_PUMP_1_d6",
+      "coef_z": 0.15458153967200358,
+      "coef_per_raw_unit": 0.017214249411387026,
+      "train_mean": 0.6116612054722014,
+      "train_scale": 8.979859416336195,
+      "kind": "change"
+    },
+    {
+      "rank": 10,
+      "name": "Ld_T1_d1",
+      "coef_z": 0.15428141244352891,
+      "coef_per_raw_unit": 15.210333052787334,
+      "train_mean": -3.6282472292115e-05,
+      "train_scale": 0.010143197516326339,
+      "kind": "change"
+    },
+    {
+      "rank": 11,
+      "name": "Pd_d6_median",
+      "coef_z": -0.14355486938304482,
+      "coef_per_raw_unit": -1.7244560289180735,
+      "train_mean": 0.0028735502498552423,
+      "train_scale": 0.08324646553795366,
+      "kind": "change"
+    },
+    {
+      "rank": 12,
+      "name": "F_PUMP_1",
+      "coef_z": 0.14109600161409427,
+      "coef_per_raw_unit": 0.006402472058484068,
+      "train_mean": 21.09987726237577,
+      "train_scale": 22.037737974525733,
+      "kind": "absolute_level"
+    },
+    {
+      "rank": 13,
+      "name": "pump1_on",
+      "coef_z": 0.14103221129664037,
+      "coef_per_raw_unit": 0.2823311782200733,
+      "train_mean": 0.4782699979004829,
+      "train_scale": 0.4995275838317356,
+      "kind": "binary"
+    },
+    {
+      "rank": 14,
+      "name": "Pd_d6_max_abs",
+      "coef_z": -0.1093664339430308,
+      "coef_per_raw_unit": -0.2660166706067938,
+      "train_mean": 0.15027770012260985,
+      "train_scale": 0.41112624142525334,
+      "kind": "change"
+    },
+    {
+      "rank": 15,
+      "name": "Pd_d24_topneg4",
+      "coef_z": 0.10887646508914658,
+      "coef_per_raw_unit": 0.36754172276343344,
+      "train_mean": -0.09281271644852143,
+      "train_scale": 0.2962288587824475,
+      "kind": "change"
+    },
+    {
+      "rank": 16,
+      "name": "Pd_d24_p10",
+      "coef_z": 0.10879897278708632,
+      "coef_per_raw_unit": 0.3698599956585985,
+      "train_mean": -0.08918489712709442,
+      "train_scale": 0.2941625860167745,
+      "kind": "change"
+    },
+    {
+      "rank": 17,
+      "name": "Pd_d24_topneg5",
+      "coef_z": 0.10699755802781977,
+      "coef_per_raw_unit": 0.36914458639845654,
+      "train_mean": -0.07467361984138665,
+      "train_scale": 0.28985270804520497,
+      "kind": "change"
+    },
+    {
+      "rank": 18,
+      "name": "Pd_d24_max_abs",
+      "coef_z": -0.10450593189836854,
+      "coef_per_raw_unit": -0.25175857382014294,
+      "train_mean": 0.4301786088462272,
+      "train_scale": 0.4151037651374205,
+      "kind": "change"
+    },
+    {
+      "rank": 19,
+      "name": "Fd_p227_d24",
+      "coef_z": -0.10137542700630282,
+      "coef_per_raw_unit": -0.005242671236837386,
+      "train_mean": -0.248744793638271,
+      "train_scale": 19.336598162782572,
+      "kind": "change"
+    },
+    {
+      "rank": 20,
+      "name": "Ld_T1_d6",
+      "coef_z": 0.10009657965106052,
+      "coef_per_raw_unit": 1.6612551635806394,
+      "train_mean": -0.000977895201291203,
+      "train_scale": 0.06025358526821019,
+      "kind": "change"
+    }
+  ],
+  "train_label_means": [
+    {
+      "name": "P_median",
+      "mean_pos": 47.523274739583336,
+      "mean_neg": 47.36207973544158,
+      "delta": 0.16119500414175292
+    },
+    {
+      "name": "P_min",
+      "mean_pos": 28.354049020343357,
+      "mean_neg": 28.318653425078153,
+      "delta": 0.03539559526520364
+    },
+    {
+      "name": "L_T1",
+      "mean_pos": 2.9860176775190563,
+      "mean_neg": 2.994441325438089,
+      "delta": -0.008423647919032717
+    },
+    {
+      "name": "F_PUMP_1",
+      "mean_pos": 28.816190117504448,
+      "mean_neg": 20.60327433449263,
+      "delta": 8.212915783011816
+    },
+    {
+      "name": "pump1_on",
+      "mean_pos": 0.6527777777777778,
+      "mean_neg": 0.4670391061452514,
+      "delta": 0.1857386716325264
+    },
+    {
+      "name": "Fd_PUMP_1_d24",
+      "mean_pos": 4.146785463672131,
+      "mean_neg": 2.336171875203122,
+      "delta": 1.810613588469009
+    },
+    {
+      "name": "Pd_d6_min",
+      "mean_pos": -0.0483417444758945,
+      "mean_neg": -0.10163088228929901,
+      "delta": 0.053289137813404504
+    },
+    {
+      "name": "Pd_d24_min",
+      "mean_pos": -0.16306002934773764,
+      "mean_neg": -0.29162906107190634,
+      "delta": 0.1285690317241687
+    },
+    {
+      "name": "Pd_d6_topneg1",
+      "mean_pos": -0.0483417444758945,
+      "mean_neg": -0.10163088228929901,
+      "delta": 0.053289137813404504
+    },
+    {
+      "name": "Pd_d6_max_abs",
+      "mean_pos": 0.10976663562986586,
+      "mean_neg": 0.15288489265309266,
+      "delta": -0.0431182570232268
+    }
+  ],
+  "artifact_assessment": "Scenarios run as continuous 48 h trajectories with leaks starting after 12 h warm-up (not at t=0 restart). Feature warm-up drops the first 12 h so early hydraulic transient is not labeled. However, leak credit windows still co-occur with diurnal pump/tank schedules inside the short scenarios; absolute level and pump-state features can act as **scenario-position / operating-state cues** without requiring a physical leak signature. No evidence that a hard 'restart spike' alone drives labels.",
+  "ood_table": [
+    {
+      "name": "Fd_PUMP_1_d24",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.0,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "P_median",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.0,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "L_T1",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.0,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "P_min",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.0004330254041570439,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "P_p90",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.0,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "P_max",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.0004330254041570439,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "Pd_d6_p90",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.00447459584295612,
+      "meas_event": 0.0228310502283105,
+      "meas_ctrl": 0.004852686308492201
+    },
+    {
+      "name": "P_spread_p90_p10",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.0001443418013856813,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "Fd_PUMP_1_d6",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.0,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "Ld_T1_d1",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.0,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "Pd_d6_median",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.0,
+      "meas_event": 0.04337899543378995,
+      "meas_ctrl": 0.010051993067590987
+    },
+    {
+      "name": "F_PUMP_1",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.0,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "pump1_on",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.0,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "Pd_d6_min",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.012413394919168591,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "Pd_d24_min",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.01212471131639723,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "Pd_d6_topneg1",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.012413394919168591,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "Pd_d6_max_abs",
+      "syn_leak": 0.0,
+      "syn_ctrl": 0.015300230946882216,
+      "meas_event": 0.0,
+      "meas_ctrl": 0.0
+    }
+  ],
+  "mean_table": [
+    {
+      "name": "Fd_PUMP_1_d24",
+      "syn_leak": 0.9717029732807229,
+      "syn_ctrl": 2.4446072042371227,
+      "meas_event": -2.446666666666667,
+      "meas_ctrl": 0.0004471403812827589
+    },
+    {
+      "name": "P_median",
+      "syn_leak": 47.415209251421466,
+      "syn_ctrl": 47.296033694485644,
+      "meas_event": 47.00981727147211,
+      "meas_ctrl": 47.08963605725373
+    },
+    {
+      "name": "L_T1",
+      "syn_leak": 3.079442293555648,
+      "syn_ctrl": 2.993050445309963,
+      "meas_event": 3.1432648401826486,
+      "meas_ctrl": 3.1228492201039857
+    },
+    {
+      "name": "P_min",
+      "syn_leak": 28.4161547963266,
+      "syn_ctrl": 28.307312677235814,
+      "meas_event": 28.182100457143566,
+      "meas_ctrl": 28.1978509608753
+    },
+    {
+      "name": "P_p90",
+      "syn_leak": 54.754468207889126,
+      "syn_ctrl": 54.648222458372764,
+      "meas_event": 54.357068513844105,
+      "meas_ctrl": 54.45249568602035
+    },
+    {
+      "name": "P_max",
+      "syn_leak": 56.34646722784749,
+      "syn_ctrl": 56.25187370760403,
+      "meas_event": 55.97705480497177,
+      "meas_ctrl": 56.077175066334746
+    },
+    {
+      "name": "Pd_d6_p90",
+      "syn_leak": 0.03031997283299764,
+      "syn_ctrl": 0.03703981582076678,
+      "meas_event": 0.03389515898543406,
+      "meas_ctrl": 0.06676828420761347
+    },
+    {
+      "name": "P_spread_p90_p10",
+      "syn_leak": 18.101302640526384,
+      "syn_ctrl": 18.146452342646697,
+      "meas_event": 18.09065749982721,
+      "meas_ctrl": 18.11116329702182
+    },
+    {
+      "name": "Fd_PUMP_1_d6",
+      "syn_leak": 0.1792554142108808,
+      "syn_ctrl": 0.6114484622373351,
+      "meas_event": -0.6136757990867581,
+      "meas_ctrl": 5.892547660317682e-05
+    },
+    {
+      "name": "Ld_T1_d1",
+      "syn_leak": 0.0014259682761298285,
+      "syn_ctrl": 6.591805684924401e-05,
+      "meas_event": -0.003059360730593607,
+      "meas_ctrl": 0.0
+    },
+    {
+      "name": "Pd_d6_median",
+      "syn_leak": 0.003786397201043588,
+      "syn_ctrl": 0.0032911050048506697,
+      "meas_event": -0.047328718176715454,
+      "meas_ctrl": 0.0003119556288165484
+    },
+    {
+      "name": "F_PUMP_1",
+      "syn_leak": 23.672487604198977,
+      "syn_ctrl": 22.250562424633834,
+      "meas_event": 22.193287671232877,
+      "meas_ctrl": 26.446554592720968
+    },
+    {
+      "name": "pump1_on",
+      "syn_leak": 0.5364583333333334,
+      "syn_ctrl": 0.5046189376443418,
+      "meas_event": 0.5045662100456622,
+      "meas_ctrl": 0.6013864818024264
+    },
+    {
+      "name": "Pd_d6_min",
+      "syn_leak": -0.060014722523865874,
+      "syn_ctrl": -0.11251740154469983,
+      "meas_event": -0.1827629341926749,
+      "meas_ctrl": -0.12163278854079222
+    },
+    {
+      "name": "Pd_d24_min",
+      "syn_leak": -0.2294226167378602,
+      "syn_ctrl": -0.29897807636815255,
+      "meas_event": -0.4862331669080203,
+      "meas_ctrl": -0.28181302287136456
+    },
+    {
+      "name": "Pd_d6_topneg1",
+      "syn_leak": -0.060014722523865874,
+      "syn_ctrl": -0.11251740154469983,
+      "meas_event": -0.1827629341926749,
+      "meas_ctrl": -0.12163278854079222
+    },
+    {
+      "name": "Pd_d6_max_abs",
+      "syn_leak": 0.11300689533904747,
+      "syn_ctrl": 0.16870836831538077,
+      "meas_event": 0.2529227679178595,
+      "meas_ctrl": 0.21576110998514
+    }
+  ],
+  "contrib_table": [
+    {
+      "name": "Fd_PUMP_1_d24",
+      "syn_leak": -0.03535150293673919,
+      "syn_ctrl": -2.507308830587679e-05,
+      "meas_event": -0.1173383645015291,
+      "meas_ctrl": -0.05864629721099053
+    },
+    {
+      "name": "P_median",
+      "syn_leak": 0.05791320982127166,
+      "syn_ctrl": -0.10117881524058103,
+      "meas_event": -0.4832601036687465,
+      "meas_ctrl": -0.37670694298316815
+    },
+    {
+      "name": "L_T1",
+      "syn_leak": -0.07228978346345966,
+      "syn_ctrl": 0.000745243182922053,
+      "meas_event": -0.1262448902032421,
+      "meas_ctrl": -0.10898567666949155
+    },
+    {
+      "name": "P_min",
+      "syn_leak": -0.06209013859924744,
+      "syn_ctrl": 0.008777537778897714,
+      "meas_event": 0.09030387304516438,
+      "meas_ctrl": 0.08004863719917484
+    },
+    {
+      "name": "P_p90",
+      "syn_leak": 0.03665841863573733,
+      "syn_ctrl": -0.059880674049561974,
+      "meas_event": -0.3244346704628135,
+      "meas_ctrl": -0.23772576529407402
+    },
+    {
+      "name": "P_max",
+      "syn_leak": 0.030849952804975045,
+      "syn_ctrl": -0.05351344424686878,
+      "meas_event": -0.2986111648988168,
+      "meas_ctrl": -0.2093187340794595
+    },
+    {
+      "name": "Pd_d6_p90",
+      "syn_leak": 0.007911220362099498,
+      "syn_ctrl": -0.0083224971521604,
+      "meas_event": -0.0007256722208348365,
+      "meas_ctrl": -0.08014018080965947
+    },
+    {
+      "name": "P_spread_p90_p10",
+      "syn_leak": -0.043747205726682926,
+      "syn_ctrl": -0.006191961678083456,
+      "meas_event": -0.052601768173720406,
+      "meas_ctrl": -0.03554517240699597
+    },
+    {
+      "name": "Fd_PUMP_1_d6",
+      "syn_leak": -0.0074435411377005295,
+      "syn_ctrl": -3.6622151055739194e-06,
+      "meas_event": -0.021093256809479797,
+      "meas_ctrl": -0.01052827418841719
+    },
+    {
+      "name": "Ld_T1_d1",
+      "syn_leak": 0.022241320890185306,
+      "syn_ctrl": 0.0015545040864111679,
+      "meas_event": -0.045982027153405956,
+      "meas_ctrl": 0.0005518684875415974
+    },
+    {
+      "name": "Pd_d6_median",
+      "syn_leak": -0.001574164428456225,
+      "syn_ctrl": -0.0007200548146552737,
+      "meas_event": 0.08657160445356328,
+      "meas_ctrl": 0.004417357287894283
+    },
+    {
+      "name": "F_PUMP_1",
+      "syn_leak": 0.016471065830890228,
+      "syn_ctrl": 0.0073672295994694605,
+      "meas_event": 0.007000529591163153,
+      "meas_ctrl": 0.034231952213265
+    },
+    {
+      "name": "pump1_on",
+      "syn_leak": 0.01642838130142151,
+      "syn_ctrl": 0.00743912720273341,
+      "meas_event": 0.007424240557673457,
+      "meas_ctrl": 0.03475962195834839
+    },
+    {
+      "name": "Pd_d6_min",
+      "syn_leak": 0.005165372162716846,
+      "syn_ctrl": -0.0018981289481970834,
+      "meas_event": -0.011348682846576653,
+      "meas_ctrl": -0.0031244767722340226
+    },
+    {
+      "name": "Pd_d24_min",
+      "syn_leak": 0.0035708441754248184,
+      "syn_ctrl": -0.0009920964872712186,
+      "meas_event": -0.013276306403541693,
+      "meas_ctrl": 0.00013395632000167746
+    },
+    {
+      "name": "Pd_d6_topneg1",
+      "syn_leak": 0.005165372162716846,
+      "syn_ctrl": -0.0018981289481970834,
+      "meas_event": -0.011348682846576653,
+      "meas_ctrl": -0.0031244767722340226
+    },
+    {
+      "name": "Pd_d6_max_abs",
+      "syn_leak": 0.00991465539935903,
+      "syn_ctrl": -0.004902864989699469,
+      "meas_event": -0.027305299189100945,
+      "meas_ctrl": -0.017419678671610355
+    }
+  ],
+  "logits": {
+    "syn_leak": -0.573540728905734,
+    "syn_ctrl": -0.89019148993757,
+    "meas_event": -2.6694029575294587,
+    "meas_ctrl": -1.8149573909028809
+  },
+  "n_rows": {
+    "syn_leak": 1728,
+    "syn_ctrl": 6928,
+    "meas_event": 438,
+    "meas_ctrl": 2885
+  },
+  "failed_prediction_explanation": "On measured abrupt 0\u20136 h windows, mean logit=-2.669 vs control=-1.815 (synthetic leak=-0.574, synthetic control=-0.890). Pilot notifications on 2018 often arrive after 6 h (HIT>6 in PILOT_RESULTS) while flooding unmatched episodes \u2014 consistent with a score driven by slow absolute operating-level / pump-context drift rather than a sharp onset-aligned pressure-drop feature. Train-label polarity for `Pd_d6_min` is **wrong-signed for a drop detector** (pos mean -0.04834 vs neg -0.1016: positives are *less* negative). `pump1_on` is higher on positives (0.653 vs 0.467). Absolute-level features carry **36%** of \u03a3|coef_z|.",
+  "explanations": {
+    "unit_or_feature_implementation_mismatch": {
+      "verdict": "not supported as primary cause",
+      "evidence": "Shared feature builder; pressure/tank ranges overlap; flows converted m\u00b3/s\u2192m\u00b3/h; no sign mismatch on the three SCADA flow channels. OOD |z|>5 rates on measured absolute levels are low for P_median-family relative to a pure unit-scale failure."
+    },
+    "absolute_operating_level_shift": {
+      "verdict": "partially supported (important but incomplete)",
+      "evidence": "Absolute features are 36% of coefficient mass; P_median, L_T1, P_min, P_p90 rank in the top coefficients. Measured vs synthetic means for P_median are close (~47 m), so a gross level offset alone does not explain transfer failure \u2014 but the *use* of absolute levels as leak proxies fails when measured diurnal/seasonal operating trajectories differ from 48 h nominal scenarios."
+    },
+    "unrealistic_simulated_leak_response": {
+      "verdict": "supported for network-summary drop features",
+      "evidence": "Across synthetic leak scenarios, network-wide `Pd_d6_min` is not reliably more negative in credit windows than outside them (train: positives less negative than negatives). Aggregate pressure-drop features therefore do not encode a strong, consistent leak onset signature in the pilot simulations \u2014 so even a perfect transfer of those features would be weak."
+    },
+    "simulation_specific_nuisance_shortcuts": {
+      "verdict": "supported as a driver of synthetic metrics",
+      "evidence": "Top coefficients include Fd_PUMP_1_d24, F_PUMP_1, pump1_on, L_T1, and absolute pressure levels. Synthetic scenario recall can rise when credit windows correlate with pump/tank state even though pressure-drop polarity is wrong-signed. That is a nuisance shortcut relative to the stated leak-change question \u2014 not proof of physical leak detection."
+    },
+    "inadequate_feature_separation": {
+      "verdict": "supported",
+      "evidence": "Change features that should separate leaks (Pd_*_min / topneg) do not separate train positives from negatives in the expected direction; synthetic_dev selection still picked \u03c4=0.3 with high FP row rate (~0.49). Inadequate separation in the intended residual/change subspace plus shortcut features jointly explain high synthetic scenario recall without measured 6 h sensitivity."
+    }
+  },
+  "recommendation": "**One controlled intervention:** replace absolute pressure/flow/tank *levels* with an identical causal **change/residual representation** in both domains \u2014 e.g. keep only Pd_*/Fd_*/Ld_* (and optionally z-scored deltas against a past-only rolling reference), drop P_median/P_*/F_*/L_T1 raw levels and pump1_on level proxies from the feature set; refit under the same L2 budget on synthetic data only. Apply the same builder to measured SCADA.\n\n**Why this and not 'just normalize harder':** StandardScaler already removes gross mean/variance per feature on synthetic train; measured absolute means are already similar. The failure mode is **feature semantics / shortcut use of operating state**, not a simple affine domain shift. If simulated network-wide drop responses remain weak or wrong-signed after removing levels, normalization alone cannot create a transferable leak onset cue \u2014 that would require different simulation physics or different spatial summaries (out of scope here).\n\n**No implementation bug found** that warrants a silent protocol correction rerun. Stop before another fit.",
+  "primary_conclusion": "Not 'domain mismatch' by failure alone. Primary evidence: absolute/operating-state shortcuts + inadequate / wrong-signed separation on network pressure-drop features; unit bugs not found."
+}

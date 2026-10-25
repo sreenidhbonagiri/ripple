@@ -4,6 +4,8 @@ Generated: 2026-10-24T22:29:19-04:00
 
 Preserves production, frozen FMR3C, and all prior evaluations. **No** 2019 train/tune, Tiger, UI, or main merge.
 
+> **Transfer diagnosis (no retune):** see `TRANSFER_FAILURE_DIAGNOSIS.md` — absolute/operating-state shortcuts and weak/wrong-signed network drop features; not a bare 'domain mismatch' label. Frozen pilot unchanged.
+
 ## Question
 
 Can a simple L2 logistic classifier trained on varied hydraulic leak scenarios recognize event patterns in measured 2018 SCADA?
