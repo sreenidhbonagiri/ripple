@@ -1,7 +1,7 @@
 # Signal-preservation audit (diagnostic)
 
 Protocol: [`SIGNAL_PRESERVATION_PROTOCOL.md`](../SIGNAL_PRESERVATION_PROTOCOL.md)  
-Generated: `2026-10-25T05:09:30.262252+00:00`  
+Generated: `2026-10-25T05:10:00.714690+00:00`  
 Frozen calibration: `5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921`  
 
 2018 events have already been examined; all contrasts are diagnostic.
@@ -88,7 +88,7 @@ Miss flag (diagnostic only): Method A credit max < τ=1.791.
 
 ## Recommendation
 
-**No supported correction emerged.** Score contrasts exceed ordinary variability but remain below the frozen τ; that is a threshold/separability limit, and this audit does not change thresholds.
+**No supported correction emerged.** 2/4 misses show Method A score/credit elevated vs ordinary controls yet still below frozen τ (separability limit; no τ change here). Other miss stages: {'canceled_by_signed_sum': 1, 'survives_to_score_below_tau': 2, 'unclear': 1} — no single correctable loss dominates.
 
 ## Notes
 

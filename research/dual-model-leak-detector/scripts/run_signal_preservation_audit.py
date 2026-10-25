@@ -483,11 +483,12 @@ def main() -> int:
                 f"{ntop}/{len(miss_stages)} misses are already weak in measured pressure/inflow "
                 "vs operating-matched controls — no dual/score correction is supported."
             )
-        elif top == "survives_to_score_below_tau":
+        elif top == "survives_to_score_below_tau" and ntop >= max(2, (len(miss_stages) + 1) // 2):
             recommendation = None
             recommendation_note = (
-                "Score contrasts exceed ordinary variability but remain below the frozen τ; "
-                "that is a threshold/separability limit, and this audit does not change thresholds."
+                f"{ntop}/{len(miss_stages)} misses show Method A score/credit elevated vs "
+                "ordinary controls yet still below frozen τ (separability limit; no τ change here). "
+                f"Other miss stages: {dict(counts)} — no single correctable loss dominates."
             )
 
     payload = {
