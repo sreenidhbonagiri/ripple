@@ -1,6 +1,6 @@
 # Finite-memory relationship-change experiment — design (locked before implementation)
 
-**Status:** design only. **Do not implement or run** a detector from this document yet.  
+**Status:** registered for implementation (amended clarifications below).  
 **Branch context:** research tree under Ripple; production / UI / Tiger / main untouched.  
 **Product boundary:** Deployed Ripple has **no validated automatic leak detector**. Candidates below would be research episodes only.
 
@@ -98,37 +98,51 @@ m_i^R(t)=\mathrm{median}\{z_i(u):u\in R(t),\ z_i(u)\ \mathrm{finite}\}
 
 Require minimum finite coverage: \(\ge 80\%\) of steps in \(Q\) and in \(R\); else \(\delta_i(t)\) is **missing**.
 
-### 2.3 Normalization accounting for temporal dependence
+### 2.3 Normalization accounting for temporal dependence (exact calculation)
 
-Sliding medians of autocorrelated \(z_i\) are **not** independent. Do **not** treat \(\mathrm{Var}(\delta)\) as \(\propto 1/n_{\mathrm{raw}}\).
+Sliding medians of autocorrelated \(z_i\) are **not** independent. All of
+\(\hat\rho_i\), \(\widehat{\mathrm{MAD}}_i\), and \(\sigma_i\) are estimated from the
+**training/calibration prefix only** (past relative to analysis). They are
+**frozen** before any post-training score is computed. **No** online update of
+scales using analysis-time or future samples.
 
-**Train-only scale (frozen per target before analysis):**
+#### Exact formulas used
 
-1. On the training/calibration prefix only, form the same \(\delta_i(t)\) series for the chosen \((L_Q,L_R)\) wherever both windows fit inside train.  
-2. Estimate lag-1 autocorrelation \(\hat\rho_i\) of training \(z_i\) (finite pairs).  
-3. Effective sample size for a window of \(n\) finite points (simple AR(1) inflation, clipped):
+1. \(\widehat{\mathrm{MAD}}_i = \mathrm{median}(|z_i - \mathrm{median}(z_i)|)\) on
+   finite training \(z_i\).  
+2. Lag-1 sample autocorrelation \(\hat\rho_i\) from consecutive finite training
+   pairs \((z_i(t),z_i(t+1))\); clip to \([0, 0.95]\).  
+3. AR(1)-style effective length (approximation — see limitations):
 
 \[
-n_{\mathrm{eff}}(n,\hat\rho)=\max\bigl(2,\ n\cdot(1-\hat\rho)/(1+\hat\rho)\bigr)
-\quad\text{with }\hat\rho\in[0,0.95].
+n_{\mathrm{eff}}(n,\hat\rho)=\max\bigl(2,\ n\cdot(1-\hat\rho)/(1+\hat\rho)\bigr).
 \]
 
-4. Let \(\widehat{\mathrm{MAD}}_i\) be the training MAD of \(z_i\). Define a dependence-aware scale for \(\delta\):
+4. Heuristic scale for the median-difference score:
 
 \[
 \sigma_i = c\cdot\widehat{\mathrm{MAD}}_i\cdot
 \sqrt{\frac{1}{n_{\mathrm{eff}}(n_Q,\hat\rho_i)}+\frac{1}{n_{\mathrm{eff}}(n_R,\hat\rho_i)}}
 \]
 
-with \(c=1.4826\), \(n_Q,n_R\) = design lengths in steps. If \(\sigma_i\) is tiny, mark target ineligible.
+with \(c=1.4826\) and \(n_Q,n_R\) = **design** window lengths in steps (not the
+realized finite counts at each \(t\)). If \(\sigma_i < 10^{-6}\) or non-finite,
+target \(i\) is **ineligible** (no episodes).
 
-5. Standardized score:
+5. Score \(s_i(t)=\delta_i(t)/\sigma_i\) when \(\delta_i\) is defined; else missing.
 
-\[
-s_i(t)=\delta_i(t)/\sigma_i
-\]
+#### Limitations (honest)
 
-(missing if \(\delta_i\) missing). **No** re-estimation of \(\sigma_i\) after training end.
+- \(n_{\mathrm{eff}}\) is an **AR(1) approximation** for the variance of a **sample
+  mean**, not a proven effective size for a **sample median**.  
+- The \(\sqrt{1/n_{\mathrm{eff},Q}+1/n_{\mathrm{eff},R}}\) term therefore borrows a
+  **variance-of-mean** structure. It is **not** automatically the sampling
+  variance of a median difference under arbitrary dependence or heavy tails.  
+- \(\tau\) thresholds on \(s_i\) are **heuristic score thresholds**, not
+  calibrated Type-I confidence levels or p-value cutoffs. Exceedance rates on
+  synthetic correlated no-change series are reported for honesty only and
+  **must not** be used to retune \(\tau\) after viewing DIAG.  
+- Seasonal nonstationarity between train and DIAG can mis-scale \(s_i\).
 
 ### 2.4 Cross-sensor aggregation
 
@@ -150,7 +164,7 @@ No leak-location-weighted fusion; no “nearest sensor to pipe” rules.
 
 | Element | Rule |
 |---------|------|
-| Threshold \(\tau\) | DEV grid only: \(\{3,4,5,6\}\) (units of \(s_i\)) |
+| Threshold \(\tau\) | DEV grid only: \(\{3,4,5,6\}\) — **heuristic** units of \(s_i\), not calibrated confidence |
 | **Notify** | First \(t\) with finite \(s_i(t)\ge\tau\) while **inactive** |
 | Active episode | Remains active; **no** new notify while active |
 | **Recovery** | \(N_{\mathrm{rec}}\) consecutive finite steps with \(s_i(t)<\tau_{\mathrm{clear}}\) where \(\tau_{\mathrm{clear}}=\tau/2\); default \(N_{\mathrm{rec}}=12\) (1 h) — **not** swept in the first run |
@@ -194,8 +208,13 @@ Small predeclared grid (≤ 16 cells): \(L_Q\times L_R\times\tau\) with \(N_{\ma
 1. Abrupt **6 h** notification recall \(\ge 2/3\) on eligible DEV abrupt onsets.  
 2. Unmatched notifications/week \(\le 3\).
 
-Among settings meeting both **and** not showing latched-only success (union occupancy \(\ge 90\%\) with low unmatched, or majority right-censored ultra-long episodes): maximize 6 h abrupt recall → minimize median delay → minimize unmatched/week.  
-If none qualify → **selection failure**; do not silently enlarge the grid; do not invent a winner; **do not** run DIAG under a new setting.
+Among settings meeting both: maximize 6 h abrupt recall → minimize unmatched/week →
+minimize median abrupt delay (among 6 h hits). Treat gates as **provisional
+engineering targets**, not operator-validated requirements. Report occupancy and
+episode lengths for every setting. Do **not** call success from recall alone or
+from low unmatched counts caused by long active / latched episodes.
+If none qualify → **selection failure**; do not silently enlarge the grid; do not
+invent a winner; **do not** run DIAG under a new setting.
 
 ### DIAG (only if frozen)
 
@@ -206,8 +225,9 @@ Same metrics as the CUSUM package:
 - Sensor-alarm %; network union occupancy; active-sensor distribution  
 - Median / longest episode; right-censored count  
 - Training-prefix events **separate**  
-- Existing **0–2 h** notification-time circular-shift null (descriptive)  
-- No broad-window headline as success; no already-active-at-onset credit  
+- Notification-time circular-shift nulls at **0–2 h** and the declared primary
+  **six-hour** abrupt window (descriptive; prior examination)  
+- No broad-window (7-day) headline as success; no already-active-at-onset credit  
 
 ### What would distinguish this from “more candidates”
 
@@ -247,9 +267,10 @@ Generating denser notifications that match by chance, or thinning alerts only by
 
 ---
 
-## Non-goals (this design package)
+## Non-goals
 
-- No parameter runs, plots, or frozen settings yet  
+- No additional windows / features / thresholds beyond the registered 16-cell grid  
 - No 2019 evaluation  
 - No UI, database, Tiger imports, deployment, or main merge  
 - No further CUSUM family threshold / recovery / context search  
+- No tuning of \(\tau\) or windows against synthetic or DIAG after the fact  

@@ -1,17 +1,20 @@
-# Finite-memory relationship-change (research design)
+# Finite-memory relationship-change (FMR3C)
 
-**Design only** — see [`DESIGN.md`](DESIGN.md). No detector implementation or evaluation runs in this package yet.
+Registered experiment from `DESIGN.md` (amended clarifications on AR(1) /
+median-difference scale / heuristic τ). Reuses `build_signals.z` from
+`research/per-sensor-relationship-cusum` without modifying that package’s
+frozen results.
 
-## Question
+## Run
 
-Can recent changes in signed per-target relationship residuals distinguish new events better than accumulated departure from a fitted baseline?
+```bash
+.venv/bin/python -m pytest research/finite-memory-relationship-change/tests -q
+.venv/bin/python research/finite-memory-relationship-change/run_experiment.py
+```
 
-## Relation to prior work
-
-- Closes further threshold tuning of `research/per-sensor-relationship-cusum` (CUSUM family).
-- Does not revive `research/retrospective-review` (global offline screening — unsuccessful).
-- Does not copy practice two-window scanner code; documentation-only comparison in `DESIGN.md`.
+Outputs: `outputs/RESULTS.md`, `outputs/summary.json`, `outputs/frozen_settings.json`,
+`outputs/synthetic_calibration.json`.
 
 ## Boundary
 
-No production/UI/Tiger/main changes. Preserve all historical research reports.
+No production/UI/Tiger/main changes. No 2019. No CUSUM retuning.
