@@ -1,0 +1,5 @@
+# Runtime deps for this isolated package (prefer repo .venv).
+wntr>=1.2
+numpy>=1.24
+pandas>=2.0
+pytest>=7.0

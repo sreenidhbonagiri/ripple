@@ -1,0 +1,177 @@
+{
+  "generated_at_utc": "2026-10-25T04:23:09.136538+00:00",
+  "stage": "1_solver_and_2_synthetic_verification",
+  "n_scenarios": 7,
+  "n_passed": 7,
+  "scenarios": [
+    {
+      "id": "no_leak_correct",
+      "description": "No-leak, correctly specified dual model",
+      "actual_leak_m3h": 0.0,
+      "result": {
+        "q_v_m3s": {
+          "J1": -1.7705778532217664e-07,
+          "J2": 1.1267312771678917e-07,
+          "J3": -1.609616262499003e-08
+        },
+        "q_v_m3h": {
+          "J1": -0.0006374080271598359,
+          "J2": 0.000405623259780441,
+          "J3": -5.7946185449964105e-05
+        },
+        "sum_m3s": -8.04808202303775e-08,
+        "sum_m3h": -0.000289730952829359,
+        "abs_max_m3h": 0.0006374080271598359
+      },
+      "distinguishes_leak": null,
+      "interpretation": "sum(q_v) \u2248 0 when the hydraulic model matches the measured heads; residual is numerical (nonzero TCV loss), not a physical leak.",
+      "pass_criterion": "abs(sum_m3h) < 0.05",
+      "passed": true
+    },
+    {
+      "id": "known_injected_leak",
+      "description": "Known demand-driven leak of 5.0 m\u00b3/h at J3",
+      "actual_leak_m3h": 5.0,
+      "actual_leak_m3s": 0.001388888888888889,
+      "result": {
+        "q_v_m3s": {
+          "J1": -1.1267312771678917e-07,
+          "J2": 4.828848787497009e-08,
+          "J3": 0.0013888739049434662
+        },
+        "q_v_m3h": {
+          "J1": -0.000405623259780441,
+          "J2": 0.00017383855634989231,
+          "J3": 4.999946057796478
+        },
+        "sum_m3s": 0.0013888095203036244,
+        "sum_m3h": 4.999714273093048,
+        "abs_max_m3h": 4.999946057796478
+      },
+      "sum_minus_actual_m3h": -0.0002857269069522772,
+      "dominant_sensor": "J3",
+      "distinguishes_leak": true,
+      "interpretation": "With a correct demand/roughness model, sum(q_v) approximates the injected leak discharge and the largest |q_v| localizes near the leak. q_v is still a model imbalance, not a physical orifice flow.",
+      "pass_criterion": "abs(sum_m3h - leak_m3h) < 0.1 and dominant_sensor == leak_node",
+      "passed": true
+    },
+    {
+      "id": "demand_change_matched",
+      "description": "Uniform +50% demand in truth and in dual model; no leak",
+      "actual_leak_m3h": 0.0,
+      "result": {
+        "q_v_m3s": {
+          "J1": -1.609616262499003e-08,
+          "J2": 3.219232524998006e-08,
+          "J3": -1.609616262499003e-08
+        },
+        "q_v_m3h": {
+          "J1": -5.7946185449964105e-05,
+          "J2": 0.00011589237089992821,
+          "J3": -5.7946185449964105e-05
+        },
+        "sum_m3s": 0.0,
+        "sum_m3h": 0.0,
+        "abs_max_m3h": 0.00011589237089992821
+      },
+      "distinguishes_leak": true,
+      "interpretation": "Ordinary demand operations that are represented in the dual model do not produce a virtual-leak signature (sum q_v \u2248 0).",
+      "pass_criterion": "abs(sum_m3h) < 0.05",
+      "passed": true
+    },
+    {
+      "id": "demand_mismatch_no_leak",
+      "description": "Truth demand +5 m\u00b3/h at J1; model unaware; no physical leak",
+      "actual_leak_m3h": 0.0,
+      "unmodeled_demand_m3h": 5.0,
+      "result": {
+        "q_v_m3s": {
+          "J1": 0.001388757023960352,
+          "J2": 3.219232524998006e-08,
+          "J3": 0.0
+        },
+        "q_v_m3h": {
+          "J1": 4.999525286257267,
+          "J2": 0.00011589237089992821,
+          "J3": 0.0
+        },
+        "sum_m3s": 0.001388789216285602,
+        "sum_m3h": 4.999641178628167,
+        "abs_max_m3h": 4.999525286257267
+      },
+      "distinguishes_leak": false,
+      "interpretation": "Unmodeled demand produces sum(q_v) \u2248 the demand error. Virtual flow cannot distinguish this from a real leak of the same magnitude. This is why demand calibration is required before measured-data use.",
+      "pass_criterion": "abs(sum_m3h - 5.0) < 0.2 (documents confounding, not a leak TP)",
+      "passed": true,
+      "confounder": true
+    },
+    {
+      "id": "roughness_mismatch_no_leak",
+      "description": "No leak; dual model roughness scaled by 0.9",
+      "actual_leak_m3h": 0.0,
+      "roughness_scale": 0.9,
+      "result": {
+        "q_v_m3s": {
+          "J1": -0.00027795700589194894,
+          "J2": -0.0002776785986497998,
+          "J3": -0.00013890884292777628
+        },
+        "q_v_m3h": {
+          "J1": -1.0006452212110162,
+          "J2": -0.9996429551392794,
+          "J3": -0.5000718345399946
+        },
+        "sum_m3s": -0.000694544447469525,
+        "sum_m3h": -2.50036001089029,
+        "abs_max_m3h": 1.0006452212110162
+      },
+      "distinguishes_leak": false,
+      "interpretation": "Roughness error induces nonzero q_v even without leaks (Campbell et al. 2024). Magnitude depends on operating point; not automatically a leak.",
+      "pass_criterion": "abs(sum_m3h) > 0.05 (nonzero confounder documented)",
+      "passed": true,
+      "confounder": true
+    },
+    {
+      "id": "sensor_datum_mismatch",
+      "description": "No leak; +0.5 m datum bias on J2 head",
+      "actual_leak_m3h": 0.0,
+      "datum_bias_m": 0.5,
+      "biased_sensor": "J2",
+      "result": {
+        "q_v_m3s": {
+          "J1": 0.008132586255669594,
+          "J2": -0.009272580966353416,
+          "J3": 0.0011386461555957794
+        },
+        "q_v_m3h": {
+          "J1": 29.277310520410538,
+          "J2": -33.3812914788723,
+          "J3": 4.099126160144806
+        },
+        "sum_m3s": -1.3485550880432129e-06,
+        "sum_m3h": -0.004854798316955566,
+        "abs_max_m3h": 33.3812914788723
+      },
+      "distinguishes_leak": false,
+      "interpretation": "A sensor elevation/datum error drives local q_v and can look like a nearby leak. Sensor-specific elevation calibration (Campbell et al. 2024) is needed before detection claims.",
+      "pass_criterion": "abs(sum_m3h) > 0.05 or abs(q_v[J2]) dominant",
+      "passed": true,
+      "confounder": true
+    },
+    {
+      "id": "pump_tank_transition",
+      "description": "Pump off at 6 h; tank level evolves; model matches truth; no leak",
+      "actual_leak_m3h": 0.0,
+      "result": {
+        "sum_m3h_before_pump_off": -5.794619823973335e-05,
+        "sum_m3h_after_pump_off": 0.000492542608299118,
+        "max_abs_sum_m3h": 0.0011299505395356846,
+        "n_timesteps": 13
+      },
+      "distinguishes_leak": true,
+      "interpretation": "When pump status and tank boundaries are represented in the dual model and VR heads track the matching primal, sum(q_v) stays near zero across the transition. q_v does not flag ordinary pump/tank operations.",
+      "pass_criterion": "max_abs_sum_m3h < 0.2",
+      "passed": true
+    }
+  ]
+}

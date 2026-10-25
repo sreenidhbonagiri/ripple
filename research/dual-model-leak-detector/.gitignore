@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+outputs/synthetic/_scratch/
+*.inp
+!fixtures/**/*.inp
+temp.bin
+temp.rpt
+*.bin
+*.rpt
