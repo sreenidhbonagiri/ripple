@@ -1,0 +1,30 @@
+{
+  "frozen_at": "2026-10-24T20:12:54-04:00",
+  "alpha": 0.1,
+  "settings": {
+    "train_days": 14,
+    "n_refs": 3,
+    "cusum_k": 0.5,
+    "cusum_h": 8.0,
+    "recover_hours": 24.0,
+    "residual_recover_steps": 12,
+    "context_fit_days": 14,
+    "context_val_days": 14
+  },
+  "dev_alpha_scores_mean_rmse": {
+    "0.1": 0.02543221880657986,
+    "1.0": 0.025610327381963928,
+    "10.0": 0.02565777247509768,
+    "100.0": 0.02575490383687805,
+    "1000.0": 0.026113364269456592
+  },
+  "features": [
+    "sin_tod",
+    "cos_tod",
+    "is_weekend",
+    "pump1",
+    "pump1_on",
+    "tank_T1",
+    "d_tank_T1"
+  ]
+}
