@@ -1,0 +1,24 @@
+{
+  "frozen_at": "2026-10-24T21:52:04-04:00",
+  "gate_met": true,
+  "signal": {
+    "l_q_hours": 2.0,
+    "l_r_hours": 48.0,
+    "decision": "additional_dev_from_prior_grid"
+  },
+  "selected": {
+    "percentile": 99.5,
+    "tau": 26.732944547756674
+  },
+  "unmatched_cap": 3.0,
+  "abrupt_6h_min": 0.6666666666666666,
+  "selection_rule": "among abrupt6h>=2/3 and unmatched/wk<=3 and not latched_suspect: max abrupt6h recall, then min unmatched/wk, then min median 6h delay",
+  "numeric_gate_met_count": 3,
+  "dev_snapshot": {
+    "abrupt_6h_recall": 1.0,
+    "unmatched_per_week": 2.552486187845304,
+    "median_delay_6h": 0.9166666666666666,
+    "union_pct": 12.784846972721224
+  },
+  "note": ""
+}
