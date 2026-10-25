@@ -1,12 +1,14 @@
-# 90-second presenter demo (Milestone 5)
+# 90-second presenter demo
 
 Grounded in shipped UI only. Keep saying: unusual pressure pattern ≠ confirmed leak.
 
+For the **Experimental Method M warning** walkthrough (January five-minute notifies), use [`METHOD_M_WARNING_DEMO.md`](METHOD_M_WARNING_DEMO.md).
+
 ## Script
 
-1. **Problem (10s)** — Open Ripple. “Historical benchmark replay for BattLeDIM L-Town — investigation support, not live leak detection.”
+1. **Problem (10s)** — Open [Ripple](https://followtheripple.us). “Historical benchmark replay for BattLeDIM L-Town — investigation support, not live leak confirmation.”
 
-2. **Preset (15s)** — Point to the **Jan 12 preset** (14:00–17:00). Click **Start 14:00**, then scrub or play briefly so pressure map freshness updates. Say: illustrative afternoon window.
+2. **Preset (15s)** — Point to the **Jan 12 preset** (14:00–17:00). Click **Start 14:00**, then scrub or play briefly so pressure map freshness updates. Say: illustrative afternoon window. Note Experimental Method M panel shows **no warning** here.
 
 3. **Illustrative change (25s)** — Click **Illustrative Δ 15:00 (n54)**. Show selected pressure and the **30-minute change** (observation only). Beside it: external inflows **p227 / p235**, internal **PUMP_1** transfer (not external supply), and **T1** tank level — panels share the same cursor.
 

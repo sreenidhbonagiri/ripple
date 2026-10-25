@@ -1,15 +1,57 @@
 # Ripple
 
+**Live:** [https://followtheripple.us](https://followtheripple.us)
+
 Historical water-network investigation workspace for the official [BattLeDIM](https://battledim.ucy.ac.cy/) L-Town benchmark ([Zenodo 4017659](https://zenodo.org/records/4017659)).
+
+**Problem.** Water utilities and researchers need a way to replay historical SCADA, inspect synchronized sensor evidence, and share findings without treating model scores as confirmed leaks or pipe localizations.
 
 **Product boundaries**
 
 - Historical benchmark replay — not live utility monitoring
-- Pressure anomalies are not confirmed leaks
-- No predicted leak-pipe rankings
+- Pressure anomalies and experimental warnings are **not** confirmed leaks
+- No predicted leak-pipe rankings / no localization claims
 - Observations after the replay cursor are never exposed
 
-**Current scope:** Milestones 1–5 (network viewer, Tiger storage/replay, investigation evidence, historical pressure context, sponsor evidence / presenter readiness). No detection.
+**Sponsor targets:** Best Use of Tiger Data (primary); Vultr deployment (secondary).
+
+## Current features
+
+- Network map + cursor-safe SCADA replay (5-minute BattLeDIM clock)
+- Selected-sensor pressure chart, 30-minute observation deltas, inflow / pump / tank context
+- Hourly pressure history from Timescale continuous aggregates (`readings_15m`)
+- **Experimental Method M** anomaly warning (frozen **five-minute** scoring, January 2019 serving artifact) — investigation support only
+- Save / reopen investigation **metadata** (public notes; share via `/?i=<id>`)
+- Tiger Data evidence panel (live size/counts + **saved** January raw-vs-CAGG timings; lazy; no re-bench on load)
+
+## Architecture (short)
+
+| Layer | Role |
+|-------|------|
+| Frontend | React + Cytoscape + ECharts; same-origin `/api` in Docker |
+| Backend | FastAPI; cursor-safe reads; Method M warning from file-backed January artifact |
+| Tiger Data | Hypertables for raw SCADA; continuous aggregates for historical context; relational metadata for saved investigations |
+| Deploy | Docker Compose on Vultr; Caddy TLS at `followtheripple.us` |
+
+## Evaluation limitations (Method M)
+
+Diagnostic **2019** research evaluation of frozen five-minute Method M (not a blind holdout; not real-utility validation):
+
+| Metric | Value |
+|--------|------:|
+| Primary abrupt recall (excl. development example **p523**) | **2/8** |
+| Inclusive abrupt recall | **3/9** |
+| Incipient recall | **0/10** |
+| Unmatched notifications (2019) | **6** |
+
+Same detected abrupt events as hourly Method M on shared hits, with earlier notifies where the five-minute grid allows. **No localization or operational-savings claims.**
+
+## Demo scripts
+
+- Presenter walkthrough (Tiger + Jan 12 observation): [`docs/PRESENTER_90S.md`](docs/PRESENTER_90S.md)
+- **Experimental Method M warning demo:** [`docs/METHOD_M_WARNING_DEMO.md`](docs/METHOD_M_WARNING_DEMO.md)
+
+Loading metrics: [`docs/LOADING_PERFORMANCE.md`](docs/LOADING_PERFORMANCE.md). Deploy: [`deploy/VULTR_CHECKLIST.md`](deploy/VULTR_CHECKLIST.md), `docker-compose.yml`. HTTPS: [`docs/HTTPS_CADDY.md`](docs/HTTPS_CADDY.md).
 
 ## Requirements
 
@@ -71,7 +113,7 @@ npm install
 npm run dev
 ```
 
-Open [http://127.0.0.1:5173](http://127.0.0.1:5173).
+Open [http://127.0.0.1:5173](http://127.0.0.1:5173). Production: [https://followtheripple.us](https://followtheripple.us).
 
 ## Freshness rule (5-minute SCADA)
 
@@ -96,6 +138,7 @@ At cursor `T`, each sensor uses the latest **raw** reading with `ts <= T` (never
 | `GET` | `/api/investigation/pressure-change?at=&sensor_id=` | 30-minute pressure observation delta (unavailable if missing/stale; not a leak claim) |
 | `GET` | `/api/sensors/{id}/hourly-history?at=&days=` | Hourly pressure context from `readings_15m` (≤30 days before cursor; bucket_end ≤ cursor) |
 | `GET` | `/api/presenter/preset` | Jan 12 illustrative bookmarks (not alerts/leaks) |
+| `GET` | `/api/experimental/method-m-warning?at=` | Cursor-safe Experimental Method M warning (January five-minute artifact) |
 | `GET` | `/api/tiger/evidence` | Live counts/size + **saved** January raw/CAGG artifact (lazy; no re-bench) |
 | `POST` | `/api/investigations` | Save investigation **metadata** (public notes; rate-limited; no edit/delete) |
 | `GET` | `/api/investigations/{id}` | Reopen saved metadata; measurements still come from time-series APIs |
@@ -104,10 +147,6 @@ At cursor `T`, each sensor uses the latest **raw** reading with `ts <= T` (never
 Saved investigations store title/note/sensor/cursor/window/source only. Share via `/?i=<opaque_id>` (not authentication). Notes are public plain text — do not enter private data. Migration `002_saved_investigations.sql` must be applied before Tiger-backed saves (not auto-run on deploy). Details: [`docs/SAVED_INVESTIGATIONS.md`](docs/SAVED_INVESTIGATIONS.md).
 
 `/api/replay/window` returns **presenter** playback bounds (Jan 12 14:00–17:00) plus separate **data_start/data_end** database coverage. Coverage `reading_count` is Timescale **estimated** (`reading_count_estimated`); exact totals stay on `/api/tiger/evidence`.
-
-Presenter UI: Jan 12 preset buttons + illustrative sensor **n54** at **15:00** (verified fresh 30-minute pressure drop — observation only). Tiger panel loads evidence on expand.
-
-Demo script: [`docs/PRESENTER_90S.md`](docs/PRESENTER_90S.md). Loading metrics: [`docs/LOADING_PERFORMANCE.md`](docs/LOADING_PERFORMANCE.md) (DOM-poll vs mark definitions are not interchangeable). Deploy: [`deploy/VULTR_CHECKLIST.md`](deploy/VULTR_CHECKLIST.md), `docker-compose.yml`. HTTPS (Caddy): [`docs/HTTPS_CADDY.md`](docs/HTTPS_CADDY.md).
 
 Timestamps are **TIMESTAMP WITHOUT TIME ZONE** (naive BattLeDIM clock). Do not attach a geographic timezone.
 
@@ -150,4 +189,4 @@ data/               Local benchmark files (gitignored)
 
 - Do not commit raw datasets, virtualenvs, `node_modules`, build outputs, or secret `.env` files.
 - Milestone 2 imports only the small window above — not the full 2019 year.
-- Leak ground-truth files are not downloaded or processed in this milestone.
+- Leak ground-truth files are not downloaded or processed by the product data flow.
