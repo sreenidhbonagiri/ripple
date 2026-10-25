@@ -32,3 +32,11 @@ Calibration / separability audit: `outputs/CALIBRATION_AUDIT.md`
 ```bash
 .venv/bin/python research/per-sensor-relationship-cusum/audit_calibration_separability.py
 ```
+
+Operating-context residual correction (paired; residual-recovery policy fixed):
+`CONTEXT_DESIGN.md`, `outputs/CONTEXT_COMPARISON.md`
+
+```bash
+.venv/bin/python -m pytest research/per-sensor-relationship-cusum/tests -q
+.venv/bin/python research/per-sensor-relationship-cusum/run_context_experiment.py
+```
