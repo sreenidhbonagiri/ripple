@@ -21,6 +21,9 @@ outputs/detection_2018_measured_pump1/signal_preservation/primal_P_*.csv
 outputs/detection_2018_measured_pump1/signal_preservation/per_sensor_contrasts.csv
 outputs/detection_2018_measured_pump1/method_m_scale_transfer/deltas_hourly.csv
 outputs/detection_2018_measured_pump1/method_m_scale_transfer/per_sensor_month_scale_ratios.csv
+outputs/detection_2019_method_m/_scratch/
+outputs/detection_2019_method_m/dual_qv_hourly_2019.csv
+outputs/detection_2019_method_m/score_M_2019.csv
 *.inp
 !fixtures/**/*.inp
 temp.bin

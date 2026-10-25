@@ -15,9 +15,13 @@ from .detection_protocol import REQUIRED_FROZEN_SHA256
 from .ltown_hydraulics import load_nominal_wn, run_dual_window, subsample_hourly
 from .scada_io import (
     load_amr_demands_2018,
+    load_amr_demands_2019,
     load_flows_2018,
+    load_flows_2019,
     load_levels_2018,
+    load_levels_2019,
     load_pressures_2018,
+    load_pressures_2019,
 )
 
 
@@ -48,19 +52,29 @@ def build_dual_qv_hourly(
     scratch: Path,
     chunk_days: int = 7,
     pump_boundary: str = "inp_controls",
+    scada_year: int = 2018,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, dict]:
     """Return (q_v_m3h, flows_m3h_hourly, level_m_hourly, run_meta) on hourly grid.
 
     ``pump_boundary``: ``inp_controls`` (baseline) or ``measured_pump1`` (isolated variant).
+    ``scada_year``: 2018 or 2019 SCADA loaders (frozen calibration unchanged).
     """
     dm, roughness, tcv = load_frozen(frozen_path)
     wn = load_nominal_wn()
     clusters = build_roughness_clusters(wn)
 
-    P = load_pressures_2018()
-    F = load_flows_2018()
-    L = load_levels_2018()
-    A = load_amr_demands_2018()
+    if scada_year == 2018:
+        P = load_pressures_2018()
+        F = load_flows_2018()
+        L = load_levels_2018()
+        A = load_amr_demands_2018()
+    elif scada_year == 2019:
+        P = load_pressures_2019()
+        F = load_flows_2019()
+        L = load_levels_2019()
+        A = load_amr_demands_2019()
+    else:
+        raise ValueError(f"Unsupported scada_year={scada_year}")
 
     start_ts = pd.Timestamp(start)
     end_ts = pd.Timestamp(end)
@@ -110,6 +124,7 @@ def build_dual_qv_hourly(
     levels = subsample_hourly(L.loc[start_ts:end_ts])["T1"].reindex(qv.index)
     meta = {
         "pump_boundary": pump_boundary,
+        "scada_year": scada_year,
         "n_chunks": len(chunk_notes),
         "n_solver_failures": n_fail,
         "chunks": chunk_notes,

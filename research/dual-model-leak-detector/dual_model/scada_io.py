@@ -42,6 +42,40 @@ def load_leakages_2018() -> pd.DataFrame:
     return _read_scada_csv(RAW / "2018_Leakages.csv")
 
 
+def load_pressures_2019() -> pd.DataFrame:
+    return _read_scada_csv(RAW / "2019_SCADA_Pressures.csv")
+
+
+def load_flows_2019() -> pd.DataFrame:
+    return _read_scada_csv(RAW / "2019_SCADA_Flows.csv")
+
+
+def load_levels_2019() -> pd.DataFrame:
+    return _read_scada_csv(RAW / "2019_SCADA_Levels.csv")
+
+
+def load_amr_demands_2019() -> pd.DataFrame:
+    return _read_scada_csv(RAW / "2019_SCADA_Demands.csv")
+
+
+def load_leakages_2019() -> pd.DataFrame:
+    """Leak discharges in m³/h (labels only; never for fitting)."""
+    # Prefer local raw copy if present; else upstream BattLeDIM ground truth.
+    local = RAW / "2019_Leakages.csv"
+    if local.exists():
+        return _read_scada_csv(local)
+    alt = (
+        Path(__file__).resolve().parents[2]
+        / "lila-identification-reproduction"
+        / "upstream"
+        / "_utils"
+        / "Data"
+        / "leak_ground_truth"
+        / "2019_Leakages.csv"
+    )
+    return _read_scada_csv(alt)
+
+
 def slice_window(df: pd.DataFrame, start: str, end: str) -> pd.DataFrame:
     return df.loc[start:end]
 

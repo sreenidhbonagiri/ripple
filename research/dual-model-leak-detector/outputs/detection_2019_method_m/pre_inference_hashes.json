@@ -1,0 +1,28 @@
+{
+  "recorded_at_utc": "2026-10-25T05:21:52.501461+00:00",
+  "acknowledgement": "2019 has already been examined during previous research; this is a frozen diagnostic evaluation, not a blind holdout.",
+  "file_sha256": {
+    "frozen_calibration.json": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+    "METHOD_M_PROTOCOL.md": "ba1148746aa66c07120cf6488fcc98e19405d37f87cb4280177d88e2259ca3b7",
+    "PUMP1_MEASURED_BOUNDARY.md": "6af1f04769edc6bb9ef66986f71b60215325de0683684e67fdb92ee5c5b4a47e",
+    "pump_boundary.py": "150c20c83d409a8a4677880e19501a249eaa42f10285eda2df63ead9dd4c918b",
+    "notifier.py": "fd377799e2a9cadc1cdee0295d221fb29002207d6cb0be30f58ce104d1290e30",
+    "detection_scores.py": "058df5f9d5ae892a2ee9adce545376134907dafbc8a324f26c2d785ca4d6247f",
+    "OPERATING_POINT_PROTOCOL.md": "0398b6ada90be6c7b8f75b1356c69b358b771bcc971f0360a8909b6f1a45c433",
+    "method_m_results.json": "2f5de883db5bcb2359ae1aee48d6be954cb58a0df06e107a488252b33d0e1633"
+  },
+  "calibration_sha256": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+  "sensor_scales_sha256": "34003a0ad5ea69cf145794babefd08ba03b742d51977f8bd54be9294eaf72e55",
+  "sensor_scales_n": 33,
+  "raw_max_median": 1.843999066008619,
+  "tau": 4.347,
+  "tau_sha256": "adc85b01b1d8e84939d0490efb2c09278d6a910a0d901dd0baa700b498c42348",
+  "causality": {
+    "calibration_uses_future_2019": false,
+    "scales_use_future_2019": false,
+    "tau_selected_on_2019": false,
+    "score_ref_looks_ahead": false,
+    "pump_bc_looks_ahead": false,
+    "notes": "Scales from 2018 SCALE; \u03c4 from 2018 DEV; dual/score use only measurements at/before analysis time."
+  }
+}
