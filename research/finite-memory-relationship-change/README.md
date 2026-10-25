@@ -23,6 +23,13 @@ Empirical DEV percentile threshold calibration (frozen LQ=2h, LR=48h; preserves
 .venv/bin/python research/finite-memory-relationship-change/run_empirical_calibration.py
 ```
 
+DEV→DIAG transfer diagnosis (frozen τ; no new selection):
+`outputs/TRANSFER_DIAGNOSIS.md`
+
+```bash
+.venv/bin/python research/finite-memory-relationship-change/diagnose_transfer.py
+```
+
 ## Boundary
 
 No production/UI/Tiger/main changes. No 2019. No CUSUM retuning.

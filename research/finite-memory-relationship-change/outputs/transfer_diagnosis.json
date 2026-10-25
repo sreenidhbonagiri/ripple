@@ -1,0 +1,1076 @@
+{
+  "generated_at": "2026-10-24T21:57:38-04:00",
+  "frozen_tau": 26.732944547756674,
+  "comparability": {
+    "protocol": "Each period (DEV, DIAG) **independently** fits pairwise OLS, selects top-3 references, and estimates residual loc/scale + FMR3C train-only \u03c3 on its own first 14 calendar days. Analysis scores never reuse the other period's coefficients. Frozen \u03c4 was chosen from DEV pooled scores only and applied as a numeric cutoff on DIAG scores from DIAG's own refit.",
+    "pressures_sha256": "7782d890a7195699be94ddc01cba392da7ca285908afff619065a9616e04dcae",
+    "models_identical": false,
+    "refs_identical": false,
+    "DEV": {
+      "train_start": "2018-01-01 00:00",
+      "train_end": "2018-01-14 23:55",
+      "analysis_offset": 4032,
+      "z_sha16": "ad73a40a8a17d109",
+      "train_z_sha16": "3bd6163e3c0f586a",
+      "models_sha16": "3953fbbbd588e22e"
+    },
+    "DIAG": {
+      "train_start": "2018-07-01 00:00",
+      "train_end": "2018-07-14 23:55",
+      "analysis_offset": 56160,
+      "z_sha16": "97404bab2df615d8",
+      "train_z_sha16": "47cd75c4e53eff45",
+      "models_sha16": "332a6c5cd90d57e1"
+    },
+    "meaning": "Because models, refs, and \u03c3 are **refit per period**, the same numeric \u03c4=26.73 is **not** a stable probability threshold across DEV and DIAG. A score of 26.7 on DIAG is standardized by DIAG train MAD/\u03c1, not DEV's. Operating-season shift (DEV winter\u2013spring train vs DIAG summer train) further changes the meaning of exceedances."
+  },
+  "dev_stats": {
+    "n_pooled": 1567401,
+    "median": 0.03330766975101093,
+    "p99": 16.944854039600123,
+    "p995": 26.732944547756674,
+    "frac_ge_tau": 0.005000634808833221,
+    "by_sensor": [
+      {
+        "sensor": "n644",
+        "n": 47497,
+        "median": -0.5097226663252463,
+        "p99": 54.665234089341794,
+        "p995": 70.5789035722711,
+        "frac_ge_tau": 0.030675621618207465,
+        "max": 86.15398458654809
+      },
+      {
+        "sensor": "n613",
+        "n": 47497,
+        "median": 0.5082390185653536,
+        "p99": 36.510562706375055,
+        "p995": 44.17277945057993,
+        "frac_ge_tau": 0.025854264479861885,
+        "max": 51.59584652210849
+      },
+      {
+        "sensor": "n636",
+        "n": 47497,
+        "median": -0.32837953446473545,
+        "p99": 32.739397687548625,
+        "p995": 68.18916378170726,
+        "frac_ge_tau": 0.01800113691391035,
+        "max": 93.51454548318058
+      },
+      {
+        "sensor": "n296",
+        "n": 47497,
+        "median": 0.026137701092690174,
+        "p99": 36.04326484164426,
+        "p995": 182.8575898096658,
+        "frac_ge_tau": 0.016043118512748172,
+        "max": 293.1514892881597
+      },
+      {
+        "sensor": "n229",
+        "n": 47497,
+        "median": -0.14480112402661408,
+        "p99": 78.22191018400902,
+        "p995": 198.67971793133995,
+        "frac_ge_tau": 0.015579931364086154,
+        "max": 233.32027141338278
+      },
+      {
+        "sensor": "n342",
+        "n": 47497,
+        "median": 0.34410866647227917,
+        "p99": 28.917742733626902,
+        "p995": 32.87152603489534,
+        "frac_ge_tau": 0.011200707413099774,
+        "max": 54.66146901128564
+      },
+      {
+        "sensor": "n506",
+        "n": 47497,
+        "median": 0.11619086417371069,
+        "p99": 22.137166377436436,
+        "p995": 32.687309409967014,
+        "frac_ge_tau": 0.009432174663662968,
+        "max": 42.97288763307594
+      },
+      {
+        "sensor": "n722",
+        "n": 47497,
+        "median": 0.0,
+        "p99": 17.69154181304834,
+        "p995": 72.76791855225001,
+        "frac_ge_tau": 0.007726803798134619,
+        "max": 129.81838379369353
+      },
+      {
+        "sensor": "n215",
+        "n": 47497,
+        "median": 0.12258187627615441,
+        "p99": 19.233747188425514,
+        "p995": 108.19648043877764,
+        "frac_ge_tau": 0.006947807229930311,
+        "max": 134.34934460081072
+      },
+      {
+        "sensor": "n740",
+        "n": 47497,
+        "median": 0.02737477425622904,
+        "p99": 13.337738922758243,
+        "p995": 37.0410352662354,
+        "frac_ge_tau": 0.006905699307324673,
+        "max": 73.6192976099049
+      },
+      {
+        "sensor": "n163",
+        "n": 47497,
+        "median": -0.06253608204592025,
+        "p99": 23.58338742823962,
+        "p995": 53.13713549805807,
+        "frac_ge_tau": 0.006337242352148557,
+        "max": 77.49793058666154
+      },
+      {
+        "sensor": "n519",
+        "n": 47497,
+        "median": -0.2013295324709536,
+        "p99": 21.313372745932533,
+        "p995": 45.314331744964996,
+        "frac_ge_tau": 0.006316188390845737,
+        "max": 54.87361964435857
+      },
+      {
+        "sensor": "n726",
+        "n": 47497,
+        "median": 0.08649653854475188,
+        "p99": 8.023828987302496,
+        "p995": 11.899871263442904,
+        "frac_ge_tau": 0.002694907046760848,
+        "max": 32.92329629679853
+      },
+      {
+        "sensor": "n458",
+        "n": 47497,
+        "median": 0.36130891191829473,
+        "p99": 13.389862994525279,
+        "p995": 16.220160432186542,
+        "frac_ge_tau": 0.0006526728003873928,
+        "max": 28.289639015630023
+      },
+      {
+        "sensor": "n752",
+        "n": 47497,
+        "median": 0.04387163885593263,
+        "p99": 11.408424119505076,
+        "p995": 17.76022560486861,
+        "frac_ge_tau": 0.0006526728003873928,
+        "max": 28.50288900418051
+      },
+      {
+        "sensor": "n1",
+        "n": 47497,
+        "median": 0.1807658613275527,
+        "p99": 14.68171150262992,
+        "p995": 17.534398860674663,
+        "frac_ge_tau": 0.0,
+        "max": 23.683298522317642
+      },
+      {
+        "sensor": "n4",
+        "n": 47497,
+        "median": -0.006997469987224224,
+        "p99": 5.635339536505682,
+        "p995": 10.499933871575667,
+        "frac_ge_tau": 0.0,
+        "max": 22.317067078568954
+      },
+      {
+        "sensor": "n31",
+        "n": 47497,
+        "median": 0.04251496721230646,
+        "p99": 1.8462194314459532,
+        "p995": 1.901460916068766,
+        "frac_ge_tau": 0.0,
+        "max": 2.2538362794832074
+      },
+      {
+        "sensor": "n54",
+        "n": 47497,
+        "median": -0.024364515769197157,
+        "p99": 3.131198911250521,
+        "p995": 3.677279181819965,
+        "frac_ge_tau": 0.0,
+        "max": 4.591995042719295
+      },
+      {
+        "sensor": "n105",
+        "n": 47497,
+        "median": 0.04440228497261326,
+        "p99": 10.081280064558761,
+        "p995": 11.604766600683002,
+        "frac_ge_tau": 0.0,
+        "max": 19.60832541287334
+      },
+      {
+        "sensor": "n114",
+        "n": 47497,
+        "median": 0.25346708456401346,
+        "p99": 8.080803170488988,
+        "p995": 8.992903862215742,
+        "frac_ge_tau": 0.0,
+        "max": 13.311947517012907
+      },
+      {
+        "sensor": "n188",
+        "n": 47497,
+        "median": -0.0798701417818644,
+        "p99": 4.508662429021822,
+        "p995": 6.1115905172391125,
+        "frac_ge_tau": 0.0,
+        "max": 8.794971957243016
+      },
+      {
+        "sensor": "n288",
+        "n": 47497,
+        "median": 0.5771822924962621,
+        "p99": 9.727212058840763,
+        "p995": 13.584366200749361,
+        "frac_ge_tau": 0.0,
+        "max": 20.91920170188562
+      },
+      {
+        "sensor": "n332",
+        "n": 47497,
+        "median": 0.196328292052246,
+        "p99": 6.927235775366249,
+        "p995": 11.189917597710812,
+        "frac_ge_tau": 0.0,
+        "max": 16.020891406406637
+      },
+      {
+        "sensor": "n410",
+        "n": 47497,
+        "median": 0.057450302661596404,
+        "p99": 6.267861146977854,
+        "p995": 6.783647881033078,
+        "frac_ge_tau": 0.0,
+        "max": 10.231656719804793
+      },
+      {
+        "sensor": "n415",
+        "n": 47497,
+        "median": 0.07075307286120523,
+        "p99": 9.02752591518242,
+        "p995": 10.572435774922427,
+        "frac_ge_tau": 0.0,
+        "max": 16.433967267005734
+      },
+      {
+        "sensor": "n429",
+        "n": 47497,
+        "median": 0.19658396311237894,
+        "p99": 4.33483353645337,
+        "p995": 5.050861541019183,
+        "frac_ge_tau": 0.0,
+        "max": 7.291363139999804
+      },
+      {
+        "sensor": "n469",
+        "n": 47497,
+        "median": -0.2707307146395798,
+        "p99": 8.428632342041464,
+        "p995": 9.148531088843404,
+        "frac_ge_tau": 0.0,
+        "max": 13.380431914793718
+      },
+      {
+        "sensor": "n495",
+        "n": 47497,
+        "median": 0.12808538394438787,
+        "p99": 9.27162616528323,
+        "p995": 11.889904394651246,
+        "frac_ge_tau": 0.0,
+        "max": 22.468877571333596
+      },
+      {
+        "sensor": "n516",
+        "n": 47497,
+        "median": -0.20803577907321621,
+        "p99": 12.45547926585507,
+        "p995": 14.04601532880699,
+        "frac_ge_tau": 0.0,
+        "max": 18.56905058299551
+      },
+      {
+        "sensor": "n549",
+        "n": 47497,
+        "median": -0.10761316265984036,
+        "p99": 14.175714931956657,
+        "p995": 17.997102186786123,
+        "frac_ge_tau": 0.0,
+        "max": 24.066902764747944
+      },
+      {
+        "sensor": "n679",
+        "n": 47497,
+        "median": 0.2342716667292974,
+        "p99": 2.6155328020935635,
+        "p995": 3.198600520580694,
+        "frac_ge_tau": 0.0,
+        "max": 5.384140610881979
+      },
+      {
+        "sensor": "n769",
+        "n": 47497,
+        "median": -0.19755647296427506,
+        "p99": 5.800204973653982,
+        "p995": 6.54072596467191,
+        "frac_ge_tau": 0.0,
+        "max": 10.605290863372018
+      }
+    ],
+    "by_month": [
+      {
+        "month": "2018-01",
+        "n_finite_scores": 141801,
+        "score_median": 0.03499746143740555,
+        "score_p99": 4.664836277795208,
+        "score_p995": 6.612654588364788,
+        "frac_ge_tau": 0.0,
+        "network_max_median": 3.7162539977682782,
+        "network_max_p99": 11.215128297322748
+      },
+      {
+        "month": "2018-02",
+        "n_finite_scores": 266112,
+        "score_median": -0.04508910852836829,
+        "score_p99": 11.255993704808457,
+        "score_p995": 19.35443652477675,
+        "frac_ge_tau": 0.001822540885040885,
+        "network_max_median": 5.25266412871844,
+        "network_max_p99": 39.93062327947419
+      },
+      {
+        "month": "2018-03",
+        "n_finite_scores": 294624,
+        "score_median": -0.016738241878794944,
+        "score_p99": 16.70657438919297,
+        "score_p995": 26.79084777026437,
+        "frac_ge_tau": 0.0050097751710654935,
+        "network_max_median": 9.54766968682748,
+        "network_max_p99": 226.4861140606882
+      },
+      {
+        "month": "2018-04",
+        "n_finite_scores": 285120,
+        "score_median": 0.09533562261544155,
+        "score_p99": 10.290990606139264,
+        "score_p995": 16.25261199070514,
+        "frac_ge_tau": 0.0019325196408529741,
+        "network_max_median": 4.902222912140616,
+        "network_max_p99": 61.22882892688865
+      },
+      {
+        "month": "2018-05",
+        "n_finite_scores": 294624,
+        "score_median": 0.0,
+        "score_p99": 26.109856104463102,
+        "score_p995": 44.30452046670448,
+        "frac_ge_tau": 0.00959188660801564,
+        "network_max_median": 12.33846141105976,
+        "network_max_p99": 89.81376349629278
+      },
+      {
+        "month": "2018-06",
+        "n_finite_scores": 285120,
+        "score_median": 0.12153065810349949,
+        "score_p99": 25.479925542807017,
+        "score_p995": 34.813392863016475,
+        "frac_ge_tau": 0.008768237934904602,
+        "network_max_median": 7.2540021315056045,
+        "network_max_p99": 286.0306205334462
+      }
+    ]
+  },
+  "diag_stats": {
+    "n_pooled": 1595913,
+    "median": 0.020972499617460044,
+    "p99": 7.383129217505329,
+    "p995": 9.487857709725688,
+    "frac_ge_tau": 0.000419195783228785,
+    "by_sensor": [
+      {
+        "sensor": "n644",
+        "n": 48361,
+        "median": 0.06039208089757199,
+        "p99": 15.705491409327417,
+        "p995": 66.60364498546325,
+        "frac_ge_tau": 0.006203345671098612,
+        "max": 84.23648867951076
+      },
+      {
+        "sensor": "n752",
+        "n": 48361,
+        "median": -0.2032091792731057,
+        "p99": 7.592593013663709,
+        "p995": 32.563788952355594,
+        "frac_ge_tau": 0.005955211844254668,
+        "max": 46.76356176522131
+      },
+      {
+        "sensor": "n636",
+        "n": 48361,
+        "median": 0.06984621365543496,
+        "p99": 13.714860817956003,
+        "p995": 20.634326056988666,
+        "frac_ge_tau": 0.0016335476933893012,
+        "max": 32.40450939907667
+      },
+      {
+        "sensor": "n342",
+        "n": 48361,
+        "median": 0.4439413161169488,
+        "p99": 10.617311593827468,
+        "p995": 14.771714987126801,
+        "frac_ge_tau": 4.1355637807324086e-05,
+        "max": 26.853080214241484
+      },
+      {
+        "sensor": "n1",
+        "n": 48361,
+        "median": -0.010110756456939277,
+        "p99": 7.357372623347772,
+        "p995": 8.60210730638455,
+        "frac_ge_tau": 0.0,
+        "max": 12.2452736382938
+      },
+      {
+        "sensor": "n4",
+        "n": 48361,
+        "median": -0.010019666758418411,
+        "p99": 9.159649902466628,
+        "p995": 11.166023850596442,
+        "frac_ge_tau": 0.0,
+        "max": 19.975738012707968
+      },
+      {
+        "sensor": "n31",
+        "n": 48361,
+        "median": 0.006047945780077566,
+        "p99": 2.2003067475933924,
+        "p995": 2.780696408725338,
+        "frac_ge_tau": 0.0,
+        "max": 4.176289511444377
+      },
+      {
+        "sensor": "n54",
+        "n": 48361,
+        "median": 0.02521649287590065,
+        "p99": 1.3490082085284052,
+        "p995": 1.49366365909759,
+        "frac_ge_tau": 0.0,
+        "max": 2.0247400434074314
+      },
+      {
+        "sensor": "n105",
+        "n": 48361,
+        "median": 0.03884208979288615,
+        "p99": 4.13593551471777,
+        "p995": 4.594363794373447,
+        "frac_ge_tau": 0.0,
+        "max": 6.552171393345936
+      },
+      {
+        "sensor": "n114",
+        "n": 48361,
+        "median": -0.041944303032632586,
+        "p99": 4.306859319512741,
+        "p995": 4.881729262220738,
+        "frac_ge_tau": 0.0,
+        "max": 7.5458529336649205
+      },
+      {
+        "sensor": "n163",
+        "n": 48361,
+        "median": 0.3610885223187516,
+        "p99": 7.138706644225475,
+        "p995": 7.7162433826624,
+        "frac_ge_tau": 0.0,
+        "max": 10.101661786975535
+      },
+      {
+        "sensor": "n188",
+        "n": 48361,
+        "median": -0.1588130439603307,
+        "p99": 3.4762852544220806,
+        "p995": 3.6261903910753954,
+        "frac_ge_tau": 0.0,
+        "max": 4.1574952484838965
+      },
+      {
+        "sensor": "n215",
+        "n": 48361,
+        "median": -0.06781978879705061,
+        "p99": 5.012607937243738,
+        "p995": 5.5187539656059545,
+        "frac_ge_tau": 0.0,
+        "max": 8.658806387788774
+      },
+      {
+        "sensor": "n229",
+        "n": 48361,
+        "median": 0.08866145760421626,
+        "p99": 6.795816659037848,
+        "p995": 8.535847092376304,
+        "frac_ge_tau": 0.0,
+        "max": 16.97647714534212
+      },
+      {
+        "sensor": "n288",
+        "n": 48361,
+        "median": 0.36594207205254053,
+        "p99": 6.13619670466131,
+        "p995": 7.872086023323442,
+        "frac_ge_tau": 0.0,
+        "max": 12.37221057890919
+      },
+      {
+        "sensor": "n296",
+        "n": 48361,
+        "median": -0.5564234238141033,
+        "p99": 10.112589015389865,
+        "p995": 12.248784276388527,
+        "frac_ge_tau": 0.0,
+        "max": 20.080937656413525
+      },
+      {
+        "sensor": "n332",
+        "n": 48361,
+        "median": 0.39387148976593545,
+        "p99": 3.7805160853250377,
+        "p995": 4.072291763465496,
+        "frac_ge_tau": 0.0,
+        "max": 5.4586921382902736
+      },
+      {
+        "sensor": "n410",
+        "n": 48361,
+        "median": 0.05615121235216392,
+        "p99": 1.9638264933766163,
+        "p995": 3.2253761656293847,
+        "frac_ge_tau": 0.0,
+        "max": 5.291451305987206
+      },
+      {
+        "sensor": "n415",
+        "n": 48361,
+        "median": 0.1656273590824672,
+        "p99": 3.6012216194946043,
+        "p995": 3.833797988964942,
+        "frac_ge_tau": 0.0,
+        "max": 5.0412775083400865
+      },
+      {
+        "sensor": "n429",
+        "n": 48361,
+        "median": 0.052597866195848414,
+        "p99": 2.3720846299783234,
+        "p995": 2.573248339147879,
+        "frac_ge_tau": 0.0,
+        "max": 4.9863365479642425
+      },
+      {
+        "sensor": "n458",
+        "n": 48361,
+        "median": -0.5631377140029727,
+        "p99": 10.218771987987116,
+        "p995": 10.920420930165491,
+        "frac_ge_tau": 0.0,
+        "max": 17.453308588011037
+      },
+      {
+        "sensor": "n469",
+        "n": 48361,
+        "median": -0.3156856508827886,
+        "p99": 5.173181863587094,
+        "p995": 5.539081694506117,
+        "frac_ge_tau": 0.0,
+        "max": 6.8936769577354156
+      },
+      {
+        "sensor": "n495",
+        "n": 48361,
+        "median": -0.06576857739692785,
+        "p99": 4.266695130335689,
+        "p995": 4.652700337039919,
+        "frac_ge_tau": 0.0,
+        "max": 7.2675635230893585
+      },
+      {
+        "sensor": "n506",
+        "n": 48361,
+        "median": 0.4677155039804372,
+        "p99": 3.9367219110749296,
+        "p995": 4.293727476041544,
+        "frac_ge_tau": 0.0,
+        "max": 6.618318573144826
+      },
+      {
+        "sensor": "n516",
+        "n": 48361,
+        "median": 0.08467532092777726,
+        "p99": 4.567465879692905,
+        "p995": 4.995669762778444,
+        "frac_ge_tau": 0.0,
+        "max": 8.934832590781648
+      },
+      {
+        "sensor": "n519",
+        "n": 48361,
+        "median": 0.07108417498655718,
+        "p99": 4.786321675692013,
+        "p995": 5.1889407549706075,
+        "frac_ge_tau": 0.0,
+        "max": 7.253717318370602
+      },
+      {
+        "sensor": "n549",
+        "n": 48361,
+        "median": 0.3447788981767161,
+        "p99": 4.228616750212347,
+        "p995": 4.644982571801515,
+        "frac_ge_tau": 0.0,
+        "max": 6.296598052265027
+      },
+      {
+        "sensor": "n613",
+        "n": 48361,
+        "median": 0.5515167417834665,
+        "p99": 10.26709280490752,
+        "p995": 11.816810823360733,
+        "frac_ge_tau": 0.0,
+        "max": 25.6343866945263
+      },
+      {
+        "sensor": "n679",
+        "n": 48361,
+        "median": 0.1763671393422622,
+        "p99": 2.8245379213107595,
+        "p995": 3.4201887219447853,
+        "frac_ge_tau": 0.0,
+        "max": 5.164663801715822
+      },
+      {
+        "sensor": "n722",
+        "n": 48361,
+        "median": -0.3685490024827848,
+        "p99": 8.913978393892492,
+        "p995": 11.523042572847817,
+        "frac_ge_tau": 0.0,
+        "max": 16.280285983263564
+      },
+      {
+        "sensor": "n726",
+        "n": 48361,
+        "median": -0.0022502164227265063,
+        "p99": 6.0765215425742305,
+        "p995": 7.274254754969192,
+        "frac_ge_tau": 0.0,
+        "max": 12.742544417070457
+      },
+      {
+        "sensor": "n740",
+        "n": 48361,
+        "median": -0.04599352616335461,
+        "p99": 3.6557479694111237,
+        "p995": 4.020596744327036,
+        "frac_ge_tau": 0.0,
+        "max": 6.377239834880824
+      },
+      {
+        "sensor": "n769",
+        "n": 48361,
+        "median": -0.2022924290002235,
+        "p99": 5.340008449180958,
+        "p995": 5.81189053444768,
+        "frac_ge_tau": 0.0,
+        "max": 7.542453616553783
+      }
+    ],
+    "by_month": [
+      {
+        "month": "2018-07",
+        "n_finite_scores": 141801,
+        "score_median": 0.01999146875766547,
+        "score_p99": 4.339502670896546,
+        "score_p995": 5.259097431155922,
+        "frac_ge_tau": 0.0,
+        "network_max_median": 2.882772661195805,
+        "network_max_p99": 12.743249540366103
+      },
+      {
+        "month": "2018-08",
+        "n_finite_scores": 294624,
+        "score_median": -0.0018424570931832695,
+        "score_p99": 9.16122898826169,
+        "score_p995": 13.041307296201571,
+        "frac_ge_tau": 0.0009775171065493646,
+        "network_max_median": 5.345252179921458,
+        "network_max_p99": 40.53122946513515
+      },
+      {
+        "month": "2018-09",
+        "n_finite_scores": 285120,
+        "score_median": 0.040381130428042145,
+        "score_p99": 6.104819078616268,
+        "score_p995": 7.843908779049283,
+        "frac_ge_tau": 0.0,
+        "network_max_median": 4.751274485133083,
+        "network_max_p99": 17.87888419157936
+      },
+      {
+        "month": "2018-10",
+        "n_finite_scores": 294624,
+        "score_median": 0.02460408880483648,
+        "score_p99": 9.89229055253057,
+        "score_p995": 12.229464712314904,
+        "frac_ge_tau": 0.0012931736722059304,
+        "network_max_median": 6.454284712157124,
+        "network_max_p99": 79.47852194175672
+      },
+      {
+        "month": "2018-11",
+        "n_finite_scores": 285120,
+        "score_median": 0.02863567681847335,
+        "score_p99": 6.115213243824309,
+        "score_p995": 7.429937930892309,
+        "frac_ge_tau": 0.0,
+        "network_max_median": 5.147929586737319,
+        "network_max_p99": 12.48468871008264
+      },
+      {
+        "month": "2018-12",
+        "n_finite_scores": 294624,
+        "score_median": 0.024700285605612576,
+        "score_p99": 6.3943460217411205,
+        "score_p995": 7.632999638168286,
+        "frac_ge_tau": 0.0,
+        "network_max_median": 5.176282060439391,
+        "network_max_p99": 11.65713559199077
+      }
+    ]
+  },
+  "events": {
+    "p183": {
+      "pipe": "p183",
+      "onset": "2018-08-07 02:35",
+      "window_hours": 6.0,
+      "peak_network_score": 44.12581084144053,
+      "peak_time": "2018-08-07 08:20",
+      "peak_minus_tau": 17.39286629368386,
+      "exceeds_frozen_tau": true,
+      "top_sensors_at_peak": [
+        {
+          "sensor": "n752",
+          "score": 44.12581084144053,
+          "refs": [
+            "n726",
+            "n769",
+            "n288"
+          ],
+          "ge_tau": true
+        },
+        {
+          "sensor": "n636",
+          "score": 19.68048461810945,
+          "refs": [
+            "n188",
+            "n613",
+            "n163"
+          ],
+          "ge_tau": false
+        },
+        {
+          "sensor": "n644",
+          "score": 16.143077742685094,
+          "refs": [
+            "n636",
+            "n679",
+            "n332"
+          ],
+          "ge_tau": false
+        },
+        {
+          "sensor": "n726",
+          "score": 11.541340223258388,
+          "refs": [
+            "n752",
+            "n769",
+            "n288"
+          ],
+          "ge_tau": false
+        },
+        {
+          "sensor": "n613",
+          "score": 5.200923804089209,
+          "refs": [
+            "n163",
+            "n188",
+            "n519"
+          ],
+          "ge_tau": false
+        }
+      ],
+      "sensors_crossing_tau_in_window": [
+        {
+          "sensor": "n752",
+          "max_in_window": 44.12581084144053,
+          "first_cross_local": 6667
+        }
+      ],
+      "notifications_in_window": [
+        {
+          "stream": "n752",
+          "notify": "2018-08-07 03:35",
+          "delay_h": 1.0
+        }
+      ],
+      "already_active_at_onset": [],
+      "episode_logic": {
+        "threshold_crossed_in_window": true,
+        "new_notification_in_window": true,
+        "blocked_by_active_episode": false,
+        "explanation": "Threshold crossing produced a notification inside the 6 h window (see matching-attribution note if primary abrupt recall still MISS)."
+      },
+      "primary_match": {
+        "pipe": "p183",
+        "leak_type": "abrupt",
+        "onset": "2018-08-07 02:35",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null
+      },
+      "matching_attribution": {
+        "issue": "in_window_notify_assigned_to_earlier_onset",
+        "detail": "n752 notified 2018-08-07 03:35 (1 h after p183 onset) but primary one-to-one matching credited that episode to incipient p810 (onset 2018-07-28, delay 240.5 h under the 14-day incipient window)."
+      }
+    },
+    "p369": {
+      "pipe": "p369",
+      "onset": "2018-10-26 02:05",
+      "window_hours": 6.0,
+      "peak_network_score": 6.547648958864513,
+      "peak_time": "2018-10-26 03:25",
+      "peak_minus_tau": -20.18529558889216,
+      "exceeds_frozen_tau": false,
+      "top_sensors_at_peak": [
+        {
+          "sensor": "n163",
+          "score": 6.547648958864513,
+          "refs": [
+            "n613",
+            "n519",
+            "n188"
+          ],
+          "ge_tau": false
+        },
+        {
+          "sensor": "n410",
+          "score": 5.024378137622073,
+          "refs": [
+            "n429",
+            "n415",
+            "n342"
+          ],
+          "ge_tau": false
+        },
+        {
+          "sensor": "n415",
+          "score": 3.674227802972607,
+          "refs": [
+            "n458",
+            "n342",
+            "n519"
+          ],
+          "ge_tau": false
+        },
+        {
+          "sensor": "n519",
+          "score": 3.470424341561246,
+          "refs": [
+            "n163",
+            "n613",
+            "n188"
+          ],
+          "ge_tau": false
+        },
+        {
+          "sensor": "n229",
+          "score": 3.362288679500917,
+          "refs": [
+            "n636",
+            "n613",
+            "n163"
+          ],
+          "ge_tau": false
+        }
+      ],
+      "sensors_crossing_tau_in_window": [],
+      "notifications_in_window": [],
+      "already_active_at_onset": [],
+      "episode_logic": {
+        "threshold_crossed_in_window": false,
+        "new_notification_in_window": false,
+        "blocked_by_active_episode": false,
+        "explanation": "No sensor score reached frozen \u03c4 in the 6 h window."
+      },
+      "primary_match": {
+        "pipe": "p369",
+        "leak_type": "abrupt",
+        "onset": "2018-10-26 02:05",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null
+      },
+      "matching_attribution": null
+    },
+    "p158": {
+      "pipe": "p158",
+      "onset": "2018-10-06 02:35",
+      "window_hours": 6.0,
+      "peak_network_score": 72.9856353991769,
+      "peak_time": "2018-10-06 04:15",
+      "peak_minus_tau": 46.252690851420226,
+      "exceeds_frozen_tau": true,
+      "top_sensors_at_peak": [
+        {
+          "sensor": "n644",
+          "score": 72.9856353991769,
+          "refs": [
+            "n636",
+            "n679",
+            "n332"
+          ],
+          "ge_tau": true
+        },
+        {
+          "sensor": "n342",
+          "score": 25.422514828025008,
+          "refs": [
+            "n458",
+            "n415",
+            "n613"
+          ],
+          "ge_tau": false
+        },
+        {
+          "sensor": "n636",
+          "score": 22.86156535867815,
+          "refs": [
+            "n188",
+            "n613",
+            "n163"
+          ],
+          "ge_tau": false
+        },
+        {
+          "sensor": "n613",
+          "score": 16.062748762878144,
+          "refs": [
+            "n163",
+            "n188",
+            "n519"
+          ],
+          "ge_tau": false
+        },
+        {
+          "sensor": "n229",
+          "score": 15.231075196138745,
+          "refs": [
+            "n636",
+            "n613",
+            "n163"
+          ],
+          "ge_tau": false
+        }
+      ],
+      "sensors_crossing_tau_in_window": [
+        {
+          "sensor": "n644",
+          "max_in_window": 72.9856353991769,
+          "first_cross_local": 23946
+        }
+      ],
+      "notifications_in_window": [
+        {
+          "stream": "n644",
+          "notify": "2018-10-06 03:30",
+          "delay_h": 0.9166666666666666
+        }
+      ],
+      "already_active_at_onset": [],
+      "episode_logic": {
+        "threshold_crossed_in_window": true,
+        "new_notification_in_window": true,
+        "blocked_by_active_episode": false,
+        "explanation": "Threshold crossing produced a notification inside the 6 h window (see matching-attribution note if primary abrupt recall still MISS)."
+      },
+      "primary_match": {
+        "pipe": "p158",
+        "leak_type": "abrupt",
+        "onset": "2018-10-06 02:35",
+        "matched": true,
+        "notify_time": "2018-10-06 03:30",
+        "delay_hours": 0.9166666666666666,
+        "stream_id": "n644"
+      },
+      "matching_attribution": null
+    }
+  },
+  "controls": {
+    "p183": {
+      "month": "2018-08",
+      "n_controls": 71,
+      "control_rule": "Non-overlapping 6h windows stepped every 6h within the event's calendar month inside the period analysis span; reject start if within \u00b17 d of any labeled leakage onset. Statistic = max_t max_i s_i(t). Controls are not assumed leak-free.",
+      "control_max_median": 11.435552534683696,
+      "control_max_p90": 15.747422640730383,
+      "control_max_p99": 16.775513234341304,
+      "control_max_max": 16.873493902501284,
+      "event_network_max_6h": 44.12581084144053,
+      "event_percentile_vs_controls": 100.0,
+      "diagnostic_only": true
+    },
+    "p369": {
+      "month": "2018-10",
+      "n_controls": 24,
+      "control_rule": "Non-overlapping 6h windows stepped every 6h within the event's calendar month inside the period analysis span; reject start if within \u00b17 d of any labeled leakage onset. Statistic = max_t max_i s_i(t). Controls are not assumed leak-free.",
+      "control_max_median": 9.855845760150588,
+      "control_max_p90": 12.174273101820534,
+      "control_max_p99": 12.823283635037237,
+      "control_max_max": 12.86395569051816,
+      "event_network_max_6h": 6.547648958864513,
+      "event_percentile_vs_controls": 4.166666666666666,
+      "diagnostic_only": true
+    },
+    "p158": {
+      "month": "2018-10",
+      "n_controls": 24,
+      "control_rule": "Non-overlapping 6h windows stepped every 6h within the event's calendar month inside the period analysis span; reject start if within \u00b17 d of any labeled leakage onset. Statistic = max_t max_i s_i(t). Controls are not assumed leak-free.",
+      "control_max_median": 9.855845760150588,
+      "control_max_p90": 12.174273101820534,
+      "control_max_p99": 12.823283635037237,
+      "control_max_max": 12.86395569051816,
+      "event_network_max_6h": 72.9856353991769,
+      "event_percentile_vs_controls": 100.0,
+      "diagnostic_only": true
+    }
+  },
+  "recommendation": "**p183 is not a score-transfer miss:** network max 44.1 \u2265 \u03c4 with an in-window n752 notification (delay 1 h). Primary abrupt MISS is a **matching-attribution conflict** \u2014 the episode was consumed by earlier incipient p810 under the 14-day match window. Adaptive \u03c4 calibration would not fix this; a matching/eligibility rule change would. **p369: calibration is insufficient.** Peak network score 6.55 \u226a \u03c4 and only ~4.2th percentile vs same-month 6 h controls \u2014 ordinary excursions dominate. Missing information is not a higher DEV percentile; relationship residuals lack separable local structure (spatial/hydraulic consistency or operating context). Comparability: DEV/DIAG models independently refit (identical=False, refs_identical=False); DIAG frac\u2265\u03c4 0.000419 vs DEV 0.005001 \u2014 numeric \u03c4 changes meaning across periods. p158 HIT peak=72.99 (local_pct=100.0). Do not retune \u03c4 or implement adaptive calibration in this diagnosis.",
+  "miss_classifications": {
+    "p183": "matching_attribution_conflict",
+    "p369": "overlaps_controls",
+    "p158": "hit"
+  }
+}
