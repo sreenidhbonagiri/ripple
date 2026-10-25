@@ -3,6 +3,7 @@ __pycache__/
 .pytest_cache/
 outputs/synthetic/_scratch/
 outputs/hypothesis_synthetic/_scratch/
+outputs/hypothesis_ltown_synthetic/_scratch/
 outputs/calibration/_scratch/
 outputs/calibration/_scratch_audit/
 outputs/calibration/_scratch_timing/
