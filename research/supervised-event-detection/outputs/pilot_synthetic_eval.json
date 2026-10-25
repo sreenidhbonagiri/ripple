@@ -1,0 +1,35 @@
+{
+  "train_replay": {
+    "empty": false,
+    "tau": 0.3,
+    "row_recall": 0.96875,
+    "row_precision": 0.09711103376261747,
+    "scenario_recall": 1.0,
+    "n_leak_scenarios_eval": 4,
+    "fp_row_rate": 0.5446147386101197,
+    "n_pred": 2873,
+    "n_pos": 288
+  },
+  "synthetic_dev": {
+    "empty": false,
+    "tau": 0.3,
+    "row_recall": 0.7277777777777777,
+    "row_precision": 0.13319776309100154,
+    "scenario_recall": 0.8,
+    "n_leak_scenarios_eval": 5,
+    "fp_row_rate": 0.4922055427251732,
+    "n_pred": 1967,
+    "n_pos": 360
+  },
+  "synthetic_test": {
+    "empty": false,
+    "tau": 0.3,
+    "row_recall": 0.5407407407407407,
+    "row_precision": 0.10398860398860399,
+    "scenario_recall": 0.8666666666666667,
+    "n_leak_scenarios_eval": 15,
+    "fp_row_rate": 0.5533927196744749,
+    "n_pred": 5616,
+    "n_pos": 1080
+  }
+}

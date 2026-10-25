@@ -1,0 +1,1733 @@
+{
+  "master_seed": 20261024,
+  "inp_path": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+  "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+  "n_planned": 40,
+  "n_ok": 40,
+  "n_failed": 0,
+  "leak_sampling_note": "Pipes sampled with MASTER_SEED from L-TOWN.inp pipe list; 2019 leak labels were not read or used for inclusion/exclusion.",
+  "similarity_note": "All scenarios share the same nominal L-TOWN.inp topology and patterns; they differ by pipe, leak area, demand scale, operating_realization, and control interventions. Residual hydraulic similarity remains.",
+  "scenarios": [
+    {
+      "spec": {
+        "scenario_id": "leak_000_p282",
+        "kind": "leak_abrupt",
+        "seed": 358126821,
+        "pipe": "p282",
+        "pipe_group": 0,
+        "demand_scale": 1.03,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 28.476620218660365,
+        "leak_end_hour": 37.775517027957406,
+        "operating_realization": 3,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_000_p282.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_001_p299",
+        "kind": "leak_abrupt",
+        "seed": 1482696797,
+        "pipe": "p299",
+        "pipe_group": 4,
+        "demand_scale": 1.03,
+        "leak_area_m2": 0.0002,
+        "leak_start_hour": 33.52617416306175,
+        "leak_end_hour": 47.5,
+        "operating_realization": 3,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_001_p299.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_002_p69",
+        "kind": "leak_abrupt",
+        "seed": 1011250861,
+        "pipe": "p69",
+        "pipe_group": 3,
+        "demand_scale": 1.08,
+        "leak_area_m2": 0.0001,
+        "leak_start_hour": 18.541773368573516,
+        "leak_end_hour": 34.01119019084727,
+        "operating_realization": 0,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_002_p69.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_003_p435",
+        "kind": "leak_abrupt",
+        "seed": 365580715,
+        "pipe": "p435",
+        "pipe_group": 4,
+        "demand_scale": 0.92,
+        "leak_area_m2": 0.0002,
+        "leak_start_hour": 28.239095592636772,
+        "leak_end_hour": 42.56083361837362,
+        "operating_realization": 1,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_003_p435.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_004_p709",
+        "kind": "leak_abrupt",
+        "seed": 1605879247,
+        "pipe": "p709",
+        "pipe_group": 1,
+        "demand_scale": 0.97,
+        "leak_area_m2": 0.0002,
+        "leak_start_hour": 18.01901752127673,
+        "leak_end_hour": 28.28344993945935,
+        "operating_realization": 2,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_004_p709.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_005_p443",
+        "kind": "leak_abrupt",
+        "seed": 2115758232,
+        "pipe": "p443",
+        "pipe_group": 2,
+        "demand_scale": 0.97,
+        "leak_area_m2": 0.0001,
+        "leak_start_hour": 29.834828615912585,
+        "leak_end_hour": 46.300736225100465,
+        "operating_realization": 3,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_005_p443.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_006_p128",
+        "kind": "leak_abrupt",
+        "seed": 1730549579,
+        "pipe": "p128",
+        "pipe_group": 0,
+        "demand_scale": 0.92,
+        "leak_area_m2": 5e-05,
+        "leak_start_hour": 35.95390579763104,
+        "leak_end_hour": 47.29558312190482,
+        "operating_realization": 2,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_006_p128.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_007_p356",
+        "kind": "leak_abrupt",
+        "seed": 1613481857,
+        "pipe": "p356",
+        "pipe_group": 2,
+        "demand_scale": 1.0,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 22.359038330964943,
+        "leak_end_hour": 39.21992879959441,
+        "operating_realization": 0,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_007_p356.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_008_p576",
+        "kind": "leak_abrupt",
+        "seed": 1985715619,
+        "pipe": "p576",
+        "pipe_group": 4,
+        "demand_scale": 1.0,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 35.53532525183409,
+        "leak_end_hour": 47.5,
+        "operating_realization": 3,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_008_p576.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_009_p210",
+        "kind": "leak_abrupt",
+        "seed": 145792014,
+        "pipe": "p210",
+        "pipe_group": 4,
+        "demand_scale": 1.0,
+        "leak_area_m2": 0.0001,
+        "leak_start_hour": 22.15051580071662,
+        "leak_end_hour": 39.506580591800855,
+        "operating_realization": 1,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_009_p210.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_010_p607",
+        "kind": "leak_abrupt",
+        "seed": 1608739898,
+        "pipe": "p607",
+        "pipe_group": 4,
+        "demand_scale": 0.97,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 17.72805850816046,
+        "leak_end_hour": 25.463189216524295,
+        "operating_realization": 2,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_010_p607.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_011_p19",
+        "kind": "leak_abrupt",
+        "seed": 9996850,
+        "pipe": "p19",
+        "pipe_group": 4,
+        "demand_scale": 1.03,
+        "leak_area_m2": 5e-05,
+        "leak_start_hour": 30.74749701034981,
+        "leak_end_hour": 44.862812012819695,
+        "operating_realization": 3,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_011_p19.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_012_p801",
+        "kind": "leak_abrupt",
+        "seed": 1703219897,
+        "pipe": "p801",
+        "pipe_group": 2,
+        "demand_scale": 0.97,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 24.42814925250786,
+        "leak_end_hour": 33.75895047216901,
+        "operating_realization": 3,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_012_p801.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_013_p688",
+        "kind": "leak_abrupt",
+        "seed": 1864640492,
+        "pipe": "p688",
+        "pipe_group": 2,
+        "demand_scale": 0.97,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 15.545783803100907,
+        "leak_end_hour": 26.468890244805916,
+        "operating_realization": 0,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_013_p688.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_014_p36",
+        "kind": "leak_abrupt",
+        "seed": 1924428150,
+        "pipe": "p36",
+        "pipe_group": 1,
+        "demand_scale": 1.0,
+        "leak_area_m2": 5e-05,
+        "leak_start_hour": 22.662494459817857,
+        "leak_end_hour": 34.552858750947706,
+        "operating_realization": 1,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_014_p36.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_015_p655",
+        "kind": "leak_abrupt",
+        "seed": 1994033261,
+        "pipe": "p655",
+        "pipe_group": 3,
+        "demand_scale": 0.92,
+        "leak_area_m2": 5e-05,
+        "leak_start_hour": 17.62885483855029,
+        "leak_end_hour": 27.418565874441278,
+        "operating_realization": 0,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_015_p655.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_016_p45",
+        "kind": "leak_abrupt",
+        "seed": 994156930,
+        "pipe": "p45",
+        "pipe_group": 1,
+        "demand_scale": 0.97,
+        "leak_area_m2": 5e-05,
+        "leak_start_hour": 36.83756182231506,
+        "leak_end_hour": 45.63398228493967,
+        "operating_realization": 0,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_016_p45.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_017_p445",
+        "kind": "leak_abrupt",
+        "seed": 1305901178,
+        "pipe": "p445",
+        "pipe_group": 1,
+        "demand_scale": 1.03,
+        "leak_area_m2": 5e-05,
+        "leak_start_hour": 35.5558534993813,
+        "leak_end_hour": 47.5,
+        "operating_realization": 3,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_017_p445.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_018_p513",
+        "kind": "leak_abrupt",
+        "seed": 86431555,
+        "pipe": "p513",
+        "pipe_group": 3,
+        "demand_scale": 1.0,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 17.675194056829415,
+        "leak_end_hour": 26.598429409504092,
+        "operating_realization": 2,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_018_p513.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_019_p488",
+        "kind": "leak_abrupt",
+        "seed": 2038992455,
+        "pipe": "p488",
+        "pipe_group": 1,
+        "demand_scale": 0.92,
+        "leak_area_m2": 5e-05,
+        "leak_start_hour": 18.08939865931473,
+        "leak_end_hour": 32.802721074965426,
+        "operating_realization": 2,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_019_p488.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_020_p656",
+        "kind": "leak_abrupt",
+        "seed": 4435722,
+        "pipe": "p656",
+        "pipe_group": 2,
+        "demand_scale": 1.0,
+        "leak_area_m2": 5e-05,
+        "leak_start_hour": 28.72620348271218,
+        "leak_end_hour": 36.08276465225159,
+        "operating_realization": 2,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_020_p656.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_021_p800",
+        "kind": "leak_abrupt",
+        "seed": 726439897,
+        "pipe": "p800",
+        "pipe_group": 4,
+        "demand_scale": 0.97,
+        "leak_area_m2": 0.0001,
+        "leak_start_hour": 18.012115516413765,
+        "leak_end_hour": 25.984820864059294,
+        "operating_realization": 3,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_021_p800.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_022_p670",
+        "kind": "leak_abrupt",
+        "seed": 1899366419,
+        "pipe": "p670",
+        "pipe_group": 1,
+        "demand_scale": 1.0,
+        "leak_area_m2": 0.0001,
+        "leak_start_hour": 19.815779176574498,
+        "leak_end_hour": 31.268731421927974,
+        "operating_realization": 2,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_022_p670.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_023_p891",
+        "kind": "leak_abrupt",
+        "seed": 1459390193,
+        "pipe": "p891",
+        "pipe_group": 4,
+        "demand_scale": 1.03,
+        "leak_area_m2": 5e-05,
+        "leak_start_hour": 24.861519544101423,
+        "leak_end_hour": 36.44643956571019,
+        "operating_realization": 2,
+        "notes": "abrupt leak on continuous trajectory after warm-up"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "leak_023_p891.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_000_control_pump",
+        "kind": "control_pump",
+        "seed": 930730031,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 0.85,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 3,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_000_control_pump.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_001_control_demand",
+        "kind": "control_demand",
+        "seed": 1592742682,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.2,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 3,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_001_control_demand.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_002_control_demand",
+        "kind": "control_demand",
+        "seed": 1509017038,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 0.9,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 1,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_002_control_demand.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_003_control_demand",
+        "kind": "control_demand",
+        "seed": 863638653,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 0.9,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 3,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_003_control_demand.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_004_control_sensor",
+        "kind": "control_sensor",
+        "seed": 919162741,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.1,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 2,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_004_control_sensor.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_005_control_sensor",
+        "kind": "control_sensor",
+        "seed": 904105633,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.15,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 2,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_005_control_sensor.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_006_control_tank",
+        "kind": "control_tank",
+        "seed": 640887929,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.1,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 2,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_006_control_tank.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_007_control_pump",
+        "kind": "control_pump",
+        "seed": 444908563,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.1,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 0,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_007_control_pump.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_008_control_pump",
+        "kind": "control_pump",
+        "seed": 801872080,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.1,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 0,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_008_control_pump.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_009_control_sensor",
+        "kind": "control_sensor",
+        "seed": 282432172,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.1,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 1,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_009_control_sensor.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_010_control_pump",
+        "kind": "control_pump",
+        "seed": 1056096221,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.1,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 3,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_010_control_pump.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_011_control_sensor",
+        "kind": "control_sensor",
+        "seed": 45259270,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.2,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 1,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_011_control_sensor.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_012_control_demand",
+        "kind": "control_demand",
+        "seed": 1428695614,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.2,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 3,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_012_control_demand.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_013_control_demand",
+        "kind": "control_demand",
+        "seed": 22760875,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 0.85,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 3,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_013_control_demand.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_014_control_tank",
+        "kind": "control_tank",
+        "seed": 954169503,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 0.85,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 1,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_014_control_tank.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_015_control_tank",
+        "kind": "control_tank",
+        "seed": 1319015289,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 0.9,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 1,
+        "notes": "difficult no-new-leak control"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577
+      },
+      "npz": "ctrl_015_control_tank.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    }
+  ],
+  "failures": []
+}
