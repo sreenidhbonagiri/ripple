@@ -1,92 +1,79 @@
-# Stage 3 calibration / generalization verdict
+# Stage 3 calibration / generalization verdict (corrected)
 
 **Verdict: `PASS_WITH_LIMITATIONS`**
 
-Demand calibration (FIT_W1 only) materially improves pressure RMSE on the fit
-week and on four multi-season 2018 validation weeks versus the nominal INP.
-Roughness cluster values remain essentially at their INP initials (weakly
-identified). Virtual-flow magnitudes shrink, but signed Σq_v is **not** near
-zero even on the leak-free fit week, and strong day/night operating-state bias
-remains. **Do not treat this freeze as detection-ready.**
+Corrected signed-mean Area-C scale (bounds unchanged). Calibration improves FIT_W1 and multi-season validation pressure RMSE vs nominal; roughness mostly interior. Limitations: demand TSA is reconstructed; validation weeks contain ongoing leaks so q_v is not pure model error. Not detection-ready.
 
-Generated: `2026-10-25T04:31:41.548859+00:00`  
-TCV K frozen: `0.001` (nominal audit; not leak-tuned)
+Generated: `2026-10-25T04:40:11.587503+00:00`  
+TCV K frozen: `0.001` (nominal audit; not leak-tuned)  
+Estimator: `signed_mean_residual_no_preclip_v2`  
+frozen_calibration sha256: `5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921`  
+stage3_results sha256: `10d7d6566ca4d0bd1e02f4282fea10e29cb08d0fa76c8a2b2c7cfef5ada2d724`
 
-## Nominal solver audit (pre-calibration)
+Previous bugfix freeze retained under `superseded_by_bugfix/`.
+No tuning from validation or leak-onset outcomes.
 
-- 33/33 pressure sensors map into `L-TOWN.inp`; 82/82 AMRs lie in Area C.
-- Head conversion: `H = P + z` (P in metres water).
-- Flows: `p227`+`p235` external inflows; `PUMP_1` internal n54→T1.
-- Tank init from SCADA; INP level controls retained.
-- TCV K sweep on FIT snapshot (minimize mean|q_v|, not leak score) → **K=1e-3**.
+## Area-C scale (corrected vs previous)
 
-## Fit window (FIT_W1) — calibration vs nominal
+| | Previous (bugfix) | Corrected |
+|--|-------------------:|----------:|
+| raw scale | 2.8049136614848265 | 0.9208320927182462 |
+| clipped scale | 1.5 | 0.9208320927182462 |
+| bound hit | upper | interior |
+| physically_inconsistent | n/a (masked by clip) | `False` |
 
-| Model | Pressure RMSE (m) | Ext. inflow bias (m³/h) | Tank RMSE (m) | Σq_v mean (m³/h) | mean\|q_v\| (m³/h) |
-|-------|------------------:|------------------------:|--------------:|-----------------:|------------------:|
-| nominal | 0.642 | +7.18 | 0.768 | +2.68 | 2.71 |
-| calibrated | 0.295 | +24.38 | 0.275 | −13.35 | 1.38 |
+Signed mean residual: `1.695288715978` m³/h; frac negative samples: `0.3196029776674938`.
 
-Pressure and tank level improve. External-inflow bias **worsens** on the fit
-week (demand scaling prioritizes AMR/Area-C mass balance and patterns over
-matching p227+p235 exactly). Individual |q_v| drops ~2×; signed sum remains
-biased (cancellation ratio 0.55 vs 0.89 nominal — less hiding, still imperfect).
+## Fit window (FIT_W1)
 
-Day vs night Σq_v (calibrated FIT): day ≈ −12.6 m³/h, night ≈ −25.7 m³/h.
+| Model | Pressure RMSE (m) | Ext. inflow bias (m³/h) | Tank RMSE (m) | Σq_v mean | mean|q_v| | cancel |
+|-------|------------------:|------------------------:|--------------:|----------:|----------:|-------:|
+| nominal | 0.6415122535965869 | 7.184552282605848 | 0.7679694608371858 | 2.679309037991375 | 2.7073564315662857 | 0.8889741632133891 |
+| calibrated | 0.31552095395639684 | 23.599022887093682 | 0.36637380350338644 | -12.374004172667227 | 1.3841877083048757 | 0.542666893618945 |
 
-## Validation windows (frozen parameters; no refit)
+### Calibrated FIT vs superseded bugfix
 
-| Window | Model | P RMSE (m) | Ext bias (m³/h) | Σq_v mean | mean\|q_v\| | cancel ratio |
-|--------|-------|----------:|----------------:|----------:|------------:|-------------:|
-| VAL_APR | nominal | 0.665 | −22.1 | +33.4 | 2.93 | 0.83 |
-| VAL_APR | calibrated | 0.341 | +17.1 | −5.43 | 1.57 | 0.46 |
-| VAL_JUL | nominal | 0.810 | −47.4 | +59.5 | 3.24 | 0.87 |
-| VAL_JUL | calibrated | 0.375 | +12.5 | +1.35 | 1.55 | 0.50 |
-| VAL_OCT | nominal | 0.803 | −52.8 | +65.5 | 3.33 | 0.84 |
-| VAL_OCT | calibrated | 0.431 | −9.30 | +21.7 | 1.81 | 0.59 |
-| VAL_DEC | nominal | 0.735 | −35.8 | +47.9 | 3.09 | 0.83 |
-| VAL_DEC | calibrated | 0.346 | −0.44 | +13.0 | 1.64 | 0.48 |
+| Metric | Previous | Corrected |
+|--------|---------:|----------:|
+| P RMSE (m) | 0.2954917481904553 | 0.31552095395639684 |
+| Ext bias (m³/h) | 24.38221683865502 | 23.599022887093682 |
+| Tank RMSE (m) | 0.2747287376007576 | 0.36637380350338644 |
+| Σq_v mean | -13.347212310884364 | -12.374004172667227 |
+| mean|q_v| | 1.3806250953128114 | 1.3841877083048757 |
+| cancel ratio | 0.5478232035777366 | 0.542666893618945 |
 
-Mean validation pressure RMSE: nominal **0.753 m** → calibrated **0.373 m**.
-Validation weeks are **not** leak-free; Σq_v includes background leaks plus
-model error. Per-sensor means/stds are in `stage3_results.json`.
+## Validation windows (frozen parameters)
 
-## Parameter stability / identifiability
+| Window | Model | P RMSE (m) | Ext bias (m³/h) | Σq_v mean | mean|q_v| | cancel |
+|--------|-------|----------:|----------------:|----------:|----------:|--------:|
+| VAL_APR | nominal | 0.6651497442904457 | -22.132247524261473 | 33.39465094684105 | 2.9309313070443523 | 0.8301081108745713 |
+| VAL_APR | calibrated | 0.3591409518068486 | 16.056786370050336 | -4.32809098578671 | 1.584559978187092 | 0.46136916144344947 |
+| VAL_JUL | nominal | 0.8099196897165492 | -47.44804470970517 | 59.54176841510546 | 3.239280210168198 | 0.8746615869478296 |
+| VAL_JUL | calibrated | 0.38328010014267483 | 10.920371349879671 | 2.5041169816058484 | 1.5714912194150812 | 0.5016967217881586 |
+| VAL_OCT | nominal | 0.8031274501860084 | -52.756271657489584 | 65.49265543390804 | 3.3267837442267028 | 0.8352065885483967 |
+| VAL_OCT | calibrated | 0.447737874910079 | -10.610766229175384 | 23.114033217669114 | 1.8096854812043632 | 0.5975583125241922 |
+| VAL_DEC | nominal | 0.7347180554600105 | -35.79444990521385 | 47.909909587810816 | 3.088168278411237 | 0.82977072664071 |
+| VAL_DEC | calibrated | 0.40293360822368063 | -2.034165004548572 | 14.396901433970578 | 1.6624206527066583 | 0.4909268486007066 |
 
-| Parameter | Result |
-|-----------|--------|
-| Roughness (6 clusters, bounds [60,160]) | All **interior**; values ≈ x0 (ΔC < 0.2). Weakly identified under this demand model + weekly FIT — pressure gains are almost entirely from demand. |
-| `ab_scale` | 1.024 (interior of [0.7, 1.3]) |
-| `area_c_unmeasured_scale` | **1.50 upper bound** (raw estimate 2.80). Unmeasured Area-C demand (or FIT mass-balance residual) exceeds INP bases; clip prevents absorbing unexplained flow into uncapped demand. |
-| Closed valves | Not estimated (departure). |
+VAL mean P RMSE calibrated: previous 0.37302139231900233 → corrected 0.39827313377082074.
 
-## Leak-onset diagnostics (frozen; not detection accuracy)
+## Roughness / parameter stability
 
-Abrupt 2018 onsets, ±24 h dual Σq_v under frozen calibration:
+- Success: `True`; nfev=10; fit RMSE≈0.3616 m
+- Bound hits: `{'C_area_c': 'interior', 'B_area_b': 'interior', 'A_d100_c120': 'interior', 'A_d100_c140': 'interior', 'A_d150_200': 'interior', 'A_plastic_small': 'interior'}`
+- Values: `{'C_area_c': 140.00000322473116, 'B_area_b': 120.00063764441457, 'A_d100_c120': 120.00064841594929, 'A_d100_c140': 140.00000223908245, 'A_d150_200': 139.99991743282894, 'A_plastic_small': 139.99997974498177}`
+- Previous values: `{'C_area_c': 139.95679528760084, 'B_area_b': 120.1187428024681, 'A_d100_c120': 119.97727189630338, 'A_d100_c140': 140.07207825756058, 'A_d150_200': 139.9996634953247, 'A_plastic_small': 139.94741847864378}`
+- ab_scale=1.0244
 
-| Leak | Onset | ΔΣq_v (m³/h) | Dominant \|Δq_v\| (m³/h) | Note |
-|------|-------|-------------:|------------------------:|------|
-| p673 | 2018-03-05 15:45 | +30.9 | 20.0 (n229) | pre/post std ≈ 43 m³/h |
-| p538 | 2018-05-18 08:35 | +48.5 | 11.5 (n332) | large diurnal noise |
-| p866 | 2018-06-01 09:05 | +16.0 | 13.3 (n296) | |
-| p183 | 2018-08-07 02:35 | +30.5 | 9.7 (n752) | |
-| p158 | 2018-10-06 02:35 | +35.6 | 17.4 (n644) | |
+## Leak-onset diagnostics (recorded only; not used for tuning)
 
-Onsets often move Σq_v in the expected direction, but **pre-window std is
-comparable to the delta** and ordinary day/night swings are tens of m³/h.
-These are diagnostic only — **no threshold was fit; no claim of validated
-detection.**
+| Leak | Onset | ΔΣq_v (m³/h) | Dominant sensor Δ | Status |
+|------|-------|-------------:|------------------:|--------|
+| p673 | 2018-03-05 15:45:00 | 30.982424622189342 | 20.003472920416243 | ok |
+| p538 | 2018-05-18 08:35:00 | 48.37145716724933 | 11.474741020083457 | ok |
+| p866 | 2018-06-01 09:05:00 | 15.921740781296023 | 13.307692605872035 | ok |
+| p183 | 2018-08-07 02:35:00 | 30.516669316975253 | 9.740976972170756 | ok |
+| p158 | 2018-10-06 02:35:00 | 35.502814910439895 | 17.390586809233355 | ok |
 
-## Departures
+Stop before detection. No 2019 / UI / Tiger / deploy / main merge.
 
-See `DEPARTURES.md` (stage 3 section) and `CALIBRATION_WINDOWS.md`.
-
-## Artifacts
-
-- `outputs/calibration/NOMINAL_LTOWN_AUDIT.{md,json}`
-- `outputs/calibration/frozen_calibration.json`
-- `outputs/calibration/stage3_results.json`
-- `outputs/calibration/STAGE3_VERDICT.md` (this file)
-- `CALIBRATION_WINDOWS.md` (registered before fitting)
-
-No detector threshold search. No 2019. No UI / Tiger / main / deploy.

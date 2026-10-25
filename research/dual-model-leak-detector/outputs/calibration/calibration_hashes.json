@@ -1,0 +1,7 @@
+{
+  "frozen_calibration_sha256": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+  "stage3_results_sha256": "10d7d6566ca4d0bd1e02f4282fea10e29cb08d0fa76c8a2b2c7cfef5ada2d724",
+  "estimator": "signed_mean_residual_no_preclip_v2",
+  "generated_at_utc": "2026-10-25T04:40:11.587503+00:00",
+  "superseded_frozen_sha256": "9c7dc8b59b230f7c801c4935f1c81892dc9bac4a01f8a1e1421ccf37f2445913"
+}

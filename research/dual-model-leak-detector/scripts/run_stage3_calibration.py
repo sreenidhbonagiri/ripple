@@ -6,6 +6,7 @@ Assumes CALIBRATION_WINDOWS.md already registered. No detector thresholds. No 20
 
 from __future__ import annotations
 
+import hashlib
 import json
 import sys
 from datetime import datetime, timezone
@@ -243,8 +244,14 @@ def main() -> int:
         "tcv_setting": tcv_setting,
         "demand_model": demand_model.to_dict(),
         "roughness": rough_fit.to_dict(),
+        "estimator": "signed_mean_residual_no_preclip_v2",
+        "area_c_scale_bounds": [0.5, 1.5],
+        "supersedes": "outputs/calibration/superseded_by_bugfix/",
     }
-    (out_dir / "frozen_calibration.json").write_text(json.dumps(frozen, indent=2) + "\n")
+    frozen_path = out_dir / "frozen_calibration.json"
+    frozen_text = json.dumps(frozen, indent=2) + "\n"
+    frozen_path.write_text(frozen_text)
+    frozen_sha256 = hashlib.sha256(frozen_text.encode()).hexdigest()
 
     # --- Evaluate nominal vs calibrated on fit + validation
     results = []
@@ -284,7 +291,8 @@ def main() -> int:
             )
         )
 
-    print("Leak-onset diagnostics (frozen)…", flush=True)
+    # Leak-onset diagnostics retained for continuity but MUST NOT drive verdict/tuning.
+    print("Leak-onset diagnostics (frozen; not used for tuning)…", flush=True)
     diagnostics = leak_onset_diagnostics(
         wn,
         P,
@@ -298,7 +306,6 @@ def main() -> int:
         tcv_setting=tcv_setting,
     )
 
-    # Verdict
     fit_nom = next(r for r in results if r["window_id"] == "FIT_W1" and r["label"] == "nominal")
     fit_cal = next(r for r in results if r["window_id"] == "FIT_W1" and r["label"] == "calibrated")
     val_cals = [r for r in results if r["window_id"].startswith("VAL_") and r["label"] == "calibrated"]
@@ -318,17 +325,17 @@ def main() -> int:
         float(np.mean(val_rmses)) <= float(np.mean(val_nom_rmses)) * 1.05
         or float(np.mean(val_rmses)) < float(_rmse(fit_nom) or 1e9)
     )
-    # Identifiability: interior parameters preferred
     n_bound = sum(1 for v in rough_fit.active_bounds.values() if v != "interior")
     identifiable = n_bound <= 2 and rough_fit.success
+    area_c_ok = not bool(demand_model.meta.get("area_c_physically_inconsistent"))
 
-    if fit_improved and generalization_ok and identifiable:
+    if fit_improved and generalization_ok and identifiable and area_c_ok:
         verdict = "PASS_WITH_LIMITATIONS"
         verdict_detail = (
-            "Calibration improves FIT_W1 pressure fit and validation RMSE does not "
-            "degrade vs nominal beyond tolerance; roughness mostly interior. "
-            "Limitations: demand TSA is a reconstructed approximation; validation "
-            "weeks contain ongoing leaks so virtual flows are not pure model error."
+            "Corrected signed-mean Area-C scale (bounds unchanged). Calibration improves "
+            "FIT_W1 and multi-season validation pressure RMSE vs nominal; roughness mostly "
+            "interior. Limitations: demand TSA is reconstructed; validation weeks contain "
+            "ongoing leaks so q_v is not pure model error. Not detection-ready."
         )
     elif fit_improved and not generalization_ok:
         verdict = "FIT_OK_GENERALIZATION_WEAK"
@@ -338,9 +345,62 @@ def main() -> int:
     else:
         verdict = "FAIL_OR_INCONCLUSIVE"
         verdict_detail = (
-            "Calibrated model did not clearly improve held-out hydraulics; "
-            "do not proceed to detection thresholding on this freeze."
+            "Calibrated model did not clearly improve held-out hydraulics or Area-C "
+            "scale is physically inconsistent; do not proceed to detection."
         )
+
+    # Compare to superseded bugfix freeze (if present).
+    superseded_path = out_dir / "superseded_by_bugfix" / "stage3_results.json"
+    superseded_frozen = out_dir / "superseded_by_bugfix" / "frozen_calibration.json"
+    comparison: dict = {"superseded_present": superseded_path.exists()}
+    if superseded_path.exists():
+        prev = json.loads(superseded_path.read_text())
+        prev_fit = next(
+            r for r in prev["evaluations"] if r["window_id"] == "FIT_W1" and r["label"] == "calibrated"
+        )
+        prev_dm = prev.get("demand_meta") or {}
+        prev_val = [
+            r for r in prev["evaluations"] if r["window_id"].startswith("VAL_") and r["label"] == "calibrated"
+        ]
+
+        def _vf(r, key):
+            return (r.get("virtual_flows_compact") or {}).get(key)
+
+        comparison.update(
+            {
+                "area_c_scale_previous": 1.5,  # bugfix clipped to upper bound
+                "area_c_scale_raw_previous": prev_dm.get("area_c_unmeasured_scale_raw"),
+                "area_c_scale_corrected": demand_model.area_c_unmeasured_scale,
+                "area_c_scale_raw_corrected": demand_model.meta.get("area_c_unmeasured_scale_raw"),
+                "area_c_bound_hit_corrected": demand_model.meta.get("area_c_scale_bound_hit"),
+                "fit_pressure_rmse_calibrated_previous_m": (prev_fit.get("pressure") or {}).get("rmse_m"),
+                "fit_pressure_rmse_calibrated_corrected_m": _rmse(fit_cal),
+                "fit_ext_bias_previous_m3h": ((prev_fit.get("flow") or {}).get("external_sum") or {}).get(
+                    "bias_m3h"
+                ),
+                "fit_ext_bias_corrected_m3h": ((fit_cal.get("flow") or {}).get("external_sum") or {}).get(
+                    "bias_m3h"
+                ),
+                "fit_tank_rmse_previous_m": (prev_fit.get("level") or {}).get("rmse_m"),
+                "fit_tank_rmse_corrected_m": (fit_cal.get("level") or {}).get("rmse_m"),
+                "fit_sum_qv_mean_previous_m3h": _vf(prev_fit, "sum_mean_m3h"),
+                "fit_sum_qv_mean_corrected_m3h": _vf(fit_cal, "sum_mean_m3h"),
+                "fit_mean_abs_qv_previous_m3h": _vf(prev_fit, "mean_abs_individual_m3h"),
+                "fit_mean_abs_qv_corrected_m3h": _vf(fit_cal, "mean_abs_individual_m3h"),
+                "fit_cancel_ratio_previous": _vf(prev_fit, "cancellation_ratio"),
+                "fit_cancel_ratio_corrected": _vf(fit_cal, "cancellation_ratio"),
+                "val_pressure_rmse_mean_previous_m": float(
+                    np.mean([(r.get("pressure") or {}).get("rmse_m") for r in prev_val])
+                ),
+                "val_pressure_rmse_mean_corrected_m": float(np.mean(val_rmses)) if val_rmses else None,
+                "roughness_previous": (prev.get("roughness_fit") or {}).get("values"),
+                "roughness_corrected": rough_fit.values,
+            }
+        )
+    if superseded_frozen.exists():
+        comparison["superseded_frozen_sha256"] = hashlib.sha256(
+            superseded_frozen.read_bytes()
+        ).hexdigest()
 
     payload = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -349,33 +409,76 @@ def main() -> int:
         "roughness_fit": rough_fit.to_dict(),
         "evaluations": results,
         "leak_onset_diagnostics": diagnostics,
+        "leak_onset_note": "diagnostic only; not used for thresholding or verdict tuning",
         "verdict": verdict,
         "verdict_detail": verdict_detail,
+        "calibration_hashes": {
+            "frozen_calibration_sha256": frozen_sha256,
+            "estimator": "signed_mean_residual_no_preclip_v2",
+        },
+        "comparison_vs_superseded_bugfix": comparison,
         "summary": {
             "fit_pressure_rmse_nominal_m": _rmse(fit_nom),
             "fit_pressure_rmse_calibrated_m": _rmse(fit_cal),
             "val_pressure_rmse_nominal_mean_m": float(np.mean(val_nom_rmses)) if val_nom_rmses else None,
             "val_pressure_rmse_calibrated_mean_m": float(np.mean(val_rmses)) if val_rmses else None,
             "roughness_n_bound_hits": n_bound,
+            "area_c_unmeasured_scale": demand_model.area_c_unmeasured_scale,
+            "area_c_unmeasured_scale_raw": demand_model.meta.get("area_c_unmeasured_scale_raw"),
+            "area_c_bound_hit": demand_model.meta.get("area_c_scale_bound_hit"),
+            "area_c_physically_inconsistent": demand_model.meta.get("area_c_physically_inconsistent"),
         },
     }
-    (out_dir / "stage3_results.json").write_text(json.dumps(payload, indent=2) + "\n")
+    # Hash results body without embedding the results digest (avoid circular hash).
+    payload["calibration_hashes"] = {
+        "frozen_calibration_sha256": frozen_sha256,
+        "estimator": "signed_mean_residual_no_preclip_v2",
+    }
+    results_bytes = (json.dumps(payload, indent=2) + "\n").encode()
+    (out_dir / "stage3_results.json").write_bytes(results_bytes)
+    results_sha256 = hashlib.sha256(results_bytes).hexdigest()
+    hashes_doc = {
+        "frozen_calibration_sha256": frozen_sha256,
+        "stage3_results_sha256": results_sha256,
+        "estimator": "signed_mean_residual_no_preclip_v2",
+        "generated_at_utc": payload["generated_at_utc"],
+        "superseded_frozen_sha256": comparison.get("superseded_frozen_sha256"),
+    }
+    (out_dir / "calibration_hashes.json").write_text(json.dumps(hashes_doc, indent=2) + "\n")
+    payload["calibration_hashes"] = hashes_doc
 
-    # Markdown report
     lines = [
-        "# Stage 3 calibration / generalization verdict",
+        "# Stage 3 calibration / generalization verdict (corrected)",
         "",
         f"**Verdict: `{verdict}`**",
         "",
         verdict_detail,
         "",
         f"Generated: `{payload['generated_at_utc']}`  ",
-        f"TCV K frozen: `{tcv_setting}` (from nominal audit; not leak-tuned)",
+        f"TCV K frozen: `{tcv_setting}` (nominal audit; not leak-tuned)  ",
+        f"Estimator: `signed_mean_residual_no_preclip_v2`  ",
+        f"frozen_calibration sha256: `{frozen_sha256}`  ",
+        f"stage3_results sha256: `{results_sha256}`",
+        "",
+        "Previous bugfix freeze retained under `superseded_by_bugfix/`.",
+        "No tuning from validation or leak-onset outcomes.",
+        "",
+        "## Area-C scale (corrected vs previous)",
+        "",
+        f"| | Previous (bugfix) | Corrected |",
+        f"|--|-------------------:|----------:|",
+        f"| raw scale | {comparison.get('area_c_scale_raw_previous')} | {comparison.get('area_c_scale_raw_corrected')} |",
+        f"| clipped scale | {comparison.get('area_c_scale_previous')} | {comparison.get('area_c_scale_corrected')} |",
+        f"| bound hit | upper | {comparison.get('area_c_bound_hit_corrected')} |",
+        f"| physically_inconsistent | n/a (masked by clip) | `{demand_model.meta.get('area_c_physically_inconsistent')}` |",
+        "",
+        f"Signed mean residual: `{demand_model.meta.get('mean_residual_c_signed_m3h')}` m³/h; "
+        f"frac negative samples: `{demand_model.meta.get('area_c_frac_residual_negative')}`.",
         "",
         "## Fit window (FIT_W1)",
         "",
-        f"| Model | Pressure RMSE (m) | Ext. inflow bias (m³/h) | Tank RMSE (m) | Σq_v mean (m³/h) | mean|q_v| (m³/h) |",
-        f"|-------|------------------:|------------------------:|--------------:|-----------------:|-----------------:|",
+        "| Model | Pressure RMSE (m) | Ext. inflow bias (m³/h) | Tank RMSE (m) | Σq_v mean | mean|q_v| | cancel |",
+        "|-------|------------------:|------------------------:|--------------:|----------:|----------:|-------:|",
     ]
     for lab in ("nominal", "calibrated"):
         r = next(x for x in results if x["window_id"] == "FIT_W1" and x["label"] == lab)
@@ -385,14 +488,31 @@ def main() -> int:
         vf = r.get("virtual_flows_compact") or {}
         lines.append(
             f"| {lab} | {pr.get('rmse_m')} | {fl.get('bias_m3h')} | {lv.get('rmse_m')} | "
-            f"{vf.get('sum_mean_m3h')} | {vf.get('mean_abs_individual_m3h')} |"
+            f"{vf.get('sum_mean_m3h')} | {vf.get('mean_abs_individual_m3h')} | "
+            f"{vf.get('cancellation_ratio')} |"
+        )
+    if comparison.get("superseded_present"):
+        lines.extend(
+            [
+                "",
+                "### Calibrated FIT vs superseded bugfix",
+                "",
+                f"| Metric | Previous | Corrected |",
+                f"|--------|---------:|----------:|",
+                f"| P RMSE (m) | {comparison.get('fit_pressure_rmse_calibrated_previous_m')} | {comparison.get('fit_pressure_rmse_calibrated_corrected_m')} |",
+                f"| Ext bias (m³/h) | {comparison.get('fit_ext_bias_previous_m3h')} | {comparison.get('fit_ext_bias_corrected_m3h')} |",
+                f"| Tank RMSE (m) | {comparison.get('fit_tank_rmse_previous_m')} | {comparison.get('fit_tank_rmse_corrected_m')} |",
+                f"| Σq_v mean | {comparison.get('fit_sum_qv_mean_previous_m3h')} | {comparison.get('fit_sum_qv_mean_corrected_m3h')} |",
+                f"| mean|q_v| | {comparison.get('fit_mean_abs_qv_previous_m3h')} | {comparison.get('fit_mean_abs_qv_corrected_m3h')} |",
+                f"| cancel ratio | {comparison.get('fit_cancel_ratio_previous')} | {comparison.get('fit_cancel_ratio_corrected')} |",
+            ]
         )
 
     lines.extend(["", "## Validation windows (frozen parameters)", ""])
     lines.append(
-        "| Window | Model | P RMSE (m) | Ext bias (m³/h) | Σq_v mean | mean|q_v| | cancel ratio |"
+        "| Window | Model | P RMSE (m) | Ext bias (m³/h) | Σq_v mean | mean|q_v| | cancel |"
     )
-    lines.append("|--------|-------|----------:|----------------:|----------:|----------:|-------------:|")
+    lines.append("|--------|-------|----------:|----------------:|----------:|----------:|--------:|")
     for w in VAL_WINDOWS:
         for lab in ("nominal", "calibrated"):
             r = next(x for x in results if x["window_id"] == w.id and x["label"] == lab)
@@ -404,23 +524,25 @@ def main() -> int:
                 f"{vf.get('sum_mean_m3h')} | {vf.get('mean_abs_individual_m3h')} | "
                 f"{vf.get('cancellation_ratio')} |"
             )
+    if comparison.get("superseded_present"):
+        lines.append(
+            f"\nVAL mean P RMSE calibrated: previous "
+            f"{comparison.get('val_pressure_rmse_mean_previous_m')} → corrected "
+            f"{comparison.get('val_pressure_rmse_mean_corrected_m')}."
+        )
 
     lines.extend(
         [
             "",
-            "## Roughness parameters",
+            "## Roughness / parameter stability",
             "",
             f"- Success: `{rough_fit.success}`; nfev={rough_fit.nfev}; fit RMSE≈{rough_fit.rmse_m:.4f} m",
             f"- Bound hits: `{rough_fit.active_bounds}`",
             f"- Values: `{rough_fit.values}`",
-            f"- x0: `{rough_fit.x0}`",
+            f"- Previous values: `{comparison.get('roughness_previous')}`",
+            f"- ab_scale={demand_model.ab_scale:.4f}",
             "",
-            "## Demand model (FIT only)",
-            "",
-            f"- ab_scale={demand_model.ab_scale:.4f}; area_c_unmeasured_scale={demand_model.area_c_unmeasured_scale:.4f}",
-            f"- meta: `{demand_model.meta}`",
-            "",
-            "## Leak-onset diagnostics (not detection accuracy)",
+            "## Leak-onset diagnostics (recorded only; not used for tuning)",
             "",
             "| Leak | Onset | ΔΣq_v (m³/h) | Dominant sensor Δ | Status |",
             "|------|-------|-------------:|------------------:|--------|",
@@ -434,14 +556,21 @@ def main() -> int:
     lines.extend(
         [
             "",
-            "No detector thresholds were searched. No 2019 evaluation.",
-            "",
-            "Artifacts: `frozen_calibration.json`, `stage3_results.json`, `NOMINAL_LTOWN_AUDIT.*`",
+            "Stop before detection. No 2019 / UI / Tiger / deploy / main merge.",
             "",
         ]
     )
     (out_dir / "STAGE3_VERDICT.md").write_text("\n".join(lines) + "\n")
-    print(json.dumps({"verdict": verdict, "summary": payload["summary"]}, indent=2))
+    print(
+        json.dumps(
+            {
+                "verdict": verdict,
+                "summary": payload["summary"],
+                "hashes": payload["calibration_hashes"],
+            },
+            indent=2,
+        )
+    )
     return 0
 
 

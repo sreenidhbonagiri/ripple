@@ -1,0 +1,103 @@
+{
+  "generated_at_utc": "2026-10-25T04:31:02.078755+00:00",
+  "snapshot_time": "2018-01-01 00:00:00",
+  "sensor_mapping": {
+    "n_pressure_sensors": 33,
+    "missing_in_inp": [],
+    "n_amr": 82,
+    "amr_outside_area_c": [],
+    "n_area_c_junctions": 92,
+    "n_area_b_junctions": 31,
+    "flow_roles": {
+      "p227": "external inflow R1\u2192network",
+      "p235": "external inflow R2\u2192network",
+      "PUMP_1": "internal transfer n54\u2192T1 (Area C supply)"
+    },
+    "head_conversion": "H = P_m + elevation_m (pressure in metres water)",
+    "qv_sign": "positive = sensor\u2192VR outflow (virtual leak)"
+  },
+  "tank_pump": {
+    "tank_init_from_SCADA_m": 3.5,
+    "controls": [
+      "IF TANK T1 LEVEL ABOVE 3.9 THEN PUMP PUMP_1 STATUS IS CLOSED PRIORITY 3",
+      "IF TANK T1 LEVEL BELOW 2.4 THEN PUMP PUMP_1 STATUS IS OPEN PRIORITY 3"
+    ],
+    "level_err_nominal_m": -4.291534423828125e-06
+  },
+  "nominal_primal_snapshot": {
+    "pressure_rmse_m": 0.0244837160719399,
+    "pressure_bias_m": -0.015557047526042115,
+    "flow_errors_m3h": {
+      "p227_m3h": 6.083782653808598,
+      "p235_m3h": 7.039383239746087,
+      "PUMP_1_m3h": 0.011662445068360228,
+      "external_sum_err_m3h": 13.123165893554699
+    }
+  },
+  "roughness_clusters_nominal": {
+    "C_area_c": {
+      "n_pipes": 109,
+      "x0": 140.0
+    },
+    "B_area_b": {
+      "n_pipes": 32,
+      "x0": 120.0
+    },
+    "A_d100_c120": {
+      "n_pipes": 79,
+      "x0": 120.0
+    },
+    "A_d100_c140": {
+      "n_pipes": 497,
+      "x0": 140.0
+    },
+    "A_d150_200": {
+      "n_pipes": 156,
+      "x0": 140.0
+    },
+    "A_plastic_small": {
+      "n_pipes": 32,
+      "x0": 140.0
+    }
+  },
+  "tcv_resistance_sweep": {
+    "criterion": "minimize mean|q_v| on FIT_W1 t0 snapshot with measured heads + nominal model; not leak-detection",
+    "grid": [
+      {
+        "K": 0.0001,
+        "converged": true,
+        "sum_qv_m3h": -6.469953470514156,
+        "mean_abs_qv_m3h": 0.909347864217125,
+        "max_abs_qv_m3h": 6.286203162744641,
+        "n_nan": 0
+      },
+      {
+        "K": 0.001,
+        "converged": true,
+        "sum_qv_m3h": -6.469936281064292,
+        "mean_abs_qv_m3h": 0.9093283840312241,
+        "max_abs_qv_m3h": 6.285944161936641,
+        "n_nan": 0
+      },
+      {
+        "K": 0.01,
+        "converged": true,
+        "sum_qv_m3h": -6.469551394548034,
+        "mean_abs_qv_m3h": 0.9091080955510156,
+        "max_abs_qv_m3h": 6.2830377370119095,
+        "n_nan": 0
+      },
+      {
+        "K": 0.1,
+        "converged": true,
+        "sum_qv_m3h": -6.465041432966245,
+        "mean_abs_qv_m3h": 0.9060814927083397,
+        "max_abs_qv_m3h": 6.240738462656736,
+        "n_nan": 0
+      }
+    ],
+    "recommended_K": 0.1,
+    "default_retained_if_close": 0.001,
+    "K_frozen_for_stage3": 0.001
+  }
+}

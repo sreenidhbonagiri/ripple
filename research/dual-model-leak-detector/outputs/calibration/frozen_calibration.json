@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-25T04:31:36.185546+00:00",
+  "generated_at_utc": "2026-10-25T04:40:05.764621+00:00",
   "fit_window": {
     "id": "FIT_W1",
     "start": "2018-01-01 00:00:00",
@@ -4130,26 +4130,35 @@
       "n388": "residential",
       "n389": "residential"
     },
-    "ab_scale": 1.0244302316650704,
-    "area_c_unmeasured_scale": 1.5,
+    "ab_scale": 1.0244039725448144,
+    "area_c_unmeasured_scale": 0.9208320927182462,
     "meta": {
       "n_amr": 82,
       "n_area_c_unmeasured": 10,
       "mean_q_ext_m3h": 152.52563492063496,
-      "mean_q_area_c_m3h": 16.892968974551422,
+      "mean_q_area_c_m3h": 16.879496502578494,
       "mean_amr_m3h": 15.182052703373015,
-      "mean_residual_c_m3h": 5.163958247340025,
-      "area_c_unmeasured_scale_raw": 2.8049136614848265
+      "mean_residual_c_signed_m3h": 1.695288715978,
+      "area_c_unmeasured_scale_raw": 0.9208320927182462,
+      "area_c_scale_bound_hit": "interior",
+      "area_c_physically_inconsistent": false,
+      "area_c_inconsistency_reason": null,
+      "area_c_n_timestamps_used": 2015,
+      "area_c_frac_residual_negative": 0.3196029776674938,
+      "legacy_clip_before_mean_residual_m3h": 5.150044360614139,
+      "legacy_raw_scale_if_clip_before_mean": 2.797356038225209,
+      "ab_scale_raw": 1.0244039725448144,
+      "estimator": "signed_mean_residual_no_preclip_v2"
     }
   },
   "roughness": {
     "values": {
-      "C_area_c": 139.95679528760084,
-      "B_area_b": 120.1187428024681,
-      "A_d100_c120": 119.97727189630338,
-      "A_d100_c140": 140.07207825756058,
-      "A_d150_200": 139.9996634953247,
-      "A_plastic_small": 139.94741847864378
+      "C_area_c": 140.00000322473116,
+      "B_area_b": 120.00063764441457,
+      "A_d100_c120": 120.00064841594929,
+      "A_d100_c140": 140.00000223908245,
+      "A_d150_200": 139.99991743282894,
+      "A_plastic_small": 139.99997974498177
     },
     "x0": {
       "C_area_c": 140.0,
@@ -4163,7 +4172,7 @@
       60.0,
       160.0
     ],
-    "rmse_m": 0.35417258839302124,
+    "rmse_m": 0.3616092404528217,
     "success": true,
     "nfev": 10,
     "active_bounds": {
@@ -4183,5 +4192,11 @@
       "A_plastic_small": 32
     },
     "message": "`xtol` termination condition is satisfied."
-  }
+  },
+  "estimator": "signed_mean_residual_no_preclip_v2",
+  "area_c_scale_bounds": [
+    0.5,
+    1.5
+  ],
+  "supersedes": "outputs/calibration/superseded_by_bugfix/"
 }
