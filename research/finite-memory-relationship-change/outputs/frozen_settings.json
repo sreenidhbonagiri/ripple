@@ -1,0 +1,10 @@
+{
+  "frozen_at": "2026-10-24T21:47:32-04:00",
+  "gate_met": false,
+  "selected": null,
+  "unmatched_cap": 3.0,
+  "abrupt_6h_min": 0.6666666666666666,
+  "selection_rule": "among abrupt6h>=2/3 and unmatched/wk<=3: max abrupt6h recall, then min unmatched/wk, then min median 6h delay",
+  "dev_snapshot": null,
+  "note": "No DEV setting met both provisional gates; DIAG not run."
+}

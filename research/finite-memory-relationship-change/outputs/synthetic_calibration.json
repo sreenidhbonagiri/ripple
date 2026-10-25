@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-10-24T21:45:12-04:00",
+  "purpose": "Honesty check on temporally correlated synthetic no-change inputs",
+  "do_not_tune_after_diag": true,
+  "rows": [
+    {
+      "rho": 0.0,
+      "l_q_hours": 2.0,
+      "l_r_hours": 24.0,
+      "sigma": 0.21595649157403854,
+      "n_finite_scores": 4689,
+      "exceedance_rates": {
+        "tau_3": 0.0036255065045851993,
+        "tau_4": 0.00021326508850501172,
+        "tau_5": 0.0,
+        "tau_6": 0.0
+      },
+      "limitations": "AR(1) n_eff approximates mean SE, not median-difference variance; tau are heuristic score thresholds, not calibrated confidence."
+    },
+    {
+      "rho": 0.0,
+      "l_q_hours": 6.0,
+      "l_r_hours": 48.0,
+      "sigma": 0.12705765745650674,
+      "n_finite_scores": 4353,
+      "exceedance_rates": {
+        "tau_3": 0.014932230645531817,
+        "tau_4": 0.0,
+        "tau_5": 0.0,
+        "tau_6": 0.0
+      },
+      "limitations": "AR(1) n_eff approximates mean SE, not median-difference variance; tau are heuristic score thresholds, not calibrated confidence."
+    },
+    {
+      "rho": 0.5,
+      "l_q_hours": 2.0,
+      "l_r_hours": 24.0,
+      "sigma": 0.37335525085110915,
+      "n_finite_scores": 4689,
+      "exceedance_rates": {
+        "tau_3": 0.0008530603540200469,
+        "tau_4": 0.0,
+        "tau_5": 0.0,
+        "tau_6": 0.0
+      },
+      "limitations": "AR(1) n_eff approximates mean SE, not median-difference variance; tau are heuristic score thresholds, not calibrated confidence."
+    },
+    {
+      "rho": 0.5,
+      "l_q_hours": 6.0,
+      "l_r_hours": 48.0,
+      "sigma": 0.21966296649140016,
+      "n_finite_scores": 4353,
+      "exceedance_rates": {
+        "tau_3": 0.0,
+        "tau_4": 0.0,
+        "tau_5": 0.0,
+        "tau_6": 0.0
+      },
+      "limitations": "AR(1) n_eff approximates mean SE, not median-difference variance; tau are heuristic score thresholds, not calibrated confidence."
+    },
+    {
+      "rho": 0.8,
+      "l_q_hours": 2.0,
+      "l_r_hours": 24.0,
+      "sigma": 0.663948014910047,
+      "n_finite_scores": 4689,
+      "exceedance_rates": {
+        "tau_3": 0.0,
+        "tau_4": 0.0,
+        "tau_5": 0.0,
+        "tau_6": 0.0
+      },
+      "limitations": "AR(1) n_eff approximates mean SE, not median-difference variance; tau are heuristic score thresholds, not calibrated confidence."
+    },
+    {
+      "rho": 0.8,
+      "l_q_hours": 6.0,
+      "l_r_hours": 48.0,
+      "sigma": 0.39063275585048335,
+      "n_finite_scores": 4353,
+      "exceedance_rates": {
+        "tau_3": 0.0,
+        "tau_4": 0.0,
+        "tau_5": 0.0,
+        "tau_6": 0.0
+      },
+      "limitations": "AR(1) n_eff approximates mean SE, not median-difference variance; tau are heuristic score thresholds, not calibrated confidence."
+    }
+  ]
+}

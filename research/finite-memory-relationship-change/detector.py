@@ -22,6 +22,8 @@ class Episode:
     change_estimate_idx: int
     refs_used: list[str] = field(default_factory=list)
     peak_score: float = 0.0
+    # Compatibility with sibling occupancy_report (expects peak_cusum).
+    peak_cusum: float = 0.0
 
 
 def _window_median(z: np.ndarray, i0: int, i1: int, n_design: int) -> float:
@@ -40,22 +42,37 @@ def score_series(
     n_r: int,
     sigma: float,
 ) -> np.ndarray:
-    """Causal s(t) for one target; NaN before warm-up / missing / ineligible sigma."""
+    """Causal s(t) for one target; NaN before warm-up / missing / ineligible sigma.
+
+    Rolling medians match inclusive windows [t-n+1, t]; coverage uses finite count
+    ≥ 80% of design length. No future samples enter the score at t.
+    """
+    import pandas as pd
+
     z = np.asarray(z, dtype=np.float64)
     T = z.shape[0]
     s = np.full(T, np.nan, dtype=np.float64)
-    if not np.isfinite(sigma) or sigma <= 0:
+    if not np.isfinite(sigma) or sigma <= 0 or T == 0:
         return s
     t0 = first_valid_t(n_q, n_r)
-    for t in range(t0, T):
-        q0, q1, r0, r1 = window_bounds(t, n_q, n_r)
-        # Causal: only indices <= t (ensured by bounds)
-        assert q1 == t and r1 < q0
-        m_q = _window_median(z, q0, q1, n_q)
-        m_r = _window_median(z, r0, r1, n_r)
-        if not np.isfinite(m_q) or not np.isfinite(m_r):
-            continue
-        s[t] = (m_q - m_r) / sigma
+    if t0 >= T:
+        return s
+    ser = pd.Series(z)
+    finite = ser.notna().astype(np.float64)
+    need_q = COVERAGE_MIN * n_q
+    need_r = COVERAGE_MIN * n_r
+    cnt_q = finite.rolling(n_q, min_periods=1).sum().to_numpy()
+    med_q = ser.rolling(n_q, min_periods=1).median().to_numpy()
+    cnt_r = finite.rolling(n_r, min_periods=1).sum().to_numpy()
+    med_r = ser.rolling(n_r, min_periods=1).median().to_numpy()
+    m_q = np.where(cnt_q >= need_q - 1e-12, med_q, np.nan)
+    m_r_at_end = np.where(cnt_r >= need_r - 1e-12, med_r, np.nan)
+    # R window ends at t - n_q → use rolling value at index t - n_q
+    idx = np.arange(t0, T)
+    mq = m_q[idx]
+    mr = m_r_at_end[idx - n_q]
+    ok = np.isfinite(mq) & np.isfinite(mr)
+    s[idx] = np.where(ok, (mq - mr) / sigma, np.nan)
     return s
 
 
@@ -98,6 +115,7 @@ def run_target_episodes(
                 change_estimate_idx=analysis_offset + change_local,
                 refs_used=list(refs),
                 peak_score=peak,
+                peak_cusum=peak,
             )
         )
         active = False

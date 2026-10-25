@@ -1,0 +1,5063 @@
+{
+  "generated_at": "2026-10-24T21:47:32-04:00",
+  "method": "FMR3C",
+  "input_hashes": {
+    "2018_SCADA_Pressures.csv": "7782d890a7195699be94ddc01cba392da7ca285908afff619065a9616e04dcae",
+    "2018_SCADA_Flows.csv": "7f7e8625c9d92b083ee079a54cffb9ef803876de1e35017c1da0455968daf3ff",
+    "2018_SCADA_Levels.csv": "a1fc5f0229448a620b6220f4d079b3162a255b3070acdce448608fbfc760903c"
+  },
+  "dev_z_sha256_16": "ad73a40a8a17d109",
+  "synthetic_calibration": {
+    "generated_at": "2026-10-24T21:45:12-04:00",
+    "purpose": "Honesty check on temporally correlated synthetic no-change inputs",
+    "do_not_tune_after_diag": true,
+    "rows": [
+      {
+        "rho": 0.0,
+        "l_q_hours": 2.0,
+        "l_r_hours": 24.0,
+        "sigma": 0.21595649157403854,
+        "n_finite_scores": 4689,
+        "exceedance_rates": {
+          "tau_3": 0.0036255065045851993,
+          "tau_4": 0.00021326508850501172,
+          "tau_5": 0.0,
+          "tau_6": 0.0
+        },
+        "limitations": "AR(1) n_eff approximates mean SE, not median-difference variance; tau are heuristic score thresholds, not calibrated confidence."
+      },
+      {
+        "rho": 0.0,
+        "l_q_hours": 6.0,
+        "l_r_hours": 48.0,
+        "sigma": 0.12705765745650674,
+        "n_finite_scores": 4353,
+        "exceedance_rates": {
+          "tau_3": 0.014932230645531817,
+          "tau_4": 0.0,
+          "tau_5": 0.0,
+          "tau_6": 0.0
+        },
+        "limitations": "AR(1) n_eff approximates mean SE, not median-difference variance; tau are heuristic score thresholds, not calibrated confidence."
+      },
+      {
+        "rho": 0.5,
+        "l_q_hours": 2.0,
+        "l_r_hours": 24.0,
+        "sigma": 0.37335525085110915,
+        "n_finite_scores": 4689,
+        "exceedance_rates": {
+          "tau_3": 0.0008530603540200469,
+          "tau_4": 0.0,
+          "tau_5": 0.0,
+          "tau_6": 0.0
+        },
+        "limitations": "AR(1) n_eff approximates mean SE, not median-difference variance; tau are heuristic score thresholds, not calibrated confidence."
+      },
+      {
+        "rho": 0.5,
+        "l_q_hours": 6.0,
+        "l_r_hours": 48.0,
+        "sigma": 0.21966296649140016,
+        "n_finite_scores": 4353,
+        "exceedance_rates": {
+          "tau_3": 0.0,
+          "tau_4": 0.0,
+          "tau_5": 0.0,
+          "tau_6": 0.0
+        },
+        "limitations": "AR(1) n_eff approximates mean SE, not median-difference variance; tau are heuristic score thresholds, not calibrated confidence."
+      },
+      {
+        "rho": 0.8,
+        "l_q_hours": 2.0,
+        "l_r_hours": 24.0,
+        "sigma": 0.663948014910047,
+        "n_finite_scores": 4689,
+        "exceedance_rates": {
+          "tau_3": 0.0,
+          "tau_4": 0.0,
+          "tau_5": 0.0,
+          "tau_6": 0.0
+        },
+        "limitations": "AR(1) n_eff approximates mean SE, not median-difference variance; tau are heuristic score thresholds, not calibrated confidence."
+      },
+      {
+        "rho": 0.8,
+        "l_q_hours": 6.0,
+        "l_r_hours": 48.0,
+        "sigma": 0.39063275585048335,
+        "n_finite_scores": 4353,
+        "exceedance_rates": {
+          "tau_3": 0.0,
+          "tau_4": 0.0,
+          "tau_5": 0.0,
+          "tau_6": 0.0
+        },
+        "limitations": "AR(1) n_eff approximates mean SE, not median-difference variance; tau are heuristic score thresholds, not calibrated confidence."
+      }
+    ]
+  },
+  "DEV_grid": [
+    {
+      "settings": {
+        "l_q_hours": 2.0,
+        "l_r_hours": 24.0,
+        "tau": 3.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.178176499903202,
+      "n_episodes": 5088,
+      "n_unmatched": 5080,
+      "unmatched_per_week": 196.46408839779005,
+      "duplicate_unmatched_within_24h": 5080,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 0.08333333333333333,
+          "max": 0.25,
+          "values": [
+            0.25,
+            0.0,
+            0.08333333333333333
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-23 04:30",
+            "delay_hours": 0.08333333333333333,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-01-23 04:30",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-23 08:35"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 03:05",
+            "delay_hours": 0.5,
+            "stream_id": "n163",
+            "refs_used": [
+              "n613",
+              "n519",
+              "n188"
+            ],
+            "change_estimate_time": "2018-01-31 03:05",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 05:30"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 08:35",
+            "delay_hours": 0.16666666666666666,
+            "stream_id": "n410",
+            "refs_used": [
+              "n429",
+              "n415",
+              "n54"
+            ],
+            "change_estimate_time": "2018-02-13 08:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 15:45"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 16:00",
+            "delay_hours": 0.25,
+            "stream_id": "n726",
+            "refs_used": [
+              "n752",
+              "n769",
+              "n288"
+            ],
+            "change_estimate_time": "2018-03-05 16:00",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-06 05:40"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-02 15:15",
+            "delay_hours": 0.3333333333333333,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-02 15:15",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-03 00:30"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 08:35",
+            "delay_hours": 0.0,
+            "stream_id": "n769",
+            "refs_used": [
+              "n752",
+              "n726",
+              "n722"
+            ],
+            "change_estimate_time": "2018-05-18 08:35",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-18 16:35"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:10",
+            "delay_hours": 0.08333333333333333,
+            "stream_id": "n410",
+            "refs_used": [
+              "n429",
+              "n415",
+              "n54"
+            ],
+            "change_estimate_time": "2018-06-01 09:10",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 13:25"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 12:10",
+            "delay_hours": 1.5833333333333333,
+            "stream_id": "n516",
+            "refs_used": [
+              "n506",
+              "n105",
+              "n549"
+            ],
+            "change_estimate_time": "2018-06-28 12:10",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 13:15"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 0.08333333333333333,
+          "max": 0.25,
+          "values": [
+            0.25,
+            0.0,
+            0.08333333333333333
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-23 04:30",
+          "delay_hours": 0.08333333333333333,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 03:05",
+          "delay_hours": 0.5,
+          "stream_id": "n163"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 08:35",
+          "delay_hours": 0.16666666666666666,
+          "stream_id": "n410"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 16:00",
+          "delay_hours": 0.25,
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-02 15:15",
+          "delay_hours": 0.3333333333333333,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 08:35",
+          "delay_hours": 0.0,
+          "stream_id": "n769"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:10",
+          "delay_hours": 0.08333333333333333,
+          "stream_id": "n410"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 12:10",
+          "delay_hours": 1.5833333333333333,
+          "stream_id": "n516"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-16 01:55",
+          "delay_hours": 180.41666666666666,
+          "stream_id": "n429",
+          "refs_used": [
+            "n410",
+            "n54",
+            "n415"
+          ],
+          "change_estimate_time": "2018-01-16 01:55",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-16 03:55"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 22.24332899856852,
+        "union_alarm_pct_of_analysis": 98.8730871590153,
+        "n_notifications": 5088,
+        "n_episodes_right_censored": 9,
+        "episode_length_hours": {
+          "n": 5088,
+          "median": 4.75,
+          "p90": 10.75,
+          "max": 45.25,
+          "mean": 5.698882992662473
+        },
+        "active_sensors": {
+          "mean": 7.3402985695276115,
+          "median": 7.0,
+          "p90": 12.0,
+          "max": 20.0
+        },
+        "summed_sensor_alarm_hours": 29419.916666666664,
+        "union_alarm_hours": 3962.833333333333
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 98.8730871590153,
+        "sensor_pct": 22.24332899856852,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 2.0,
+        "l_r_hours": 24.0,
+        "tau": 4.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.1718927910551429,
+      "n_episodes": 3287,
+      "n_unmatched": 3279,
+      "unmatched_per_week": 126.8121546961326,
+      "duplicate_unmatched_within_24h": 3279,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 0.25,
+          "max": 0.75,
+          "values": [
+            0.25,
+            0.75,
+            0.08333333333333333
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-23 04:35",
+            "delay_hours": 0.16666666666666666,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-01-23 04:35",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-23 08:00"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 03:05",
+            "delay_hours": 0.5,
+            "stream_id": "n163",
+            "refs_used": [
+              "n613",
+              "n519",
+              "n188"
+            ],
+            "change_estimate_time": "2018-01-31 03:05",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 05:30"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 08:30",
+            "delay_hours": 0.08333333333333333,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-02-13 08:30",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 15:10"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 16:00",
+            "delay_hours": 0.25,
+            "stream_id": "n726",
+            "refs_used": [
+              "n752",
+              "n769",
+              "n288"
+            ],
+            "change_estimate_time": "2018-03-05 16:00",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-06 03:25"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-02 16:35",
+            "delay_hours": 1.6666666666666667,
+            "stream_id": "n516",
+            "refs_used": [
+              "n506",
+              "n105",
+              "n549"
+            ],
+            "change_estimate_time": "2018-05-02 16:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-02 17:50"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 09:20",
+            "delay_hours": 0.75,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-18 09:20",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-19 03:10"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:10",
+            "delay_hours": 0.08333333333333333,
+            "stream_id": "n1",
+            "refs_used": [
+              "n31",
+              "n4",
+              "n722"
+            ],
+            "change_estimate_time": "2018-06-01 09:10",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 12:05"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 10:35",
+            "delay_hours": 0.0,
+            "stream_id": "n740",
+            "refs_used": [
+              "n722",
+              "n769",
+              "n726"
+            ],
+            "change_estimate_time": "2018-06-28 10:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 15:15"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 0.25,
+          "max": 0.75,
+          "values": [
+            0.25,
+            0.75,
+            0.08333333333333333
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-23 04:35",
+          "delay_hours": 0.16666666666666666,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 03:05",
+          "delay_hours": 0.5,
+          "stream_id": "n163"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 08:30",
+          "delay_hours": 0.08333333333333333,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 16:00",
+          "delay_hours": 0.25,
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-02 16:35",
+          "delay_hours": 1.6666666666666667,
+          "stream_id": "n516"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 09:20",
+          "delay_hours": 0.75,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:10",
+          "delay_hours": 0.08333333333333333,
+          "stream_id": "n1"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 10:35",
+          "delay_hours": 0.0,
+          "stream_id": "n740"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-16 02:15",
+          "delay_hours": 180.75,
+          "stream_id": "n516",
+          "refs_used": [
+            "n506",
+            "n105",
+            "n549"
+          ],
+          "change_estimate_time": "2018-01-16 02:15",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-16 04:30"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 14.645204540414122,
+        "union_alarm_pct_of_analysis": 93.29050232867598,
+        "n_notifications": 3287,
+        "n_episodes_right_censored": 6,
+        "episode_length_hours": {
+          "n": 3287,
+          "median": 4.916666666666667,
+          "p90": 11.083333333333334,
+          "max": 44.333333333333336,
+          "mean": 5.8096795456850225
+        },
+        "active_sensors": {
+          "mean": 4.83291749833666,
+          "median": 4.0,
+          "p90": 10.0,
+          "max": 17.0
+        },
+        "summed_sensor_alarm_hours": 19370.333333333332,
+        "union_alarm_hours": 3739.083333333333
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 93.29050232867598,
+        "sensor_pct": 14.645204540414122,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 2.0,
+        "l_r_hours": 24.0,
+        "tau": 5.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.1645036661066115,
+      "n_episodes": 2143,
+      "n_unmatched": 2135,
+      "unmatched_per_week": 82.56906077348066,
+      "duplicate_unmatched_within_24h": 2135,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 0.4166666666666667,
+          "max": 0.8333333333333334,
+          "values": [
+            0.4166666666666667,
+            0.8333333333333334,
+            0.25
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-23 05:00",
+            "delay_hours": 0.5833333333333334,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-01-23 05:00",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-23 07:50"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 03:05",
+            "delay_hours": 0.5,
+            "stream_id": "n163",
+            "refs_used": [
+              "n613",
+              "n519",
+              "n188"
+            ],
+            "change_estimate_time": "2018-01-31 03:05",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 05:30"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 09:35",
+            "delay_hours": 1.1666666666666667,
+            "stream_id": "n722",
+            "refs_used": [
+              "n726",
+              "n752",
+              "n769"
+            ],
+            "change_estimate_time": "2018-02-13 09:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 13:50"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 16:10",
+            "delay_hours": 0.4166666666666667,
+            "stream_id": "n215",
+            "refs_used": [
+              "n769",
+              "n740",
+              "n752"
+            ],
+            "change_estimate_time": "2018-03-05 16:10",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-06 21:35"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-02 18:15",
+            "delay_hours": 3.3333333333333335,
+            "stream_id": "n229",
+            "refs_used": [
+              "n636",
+              "n188",
+              "n613"
+            ],
+            "change_estimate_time": "2018-05-02 18:15",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-02 21:00"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 09:25",
+            "delay_hours": 0.8333333333333334,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-18 09:25",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-19 03:10"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:20",
+            "delay_hours": 0.25,
+            "stream_id": "n1",
+            "refs_used": [
+              "n31",
+              "n4",
+              "n722"
+            ],
+            "change_estimate_time": "2018-06-01 09:20",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 12:00"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 11:00",
+            "delay_hours": 0.4166666666666667,
+            "stream_id": "n740",
+            "refs_used": [
+              "n722",
+              "n769",
+              "n726"
+            ],
+            "change_estimate_time": "2018-06-28 11:00",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 15:15"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 0.4166666666666667,
+          "max": 0.8333333333333334,
+          "values": [
+            0.4166666666666667,
+            0.8333333333333334,
+            0.25
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-23 05:00",
+          "delay_hours": 0.5833333333333334,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 03:05",
+          "delay_hours": 0.5,
+          "stream_id": "n163"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 09:35",
+          "delay_hours": 1.1666666666666667,
+          "stream_id": "n722"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 16:10",
+          "delay_hours": 0.4166666666666667,
+          "stream_id": "n215"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-02 18:15",
+          "delay_hours": 3.3333333333333335,
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 09:25",
+          "delay_hours": 0.8333333333333334,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:20",
+          "delay_hours": 0.25,
+          "stream_id": "n1"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 11:00",
+          "delay_hours": 0.4166666666666667,
+          "stream_id": "n740"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-16 02:30",
+          "delay_hours": 181.0,
+          "stream_id": "n342",
+          "refs_used": [
+            "n458",
+            "n415",
+            "n519"
+          ],
+          "change_estimate_time": "2018-01-16 02:30",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-16 04:05"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 10.091307284421056,
+        "union_alarm_pct_of_analysis": 82.84680638722556,
+        "n_notifications": 2143,
+        "n_episodes_right_censored": 3,
+        "episode_length_hours": {
+          "n": 2143,
+          "median": 5.166666666666667,
+          "p90": 11.666666666666666,
+          "max": 44.25,
+          "mean": 6.144929226940426
+        },
+        "active_sensors": {
+          "mean": 3.3301314038589487,
+          "median": 2.0,
+          "p90": 8.0,
+          "max": 16.0
+        },
+        "summed_sensor_alarm_hours": 13347.166666666666,
+        "union_alarm_hours": 3320.5
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 82.84680638722556,
+        "sensor_pct": 10.091307284421056,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 2.0,
+        "l_r_hours": 24.0,
+        "tau": 6.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.1642547908704728,
+      "n_episodes": 1500,
+      "n_unmatched": 1492,
+      "unmatched_per_week": 57.70165745856354,
+      "duplicate_unmatched_within_24h": 1492,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 0.5,
+          "max": 0.8333333333333334,
+          "values": [
+            0.5,
+            0.8333333333333334,
+            0.3333333333333333
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-24 01:40",
+            "delay_hours": 21.25,
+            "stream_id": "n342",
+            "refs_used": [
+              "n458",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-01-24 01:40",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-24 05:35"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 09:35",
+            "delay_hours": 7.0,
+            "stream_id": "n1",
+            "refs_used": [
+              "n31",
+              "n4",
+              "n722"
+            ],
+            "change_estimate_time": "2018-01-31 09:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 12:35"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 10:10",
+            "delay_hours": 1.75,
+            "stream_id": "n1",
+            "refs_used": [
+              "n31",
+              "n4",
+              "n722"
+            ],
+            "change_estimate_time": "2018-02-13 10:10",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 13:10"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 16:15",
+            "delay_hours": 0.5,
+            "stream_id": "n215",
+            "refs_used": [
+              "n769",
+              "n740",
+              "n752"
+            ],
+            "change_estimate_time": "2018-03-05 16:15",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-06 21:05"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-03 02:25",
+            "delay_hours": 11.5,
+            "stream_id": "n342",
+            "refs_used": [
+              "n458",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-03 02:25",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-03 06:05"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 09:25",
+            "delay_hours": 0.8333333333333334,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-18 09:25",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-19 03:05"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:25",
+            "delay_hours": 0.3333333333333333,
+            "stream_id": "n1",
+            "refs_used": [
+              "n31",
+              "n4",
+              "n722"
+            ],
+            "change_estimate_time": "2018-06-01 09:25",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 11:55"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 12:00",
+            "delay_hours": 1.4166666666666667,
+            "stream_id": "n769",
+            "refs_used": [
+              "n752",
+              "n726",
+              "n722"
+            ],
+            "change_estimate_time": "2018-06-28 12:00",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 15:30"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 0.5,
+          "max": 0.8333333333333334,
+          "values": [
+            0.5,
+            0.8333333333333334,
+            0.3333333333333333
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-24 01:40",
+          "delay_hours": 21.25,
+          "stream_id": "n342"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 09:35",
+          "delay_hours": 7.0,
+          "stream_id": "n1"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 10:10",
+          "delay_hours": 1.75,
+          "stream_id": "n1"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 16:15",
+          "delay_hours": 0.5,
+          "stream_id": "n215"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-03 02:25",
+          "delay_hours": 11.5,
+          "stream_id": "n342"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 09:25",
+          "delay_hours": 0.8333333333333334,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:25",
+          "delay_hours": 0.3333333333333333,
+          "stream_id": "n1"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 12:00",
+          "delay_hours": 1.4166666666666667,
+          "stream_id": "n769"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-16 02:30",
+          "delay_hours": 181.0,
+          "stream_id": "n342",
+          "refs_used": [
+            "n458",
+            "n415",
+            "n519"
+          ],
+          "change_estimate_time": "2018-01-16 02:30",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-16 04:05"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 7.368470130446179,
+        "union_alarm_pct_of_analysis": 71.33233532934132,
+        "n_notifications": 1500,
+        "n_episodes_right_censored": 2,
+        "episode_length_hours": {
+          "n": 1500,
+          "median": 5.333333333333333,
+          "p90": 12.583333333333334,
+          "max": 44.083333333333336,
+          "mean": 6.413888888888888
+        },
+        "active_sensors": {
+          "mean": 2.4315951430472387,
+          "median": 1.0,
+          "p90": 6.0,
+          "max": 15.0
+        },
+        "summed_sensor_alarm_hours": 9745.833333333332,
+        "union_alarm_hours": 2859.0
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 71.33233532934132,
+        "sensor_pct": 7.368470130446179,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 2.0,
+        "l_r_hours": 48.0,
+        "tau": 3.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.2007446659263223,
+      "n_episodes": 4968,
+      "n_unmatched": 4960,
+      "unmatched_per_week": 191.8232044198895,
+      "duplicate_unmatched_within_24h": 4960,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 0.16666666666666666,
+          "max": 0.75,
+          "values": [
+            0.16666666666666666,
+            0.75,
+            0.08333333333333333
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-23 04:30",
+            "delay_hours": 0.08333333333333333,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-01-23 04:30",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-23 08:35"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 02:55",
+            "delay_hours": 0.3333333333333333,
+            "stream_id": "n519",
+            "refs_used": [
+              "n163",
+              "n613",
+              "n188"
+            ],
+            "change_estimate_time": "2018-01-31 02:55",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 06:20"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 08:35",
+            "delay_hours": 0.16666666666666666,
+            "stream_id": "n410",
+            "refs_used": [
+              "n429",
+              "n415",
+              "n54"
+            ],
+            "change_estimate_time": "2018-02-13 08:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 15:50"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 15:55",
+            "delay_hours": 0.16666666666666666,
+            "stream_id": "n726",
+            "refs_used": [
+              "n752",
+              "n769",
+              "n288"
+            ],
+            "change_estimate_time": "2018-03-05 15:55",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-06 06:25"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-02 15:30",
+            "delay_hours": 0.5833333333333334,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-02 15:30",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-03 00:30"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 09:20",
+            "delay_hours": 0.75,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-18 09:20",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-19 06:55"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:10",
+            "delay_hours": 0.08333333333333333,
+            "stream_id": "n1",
+            "refs_used": [
+              "n31",
+              "n4",
+              "n722"
+            ],
+            "change_estimate_time": "2018-06-01 09:10",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 12:10"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 12:10",
+            "delay_hours": 1.5833333333333333,
+            "stream_id": "n516",
+            "refs_used": [
+              "n506",
+              "n105",
+              "n549"
+            ],
+            "change_estimate_time": "2018-06-28 12:10",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 13:15"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 0.16666666666666666,
+          "max": 0.75,
+          "values": [
+            0.16666666666666666,
+            0.75,
+            0.08333333333333333
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-23 04:30",
+          "delay_hours": 0.08333333333333333,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 02:55",
+          "delay_hours": 0.3333333333333333,
+          "stream_id": "n519"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 08:35",
+          "delay_hours": 0.16666666666666666,
+          "stream_id": "n410"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 15:55",
+          "delay_hours": 0.16666666666666666,
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-02 15:30",
+          "delay_hours": 0.5833333333333334,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 09:20",
+          "delay_hours": 0.75,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:10",
+          "delay_hours": 0.08333333333333333,
+          "stream_id": "n1"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 12:10",
+          "delay_hours": 1.5833333333333333,
+          "stream_id": "n516"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-17 01:55",
+          "delay_hours": 204.41666666666666,
+          "stream_id": "n342",
+          "refs_used": [
+            "n458",
+            "n415",
+            "n519"
+          ],
+          "change_estimate_time": "2018-01-17 01:55",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-17 06:20"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 22.707111030464326,
+        "union_alarm_pct_of_analysis": 98.22854291417165,
+        "n_notifications": 4968,
+        "n_episodes_right_censored": 10,
+        "episode_length_hours": {
+          "n": 4968,
+          "median": 4.75,
+          "p90": 11.0,
+          "max": 92.83333333333333,
+          "mean": 5.962023617820719
+        },
+        "active_sensors": {
+          "mean": 7.493346640053227,
+          "median": 7.0,
+          "p90": 12.0,
+          "max": 20.0
+        },
+        "summed_sensor_alarm_hours": 30033.333333333332,
+        "union_alarm_hours": 3937.0
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 98.22854291417165,
+        "sensor_pct": 22.707111030464326,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 2.0,
+        "l_r_hours": 48.0,
+        "tau": 4.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.298635708866641,
+      "n_episodes": 3221,
+      "n_unmatched": 3213,
+      "unmatched_per_week": 124.25966850828729,
+      "duplicate_unmatched_within_24h": 3213,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 0.25,
+          "max": 0.75,
+          "values": [
+            0.25,
+            0.75,
+            0.25
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-23 04:35",
+            "delay_hours": 0.16666666666666666,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-01-23 04:35",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-23 08:15"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 03:05",
+            "delay_hours": 0.5,
+            "stream_id": "n163",
+            "refs_used": [
+              "n613",
+              "n519",
+              "n188"
+            ],
+            "change_estimate_time": "2018-01-31 03:05",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 05:30"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 09:25",
+            "delay_hours": 1.0,
+            "stream_id": "n410",
+            "refs_used": [
+              "n429",
+              "n415",
+              "n54"
+            ],
+            "change_estimate_time": "2018-02-13 09:25",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 15:40"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 16:00",
+            "delay_hours": 0.25,
+            "stream_id": "n726",
+            "refs_used": [
+              "n752",
+              "n769",
+              "n288"
+            ],
+            "change_estimate_time": "2018-03-05 16:00",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-06 06:25"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-02 15:55",
+            "delay_hours": 1.0,
+            "stream_id": "n229",
+            "refs_used": [
+              "n636",
+              "n188",
+              "n613"
+            ],
+            "change_estimate_time": "2018-05-02 15:55",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-02 21:05"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 09:20",
+            "delay_hours": 0.75,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-18 09:20",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-19 06:30"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:20",
+            "delay_hours": 0.25,
+            "stream_id": "n1",
+            "refs_used": [
+              "n31",
+              "n4",
+              "n722"
+            ],
+            "change_estimate_time": "2018-06-01 09:20",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 12:00"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 10:35",
+            "delay_hours": 0.0,
+            "stream_id": "n740",
+            "refs_used": [
+              "n722",
+              "n769",
+              "n726"
+            ],
+            "change_estimate_time": "2018-06-28 10:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 15:15"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 0.25,
+          "max": 0.75,
+          "values": [
+            0.25,
+            0.75,
+            0.25
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-23 04:35",
+          "delay_hours": 0.16666666666666666,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 03:05",
+          "delay_hours": 0.5,
+          "stream_id": "n163"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 09:25",
+          "delay_hours": 1.0,
+          "stream_id": "n410"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 16:00",
+          "delay_hours": 0.25,
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-02 15:55",
+          "delay_hours": 1.0,
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 09:20",
+          "delay_hours": 0.75,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:20",
+          "delay_hours": 0.25,
+          "stream_id": "n1"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 10:35",
+          "delay_hours": 0.0,
+          "stream_id": "n740"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-17 01:55",
+          "delay_hours": 204.41666666666666,
+          "stream_id": "n342",
+          "refs_used": [
+            "n458",
+            "n415",
+            "n519"
+          ],
+          "change_estimate_time": "2018-01-17 01:55",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-17 06:20"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 15.310792556301537,
+        "union_alarm_pct_of_analysis": 93.5878243512974,
+        "n_notifications": 3221,
+        "n_episodes_right_censored": 5,
+        "episode_length_hours": {
+          "n": 3221,
+          "median": 4.916666666666667,
+          "p90": 11.5,
+          "max": 92.41666666666667,
+          "mean": 6.2037410742005585
+        },
+        "active_sensors": {
+          "mean": 5.0525615435795075,
+          "median": 5.0,
+          "p90": 10.0,
+          "max": 19.0
+        },
+        "summed_sensor_alarm_hours": 20250.666666666664,
+        "union_alarm_hours": 3751.0
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 93.5878243512974,
+        "sensor_pct": 15.310792556301537,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 2.0,
+        "l_r_hours": 48.0,
+        "tau": 5.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.1814143750816584,
+      "n_episodes": 2109,
+      "n_unmatched": 2101,
+      "unmatched_per_week": 81.25414364640883,
+      "duplicate_unmatched_within_24h": 2101,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 0.5,
+          "max": 0.8333333333333334,
+          "values": [
+            0.5,
+            0.8333333333333334,
+            0.3333333333333333
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-23 04:40",
+            "delay_hours": 0.25,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-01-23 04:40",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-23 07:55"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 03:05",
+            "delay_hours": 0.5,
+            "stream_id": "n163",
+            "refs_used": [
+              "n613",
+              "n519",
+              "n188"
+            ],
+            "change_estimate_time": "2018-01-31 03:05",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 05:30"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 08:45",
+            "delay_hours": 0.3333333333333333,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-02-13 08:45",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 15:00"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 16:15",
+            "delay_hours": 0.5,
+            "stream_id": "n215",
+            "refs_used": [
+              "n769",
+              "n740",
+              "n752"
+            ],
+            "change_estimate_time": "2018-03-05 16:15",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-07 03:10"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-02 18:15",
+            "delay_hours": 3.3333333333333335,
+            "stream_id": "n229",
+            "refs_used": [
+              "n636",
+              "n188",
+              "n613"
+            ],
+            "change_estimate_time": "2018-05-02 18:15",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-02 21:00"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 09:25",
+            "delay_hours": 0.8333333333333334,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-18 09:25",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-19 06:10"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:25",
+            "delay_hours": 0.3333333333333333,
+            "stream_id": "n1",
+            "refs_used": [
+              "n31",
+              "n4",
+              "n722"
+            ],
+            "change_estimate_time": "2018-06-01 09:25",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 12:00"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 11:00",
+            "delay_hours": 0.4166666666666667,
+            "stream_id": "n740",
+            "refs_used": [
+              "n722",
+              "n769",
+              "n726"
+            ],
+            "change_estimate_time": "2018-06-28 11:00",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 15:15"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 0.5,
+          "max": 0.8333333333333334,
+          "values": [
+            0.5,
+            0.8333333333333334,
+            0.3333333333333333
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-23 04:40",
+          "delay_hours": 0.25,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 03:05",
+          "delay_hours": 0.5,
+          "stream_id": "n163"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 08:45",
+          "delay_hours": 0.3333333333333333,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 16:15",
+          "delay_hours": 0.5,
+          "stream_id": "n215"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-02 18:15",
+          "delay_hours": 3.3333333333333335,
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 09:25",
+          "delay_hours": 0.8333333333333334,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:25",
+          "delay_hours": 0.3333333333333333,
+          "stream_id": "n1"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 11:00",
+          "delay_hours": 0.4166666666666667,
+          "stream_id": "n740"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-17 01:55",
+          "delay_hours": 204.41666666666666,
+          "stream_id": "n342",
+          "refs_used": [
+            "n458",
+            "n415",
+            "n519"
+          ],
+          "change_estimate_time": "2018-01-17 01:55",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-17 06:10"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 10.804716324925906,
+        "union_alarm_pct_of_analysis": 83.4414504324684,
+        "n_notifications": 2109,
+        "n_episodes_right_censored": 4,
+        "episode_length_hours": {
+          "n": 2109,
+          "median": 5.166666666666667,
+          "p90": 12.183333333333337,
+          "max": 92.16666666666667,
+          "mean": 6.692745376955903
+        },
+        "active_sensors": {
+          "mean": 3.565556387225549,
+          "median": 3.0,
+          "p90": 8.0,
+          "max": 17.0
+        },
+        "summed_sensor_alarm_hours": 14290.75,
+        "union_alarm_hours": 3344.333333333333
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 83.4414504324684,
+        "sensor_pct": 10.804716324925906,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 2.0,
+        "l_r_hours": 48.0,
+        "tau": 6.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.2026201249100268,
+      "n_episodes": 1477,
+      "n_unmatched": 1469,
+      "unmatched_per_week": 56.812154696132595,
+      "duplicate_unmatched_within_24h": 1469,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 0.75,
+          "max": 0.8333333333333334,
+          "values": [
+            0.5833333333333334,
+            0.8333333333333334,
+            0.75
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-24 01:40",
+            "delay_hours": 21.25,
+            "stream_id": "n342",
+            "refs_used": [
+              "n458",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-01-24 01:40",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-24 05:35"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 09:35",
+            "delay_hours": 7.0,
+            "stream_id": "n1",
+            "refs_used": [
+              "n31",
+              "n4",
+              "n722"
+            ],
+            "change_estimate_time": "2018-01-31 09:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 12:35"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 10:10",
+            "delay_hours": 1.75,
+            "stream_id": "n1",
+            "refs_used": [
+              "n31",
+              "n4",
+              "n722"
+            ],
+            "change_estimate_time": "2018-02-13 10:10",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 13:00"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 16:20",
+            "delay_hours": 0.5833333333333334,
+            "stream_id": "n215",
+            "refs_used": [
+              "n769",
+              "n740",
+              "n752"
+            ],
+            "change_estimate_time": "2018-03-05 16:20",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-07 03:05"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-03 02:10",
+            "delay_hours": 11.25,
+            "stream_id": "n342",
+            "refs_used": [
+              "n458",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-03 02:10",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-03 06:05"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 09:25",
+            "delay_hours": 0.8333333333333334,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-18 09:25",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-19 06:05"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:50",
+            "delay_hours": 0.75,
+            "stream_id": "n1",
+            "refs_used": [
+              "n31",
+              "n4",
+              "n722"
+            ],
+            "change_estimate_time": "2018-06-01 09:50",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 11:55"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 12:00",
+            "delay_hours": 1.4166666666666667,
+            "stream_id": "n769",
+            "refs_used": [
+              "n752",
+              "n726",
+              "n722"
+            ],
+            "change_estimate_time": "2018-06-28 12:00",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 15:30"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 0.75,
+          "max": 0.8333333333333334,
+          "values": [
+            0.5833333333333334,
+            0.8333333333333334,
+            0.75
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-24 01:40",
+          "delay_hours": 21.25,
+          "stream_id": "n342"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 09:35",
+          "delay_hours": 7.0,
+          "stream_id": "n1"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 10:10",
+          "delay_hours": 1.75,
+          "stream_id": "n1"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 16:20",
+          "delay_hours": 0.5833333333333334,
+          "stream_id": "n215"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-03 02:10",
+          "delay_hours": 11.25,
+          "stream_id": "n342"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 09:25",
+          "delay_hours": 0.8333333333333334,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:50",
+          "delay_hours": 0.75,
+          "stream_id": "n1"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 12:00",
+          "delay_hours": 1.4166666666666667,
+          "stream_id": "n769"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-17 01:55",
+          "delay_hours": 204.41666666666666,
+          "stream_id": "n342",
+          "refs_used": [
+            "n458",
+            "n415",
+            "n519"
+          ],
+          "change_estimate_time": "2018-01-17 01:55",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-17 06:05"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 8.126864956954778,
+        "union_alarm_pct_of_analysis": 73.48428143712574,
+        "n_notifications": 1477,
+        "n_episodes_right_censored": 3,
+        "episode_length_hours": {
+          "n": 1477,
+          "median": 5.416666666666667,
+          "p90": 13.416666666666666,
+          "max": 92.0,
+          "mean": 7.194199954863461
+        },
+        "active_sensors": {
+          "mean": 2.6818654357950766,
+          "median": 2.0,
+          "p90": 7.0,
+          "max": 17.0
+        },
+        "summed_sensor_alarm_hours": 10748.916666666666,
+        "union_alarm_hours": 2945.25
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 73.48428143712574,
+        "sensor_pct": 8.126864956954778,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 6.0,
+        "l_r_hours": 24.0,
+        "tau": 3.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.243345458060503,
+      "n_episodes": 3964,
+      "n_unmatched": 3956,
+      "unmatched_per_week": 152.99447513812154,
+      "duplicate_unmatched_within_24h": 3956,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 0.5833333333333334,
+          "max": 0.8333333333333334,
+          "values": [
+            0.8333333333333334,
+            0.5833333333333334,
+            0.0
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-23 07:35",
+            "delay_hours": 3.1666666666666665,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-01-23 07:35",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-23 11:05"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 02:40",
+            "delay_hours": 0.08333333333333333,
+            "stream_id": "n332",
+            "refs_used": [
+              "n549",
+              "n495",
+              "n506"
+            ],
+            "change_estimate_time": "2018-01-31 02:40",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 07:15"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 09:05",
+            "delay_hours": 0.6666666666666666,
+            "stream_id": "n644",
+            "refs_used": [
+              "n332",
+              "n549",
+              "n495"
+            ],
+            "change_estimate_time": "2018-02-13 09:05",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 12:30"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 16:35",
+            "delay_hours": 0.8333333333333334,
+            "stream_id": "n215",
+            "refs_used": [
+              "n769",
+              "n740",
+              "n752"
+            ],
+            "change_estimate_time": "2018-03-05 16:35",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-07 01:40"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-02 17:05",
+            "delay_hours": 2.1666666666666665,
+            "stream_id": "n229",
+            "refs_used": [
+              "n636",
+              "n188",
+              "n613"
+            ],
+            "change_estimate_time": "2018-05-02 17:05",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-03 00:15"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 09:10",
+            "delay_hours": 0.5833333333333334,
+            "stream_id": "n469",
+            "refs_used": [
+              "n105",
+              "n506",
+              "n114"
+            ],
+            "change_estimate_time": "2018-05-18 09:10",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-18 12:15"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:05",
+            "delay_hours": 0.0,
+            "stream_id": "n495",
+            "refs_used": [
+              "n332",
+              "n549",
+              "n506"
+            ],
+            "change_estimate_time": "2018-06-01 09:05",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 16:00"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 10:35",
+            "delay_hours": 0.0,
+            "stream_id": "n188",
+            "refs_used": [
+              "n163",
+              "n613",
+              "n519"
+            ],
+            "change_estimate_time": "2018-06-28 10:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 18:40"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 0.5833333333333334,
+          "max": 0.8333333333333334,
+          "values": [
+            0.8333333333333334,
+            0.5833333333333334,
+            0.0
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-23 07:35",
+          "delay_hours": 3.1666666666666665,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 02:40",
+          "delay_hours": 0.08333333333333333,
+          "stream_id": "n332"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 09:05",
+          "delay_hours": 0.6666666666666666,
+          "stream_id": "n644"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 16:35",
+          "delay_hours": 0.8333333333333334,
+          "stream_id": "n215"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-02 17:05",
+          "delay_hours": 2.1666666666666665,
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 09:10",
+          "delay_hours": 0.5833333333333334,
+          "stream_id": "n469"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:05",
+          "delay_hours": 0.0,
+          "stream_id": "n495"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 10:35",
+          "delay_hours": 0.0,
+          "stream_id": "n188"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-16 06:40",
+          "delay_hours": 185.16666666666666,
+          "stream_id": "n458",
+          "refs_used": [
+            "n342",
+            "n415",
+            "n519"
+          ],
+          "change_estimate_time": "2018-01-16 06:40",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-16 10:15"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 24.872225246476745,
+        "union_alarm_pct_of_analysis": 98.70051563539587,
+        "n_notifications": 3964,
+        "n_episodes_right_censored": 12,
+        "episode_length_hours": {
+          "n": 3964,
+          "median": 7.583333333333333,
+          "p90": 13.25,
+          "max": 64.58333333333333,
+          "mean": 8.215607130844264
+        },
+        "active_sensors": {
+          "mean": 8.207834331337326,
+          "median": 8.0,
+          "p90": 13.0,
+          "max": 20.0
+        },
+        "summed_sensor_alarm_hours": 32897.0,
+        "union_alarm_hours": 3955.9166666666665
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 98.70051563539587,
+        "sensor_pct": 24.872225246476745,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 6.0,
+        "l_r_hours": 24.0,
+        "tau": 4.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.2182656249497086,
+      "n_episodes": 2927,
+      "n_unmatched": 2919,
+      "unmatched_per_week": 112.88950276243094,
+      "duplicate_unmatched_within_24h": 2919,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 0.5833333333333334,
+          "max": 1.6666666666666667,
+          "values": [
+            0.5833333333333334,
+            1.6666666666666667,
+            0.25
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-23 10:05",
+            "delay_hours": 5.666666666666667,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-01-23 10:05",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-23 19:15"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 10:40",
+            "delay_hours": 8.083333333333334,
+            "stream_id": "n469",
+            "refs_used": [
+              "n105",
+              "n506",
+              "n114"
+            ],
+            "change_estimate_time": "2018-01-31 10:40",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 16:15"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 09:40",
+            "delay_hours": 1.25,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-02-13 09:40",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 17:45"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 16:20",
+            "delay_hours": 0.5833333333333334,
+            "stream_id": "n296",
+            "refs_used": [
+              "n722",
+              "n726",
+              "n288"
+            ],
+            "change_estimate_time": "2018-03-05 16:20",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-06 08:30"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-02 17:45",
+            "delay_hours": 2.8333333333333335,
+            "stream_id": "n229",
+            "refs_used": [
+              "n636",
+              "n188",
+              "n613"
+            ],
+            "change_estimate_time": "2018-05-02 17:45",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-03 00:10"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 10:15",
+            "delay_hours": 1.6666666666666667,
+            "stream_id": "n469",
+            "refs_used": [
+              "n105",
+              "n506",
+              "n114"
+            ],
+            "change_estimate_time": "2018-05-18 10:15",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-18 12:10"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:20",
+            "delay_hours": 0.25,
+            "stream_id": "n495",
+            "refs_used": [
+              "n332",
+              "n549",
+              "n506"
+            ],
+            "change_estimate_time": "2018-06-01 09:20",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 16:00"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 10:35",
+            "delay_hours": 0.0,
+            "stream_id": "n495",
+            "refs_used": [
+              "n332",
+              "n549",
+              "n506"
+            ],
+            "change_estimate_time": "2018-06-28 10:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 16:40"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 0.5833333333333334,
+          "max": 1.6666666666666667,
+          "values": [
+            0.5833333333333334,
+            1.6666666666666667,
+            0.25
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-23 10:05",
+          "delay_hours": 5.666666666666667,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 10:40",
+          "delay_hours": 8.083333333333334,
+          "stream_id": "n469"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 09:40",
+          "delay_hours": 1.25,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 16:20",
+          "delay_hours": 0.5833333333333334,
+          "stream_id": "n296"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-02 17:45",
+          "delay_hours": 2.8333333333333335,
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 10:15",
+          "delay_hours": 1.6666666666666667,
+          "stream_id": "n469"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:20",
+          "delay_hours": 0.25,
+          "stream_id": "n495"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 10:35",
+          "delay_hours": 0.0,
+          "stream_id": "n495"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-16 07:00",
+          "delay_hours": 185.5,
+          "stream_id": "n458",
+          "refs_used": [
+            "n342",
+            "n415",
+            "n519"
+          ],
+          "change_estimate_time": "2018-01-16 07:00",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-16 10:05"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 17.93301024214198,
+        "union_alarm_pct_of_analysis": 95.22621423819028,
+        "n_notifications": 2927,
+        "n_episodes_right_censored": 9,
+        "episode_length_hours": {
+          "n": 2927,
+          "median": 7.166666666666667,
+          "p90": 13.083333333333334,
+          "max": 64.58333333333333,
+          "mean": 8.020157157499145
+        },
+        "active_sensors": {
+          "mean": 5.917893379906853,
+          "median": 6.0,
+          "p90": 11.0,
+          "max": 18.0
+        },
+        "summed_sensor_alarm_hours": 23718.916666666664,
+        "union_alarm_hours": 3816.6666666666665
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 95.22621423819028,
+        "sensor_pct": 17.93301024214198,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 6.0,
+        "l_r_hours": 24.0,
+        "tau": 5.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.215355624910444,
+      "n_episodes": 2097,
+      "n_unmatched": 2089,
+      "unmatched_per_week": 80.79005524861878,
+      "duplicate_unmatched_within_24h": 2089,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 1.0,
+          "max": 2.75,
+          "values": [
+            1.0,
+            2.75,
+            0.3333333333333333
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-23 11:00",
+            "delay_hours": 6.583333333333333,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-01-23 11:00",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-23 18:35"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 10:55",
+            "delay_hours": 8.333333333333334,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-01-31 10:55",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 16:00"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 11:10",
+            "delay_hours": 2.75,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-02-13 11:10",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 17:15"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 16:45",
+            "delay_hours": 1.0,
+            "stream_id": "n296",
+            "refs_used": [
+              "n722",
+              "n726",
+              "n288"
+            ],
+            "change_estimate_time": "2018-03-05 16:45",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-06 08:30"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-02 17:55",
+            "delay_hours": 3.0,
+            "stream_id": "n229",
+            "refs_used": [
+              "n636",
+              "n188",
+              "n613"
+            ],
+            "change_estimate_time": "2018-05-02 17:55",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-02 23:40"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 11:20",
+            "delay_hours": 2.75,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-18 11:20",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-19 05:20"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:25",
+            "delay_hours": 0.3333333333333333,
+            "stream_id": "n495",
+            "refs_used": [
+              "n332",
+              "n549",
+              "n506"
+            ],
+            "change_estimate_time": "2018-06-01 09:25",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 16:00"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 10:40",
+            "delay_hours": 0.08333333333333333,
+            "stream_id": "n469",
+            "refs_used": [
+              "n105",
+              "n506",
+              "n114"
+            ],
+            "change_estimate_time": "2018-06-28 10:40",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 19:10"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 1.0,
+          "max": 2.75,
+          "values": [
+            1.0,
+            2.75,
+            0.3333333333333333
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-23 11:00",
+          "delay_hours": 6.583333333333333,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 10:55",
+          "delay_hours": 8.333333333333334,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 11:10",
+          "delay_hours": 2.75,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 16:45",
+          "delay_hours": 1.0,
+          "stream_id": "n296"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-02 17:55",
+          "delay_hours": 3.0,
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 11:20",
+          "delay_hours": 2.75,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:25",
+          "delay_hours": 0.3333333333333333,
+          "stream_id": "n495"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 10:40",
+          "delay_hours": 0.08333333333333333,
+          "stream_id": "n469"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-16 12:00",
+          "delay_hours": 190.5,
+          "stream_id": "n636",
+          "refs_used": [
+            "n188",
+            "n613",
+            "n229"
+          ],
+          "change_estimate_time": "2018-01-16 12:00",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-16 17:00"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 13.127406802556504,
+        "union_alarm_pct_of_analysis": 87.4500998003992,
+        "n_notifications": 2097,
+        "n_episodes_right_censored": 4,
+        "episode_length_hours": {
+          "n": 2097,
+          "median": 7.166666666666667,
+          "p90": 13.25,
+          "max": 63.25,
+          "mean": 8.196510888570973
+        },
+        "active_sensors": {
+          "mean": 4.3320442448436465,
+          "median": 4.0,
+          "p90": 9.0,
+          "max": 16.0
+        },
+        "summed_sensor_alarm_hours": 17362.833333333332,
+        "union_alarm_hours": 3505.0
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 87.4500998003992,
+        "sensor_pct": 13.127406802556504,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 6.0,
+        "l_r_hours": 24.0,
+        "tau": 6.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.2114638749044389,
+      "n_episodes": 1586,
+      "n_unmatched": 1578,
+      "unmatched_per_week": 61.027624309392266,
+      "duplicate_unmatched_within_24h": 1578,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 1.4166666666666667,
+          "max": 2.75,
+          "values": [
+            1.4166666666666667,
+            2.75,
+            0.75
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-23 11:25",
+            "delay_hours": 7.0,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-01-23 11:25",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-23 18:05"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 11:35",
+            "delay_hours": 9.0,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-01-31 11:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 15:50"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 11:55",
+            "delay_hours": 3.5,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-02-13 11:55",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 17:00"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 17:10",
+            "delay_hours": 1.4166666666666667,
+            "stream_id": "n296",
+            "refs_used": [
+              "n722",
+              "n726",
+              "n288"
+            ],
+            "change_estimate_time": "2018-03-05 17:10",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-06 08:25"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-02 18:05",
+            "delay_hours": 3.1666666666666665,
+            "stream_id": "n229",
+            "refs_used": [
+              "n636",
+              "n188",
+              "n613"
+            ],
+            "change_estimate_time": "2018-05-02 18:05",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-02 22:00"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 11:20",
+            "delay_hours": 2.75,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-18 11:20",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-19 05:20"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:50",
+            "delay_hours": 0.75,
+            "stream_id": "n495",
+            "refs_used": [
+              "n332",
+              "n549",
+              "n506"
+            ],
+            "change_estimate_time": "2018-06-01 09:50",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 15:50"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 11:10",
+            "delay_hours": 0.5833333333333334,
+            "stream_id": "n410",
+            "refs_used": [
+              "n429",
+              "n415",
+              "n54"
+            ],
+            "change_estimate_time": "2018-06-28 11:10",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 17:30"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 1.4166666666666667,
+          "max": 2.75,
+          "values": [
+            1.4166666666666667,
+            2.75,
+            0.75
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-23 11:25",
+          "delay_hours": 7.0,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 11:35",
+          "delay_hours": 9.0,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 11:55",
+          "delay_hours": 3.5,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 17:10",
+          "delay_hours": 1.4166666666666667,
+          "stream_id": "n296"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-02 18:05",
+          "delay_hours": 3.1666666666666665,
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 11:20",
+          "delay_hours": 2.75,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:50",
+          "delay_hours": 0.75,
+          "stream_id": "n495"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 11:10",
+          "delay_hours": 0.5833333333333334,
+          "stream_id": "n410"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-16 13:50",
+          "delay_hours": 192.33333333333334,
+          "stream_id": "n410",
+          "refs_used": [
+            "n429",
+            "n415",
+            "n54"
+          ],
+          "change_estimate_time": "2018-01-16 13:50",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-16 18:05"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 10.005557067682815,
+        "union_alarm_pct_of_analysis": 78.4743013972056,
+        "n_notifications": 1586,
+        "n_episodes_right_censored": 2,
+        "episode_length_hours": {
+          "n": 1586,
+          "median": 7.25,
+          "p90": 13.416666666666666,
+          "max": 52.666666666666664,
+          "mean": 8.260771332492645
+        },
+        "active_sensors": {
+          "mean": 3.3018338323353293,
+          "median": 2.0,
+          "p90": 8.0,
+          "max": 15.0
+        },
+        "summed_sensor_alarm_hours": 13233.75,
+        "union_alarm_hours": 3145.25
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 78.4743013972056,
+        "sensor_pct": 10.005557067682815,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 6.0,
+        "l_r_hours": 48.0,
+        "tau": 3.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.264401749940589,
+      "n_episodes": 3857,
+      "n_unmatched": 3849,
+      "unmatched_per_week": 148.85635359116023,
+      "duplicate_unmatched_within_24h": 3849,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "max": 1.0833333333333333,
+          "values": [
+            0.3333333333333333,
+            1.0833333333333333,
+            0.6666666666666666
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-23 07:35",
+            "delay_hours": 3.1666666666666665,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-01-23 07:35",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-23 11:05"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 02:40",
+            "delay_hours": 0.08333333333333333,
+            "stream_id": "n332",
+            "refs_used": [
+              "n549",
+              "n495",
+              "n506"
+            ],
+            "change_estimate_time": "2018-01-31 02:40",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 07:25"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 08:45",
+            "delay_hours": 0.3333333333333333,
+            "stream_id": "n644",
+            "refs_used": [
+              "n332",
+              "n549",
+              "n495"
+            ],
+            "change_estimate_time": "2018-02-13 08:45",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 12:30"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 16:05",
+            "delay_hours": 0.3333333333333333,
+            "stream_id": "n726",
+            "refs_used": [
+              "n752",
+              "n769",
+              "n288"
+            ],
+            "change_estimate_time": "2018-03-05 16:05",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-06 08:40"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-02 16:50",
+            "delay_hours": 1.9166666666666667,
+            "stream_id": "n229",
+            "refs_used": [
+              "n636",
+              "n188",
+              "n613"
+            ],
+            "change_estimate_time": "2018-05-02 16:50",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-03 01:00"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 09:40",
+            "delay_hours": 1.0833333333333333,
+            "stream_id": "n469",
+            "refs_used": [
+              "n105",
+              "n506",
+              "n114"
+            ],
+            "change_estimate_time": "2018-05-18 09:40",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-18 12:10"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:45",
+            "delay_hours": 0.6666666666666666,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-06-01 09:45",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-02 00:05"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 10:35",
+            "delay_hours": 0.0,
+            "stream_id": "n495",
+            "refs_used": [
+              "n332",
+              "n549",
+              "n506"
+            ],
+            "change_estimate_time": "2018-06-28 10:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 16:55"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 0.6666666666666666,
+          "max": 1.0833333333333333,
+          "values": [
+            0.3333333333333333,
+            1.0833333333333333,
+            0.6666666666666666
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-23 07:35",
+          "delay_hours": 3.1666666666666665,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 02:40",
+          "delay_hours": 0.08333333333333333,
+          "stream_id": "n332"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 08:45",
+          "delay_hours": 0.3333333333333333,
+          "stream_id": "n644"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 16:05",
+          "delay_hours": 0.3333333333333333,
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-02 16:50",
+          "delay_hours": 1.9166666666666667,
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 09:40",
+          "delay_hours": 1.0833333333333333,
+          "stream_id": "n469"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:45",
+          "delay_hours": 0.6666666666666666,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 10:35",
+          "delay_hours": 0.0,
+          "stream_id": "n495"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-17 05:55",
+          "delay_hours": 208.41666666666666,
+          "stream_id": "n332",
+          "refs_used": [
+            "n549",
+            "n495",
+            "n506"
+          ],
+          "change_estimate_time": "2018-01-17 05:55",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-17 09:15"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 25.77439817335027,
+        "union_alarm_pct_of_analysis": 98.26180971390552,
+        "n_notifications": 3857,
+        "n_episodes_right_censored": 13,
+        "episode_length_hours": {
+          "n": 3857,
+          "median": 7.666666666666667,
+          "p90": 13.833333333333334,
+          "max": 114.41666666666667,
+          "mean": 8.755206982974677
+        },
+        "active_sensors": {
+          "mean": 8.505551397205588,
+          "median": 9.0,
+          "p90": 13.0,
+          "max": 19.0
+        },
+        "summed_sensor_alarm_hours": 34090.25,
+        "union_alarm_hours": 3938.333333333333
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 98.26180971390552,
+        "sensor_pct": 25.77439817335027,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 6.0,
+        "l_r_hours": 48.0,
+        "tau": 4.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.235754291061312,
+      "n_episodes": 2942,
+      "n_unmatched": 2934,
+      "unmatched_per_week": 113.4696132596685,
+      "duplicate_unmatched_within_24h": 2934,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 0.25,
+          "max": 2.5,
+          "values": [
+            0.25,
+            2.5,
+            0.25
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-23 10:05",
+            "delay_hours": 5.666666666666667,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-01-23 10:05",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-23 19:10"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 10:35",
+            "delay_hours": 8.0,
+            "stream_id": "n769",
+            "refs_used": [
+              "n752",
+              "n726",
+              "n722"
+            ],
+            "change_estimate_time": "2018-01-31 10:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 16:15"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 09:35",
+            "delay_hours": 1.1666666666666667,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-02-13 09:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 17:45"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 16:00",
+            "delay_hours": 0.25,
+            "stream_id": "n296",
+            "refs_used": [
+              "n722",
+              "n726",
+              "n288"
+            ],
+            "change_estimate_time": "2018-03-05 16:00",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-06 08:40"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-02 17:40",
+            "delay_hours": 2.75,
+            "stream_id": "n229",
+            "refs_used": [
+              "n636",
+              "n188",
+              "n613"
+            ],
+            "change_estimate_time": "2018-05-02 17:40",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-03 00:10"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 11:05",
+            "delay_hours": 2.5,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-18 11:05",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-20 04:35"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:20",
+            "delay_hours": 0.25,
+            "stream_id": "n495",
+            "refs_used": [
+              "n332",
+              "n549",
+              "n506"
+            ],
+            "change_estimate_time": "2018-06-01 09:20",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 16:00"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 11:15",
+            "delay_hours": 0.6666666666666666,
+            "stream_id": "n495",
+            "refs_used": [
+              "n332",
+              "n549",
+              "n506"
+            ],
+            "change_estimate_time": "2018-06-28 11:15",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 16:50"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 0.25,
+          "max": 2.5,
+          "values": [
+            0.25,
+            2.5,
+            0.25
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-23 10:05",
+          "delay_hours": 5.666666666666667,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 10:35",
+          "delay_hours": 8.0,
+          "stream_id": "n769"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 09:35",
+          "delay_hours": 1.1666666666666667,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 16:00",
+          "delay_hours": 0.25,
+          "stream_id": "n296"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-02 17:40",
+          "delay_hours": 2.75,
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 11:05",
+          "delay_hours": 2.5,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:20",
+          "delay_hours": 0.25,
+          "stream_id": "n495"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 11:15",
+          "delay_hours": 0.6666666666666666,
+          "stream_id": "n495"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-17 05:55",
+          "delay_hours": 208.41666666666666,
+          "stream_id": "n342",
+          "refs_used": [
+            "n458",
+            "n415",
+            "n519"
+          ],
+          "change_estimate_time": "2018-01-17 05:55",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-17 08:10"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 19.243835561200832,
+        "union_alarm_pct_of_analysis": 95.66492015968063,
+        "n_notifications": 2942,
+        "n_episodes_right_censored": 9,
+        "episode_length_hours": {
+          "n": 2942,
+          "median": 7.166666666666667,
+          "p90": 13.666666666666666,
+          "max": 114.33333333333333,
+          "mean": 8.568150917743033
+        },
+        "active_sensors": {
+          "mean": 6.350465735196274,
+          "median": 6.0,
+          "p90": 12.0,
+          "max": 18.0
+        },
+        "summed_sensor_alarm_hours": 25452.666666666664,
+        "union_alarm_hours": 3834.25
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 95.66492015968063,
+        "sensor_pct": 19.243835561200832,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 6.0,
+        "l_r_hours": 48.0,
+        "tau": 5.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.2617343328893185,
+      "n_episodes": 2142,
+      "n_unmatched": 2134,
+      "unmatched_per_week": 82.5303867403315,
+      "duplicate_unmatched_within_24h": 2134,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 1.0,
+          "max": 2.5833333333333335,
+          "values": [
+            1.0,
+            2.5833333333333335,
+            0.25
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-23 11:05",
+            "delay_hours": 6.666666666666667,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-01-23 11:05",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-23 18:10"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 10:50",
+            "delay_hours": 8.25,
+            "stream_id": "n769",
+            "refs_used": [
+              "n752",
+              "n726",
+              "n722"
+            ],
+            "change_estimate_time": "2018-01-31 10:50",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 15:30"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 10:00",
+            "delay_hours": 1.5833333333333333,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-02-13 10:00",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 17:30"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 16:45",
+            "delay_hours": 1.0,
+            "stream_id": "n296",
+            "refs_used": [
+              "n722",
+              "n726",
+              "n288"
+            ],
+            "change_estimate_time": "2018-03-05 16:45",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-06 08:35"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-02 16:15",
+            "delay_hours": 1.3333333333333333,
+            "stream_id": "n114",
+            "refs_used": [
+              "n469",
+              "n105",
+              "n506"
+            ],
+            "change_estimate_time": "2018-05-02 16:15",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-02 19:35"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 11:10",
+            "delay_hours": 2.5833333333333335,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-18 11:10",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-20 04:35"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:20",
+            "delay_hours": 0.25,
+            "stream_id": "n495",
+            "refs_used": [
+              "n332",
+              "n549",
+              "n506"
+            ],
+            "change_estimate_time": "2018-06-01 09:20",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 15:50"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 10:40",
+            "delay_hours": 0.08333333333333333,
+            "stream_id": "n469",
+            "refs_used": [
+              "n105",
+              "n506",
+              "n114"
+            ],
+            "change_estimate_time": "2018-06-28 10:40",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 19:10"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 1.0,
+          "max": 2.5833333333333335,
+          "values": [
+            1.0,
+            2.5833333333333335,
+            0.25
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-23 11:05",
+          "delay_hours": 6.666666666666667,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 10:50",
+          "delay_hours": 8.25,
+          "stream_id": "n769"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 10:00",
+          "delay_hours": 1.5833333333333333,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 16:45",
+          "delay_hours": 1.0,
+          "stream_id": "n296"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-02 16:15",
+          "delay_hours": 1.3333333333333333,
+          "stream_id": "n114"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 11:10",
+          "delay_hours": 2.5833333333333335,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:20",
+          "delay_hours": 0.25,
+          "stream_id": "n495"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 10:40",
+          "delay_hours": 0.08333333333333333,
+          "stream_id": "n469"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-17 05:55",
+          "delay_hours": 208.41666666666666,
+          "stream_id": "n342",
+          "refs_used": [
+            "n458",
+            "n415",
+            "n519"
+          ],
+          "change_estimate_time": "2018-01-17 05:55",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-17 08:10"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 14.32998901187524,
+        "union_alarm_pct_of_analysis": 89.18413173652695,
+        "n_notifications": 2142,
+        "n_episodes_right_censored": 4,
+        "episode_length_hours": {
+          "n": 2142,
+          "median": 7.166666666666667,
+          "p90": 13.833333333333334,
+          "max": 114.33333333333333,
+          "mean": 8.765133831310301
+        },
+        "active_sensors": {
+          "mean": 4.728896373918829,
+          "median": 4.0,
+          "p90": 10.0,
+          "max": 17.0
+        },
+        "summed_sensor_alarm_hours": 18953.416666666664,
+        "union_alarm_hours": 3574.5
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 89.18413173652695,
+        "sensor_pct": 14.32998901187524,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    },
+    {
+      "settings": {
+        "l_q_hours": 6.0,
+        "l_r_hours": 48.0,
+        "tau": 6.0,
+        "recover_steps": 12,
+        "train_days": 14,
+        "n_refs": 3
+      },
+      "period": "DEV",
+      "runtime_seconds": 1.256906084017828,
+      "n_episodes": 1610,
+      "n_unmatched": 1602,
+      "unmatched_per_week": 61.95580110497237,
+      "duplicate_unmatched_within_24h": 1602,
+      "primary": {
+        "abrupt_recall": 1.0,
+        "incipient_recall": 1.0,
+        "n_abrupt": 3,
+        "n_incipient": 5,
+        "abrupt_delay_hours": {
+          "n": 3,
+          "median": 1.4166666666666667,
+          "max": 2.75,
+          "values": [
+            1.4166666666666667,
+            2.75,
+            0.5833333333333334
+          ]
+        },
+        "matches": [
+          {
+            "pipe": "p461",
+            "leak_type": "incipient",
+            "onset": "2018-01-23 04:25",
+            "matched": true,
+            "notify_time": "2018-01-23 11:25",
+            "delay_hours": 7.0,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-01-23 11:25",
+            "open_leaks_at_notify": 2,
+            "episode_end": "2018-01-23 17:55"
+          },
+          {
+            "pipe": "p232",
+            "leak_type": "incipient",
+            "onset": "2018-01-31 02:35",
+            "matched": true,
+            "notify_time": "2018-01-31 11:35",
+            "delay_hours": 9.0,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-01-31 11:35",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-01-31 15:55"
+          },
+          {
+            "pipe": "p427",
+            "leak_type": "incipient",
+            "onset": "2018-02-13 08:25",
+            "matched": true,
+            "notify_time": "2018-02-13 11:30",
+            "delay_hours": 3.0833333333333335,
+            "stream_id": "n636",
+            "refs_used": [
+              "n188",
+              "n613",
+              "n229"
+            ],
+            "change_estimate_time": "2018-02-13 11:30",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-02-13 17:15"
+          },
+          {
+            "pipe": "p673",
+            "leak_type": "abrupt",
+            "onset": "2018-03-05 15:45",
+            "matched": true,
+            "notify_time": "2018-03-05 17:10",
+            "delay_hours": 1.4166666666666667,
+            "stream_id": "n296",
+            "refs_used": [
+              "n722",
+              "n726",
+              "n288"
+            ],
+            "change_estimate_time": "2018-03-05 17:10",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-03-06 08:35"
+          },
+          {
+            "pipe": "p628",
+            "leak_type": "incipient",
+            "onset": "2018-05-02 14:55",
+            "matched": true,
+            "notify_time": "2018-05-02 18:05",
+            "delay_hours": 3.1666666666666665,
+            "stream_id": "n229",
+            "refs_used": [
+              "n636",
+              "n188",
+              "n613"
+            ],
+            "change_estimate_time": "2018-05-02 18:05",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-05-02 23:15"
+          },
+          {
+            "pipe": "p538",
+            "leak_type": "abrupt",
+            "onset": "2018-05-18 08:35",
+            "matched": true,
+            "notify_time": "2018-05-18 11:20",
+            "delay_hours": 2.75,
+            "stream_id": "n458",
+            "refs_used": [
+              "n342",
+              "n415",
+              "n519"
+            ],
+            "change_estimate_time": "2018-05-18 11:20",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-05-20 04:35"
+          },
+          {
+            "pipe": "p866",
+            "leak_type": "abrupt",
+            "onset": "2018-06-01 09:05",
+            "matched": true,
+            "notify_time": "2018-06-01 09:40",
+            "delay_hours": 0.5833333333333334,
+            "stream_id": "n495",
+            "refs_used": [
+              "n332",
+              "n549",
+              "n506"
+            ],
+            "change_estimate_time": "2018-06-01 09:40",
+            "open_leaks_at_notify": 4,
+            "episode_end": "2018-06-01 15:50"
+          },
+          {
+            "pipe": "p31",
+            "leak_type": "incipient",
+            "onset": "2018-06-28 10:35",
+            "matched": true,
+            "notify_time": "2018-06-28 11:10",
+            "delay_hours": 0.5833333333333334,
+            "stream_id": "n410",
+            "refs_used": [
+              "n429",
+              "n415",
+              "n54"
+            ],
+            "change_estimate_time": "2018-06-28 11:10",
+            "open_leaks_at_notify": 3,
+            "episode_end": "2018-06-28 17:30"
+          }
+        ]
+      },
+      "abrupt_6h": {
+        "n_abrupt": 3,
+        "n_hit": 3,
+        "recall": 1.0,
+        "delay_hours": {
+          "n": 3,
+          "median": 1.4166666666666667,
+          "max": 2.75,
+          "values": [
+            1.4166666666666667,
+            2.75,
+            0.5833333333333334
+          ]
+        }
+      },
+      "all_event_notification_times": [
+        {
+          "pipe": "p461",
+          "leak_type": "incipient",
+          "onset": "2018-01-23 04:25",
+          "matched": true,
+          "notify_time": "2018-01-23 11:25",
+          "delay_hours": 7.0,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p232",
+          "leak_type": "incipient",
+          "onset": "2018-01-31 02:35",
+          "matched": true,
+          "notify_time": "2018-01-31 11:35",
+          "delay_hours": 9.0,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p427",
+          "leak_type": "incipient",
+          "onset": "2018-02-13 08:25",
+          "matched": true,
+          "notify_time": "2018-02-13 11:30",
+          "delay_hours": 3.0833333333333335,
+          "stream_id": "n636"
+        },
+        {
+          "pipe": "p673",
+          "leak_type": "abrupt",
+          "onset": "2018-03-05 15:45",
+          "matched": true,
+          "notify_time": "2018-03-05 17:10",
+          "delay_hours": 1.4166666666666667,
+          "stream_id": "n296"
+        },
+        {
+          "pipe": "p628",
+          "leak_type": "incipient",
+          "onset": "2018-05-02 14:55",
+          "matched": true,
+          "notify_time": "2018-05-02 18:05",
+          "delay_hours": 3.1666666666666665,
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p538",
+          "leak_type": "abrupt",
+          "onset": "2018-05-18 08:35",
+          "matched": true,
+          "notify_time": "2018-05-18 11:20",
+          "delay_hours": 2.75,
+          "stream_id": "n458"
+        },
+        {
+          "pipe": "p866",
+          "leak_type": "abrupt",
+          "onset": "2018-06-01 09:05",
+          "matched": true,
+          "notify_time": "2018-06-01 09:40",
+          "delay_hours": 0.5833333333333334,
+          "stream_id": "n495"
+        },
+        {
+          "pipe": "p31",
+          "leak_type": "incipient",
+          "onset": "2018-06-28 10:35",
+          "matched": true,
+          "notify_time": "2018-06-28 11:10",
+          "delay_hours": 0.5833333333333334,
+          "stream_id": "n410"
+        }
+      ],
+      "in_prefix_matches": [
+        {
+          "pipe": "p257",
+          "leak_type": "incipient",
+          "onset": "2018-01-08 13:30",
+          "matched": true,
+          "notify_time": "2018-01-17 05:55",
+          "delay_hours": 208.41666666666666,
+          "stream_id": "n342",
+          "refs_used": [
+            "n458",
+            "n415",
+            "n519"
+          ],
+          "change_estimate_time": "2018-01-17 05:55",
+          "open_leaks_at_notify": 1,
+          "episode_end": "2018-01-17 08:05"
+        }
+      ],
+      "occupancy": {
+        "summed_sensor_alarm_pct_of_eligible": 11.167311840964535,
+        "union_alarm_pct_of_analysis": 81.69702262142381,
+        "n_notifications": 1610,
+        "n_episodes_right_censored": 3,
+        "episode_length_hours": {
+          "n": 1610,
+          "median": 7.166666666666667,
+          "p90": 14.0,
+          "max": 114.16666666666667,
+          "mean": 9.090786749482401
+        },
+        "active_sensors": {
+          "mean": 3.685212907518297,
+          "median": 3.0,
+          "p90": 9.0,
+          "max": 16.0
+        },
+        "summed_sensor_alarm_hours": 14770.333333333332,
+        "union_alarm_hours": 3274.4166666666665
+      },
+      "n_eligible_sensors": 33,
+      "z_sha256_16": "ad73a40a8a17d109",
+      "analysis_start": 4032,
+      "analysis_end": 52128,
+      "latch": {
+        "latched_suspect": false,
+        "union_pct": 81.69702262142381,
+        "sensor_pct": 11.167311840964535,
+        "note": "No strong latched-only signature under declared heuristics."
+      }
+    }
+  ],
+  "frozen": {
+    "frozen_at": "2026-10-24T21:47:32-04:00",
+    "gate_met": false,
+    "selected": null,
+    "unmatched_cap": 3.0,
+    "abrupt_6h_min": 0.6666666666666666,
+    "selection_rule": "among abrupt6h>=2/3 and unmatched/wk<=3: max abrupt6h recall, then min unmatched/wk, then min median 6h delay",
+    "dev_snapshot": null,
+    "note": "No DEV setting met both provisional gates; DIAG not run."
+  },
+  "DIAG": null,
+  "null_2h": null,
+  "null_6h": null,
+  "interpretation": "",
+  "recommendation": "**Selection failure / no-go:** no setting in the registered 16-cell FMR3C grid met both provisional DEV gates (abrupt 6h recall \u2265 2/3 and unmatched/week \u2264 3). Do not invent a winner; do not enlarge the grid; do not retune from synthetic or DIAG.",
+  "holdout_honesty": "DIAG is diagnostic given prior examination of labels and prior detectors. 2019 not evaluated. Synthetic rates not used for post-DIAG retuning."
+}
