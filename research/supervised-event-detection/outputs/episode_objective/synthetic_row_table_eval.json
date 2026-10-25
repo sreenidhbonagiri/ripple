@@ -1,0 +1,24 @@
+{
+  "synthetic_dev": {
+    "empty": false,
+    "tau": 0.7,
+    "row_recall": 0.21666666666666667,
+    "row_precision": 0.14130434782608695,
+    "scenario_recall": 0.8,
+    "n_leak_scenarios_eval": 5,
+    "fp_row_rate": 0.13683602771362588,
+    "n_pred": 552,
+    "n_pos": 360
+  },
+  "synthetic_test": {
+    "empty": false,
+    "tau": 0.7,
+    "row_recall": 0.175,
+    "row_precision": 0.12574850299401197,
+    "scenario_recall": 0.6,
+    "n_leak_scenarios_eval": 15,
+    "fp_row_rate": 0.1445067634444078,
+    "n_pred": 1503,
+    "n_pos": 1080
+  }
+}

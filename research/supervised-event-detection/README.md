@@ -22,6 +22,16 @@ Transfer-failure diagnosis (frozen pilot unchanged):
 Change-only ablation gate (target alignment) — **stopped before fit**:
 `outputs/TARGET_ALIGNMENT_BEFORE_ABLATION.md`
 
+Episode-notification selection objective (same scenarios/features/labels;
+not an ablation):
+
+```bash
+.venv/bin/python research/supervised-event-detection/run_episode_objective_pilot.py
+```
+
+Protocol: `EPISODE_SELECTION_PROTOCOL.md`  
+Results: `outputs/episode_objective/EPISODE_OBJECTIVE_RESULTS.md`
+
 ## Boundary
 
 - Preserves production and frozen FMR3C evaluations
