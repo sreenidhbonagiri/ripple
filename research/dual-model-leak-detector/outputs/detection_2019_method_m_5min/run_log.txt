@@ -1,0 +1,19 @@
+=== Phase 0: pre-inference hashes (no 2019 labels) ===
+calibration=5fab3acbf13f018d… τ=4.517 scales_n=33 recover=12
+=== Phase 1: 2019 measured-PUMP_1 dual (5-min, frozen cal) ===
+q_v2019 shape=(105120, 33) failures=0/122 runtime=100.2s
+fill summary: {"n_timestamps": 105120, "n_solver_failures": 0, "n_chunks": 122, "n_qv_cleared_stale_total": 0, "frac_qv_cleared_stale": 0.0, "median_index_step": "0 days 00:05:00", "pressure": {"n_cells": 3468960, "n_observed": 3468960, "n_filled": 0, "n_unavailable": 0, "frac_observed": 1.0, "frac_filled": 0.0, "frac_unavailable": 0.0}, "pump": {"n_cells": 105120, "n_observed": 105120, "n_filled": 0, "n_unavailable": 0, "frac_observed": 1.0, "frac_filled": 0.0, "frac_unavailable": 0.0}}
+=== Phase 2: concat 2018 history + score (frozen σ) ===
+=== Phase 3: notifications (continuous state, recover=12) ===
+pre-label hashes written; n_notif=9 score_sha=569dc80acc4bad30…
+=== Phase 4: load labels and evaluate (diagnostic) ===
+Wrote /Users/sreenidhbonagiri/Desktop/rippple-method-m-multiscale/research/dual-model-leak-detector/outputs/detection_2019_method_m_5min/METHOD_M_5MIN_2019_RESULTS.md
+{
+  "abrupt_primary_recall": 0.25,
+  "abrupt_inclusive_recall": 0.3333333333333333,
+  "incipient_recall": 0.0,
+  "unmatched_per_week": 0.11506958780049277,
+  "occupancy": 0.018788051750380518,
+  "solver_failures": 0,
+  "runtime_sec": 642.048065250041
+}

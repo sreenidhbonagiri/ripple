@@ -24,6 +24,8 @@ outputs/detection_2018_measured_pump1/method_m_scale_transfer/per_sensor_month_s
 outputs/detection_2019_method_m/_scratch/
 outputs/detection_2019_method_m/dual_qv_hourly_2019.csv
 outputs/detection_2019_method_m/score_M_2019.csv
+outputs/detection_2019_method_m_5min/_scratch/
+outputs/detection_2018_measured_pump1/method_m_5min/scratch/
 *.inp
 !fixtures/**/*.inp
 temp.bin
