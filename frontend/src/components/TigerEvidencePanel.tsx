@@ -7,27 +7,68 @@ function fmtMs(seconds: number | null | undefined): string {
   return `${(seconds * 1000).toFixed(2)} ms`;
 }
 
-function WorkloadRow({ wl }: { wl: TigerWorkload }) {
+function TimingBars({ wl }: { wl: TigerWorkload }) {
+  const raw = wl.db_median_raw_s;
+  const cagg = wl.db_median_cagg_s;
+  if (
+    raw === null ||
+    raw === undefined ||
+    cagg === null ||
+    cagg === undefined ||
+    Number.isNaN(raw) ||
+    Number.isNaN(cagg)
+  ) {
+    return <span className="channel-note">—</span>;
+  }
+  const max = Math.max(raw, cagg, 1e-9);
+  const rawPct = Math.max(4, (raw / max) * 100);
+  const caggPct = Math.max(4, (cagg / max) * 100);
+  return (
+    <div className="tiger-bars" aria-label={`Database timings for ${wl.label}`}>
+      <div className="tiger-bar-row">
+        <span className="tiger-bar-label">Raw</span>
+        <div className="tiger-bar-track">
+          <div className="tiger-bar-fill tiger-bar-raw" style={{ width: `${rawPct}%` }} />
+        </div>
+        <span className="tiger-bar-ms">{fmtMs(raw)}</span>
+      </div>
+      <div className="tiger-bar-row">
+        <span className="tiger-bar-label">CAGG</span>
+        <div className="tiger-bar-track">
+          <div className="tiger-bar-fill tiger-bar-cagg" style={{ width: `${caggPct}%` }} />
+        </div>
+        <span className="tiger-bar-ms">{fmtMs(cagg)}</span>
+      </div>
+    </div>
+  );
+}
+
+function WorkloadCard({ wl }: { wl: TigerWorkload }) {
   const speedup =
     wl.db_median_speedup !== null && wl.db_median_speedup !== undefined
       ? `${wl.db_median_speedup.toFixed(2)}×`
       : "—";
   return (
-    <tr>
-      <td>
+    <article className="tiger-workload-card">
+      <header className="tiger-workload-head">
         <strong>{wl.label}</strong>
-        <p className="tiger-supports">{wl.supports_investigation}</p>
-      </td>
-      <td>{wl.outputs_match ? "match" : "mismatch"}</td>
-      <td>{fmtMs(wl.db_median_raw_s)}</td>
-      <td>{fmtMs(wl.db_median_cagg_s)}</td>
-      <td>{speedup}</td>
-    </tr>
+        <span className="tiger-workload-meta">
+          {wl.outputs_match ? "outputs match" : "mismatch"} · DB speedup {speedup}
+        </span>
+      </header>
+      <p className="tiger-supports">{wl.supports_investigation}</p>
+      <TimingBars wl={wl} />
+      <p className="channel-note">
+        Exact DB exec: raw {fmtMs(wl.db_median_raw_s)} · CAGG {fmtMs(wl.db_median_cagg_s)}{" "}
+        (database execution — not whole-app load time)
+      </p>
+    </article>
   );
 }
 
 export default function TigerEvidencePanel() {
   const [open, setOpen] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<TigerEvidenceResponse | null>(null);
@@ -72,8 +113,10 @@ export default function TigerEvidencePanel() {
       {open && (
         <div className="tiger-body">
           <p className="tiger-note">
-            Diagnostics stay off the critical investigation path. Benchmarks are
-            not re-run on page load. Timings below are{" "}
+            <strong>How Tiger supports investigation:</strong> raw sensor history
+            feeds continuous aggregates for historical context; relational metadata
+            stores saved / shareable investigations. Diagnostics stay off the critical
+            path. Benchmarks are <strong>not</strong> re-run on page load. Timings are{" "}
             <strong>database execution</strong>, not application loading time.
           </p>
 
@@ -110,25 +153,6 @@ export default function TigerEvidencePanel() {
                 </div>
               </dl>
 
-              <h3 className="details-section">Storage</h3>
-              <dl className="tiger-dl">
-                <div className="detail-row">
-                  <dt>Database size</dt>
-                  <dd>{storage?.database_pretty ?? "—"}</dd>
-                </div>
-                <div className="detail-row">
-                  <dt>Configured limit</dt>
-                  <dd>{storage?.limit_pretty ?? "unset"}</dd>
-                </div>
-                <div className="detail-row">
-                  <dt>Working ceiling</dt>
-                  <dd>
-                    {storage?.working_ceiling_pretty ?? "—"}
-                    <span className="channel-note"> (20% headroom)</span>
-                  </dd>
-                </div>
-              </dl>
-
               <h3 className="details-section">January raw vs CAGG (saved)</h3>
               {!bench?.available && (
                 <p className="channel-note">
@@ -141,31 +165,79 @@ export default function TigerEvidencePanel() {
                   <p className="tiger-meta">
                     Run date {bench.run_date_utc ?? "—"}
                     {bench.repeats ? ` · ${bench.repeats}× alternating` : ""}
-                    {bench.artifact_path ? ` · ${bench.artifact_path}` : ""}
                     {" · "}
                     reran on load: {data.reran_expensive_benchmark ? "yes" : "no"}
                   </p>
                   <p className="channel-note">{bench.latency_distinction}</p>
-                  <div className="tiger-table-wrap">
-                    <table className="tiger-table">
-                      <thead>
-                        <tr>
-                          <th>Workload</th>
-                          <th>Match</th>
-                          <th>Raw DB exec</th>
-                          <th>CAGG DB exec</th>
-                          <th>Speedup</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {(bench.workloads ?? []).map((wl) => (
-                          <WorkloadRow key={wl.id} wl={wl} />
-                        ))}
-                      </tbody>
-                    </table>
+                  <div className="tiger-workload-list">
+                    {(bench.workloads ?? []).map((wl) => (
+                      <WorkloadCard key={wl.id} wl={wl} />
+                    ))}
                   </div>
                 </>
               )}
+
+              <details
+                className="tiger-details"
+                open={detailsOpen}
+                onToggle={(e) => setDetailsOpen((e.target as HTMLDetailsElement).open)}
+              >
+                <summary>Methodology, storage, and hashes</summary>
+                <h3 className="details-section">Storage</h3>
+                <dl className="tiger-dl">
+                  <div className="detail-row">
+                    <dt>Database size</dt>
+                    <dd>{storage?.database_pretty ?? "—"}</dd>
+                  </div>
+                  <div className="detail-row">
+                    <dt>Configured limit</dt>
+                    <dd>{storage?.limit_pretty ?? "unset"}</dd>
+                  </div>
+                  <div className="detail-row">
+                    <dt>Working ceiling</dt>
+                    <dd>
+                      {storage?.working_ceiling_pretty ?? "—"}
+                      <span className="channel-note"> (20% headroom)</span>
+                    </dd>
+                  </div>
+                </dl>
+                {bench?.available && (
+                  <>
+                    <p className="channel-note">
+                      Artifact {bench.artifact_path ?? "—"}. No compression claim.
+                      Values are read from the saved artifact only.
+                    </p>
+                    <div className="tiger-table-wrap">
+                      <table className="tiger-table">
+                        <thead>
+                          <tr>
+                            <th>Workload</th>
+                            <th>Match</th>
+                            <th>Raw DB exec</th>
+                            <th>CAGG DB exec</th>
+                            <th>Speedup</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {(bench.workloads ?? []).map((wl) => (
+                            <tr key={`tbl-${wl.id}`}>
+                              <td>{wl.label}</td>
+                              <td>{wl.outputs_match ? "match" : "mismatch"}</td>
+                              <td>{fmtMs(wl.db_median_raw_s)}</td>
+                              <td>{fmtMs(wl.db_median_cagg_s)}</td>
+                              <td>
+                                {wl.db_median_speedup != null
+                                  ? `${wl.db_median_speedup.toFixed(2)}×`
+                                  : "—"}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </>
+                )}
+              </details>
             </>
           )}
         </div>

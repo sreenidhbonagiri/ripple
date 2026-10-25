@@ -29,7 +29,13 @@ import {
   replaceInvestigationQuery,
   type SavedInvestigation,
 } from "./investigations";
-import { PRESENTER, WARNING_DEMO } from "./presenter";
+import {
+  PRESENTER,
+  WARNING_DEMOS,
+  warningDemoForCursor,
+  warningDemoForWindow,
+  type WarningDemoId,
+} from "./presenter";
 import { addSeconds, clampTs, normalizeNaive, parseNaive } from "./time";
 import type {
   NetworkResponse,
@@ -425,19 +431,40 @@ export default function App() {
     }
   };
 
-  const warningDemoBounds = {
-    start: WARNING_DEMO.windowStart,
-    end: WARNING_DEMO.windowEnd,
-  };
-
-  const applyWarningDemoBookmark = () => {
-    const sensor = sensors.find((s) => s.id === WARNING_DEMO.sensorId);
-    setReplayLabel(WARNING_DEMO.label);
-    seekTo(WARNING_DEMO.cursor, warningDemoBounds);
+  const applyWarningDemoBookmark = (id: WarningDemoId) => {
+    const demo = WARNING_DEMOS[id];
+    const sensor = sensors.find((s) => s.id === demo.sensorId);
+    setReplayLabel(demo.label);
+    seekTo(demo.cursor, { start: demo.windowStart, end: demo.windowEnd });
     if (sensor) {
       setSelection({ kind: "sensor", data: sensor });
     }
   };
+
+  const inspectWarningSensor = (sensorId: string) => {
+    const sensor = sensors.find((s) => s.id === sensorId);
+    if (!sensor) return;
+    // Preserve replay cursor and window; only update map/chart selection.
+    setSelection({ kind: "sensor", data: sensor });
+  };
+
+  const activeDisclaimer = (() => {
+    if (openedInvestigation && restoreStatus === "ready") {
+      const matched =
+        warningDemoForCursor(openedInvestigation.cursor) ??
+        warningDemoForWindow(
+          normalizeNaive(openedInvestigation.window_start),
+          normalizeNaive(openedInvestigation.window_end),
+        );
+      if (matched) return matched.disclaimer;
+      return PRESENTER.disclaimer;
+    }
+    const matched =
+      warningDemoForCursor(cursor) ??
+      warningDemoForWindow(windowStart, windowEnd);
+    if (matched) return matched.disclaimer;
+    return PRESENTER.disclaimer;
+  })();
 
   const selectedObservation =
     selection?.kind === "sensor"
@@ -452,9 +479,13 @@ export default function App() {
         <div className="brand-block">
           <p className="product-tag">Historical benchmark replay</p>
           <h1 className="brand">Ripple</h1>
+          <p className="headline">Turn water-network signals into an investigation.</p>
           <p className="tagline">
-            BattLeDIM L-Town investigation workspace — not live monitoring.
-            Pressure anomalies are not confirmed leaks.
+            Explore experimental warnings, inspect synchronized sensor evidence,
+            and share findings.
+          </p>
+          <p className="method-m-inline-badge" role="note">
+            Experimental Method M · five-minute scoring · not a confirmed leak
           </p>
         </div>
         <div className="toolbar">
@@ -506,24 +537,11 @@ export default function App() {
         </div>
       )}
 
-      <SaveInvestigationPanel
-        sensorId={selectedSensorId}
-        cursor={cursor}
-        windowStart={windowStart}
-        windowEnd={windowEnd}
-        disabled={state.status !== "ready" || restoreStatus === "loading"}
-        onSaved={(row) => {
-          setOpenedInvestigation(row);
-          setRestoreStatus("ready");
-          replaceInvestigationQuery(row.id);
-          setReplayLabel(`Saved investigation — ${row.title}`);
-        }}
-      />
-
       {windowStart && windowEnd && cursor && (
         <>
           <ReplayControls
             label={replayLabel}
+            activeDisclaimer={activeDisclaimer}
             cursor={cursor}
             windowStart={windowStart}
             windowEnd={windowEnd}
@@ -575,23 +593,6 @@ export default function App() {
           )}
         </>
       )}
-
-      <InvestigationPanels
-        cursor={cursor}
-        observations={observations}
-        snapshotStatus={snapshotPending ? "loading" : snapshotStatus}
-        snapshotMatched={snapshotMatched}
-        snapshotError={snapshotError}
-        selectedPressure={selectedPressure}
-        pressureComparison={pressureComparison}
-        seriesStatus={seriesPending ? "loading" : seriesStatus}
-        seriesMatched={seriesMatched}
-        seriesError={seriesError}
-      />
-
-      <MethodMWarningPanel cursor={cursor} />
-
-      <TigerEvidencePanel />
 
       <main className="workspace">
         <section className="map-stage">
@@ -675,6 +676,41 @@ export default function App() {
           seriesError={seriesError}
         />
       </main>
+
+      <MethodMWarningPanel
+        cursor={cursor}
+        onInspectSensor={inspectWarningSensor}
+        selectedSensorId={selectedSensorId}
+      />
+
+      <InvestigationPanels
+        cursor={cursor}
+        observations={observations}
+        snapshotStatus={snapshotPending ? "loading" : snapshotStatus}
+        snapshotMatched={snapshotMatched}
+        snapshotError={snapshotError}
+        selectedPressure={selectedPressure}
+        pressureComparison={pressureComparison}
+        seriesStatus={seriesPending ? "loading" : seriesStatus}
+        seriesMatched={seriesMatched}
+        seriesError={seriesError}
+      />
+
+      <TigerEvidencePanel />
+
+      <SaveInvestigationPanel
+        sensorId={selectedSensorId}
+        cursor={cursor}
+        windowStart={windowStart}
+        windowEnd={windowEnd}
+        disabled={state.status !== "ready" || restoreStatus === "loading"}
+        onSaved={(row) => {
+          setOpenedInvestigation(row);
+          setRestoreStatus("ready");
+          replaceInvestigationQuery(row.id);
+          setReplayLabel(`Saved investigation — ${row.title}`);
+        }}
+      />
     </div>
   );
 }

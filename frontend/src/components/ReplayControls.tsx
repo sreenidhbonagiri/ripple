@@ -1,7 +1,8 @@
-import { PRESENTER, WARNING_DEMO } from "../presenter";
+import { PRESENTER, WARNING_DEMOS, type WarningDemoId } from "../presenter";
 
 interface Props {
   label: string;
+  activeDisclaimer: string;
   cursor: string;
   windowStart: string;
   windowEnd: string;
@@ -15,15 +16,19 @@ interface Props {
   onWindowStart: () => void;
   onMidpoint: () => void;
   onIllustrativeBookmark: () => void;
-  onWarningDemoBookmark: () => void;
+  onWarningDemoBookmark: (id: WarningDemoId) => void;
   index: number;
   totalSteps: number;
   timestamps: string[];
   midpointTs: string | null;
 }
 
+const PRIMARY_WARNING = WARNING_DEMOS.jan24_1830;
+const SECONDARY_WARNING = WARNING_DEMOS.jan15_2300;
+
 export default function ReplayControls({
   label,
+  activeDisclaimer,
   cursor,
   windowStart,
   windowEnd,
@@ -48,7 +53,35 @@ export default function ReplayControls({
         <p className="replay-label">{label}</p>
         <span className="replay-cursor">{cursor}</span>
       </div>
-      <p className="presenter-disclaimer">{PRESENTER.disclaimer}</p>
+      <p className="presenter-disclaimer" role="note">
+        {activeDisclaimer}
+      </p>
+      <div
+        className="presenter-bookmarks warning-demo-bookmarks"
+        role="group"
+        aria-label="Experimental Method M warning demo"
+      >
+        <span className="presenter-bookmarks-label">Experimental warning demo</span>
+        <button
+          type="button"
+          className="btn btn-accent"
+          onClick={() => onWarningDemoBookmark(PRIMARY_WARNING.id)}
+          title={PRIMARY_WARNING.disclaimer}
+        >
+          {PRIMARY_WARNING.buttonLabel}
+        </button>
+        <button
+          type="button"
+          className="btn btn-ghost-dark"
+          onClick={() => onWarningDemoBookmark(SECONDARY_WARNING.id)}
+          title={SECONDARY_WARNING.disclaimer}
+        >
+          {SECONDARY_WARNING.buttonLabel}
+        </button>
+        <span className="warning-demo-hint">
+          Five-minute · not a confirmed leak · not localization
+        </span>
+      </div>
       <div className="presenter-bookmarks" role="group" aria-label="Jan 12 investigation preset">
         <span className="presenter-bookmarks-label">Jan 12 preset</span>
         <button type="button" className="btn btn-ghost-dark" onClick={onWindowStart}>
@@ -56,7 +89,7 @@ export default function ReplayControls({
         </button>
         <button
           type="button"
-          className="btn btn-accent"
+          className="btn btn-ghost-dark"
           onClick={onIllustrativeBookmark}
           title={PRESENTER.bookmarks[1].note}
         >
@@ -70,24 +103,6 @@ export default function ReplayControls({
         >
           Midpoint 15:30
         </button>
-      </div>
-      <div
-        className="presenter-bookmarks warning-demo-bookmarks"
-        role="group"
-        aria-label="Experimental Method M warning demo"
-      >
-        <span className="presenter-bookmarks-label">Experimental warning demo</span>
-        <button
-          type="button"
-          className="btn btn-ghost-dark"
-          onClick={onWarningDemoBookmark}
-          title={WARNING_DEMO.disclaimer}
-        >
-          Method M notify 23:00 (15 Jan)
-        </button>
-        <span className="warning-demo-hint">
-          Five-minute · not a confirmed leak · not localization
-        </span>
       </div>
       <div className="replay-controls">
         <button type="button" className="btn" onClick={() => onStep(-1)} disabled={index <= 0}>

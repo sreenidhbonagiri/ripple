@@ -4,6 +4,8 @@ import type { MethodMWarningResponse } from "../types";
 
 interface Props {
   cursor: string | null;
+  onInspectSensor?: (sensorId: string) => void;
+  selectedSensorId?: string | null;
 }
 
 function fmtScore(v: number | null | undefined): string {
@@ -11,7 +13,11 @@ function fmtScore(v: number | null | undefined): string {
   return v.toFixed(3);
 }
 
-export default function MethodMWarningPanel({ cursor }: Props) {
+export default function MethodMWarningPanel({
+  cursor,
+  onInspectSensor,
+  selectedSensorId = null,
+}: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<MethodMWarningResponse | null>(null);
@@ -56,6 +62,8 @@ export default function MethodMWarningPanel({ cursor }: Props) {
           Experimental anomaly warning — not a confirmed leak. Not a pipe
           localization result. Scores and notifications use a native five-minute
           grid; do not treat notify times as finer than the 5-minute stamp.
+          Contributing sensors are dual-context evidence to inspect — not leak
+          locations.
         </p>
       </div>
 
@@ -133,6 +141,11 @@ export default function MethodMWarningPanel({ cursor }: Props) {
           {data.contributors.length > 0 && (
             <>
               <h3 className="details-section">Contributing sensors (measured dual context)</h3>
+              <p className="channel-note">
+                Use <strong>Inspect sensor</strong> to update the map selection and
+                pressure chart at the current replay cursor. This does not identify a
+                leaking pipe.
+              </p>
               <div className="tiger-table-wrap">
                 <table className="tiger-table">
                   <thead>
@@ -142,21 +155,40 @@ export default function MethodMWarningPanel({ cursor }: Props) {
                       <th>δ (m³/h)</th>
                       <th>σ_SCALE</th>
                       <th>q_v</th>
+                      <th>Inspect</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {data.contributors.map((c) => (
-                      <tr key={c.sensor_id}>
-                        <td>
-                          {c.sensor_id}
-                          {data.argmax_sensor_id === c.sensor_id ? " · max" : ""}
-                        </td>
-                        <td>{fmtScore(c.abs_z_calibrated)}</td>
-                        <td>{fmtScore(c.delta_m3h)}</td>
-                        <td>{fmtScore(c.sigma_scale_m3h)}</td>
-                        <td>{fmtScore(c.qv_m3h)}</td>
-                      </tr>
-                    ))}
+                    {data.contributors.map((c) => {
+                      const selected = selectedSensorId === c.sensor_id;
+                      return (
+                        <tr
+                          key={c.sensor_id}
+                          className={selected ? "method-m-contrib-selected" : undefined}
+                        >
+                          <td>
+                            {c.sensor_id}
+                            {data.argmax_sensor_id === c.sensor_id ? " · max" : ""}
+                          </td>
+                          <td>{fmtScore(c.abs_z_calibrated)}</td>
+                          <td>{fmtScore(c.delta_m3h)}</td>
+                          <td>{fmtScore(c.sigma_scale_m3h)}</td>
+                          <td>{fmtScore(c.qv_m3h)}</td>
+                          <td>
+                            <button
+                              type="button"
+                              className="btn btn-inspect"
+                              aria-label={`Inspect sensor ${c.sensor_id}`}
+                              aria-pressed={selected}
+                              onClick={() => onInspectSensor?.(c.sensor_id)}
+                              disabled={!onInspectSensor}
+                            >
+                              Inspect sensor
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
