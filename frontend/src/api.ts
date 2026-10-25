@@ -5,6 +5,7 @@ import type {
 import type {
   HealthResponse,
   HourlyHistoryResponse,
+  MethodMWarningResponse,
   NetworkResponse,
   ReplaySnapshotResponse,
   ReplayWindowResponse,
@@ -99,6 +100,18 @@ export function fetchTigerEvidence(
   signal?: AbortSignal,
 ): Promise<TigerEvidenceResponse> {
   return fetchJson<TigerEvidenceResponse>("/api/tiger/evidence", signal);
+}
+
+/** Cursor-safe Experimental Method M warning (January serving artifact). */
+export function fetchMethodMWarning(
+  at: string,
+  signal?: AbortSignal,
+): Promise<MethodMWarningResponse> {
+  const q = new URLSearchParams({ at });
+  return fetchJson<MethodMWarningResponse>(
+    `/api/experimental/method-m-warning?${q}`,
+    signal,
+  );
 }
 
 export function fetchInvestigation(

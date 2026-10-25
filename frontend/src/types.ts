@@ -187,6 +187,46 @@ export interface TigerWorkload {
   timing_label?: string;
 }
 
+export interface MethodMContributor {
+  sensor_id: string;
+  abs_z_calibrated: number;
+  delta_m3h: number;
+  sigma_scale_m3h: number;
+  qv_m3h: number;
+  ref_mean_m3h: number;
+}
+
+export interface MethodMWarningResponse {
+  method: string;
+  experimental: boolean;
+  disclaimer: string;
+  resolution: string;
+  resolution_note: string;
+  cursor: string;
+  score_hour: string | null;
+  threshold: number;
+  recover_threshold: number;
+  version_hashes: Record<string, string>;
+  coverage?: { start: string; end: string; note?: string };
+  status: string;
+  warning_active: boolean;
+  score: number | null;
+  contributors: MethodMContributor[];
+  argmax_sensor_id: string | null;
+  data_age_hours: number | null;
+  notification: {
+    notify_ts?: string;
+    score_at_notify?: number | null;
+    recovered_at_cursor_hour?: boolean;
+  } | null;
+  investigation_usable_without_warning: boolean;
+  predicted_leak_pipes: null;
+  episode_peak_score: number | null;
+  episode_end_ts: string | null;
+  peak_score_observed_to_cursor?: number | null;
+  notes: string[];
+}
+
 export interface TigerEvidenceResponse {
   mode: string;
   reran_expensive_benchmark: boolean;

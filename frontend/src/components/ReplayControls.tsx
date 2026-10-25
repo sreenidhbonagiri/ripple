@@ -1,4 +1,4 @@
-import { PRESENTER } from "../presenter";
+import { PRESENTER, WARNING_DEMO } from "../presenter";
 
 interface Props {
   label: string;
@@ -15,6 +15,7 @@ interface Props {
   onWindowStart: () => void;
   onMidpoint: () => void;
   onIllustrativeBookmark: () => void;
+  onWarningDemoBookmark: () => void;
   index: number;
   totalSteps: number;
   timestamps: string[];
@@ -35,6 +36,7 @@ export default function ReplayControls({
   onWindowStart,
   onMidpoint,
   onIllustrativeBookmark,
+  onWarningDemoBookmark,
   index,
   totalSteps,
   timestamps,
@@ -68,6 +70,24 @@ export default function ReplayControls({
         >
           Midpoint 15:30
         </button>
+      </div>
+      <div
+        className="presenter-bookmarks warning-demo-bookmarks"
+        role="group"
+        aria-label="Experimental Method M warning demo"
+      >
+        <span className="presenter-bookmarks-label">Experimental warning demo</span>
+        <button
+          type="button"
+          className="btn btn-ghost-dark"
+          onClick={onWarningDemoBookmark}
+          title={WARNING_DEMO.disclaimer}
+        >
+          Method M notify 23:00 (15 Jan)
+        </button>
+        <span className="warning-demo-hint">
+          Hourly · not a confirmed leak · not localization
+        </span>
       </div>
       <div className="replay-controls">
         <button type="button" className="btn" onClick={() => onStep(-1)} disabled={index <= 0}>

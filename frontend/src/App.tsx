@@ -13,6 +13,7 @@ import InvestigationPanels from "./components/InvestigationPanels";
 import NetworkMap from "./components/NetworkMap";
 import ReplayControls from "./components/ReplayControls";
 import SaveInvestigationPanel from "./components/SaveInvestigationPanel";
+import MethodMWarningPanel from "./components/MethodMWarningPanel";
 import TigerEvidencePanel from "./components/TigerEvidencePanel";
 import {
   chartSeriesInWindow,
@@ -28,7 +29,7 @@ import {
   replaceInvestigationQuery,
   type SavedInvestigation,
 } from "./investigations";
-import { PRESENTER } from "./presenter";
+import { PRESENTER, WARNING_DEMO } from "./presenter";
 import { addSeconds, clampTs, normalizeNaive, parseNaive } from "./time";
 import type {
   NetworkResponse,
@@ -424,6 +425,20 @@ export default function App() {
     }
   };
 
+  const warningDemoBounds = {
+    start: WARNING_DEMO.windowStart,
+    end: WARNING_DEMO.windowEnd,
+  };
+
+  const applyWarningDemoBookmark = () => {
+    const sensor = sensors.find((s) => s.id === WARNING_DEMO.sensorId);
+    setReplayLabel(WARNING_DEMO.label);
+    seekTo(WARNING_DEMO.cursor, warningDemoBounds);
+    if (sensor) {
+      setSelection({ kind: "sensor", data: sensor });
+    }
+  };
+
   const selectedObservation =
     selection?.kind === "sensor"
       ? observations.find((o) => o.sensor_id === selection.data.id) ?? null
@@ -537,6 +552,7 @@ export default function App() {
               );
             }}
             onIllustrativeBookmark={applyIllustrativeBookmark}
+            onWarningDemoBookmark={applyWarningDemoBookmark}
             index={cursorIndex}
             totalSteps={timestamps.length}
             timestamps={timestamps}
@@ -572,6 +588,8 @@ export default function App() {
         seriesMatched={seriesMatched}
         seriesError={seriesError}
       />
+
+      <MethodMWarningPanel cursor={cursor} />
 
       <TigerEvidencePanel />
 

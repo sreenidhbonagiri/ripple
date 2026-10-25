@@ -1,0 +1,49 @@
+{
+  "method": "M",
+  "label": "experimental_historical_anomaly_warning",
+  "experimental_disclaimer": "Experimental anomaly warning \u2014 not a confirmed leak.",
+  "resolution": "hourly",
+  "resolution_note": "Scores and notifications are on an hourly grid. Sub-hour precision must not be implied.",
+  "coverage": {
+    "start": "2019-01-01 00:00:00",
+    "end": "2019-01-31 23:00:00",
+    "note": "January 2019 only \u2014 matches existing Tiger raw coverage; no additional raw import."
+  },
+  "tau": 4.347,
+  "tau_recover": 2.1735,
+  "raw_max_median": 1.843999066008619,
+  "version_hashes": {
+    "calibration_sha256": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+    "sensor_scales_sha256": "34003a0ad5ea69cf145794babefd08ba03b742d51977f8bd54be9294eaf72e55",
+    "tau_sha256": "adc85b01b1d8e84939d0490efb2c09278d6a910a0d901dd0baa700b498c42348",
+    "score_M_2019_sha256": "6578b9b04d073732320a14d45f0e5197e909660b51d740f1a20081dfbdb5bb42",
+    "notifications_2019_sha256": "3ae2528e1c832a06e0bc2848f31a10c612c82189a3303e8e98c92b61f52b775c",
+    "detection_scores_py_sha256": "058df5f9d5ae892a2ee9adce545376134907dafbc8a324f26c2d785ca4d6247f",
+    "notifier_py_sha256": "fd377799e2a9cadc1cdee0295d221fb29002207d6cb0be30f58ce104d1290e30",
+    "METHOD_M_PROTOCOL_sha256": "ba1148746aa66c07120cf6488fcc98e19405d37f87cb4280177d88e2259ca3b7",
+    "serving_hours_sha256": "d8ed9ff1f539f424e2c28cd64a3a13c2fe94b7b9b5f48a992edc2ca56e22f199",
+    "serving_notifications_sha256": "8c951284c9bd20069e3fd24428b0759797f7278ff5f08266a719caadbed85d02"
+  },
+  "evaluation_labels_in_serving": false,
+  "tiger_capacity": {
+    "checked": true,
+    "database_bytes": 100013759,
+    "limit_bytes": 786432000,
+    "working_ceiling_bytes": 629145600,
+    "usable_bytes": 529131841,
+    "estimated_derived_table_bytes": 5059200,
+    "would_fit": true,
+    "decision": "file_backed_artifact_no_tiger_derived_table",
+    "rationale": "Capacity allows ~5 MiB derived rows, but serving stays file-backed to avoid hypertable growth and keep eval labels out of the database."
+  },
+  "n_hours": 744,
+  "n_notifications_january": 2,
+  "matching_verification": {
+    "one_to_one_abrupt_2019": true,
+    "abrupt_recall": "3/9",
+    "abrupt_recall_excluding_p523_dev_example": "2/8",
+    "notification_timestamps_match_frozen_file": true,
+    "hourly_resolution_disclosed": true,
+    "carryover_note": "Carryover open-leak counts reuse the same 2019 notifications; they are not independent detections."
+  }
+}

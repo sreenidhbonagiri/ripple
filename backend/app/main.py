@@ -42,6 +42,7 @@ from app.schemas import (
     SensorReadingsResponse,
     SensorsResponse,
 )
+from app.method_m_warning import present_method_m_warning
 from app.tiger_evidence import present_tiger_evidence
 
 app = FastAPI(
@@ -233,6 +234,24 @@ def get_tiger_evidence() -> dict:
         return present_tiger_evidence()
     except Exception as exc:  # noqa: BLE001
         raise HTTPException(status_code=500, detail=sanitize_db_error(str(exc))) from None
+
+
+@app.get("/api/experimental/method-m-warning")
+def get_method_m_warning(
+    at: str = Query(..., description="Replay cursor (naive timestamp)"),
+) -> dict:
+    """Cursor-safe Experimental Method M historical anomaly warning (January).
+
+    File-backed serving artifact — not a confirmed leak; no predicted pipes;
+    evidence and episode peaks/ends only at or before the cursor.
+    """
+    cursor = _parse_naive(at, "at")
+    try:
+        return present_method_m_warning(cursor)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from None
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=str(exc)) from None
 
 
 def _client_rate_key(request: Request) -> str:
