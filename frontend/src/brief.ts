@@ -17,7 +17,11 @@ export function fmtNum(
 
 export function fmtTs(ts: string | null | undefined): string {
   if (!ts) return "—";
-  return String(ts).replace("T", " ").slice(0, 19);
+  const cleaned = String(ts).replace("T", " ").slice(0, 19);
+  if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:00$/.test(cleaned)) {
+    return cleaned.slice(0, 16);
+  }
+  return cleaned;
 }
 
 export function freshnessLabel(status: string | null | undefined): string {

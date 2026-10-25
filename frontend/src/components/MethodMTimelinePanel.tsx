@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import { fetchMethodMTimeline, fetchSensorReadings } from "../api";
 import { paddedValueExtent } from "../investigation";
-import { normalizeNaive } from "../time";
+import { formatDisplayTs, normalizeNaive } from "../time";
 import type {
   MethodMTimelineResponse,
   SensorReadingsResponse,
@@ -312,12 +312,14 @@ export default function MethodMTimelinePanel({
       <header className="method-m-timeline-header">
         <h2 className="method-m-timeline-title">Anomaly score timeline</h2>
         <p className="tiger-inline-note">
-          Preceding 24 hours from Tiger Data, ending at the replay cursor.
+          {timeline?.store === "tiger"
+            ? "Warning evidence served from Tiger Data."
+            : "Preceding 24 hours ending at the replay cursor."}
         </p>
         <p className="method-m-timeline-cursor">
-          Selected cursor {normalizeNaive(cursor)}
+          Cursor {formatDisplayTs(cursor)}
           {timelineMatched
-            ? ` · loaded through ${normalizeNaive(timeline!.window_end)}`
+            ? ` · through ${formatDisplayTs(timeline!.window_end)}`
             : timelineLoading
               ? " · loading…"
               : ""}
@@ -326,7 +328,7 @@ export default function MethodMTimelinePanel({
 
       {timelineLoading && !timelineMatched && (
         <p className="channel-note" role="status">
-          Loading experimental score timeline…
+          Loading score timeline…
         </p>
       )}
       {timelineError && (
@@ -337,16 +339,6 @@ export default function MethodMTimelinePanel({
 
       {timelineMatched && timeline && (
         <>
-          <p className="method-m-meta">
-            Window {normalizeNaive(timeline.window_start)} →{" "}
-            {normalizeNaive(timeline.window_end)} · {timeline.points.length} stamps
-            {" · "}
-            source <code>{timeline.source}</code> · store{" "}
-            <strong>{timeline.store}</strong> · run <code>{timeline.run_id}</code>
-            {timeline.missingness.null_scores > 0
-              ? ` · ${timeline.missingness.null_scores} missing scores`
-              : ""}
-          </p>
           <p className="chart-title">Anomaly score (five-minute)</p>
           {timeline.points.length === 0 ? (
             <p className="chart-status">{timeline.status}: no scores in window.</p>
@@ -399,20 +391,28 @@ export default function MethodMTimelinePanel({
 
           <details className="method-m-tech">
             <summary>Method and evaluation</summary>
+            <p className="channel-note">
+              Window {formatDisplayTs(timeline.window_start)} →{" "}
+              {formatDisplayTs(timeline.window_end)} · {timeline.points.length}{" "}
+              stamps · source <code>{timeline.source}</code> · store{" "}
+              <strong>{timeline.store}</strong>
+              {timeline.missingness.null_scores > 0
+                ? ` · ${timeline.missingness.null_scores} missing scores`
+                : ""}
+              .
+            </p>
             <p className="channel-note">{timeline.score_interpretation}</p>
             <p className="channel-note">
-              Frozen Method M scores from Tiger. {timeline.resolution_note}{" "}
-              Notification markers are five-minute stamps at or before the cursor.
-              Provenance run <code>{timeline.provenance.run_id}</code> ·
-              serving_hours sha256{" "}
+              Frozen Method M scores. {timeline.resolution_note} Notification
+              markers are five-minute stamps at or before the cursor. Provenance
+              run <code>{timeline.provenance.run_id}</code> · serving_hours sha256{" "}
               <code>
                 {timeline.provenance.serving_hours_sha256?.slice(0, 16) ?? "—"}…
               </code>
               . Missingness: returned {timeline.missingness.returned_stamps} /{" "}
-              {timeline.missingness.expected_stamps_in_method_coverage} expected in
-              coverage
-              {timeline.missingness.coverage_complete ? " (complete)" : " (partial)"}.
-              Warning threshold is τ in the frozen research protocol.
+              {timeline.missingness.expected_stamps_in_method_coverage} expected
+              {timeline.missingness.coverage_complete ? " (complete)" : " (partial)"}
+              . Threshold τ is from the frozen research protocol.
             </p>
           </details>
         </>

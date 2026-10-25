@@ -24,6 +24,14 @@ export function formatNaive(d: Date): string {
   );
 }
 
+/** Consistent UI timestamps (drop trailing :00 seconds). */
+export function formatDisplayTs(ts: string | null | undefined): string {
+  if (!ts) return "—";
+  const n = normalizeNaive(String(ts));
+  if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:00$/.test(n)) return n.slice(0, 16);
+  return n;
+}
+
 export function addSeconds(ts: string, seconds: number): string {
   const d = parseNaive(ts);
   d.setSeconds(d.getSeconds() + seconds);

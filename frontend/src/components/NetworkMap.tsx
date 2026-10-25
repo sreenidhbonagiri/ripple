@@ -18,6 +18,8 @@ interface Props {
   observationsPending?: boolean;
   onSelect: (selection: Selection) => void;
   fitToken: number;
+  /** Selected pressure sensor id — terracotta halo; never styled as a leak pipe. */
+  selectedSensorId?: string | null;
   /**
    * Evaluation-only: highlight the official labeled pipe. Cleared when leaving
    * the benchmark-outcome view so replay has no ground-truth overlay.
@@ -147,6 +149,7 @@ export default function NetworkMap({
   observationsPending = false,
   onSelect,
   fitToken,
+  selectedSensorId = null,
   truthLinkId = null,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -186,44 +189,58 @@ export default function NetworkMap({
             style: {
               label: "",
               "background-color": NODE_COLORS.Junction,
-              width: 10,
-              height: 10,
+              width: 7,
+              height: 7,
               "border-width": 1,
               "border-color": "#0a1a1e",
+              opacity: 0.9,
             },
           },
           {
             selector: "node.ntype-Reservoir",
             style: {
               shape: "diamond",
-              width: 16,
-              height: 16,
+              width: 22,
+              height: 22,
               "background-color": NODE_COLORS.Reservoir,
+              "border-width": 2,
+              "border-color": "#062e26",
+              "z-index": 15,
+              opacity: 1,
             },
           },
           {
             selector: "node.ntype-Tank",
             style: {
               shape: "round-rectangle",
-              width: 14,
-              height: 14,
+              width: 20,
+              height: 16,
               "background-color": NODE_COLORS.Tank,
+              "border-width": 2,
+              "border-color": "#6a340f",
+              "z-index": 15,
+              opacity: 1,
             },
           },
           {
             selector: "node.ntype-Sensor",
             style: {
               shape: "triangle",
-              width: 12,
-              height: 12,
-              label: "data(label)",
-              "font-size": 8,
+              width: 18,
+              height: 18,
+              label: "",
+              "font-size": 10,
               "font-family": "DM Sans, sans-serif",
-              color: "#1a2a30",
-              "text-outline-width": 1,
+              color: "#122226",
+              "text-outline-width": 2,
               "text-outline-color": "#f2f6f4",
-              "z-index": 20,
+              "text-margin-y": -10,
+              "z-index": 30,
               "background-color": STATUS_COLOR.missing,
+              "border-width": 1.5,
+              "border-color": "#0a1a1e",
+              "overlay-padding": 10,
+              "overlay-opacity": 0,
             },
           },
           {
@@ -239,34 +256,58 @@ export default function NetworkMap({
             style: { "background-color": STATUS_COLOR.missing },
           },
           {
+            selector: "node.ntype-Sensor.sensor-selected",
+            style: {
+              width: 22,
+              height: 22,
+              label: "data(label)",
+              "border-width": 3,
+              "border-color": "#c45c26",
+              "overlay-color": "#c45c26",
+              "overlay-opacity": 0.28,
+              "overlay-padding": 8,
+              "z-index": 60,
+            },
+          },
+          {
             selector: "node.has-sensor",
             style: { "border-width": 2, "border-color": "#c45c26" },
           },
           {
             selector: "edge",
             style: {
-              width: 1.5,
+              width: 1.15,
               "line-color": LINK_COLORS.Pipe,
               "curve-style": "haystack",
               "haystack-radius": 0,
-              opacity: 0.85,
+              opacity: 0.55,
+              "z-index": 1,
             },
           },
           {
             selector: "edge.ltype-Pump",
             style: {
-              width: 2.5,
+              width: 2.25,
               "line-style": "dashed",
               "line-color": LINK_COLORS.Pump,
+              opacity: 0.85,
             },
           },
           {
             selector: "edge.ltype-Valve",
-            style: { width: 2.5, "line-color": LINK_COLORS.Valve },
+            style: {
+              width: 2.25,
+              "line-color": LINK_COLORS.Valve,
+              opacity: 0.8,
+            },
           },
           {
             selector: "edge.has-sensor",
-            style: { width: 3, "line-color": "#c45c26" },
+            style: {
+              width: 2.5,
+              "line-color": "#c45c26",
+              opacity: 0.75,
+            },
           },
           {
             selector: ":selected",
@@ -274,7 +315,6 @@ export default function NetworkMap({
               "border-width": 3,
               "border-color": "#c45c26",
               "line-color": "#c45c26",
-              "background-color": "#c45c26",
               "z-index": 999,
             },
           },
@@ -378,6 +418,20 @@ export default function NetworkMap({
     if (!cy || fitToken === 0) return;
     cy.fit(undefined, 40);
   }, [fitToken]);
+
+  useEffect(() => {
+    const cy = cyRef.current;
+    if (!cy) return;
+    cy.batch(() => {
+      cy.nodes(".ntype-Sensor").removeClass("sensor-selected");
+      if (selectedSensorId) {
+        const node = cy.getElementById(`sensor:${selectedSensorId}`);
+        if (node.nonempty()) {
+          node.addClass("sensor-selected");
+        }
+      }
+    });
+  }, [selectedSensorId, nodes, links, sensors]);
 
   useEffect(() => {
     const cy = cyRef.current;

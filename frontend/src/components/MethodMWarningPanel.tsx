@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchMethodMWarning } from "../api";
+import { formatDisplayTs } from "../time";
 import type { MethodMWarningResponse } from "../types";
 
 interface Props {
@@ -14,6 +15,9 @@ function fmtScore(v: number | null | undefined): string {
   if (v === null || v === undefined || Number.isNaN(v)) return "—";
   return v.toFixed(3);
 }
+
+const ANOMALY_CONTRIBUTION_TITLE =
+  "Calibrated absolute z-score (|z|) — how strongly this sensor’s flow mismatch diverges from its reference scale";
 
 export default function MethodMWarningPanel({
   cursor,
@@ -60,6 +64,8 @@ export default function MethodMWarningPanel({
 
   const matched = Boolean(cursor) && forCursor === cursor && data !== null;
   const showLoading = Boolean(cursor) && (!matched || loading) && !error;
+  const store = data?.store;
+  const fromTiger = store === "tiger";
 
   return (
     <section
@@ -70,17 +76,26 @@ export default function MethodMWarningPanel({
     >
       <div className="method-m-header">
         <h2 className="method-m-title">Experimental warning</h2>
+        {matched && data && (
+          <p className="method-m-provenance" role="note">
+            {fromTiger
+              ? "Warning evidence served from Tiger Data."
+              : store === "file"
+                ? "Warning evidence served from the frozen file artifact."
+                : "Warning evidence store loading…"}
+          </p>
+        )}
       </div>
 
       {!cursor && (
         <p className="channel-note">
-          Set a replay cursor to load warning status for this investigation.
+          Choose a replay cursor or Explore a warning to load status.
         </p>
       )}
 
       {showLoading && (
         <p className="channel-note" role="status">
-          Loading experimental warning…
+          Loading warning…
         </p>
       )}
 
@@ -92,13 +107,6 @@ export default function MethodMWarningPanel({
 
       {matched && data && (
         <div className="method-m-body">
-          <p className="method-m-meta">
-            Latest score stamp at or before the cursor: {data.score_hour ?? "—"}.
-            {data.data_age_hours !== null && data.data_age_hours !== undefined
-              ? ` Data age ${data.data_age_hours.toFixed(2)} h vs cursor.`
-              : null}
-          </p>
-
           {data.warning_active ? (
             <div className="method-m-active" role="status">
               <p className="method-m-status">Experimental warning</p>
@@ -110,27 +118,20 @@ export default function MethodMWarningPanel({
                 Anomaly score {fmtScore(data.score)}
                 <span className="channel-unit">
                   {" "}
-                  / warning threshold {fmtScore(data.threshold)}
+                  / threshold {fmtScore(data.threshold)}
                 </span>
               </p>
               {data.notification?.notify_ts && (
                 <p className="channel-note">
-                  Notification time: {data.notification.notify_ts}
+                  Notification {formatDisplayTs(data.notification.notify_ts)}
                 </p>
               )}
-              {data.peak_score_observed_to_cursor !== null &&
-                data.peak_score_observed_to_cursor !== undefined && (
-                  <p className="channel-note">
-                    Peak score observed to cursor:{" "}
-                    {fmtScore(data.peak_score_observed_to_cursor)}
-                  </p>
-                )}
             </div>
           ) : (
             <div className="method-m-idle" role="status">
               <p className="method-m-status">
                 {data.status === "before_coverage" || data.status === "missing"
-                  ? "No experimental warning evidence at this cursor"
+                  ? "No warning evidence at this cursor"
                   : "No warning at this time"}
               </p>
               {data.score !== null && data.score !== undefined && (
@@ -138,7 +139,7 @@ export default function MethodMWarningPanel({
                   Anomaly score {fmtScore(data.score)}
                   <span className="channel-unit">
                     {" "}
-                    / warning threshold {fmtScore(data.threshold)}
+                    / threshold {fmtScore(data.threshold)}
                   </span>
                 </p>
               )}
@@ -147,14 +148,17 @@ export default function MethodMWarningPanel({
 
           {data.contributors.length > 0 && (
             <>
-              <h3 className="details-section">Contributing sensors</h3>
+              <h3 className="details-section">
+                {data.warning_active
+                  ? "Contributing sensors"
+                  : "Sensor deviations"}
+              </h3>
               <p className="channel-note">
-                Inspect a sensor to update the map selection and pressure chart.
+                Inspect a sensor to update the map and pressure chart.
               </p>
               {data.argmax_sensor_id ? (
                 <p className="channel-note">
-                  Strongest contributing sensor:{" "}
-                  <strong>{data.argmax_sensor_id}</strong>
+                  Strongest sensor: <strong>{data.argmax_sensor_id}</strong>
                 </p>
               ) : null}
               <div className="tiger-table-wrap">
@@ -162,17 +166,17 @@ export default function MethodMWarningPanel({
                   <thead>
                     <tr>
                       <th>Sensor</th>
-                      <th title="Calibrated absolute z-score (|z|)">
-                        Calibrated |z|
+                      <th title={ANOMALY_CONTRIBUTION_TITLE}>
+                        Anomaly contribution
                       </th>
                       <th title="Change in flow mismatch (δ), m³/h">
-                        Change in flow mismatch (m³/h)
+                        Δ mismatch (m³/h)
                       </th>
                       <th title="Reference variability (σ_SCALE), m³/h">
-                        Reference variability (m³/h)
+                        Ref. variability (m³/h)
                       </th>
                       <th title="Model-estimated flow mismatch (qᵥ), m³/h">
-                        Model-estimated flow mismatch (m³/h)
+                        Est. mismatch (m³/h)
                       </th>
                       <th>Inspect</th>
                     </tr>
@@ -184,7 +188,9 @@ export default function MethodMWarningPanel({
                       return (
                         <tr
                           key={c.sensor_id}
-                          className={selected ? "method-m-contrib-selected" : undefined}
+                          className={
+                            selected ? "method-m-contrib-selected" : undefined
+                          }
                         >
                           <td>
                             {c.sensor_id}
@@ -203,7 +209,7 @@ export default function MethodMWarningPanel({
                               onClick={() => onInspectSensor?.(c.sensor_id)}
                               disabled={!onInspectSensor}
                             >
-                              Inspect sensor
+                              Inspect
                             </button>
                           </td>
                         </tr>
@@ -218,33 +224,43 @@ export default function MethodMWarningPanel({
           <details className="method-m-tech">
             <summary>Method and evaluation</summary>
             <p className="channel-note">
-              Five-minute Method M anomaly scores on the historical benchmark.
-              Score magnitude reflects deviation from the reference pattern.
-              Model-estimated flow mismatch (qᵥ) is a dual-context residual used
-              for scoring; δ is the change in that mismatch; σ_SCALE is reference
-              variability. Strongest contributing sensor is the argmax of
-              calibrated |z|. Contributing sensors are investigation evidence, not
-              predicted leak pipes.
+              Score stamp ≤ cursor: {formatDisplayTs(data.score_hour)}.
+              {data.data_age_hours !== null && data.data_age_hours !== undefined
+                ? ` Data age ${data.data_age_hours.toFixed(2)} h.`
+                : ""}
+              {data.peak_score_observed_to_cursor !== null &&
+              data.peak_score_observed_to_cursor !== undefined
+                ? ` Peak to cursor ${fmtScore(data.peak_score_observed_to_cursor)}.`
+                : ""}
             </p>
             <p className="channel-note">
-              Serving store:{" "}
+              Five-minute Method M anomaly scores on the historical benchmark.
+              <strong> Anomaly contribution</strong> is the calibrated absolute
+              z-score (|z|) — how strongly a sensor’s flow mismatch diverges from
+              its reference scale (σ_SCALE). Model-estimated flow mismatch (qᵥ)
+              is a dual-context residual; δ is the change in that mismatch.
+              Strongest sensor is argmax of calibrated |z|. Sensors are
+              investigation evidence, not predicted leak pipes.
+            </p>
+            <p className="channel-note">
+              Store:{" "}
               <strong>
-                {data.store === "tiger"
-                  ? "Tiger (database)"
-                  : data.store === "file"
+                {fromTiger
+                  ? "Tiger Data"
+                  : store === "file"
                     ? "file artifact"
-                    : (data.store ?? "file artifact")}
+                    : (store ?? "—")}
               </strong>
-              {data.store === "tiger" && data.run_id ? (
+              {fromTiger && data.run_id ? (
                 <>
                   {" "}
                   · run <code>{data.run_id}</code>
                 </>
               ) : null}
-              . Warning threshold τ = {fmtScore(data.threshold)} (recover{" "}
+              . Threshold τ = {fmtScore(data.threshold)} (recover{" "}
               {fmtScore(data.recover_threshold)}). Resolution{" "}
-              {data.resolution === "five_minute" ? "five-minute" : data.resolution}.
-              Calibration sha256{" "}
+              {data.resolution === "five_minute" ? "five-minute" : data.resolution}
+              . Calibration sha256{" "}
               <code>{data.version_hashes.calibration_sha256 ?? "—"}</code>
               {data.version_hashes.tau_sha256 ? (
                 <>

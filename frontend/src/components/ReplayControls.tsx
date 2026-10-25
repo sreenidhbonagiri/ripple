@@ -1,4 +1,5 @@
 import { PRESENTER, WARNING_DEMOS, type WarningDemoId } from "../presenter";
+import { formatDisplayTs } from "../time";
 
 interface Props {
   label: string;
@@ -52,7 +53,7 @@ export default function ReplayControls({
     <div className="replay-bar">
       <div className="replay-label-row">
         <p className="replay-label">{label}</p>
-        <span className="replay-cursor">{cursor}</span>
+        <span className="replay-cursor">{formatDisplayTs(cursor)}</span>
       </div>
       <div
         className="presenter-bookmarks warning-demo-bookmarks"
@@ -145,8 +146,8 @@ export default function ReplayControls({
         aria-label="Replay timeline"
       />
       <div className="timeline-ends">
-        <span>{windowStart}</span>
-        <span>{windowEnd}</span>
+        <span>{formatDisplayTs(windowStart)}</span>
+        <span>{formatDisplayTs(windowEnd)}</span>
       </div>
     </div>
   );

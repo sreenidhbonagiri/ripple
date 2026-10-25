@@ -38,7 +38,13 @@ import {
   WARNING_DEMOS,
   type WarningDemoId,
 } from "./presenter";
-import { addSeconds, clampTs, normalizeNaive, parseNaive } from "./time";
+import {
+  addSeconds,
+  clampTs,
+  formatDisplayTs,
+  normalizeNaive,
+  parseNaive,
+} from "./time";
 import type {
   MethodMWarningResponse,
   NetworkResponse,
@@ -507,6 +513,32 @@ export default function App() {
         </div>
       </header>
 
+      {!benchmarkOutcomeOpen && (
+        <div className="start-actions" role="group" aria-label="Start investigating">
+          <button
+            type="button"
+            className="btn btn-start-primary"
+            disabled={state.status !== "ready"}
+            onClick={() => applyWarningDemoBookmark("jan24_1830")}
+          >
+            Explore a warning
+          </button>
+          <button
+            type="button"
+            className="btn btn-start-secondary"
+            disabled={state.status !== "ready"}
+            onClick={() => {
+              setFitToken((n) => n + 1);
+              document
+                .getElementById("map-stage")
+                ?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+          >
+            Explore the network
+          </button>
+        </div>
+      )}
+
       {!benchmarkOutcomeOpen && <InvestigationGuide />}
 
       {restoreStatus === "loading" && (
@@ -589,17 +621,17 @@ export default function App() {
           />
           {dataCoverage && (
             <p className="data-coverage">
-              Playback window {windowStart} → {windowEnd}
+              Window {formatDisplayTs(windowStart)} → {formatDisplayTs(windowEnd)}
               {" · "}
-              Database coverage{" "}
+              Coverage{" "}
               {dataCoverage.start && dataCoverage.end
-                ? `${dataCoverage.start} → ${dataCoverage.end}`
+                ? `${formatDisplayTs(dataCoverage.start)} → ${formatDisplayTs(dataCoverage.end)}`
                 : "empty"}
-              {` (${dataCoverage.readingCount.toLocaleString()} ${
+              {` · ${dataCoverage.readingCount.toLocaleString()} ${
                 dataCoverage.readingCountEstimated
-                  ? "estimated readings"
+                  ? "est. readings"
                   : "readings"
-              }, ${dataCoverage.sensorCount} sensors)`}
+              } · ${dataCoverage.sensorCount} sensors`}
             </p>
           )}
         </>
@@ -616,7 +648,7 @@ export default function App() {
       )}
 
       <main className="workspace">
-        <section className="map-stage">
+        <section className="map-stage" id="map-stage">
           {state.status === "loading" && (
             <div className="state-panel" role="status">
               <p className="state-title">Loading network…</p>
@@ -664,12 +696,16 @@ export default function App() {
                 }
                 onSelect={setSelection}
                 fitToken={fitToken}
+                selectedSensorId={
+                  benchmarkOutcomeOpen ? null : selectedSensorId
+                }
                 truthLinkId={truthLinkId}
               />
               <div className="legend">
                 <span><i className="swatch junction" /> Junction</span>
                 <span><i className="swatch reservoir" /> Reservoir</span>
                 <span><i className="swatch tank" /> Tank</span>
+                <span><i className="swatch sensor" /> Sensor</span>
                 {!benchmarkOutcomeOpen && (
                   <>
                     <span><i className="swatch current" /> Current</span>

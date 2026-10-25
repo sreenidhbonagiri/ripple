@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchBenchmarkOutcome } from "../api";
+import { formatDisplayTs } from "../time";
 import type { BenchmarkOutcomeResponse } from "../types";
 
 interface Props {
@@ -75,11 +76,11 @@ export default function BenchmarkOutcomePanel({ onReturnToReplay }: Props) {
             <dl className="benchmark-outcome-dl">
               <div className="detail-row">
                 <dt>Frozen notification time</dt>
-                <dd>{ex.frozen_notification_time}</dd>
+                <dd>{formatDisplayTs(ex.frozen_notification_time)}</dd>
               </div>
               <div className="detail-row">
                 <dt>Official labeled onset</dt>
-                <dd>{ex.official_labeled_onset}</dd>
+                <dd>{formatDisplayTs(ex.official_labeled_onset)}</dd>
               </div>
               <div className="detail-row">
                 <dt>Delay (five-minute resolution)</dt>
