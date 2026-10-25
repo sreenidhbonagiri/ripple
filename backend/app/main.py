@@ -242,7 +242,8 @@ def get_method_m_warning(
 ) -> dict:
     """Cursor-safe Experimental Method M historical anomaly warning (January, five-minute).
 
-    File-backed serving artifact — not a confirmed leak; no predicted pipes;
+    Default store is the file-backed January artifact; set RIPPLE_METHOD_M_STORE=tiger
+    after migration 003 + import. Not a confirmed leak; no predicted pipes;
     evidence and episode peaks/ends only at or before the cursor.
     """
     cursor = _parse_naive(at, "at")

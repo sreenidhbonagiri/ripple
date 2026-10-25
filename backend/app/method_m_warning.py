@@ -1,4 +1,7 @@
-"""Cursor-safe Experimental Method M historical anomaly warning (file-backed).
+"""Cursor-safe Experimental Method M historical anomaly warning.
+
+Default store is file-backed (rollback-safe). Set RIPPLE_METHOD_M_STORE=tiger
+after migration 003 + January import for the database-backed repository.
 
 Serving data is January 2019 only, matching existing Tiger raw coverage.
 Evaluation labels are never loaded into the serving payload.
@@ -15,7 +18,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-from app.config import REPO_ROOT
+from app.config import REPO_ROOT, get_settings
 
 DEFAULT_ARTIFACT_DIR = REPO_ROOT / "artifacts" / "method_m_experimental_january"
 
@@ -123,7 +126,24 @@ def _active_episode_at(
 
 
 def present_method_m_warning(cursor: datetime) -> dict[str, Any]:
-    """Serve Method M state available at or before ``cursor`` only."""
+    """Serve Method M state available at or before ``cursor`` only.
+
+    Dispatches to file (default) or Tiger based on ``RIPPLE_METHOD_M_STORE``.
+    """
+    mode = (get_settings().ripple_method_m_store or "file").strip().lower()
+    if mode == "tiger":
+        from app.method_m_db import present_method_m_warning_db
+
+        return present_method_m_warning_db(cursor)
+    if mode not in {"file", "filesystem"}:
+        raise RuntimeError(
+            f"Unknown RIPPLE_METHOD_M_STORE={mode!r}; use 'file' or 'tiger'."
+        )
+    return present_method_m_warning_file(cursor)
+
+
+def present_method_m_warning_file(cursor: datetime) -> dict[str, Any]:
+    """File-backed Method M presenter (rollback / default path)."""
     art = load_artifact()
     man = art.manifest
     c = cursor.replace(tzinfo=None)
@@ -157,6 +177,7 @@ def present_method_m_warning(cursor: datetime) -> dict[str, Any]:
         "episode_peak_score": None,
         "episode_end_ts": None,
         "notes": [],
+        "store": "file",
     }
 
     if c < coverage_start:

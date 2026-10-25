@@ -134,6 +134,15 @@ def estimate_import_bytes(new_reading_count: int, snapshot: StorageSnapshot) -> 
 def assert_capacity_for_import(new_reading_count: int) -> StorageSnapshot:
     snap = get_storage_snapshot()
     needed = estimate_import_bytes(new_reading_count, snap)
+    return assert_capacity_for_bytes(needed, snapshot=snap)
+
+
+def assert_capacity_for_bytes(
+    estimated_bytes: int, *, snapshot: StorageSnapshot | None = None
+) -> StorageSnapshot:
+    """Refuse import when projected DB size would exceed the working ceiling."""
+    snap = snapshot or get_storage_snapshot()
+    needed = int(estimated_bytes)
     projected = snap.database_bytes + needed
     if projected > snap.working_ceiling_bytes:
         raise RuntimeError(

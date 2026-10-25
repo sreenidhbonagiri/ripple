@@ -34,6 +34,11 @@ class Settings(BaseSettings):
     # Investigation metadata store: "tiger" (default) or "memory" (local UI demos
     # without applying migration 002). Production should use tiger after review.
     ripple_investigation_store: str = "tiger"
+    # Method M warning store: "file" (default, rollback-safe) or "tiger"
+    # after migration 003 + January artifact import. Never mix runs silently.
+    ripple_method_m_store: str = "file"
+    # Optional explicit method_m_runs.run_id when store=tiger (required if >1 run).
+    ripple_method_m_run_id: str | None = None
 
 
 @lru_cache
