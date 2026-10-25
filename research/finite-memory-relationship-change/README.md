@@ -51,6 +51,13 @@ Frozen 2019 full-year evaluation (protocol before inference; no τ retune):
 .venv/bin/python research/finite-memory-relationship-change/run_year2019_evaluation.py
 ```
 
+2019 null correction (per matching view × eligible set × window; frozen episodes):
+`outputs/YEAR2019_NULL_CORRECTION.md`
+
+```bash
+.venv/bin/python research/finite-memory-relationship-change/correct_year2019_nulls.py
+```
+
 ## Boundary
 
 No production/UI/Tiger/main changes. No CUSUM retuning. No feature addition from this evaluation.

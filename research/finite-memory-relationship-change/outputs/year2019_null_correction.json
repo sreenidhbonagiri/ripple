@@ -1,0 +1,1646 @@
+{
+  "generated_at": "2026-10-24T22:20:08-04:00",
+  "preserves_detector": true,
+  "train_end": "2019-01-15 00:00",
+  "earliest_eligible_notification": "2019-01-17 01:55",
+  "episodes_sha256": "3db05ac9472fffe4dab923a11cdf5801afd967356723a5b740782c7cb3fb7064",
+  "n_episodes": 74,
+  "eligible_sets": {
+    "primary": {
+      "definition": "onset \u2265 train_end (same as registered YEAR2019 primary)",
+      "n": 19,
+      "n_abrupt": 9,
+      "n_incipient": 10,
+      "members": [
+        {
+          "pipe": "p523",
+          "leak_type": "abrupt",
+          "onset": "2019-01-15 23:00"
+        },
+        {
+          "pipe": "p827",
+          "leak_type": "abrupt",
+          "onset": "2019-01-24 18:30"
+        },
+        {
+          "pipe": "p280",
+          "leak_type": "abrupt",
+          "onset": "2019-02-10 13:05"
+        },
+        {
+          "pipe": "p653",
+          "leak_type": "incipient",
+          "onset": "2019-03-03 13:10"
+        },
+        {
+          "pipe": "p710",
+          "leak_type": "abrupt",
+          "onset": "2019-03-24 14:15"
+        },
+        {
+          "pipe": "p514",
+          "leak_type": "abrupt",
+          "onset": "2019-04-02 20:40"
+        },
+        {
+          "pipe": "p331",
+          "leak_type": "abrupt",
+          "onset": "2019-04-20 10:10"
+        },
+        {
+          "pipe": "p193",
+          "leak_type": "incipient",
+          "onset": "2019-05-19 10:40"
+        },
+        {
+          "pipe": "p277",
+          "leak_type": "incipient",
+          "onset": "2019-05-30 21:55"
+        },
+        {
+          "pipe": "p142",
+          "leak_type": "abrupt",
+          "onset": "2019-06-12 19:55"
+        },
+        {
+          "pipe": "p680",
+          "leak_type": "abrupt",
+          "onset": "2019-07-10 08:45"
+        },
+        {
+          "pipe": "p586",
+          "leak_type": "incipient",
+          "onset": "2019-07-26 14:40"
+        },
+        {
+          "pipe": "p721",
+          "leak_type": "incipient",
+          "onset": "2019-08-02 03:00"
+        },
+        {
+          "pipe": "p800",
+          "leak_type": "incipient",
+          "onset": "2019-08-16 14:00"
+        },
+        {
+          "pipe": "p123",
+          "leak_type": "incipient",
+          "onset": "2019-09-13 20:05"
+        },
+        {
+          "pipe": "p455",
+          "leak_type": "incipient",
+          "onset": "2019-10-03 14:00"
+        },
+        {
+          "pipe": "p762",
+          "leak_type": "incipient",
+          "onset": "2019-10-09 10:15"
+        },
+        {
+          "pipe": "p426",
+          "leak_type": "abrupt",
+          "onset": "2019-10-25 13:25"
+        },
+        {
+          "pipe": "p879",
+          "leak_type": "incipient",
+          "onset": "2019-11-20 11:55"
+        }
+      ]
+    },
+    "post_fit": {
+      "definition": "onset \u2265 earliest eligible notification (after FMR3C warm-up)",
+      "n": 18,
+      "n_abrupt": 8,
+      "n_incipient": 10,
+      "members": [
+        {
+          "pipe": "p827",
+          "leak_type": "abrupt",
+          "onset": "2019-01-24 18:30"
+        },
+        {
+          "pipe": "p280",
+          "leak_type": "abrupt",
+          "onset": "2019-02-10 13:05"
+        },
+        {
+          "pipe": "p653",
+          "leak_type": "incipient",
+          "onset": "2019-03-03 13:10"
+        },
+        {
+          "pipe": "p710",
+          "leak_type": "abrupt",
+          "onset": "2019-03-24 14:15"
+        },
+        {
+          "pipe": "p514",
+          "leak_type": "abrupt",
+          "onset": "2019-04-02 20:40"
+        },
+        {
+          "pipe": "p331",
+          "leak_type": "abrupt",
+          "onset": "2019-04-20 10:10"
+        },
+        {
+          "pipe": "p193",
+          "leak_type": "incipient",
+          "onset": "2019-05-19 10:40"
+        },
+        {
+          "pipe": "p277",
+          "leak_type": "incipient",
+          "onset": "2019-05-30 21:55"
+        },
+        {
+          "pipe": "p142",
+          "leak_type": "abrupt",
+          "onset": "2019-06-12 19:55"
+        },
+        {
+          "pipe": "p680",
+          "leak_type": "abrupt",
+          "onset": "2019-07-10 08:45"
+        },
+        {
+          "pipe": "p586",
+          "leak_type": "incipient",
+          "onset": "2019-07-26 14:40"
+        },
+        {
+          "pipe": "p721",
+          "leak_type": "incipient",
+          "onset": "2019-08-02 03:00"
+        },
+        {
+          "pipe": "p800",
+          "leak_type": "incipient",
+          "onset": "2019-08-16 14:00"
+        },
+        {
+          "pipe": "p123",
+          "leak_type": "incipient",
+          "onset": "2019-09-13 20:05"
+        },
+        {
+          "pipe": "p455",
+          "leak_type": "incipient",
+          "onset": "2019-10-03 14:00"
+        },
+        {
+          "pipe": "p762",
+          "leak_type": "incipient",
+          "onset": "2019-10-09 10:15"
+        },
+        {
+          "pipe": "p426",
+          "leak_type": "abrupt",
+          "onset": "2019-10-25 13:25"
+        },
+        {
+          "pipe": "p879",
+          "leak_type": "incipient",
+          "onset": "2019-11-20 11:55"
+        }
+      ]
+    }
+  },
+  "null_matrix": [
+    {
+      "view": "A",
+      "assignment_procedure": "A_original_chronological_greedy",
+      "window": "native type window (abrupt 7d / incipient to peak\u222914d)",
+      "n_abrupt_onsets": 9,
+      "n_onsets_in_set": 19,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 4,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 3.0,
+      "null_match_min": 0,
+      "null_match_max": 6,
+      "null_match_mean": 2.5730337078651684,
+      "fraction_shifts_ge_observed": 0.11235955056179775,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p523",
+          "matched": true,
+          "delay_hours": 53.583333333333336,
+          "notify_time": "2019-01-18 04:35",
+          "stream_id": "n644"
+        },
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": true,
+          "delay_hours": 7.083333333333333,
+          "notify_time": "2019-10-25 20:30",
+          "stream_id": "n644"
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "primary",
+      "window_key": "native"
+    },
+    {
+      "view": "A",
+      "assignment_procedure": "A_original_chronological_greedy",
+      "window": "0\u20132 h post-onset (\u2229 end; incipient \u2229 peak)",
+      "n_abrupt_onsets": 9,
+      "n_onsets_in_set": 19,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 1,
+      "null_match_mean": 0.06741573033707865,
+      "fraction_shifts_ge_observed": 0.0,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p523",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "primary",
+      "window_key": "0-2h"
+    },
+    {
+      "view": "A",
+      "assignment_procedure": "A_original_chronological_greedy",
+      "window": "0\u20136 h post-onset (\u2229 end; incipient \u2229 peak)",
+      "n_abrupt_onsets": 9,
+      "n_onsets_in_set": 19,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 2,
+      "null_match_mean": 0.12359550561797752,
+      "fraction_shifts_ge_observed": 0.0,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p523",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "primary",
+      "window_key": "0-6h"
+    },
+    {
+      "view": "B",
+      "assignment_procedure": "B_abrupt_only",
+      "window": "native type window (abrupt 7d / incipient to peak\u222914d)",
+      "n_abrupt_onsets": 9,
+      "n_onsets_in_set": 19,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 5,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 3.0,
+      "null_match_min": 0,
+      "null_match_max": 6,
+      "null_match_mean": 2.5842696629213484,
+      "fraction_shifts_ge_observed": 0.07865168539325842,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p523",
+          "matched": true,
+          "delay_hours": 53.583333333333336,
+          "notify_time": "2019-01-18 04:35",
+          "stream_id": "n644"
+        },
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": true,
+          "delay_hours": 7.083333333333333,
+          "notify_time": "2019-10-25 20:30",
+          "stream_id": "n644"
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "primary",
+      "window_key": "native"
+    },
+    {
+      "view": "B",
+      "assignment_procedure": "B_abrupt_only",
+      "window": "0\u20132 h post-onset (\u2229 end; incipient \u2229 peak)",
+      "n_abrupt_onsets": 9,
+      "n_onsets_in_set": 19,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 1,
+      "null_match_mean": 0.06741573033707865,
+      "fraction_shifts_ge_observed": 0.0,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p523",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "primary",
+      "window_key": "0-2h"
+    },
+    {
+      "view": "B",
+      "assignment_procedure": "B_abrupt_only",
+      "window": "0\u20136 h post-onset (\u2229 end; incipient \u2229 peak)",
+      "n_abrupt_onsets": 9,
+      "n_onsets_in_set": 19,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 2,
+      "null_match_mean": 0.12359550561797752,
+      "fraction_shifts_ge_observed": 0.0,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p523",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "primary",
+      "window_key": "0-6h"
+    },
+    {
+      "view": "C",
+      "assignment_procedure": "C_joint_max_cardinality",
+      "window": "native type window (abrupt 7d / incipient to peak\u222914d)",
+      "n_abrupt_onsets": 9,
+      "n_onsets_in_set": 19,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 5,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 3.0,
+      "null_match_min": 0,
+      "null_match_max": 6,
+      "null_match_mean": 2.5842696629213484,
+      "fraction_shifts_ge_observed": 0.07865168539325842,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p523",
+          "matched": true,
+          "delay_hours": 53.583333333333336,
+          "notify_time": "2019-01-18 04:35",
+          "stream_id": "n644"
+        },
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": true,
+          "delay_hours": 7.083333333333333,
+          "notify_time": "2019-10-25 20:30",
+          "stream_id": "n644"
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "primary",
+      "window_key": "native"
+    },
+    {
+      "view": "C",
+      "assignment_procedure": "C_joint_max_cardinality",
+      "window": "0\u20132 h post-onset (\u2229 end; incipient \u2229 peak)",
+      "n_abrupt_onsets": 9,
+      "n_onsets_in_set": 19,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 1,
+      "null_match_mean": 0.06741573033707865,
+      "fraction_shifts_ge_observed": 0.0,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p523",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "primary",
+      "window_key": "0-2h"
+    },
+    {
+      "view": "C",
+      "assignment_procedure": "C_joint_max_cardinality",
+      "window": "0\u20136 h post-onset (\u2229 end; incipient \u2229 peak)",
+      "n_abrupt_onsets": 9,
+      "n_onsets_in_set": 19,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 2,
+      "null_match_mean": 0.12359550561797752,
+      "fraction_shifts_ge_observed": 0.0,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p523",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "primary",
+      "window_key": "0-6h"
+    },
+    {
+      "view": "A",
+      "assignment_procedure": "A_original_chronological_greedy",
+      "window": "native type window (abrupt 7d / incipient to peak\u222914d)",
+      "n_abrupt_onsets": 8,
+      "n_onsets_in_set": 18,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 2.0,
+      "null_match_min": 0,
+      "null_match_max": 5,
+      "null_match_mean": 2.449438202247191,
+      "fraction_shifts_ge_observed": 0.48314606741573035,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": true,
+          "delay_hours": 7.083333333333333,
+          "notify_time": "2019-10-25 20:30",
+          "stream_id": "n644"
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "post_fit",
+      "window_key": "native"
+    },
+    {
+      "view": "A",
+      "assignment_procedure": "A_original_chronological_greedy",
+      "window": "0\u20132 h post-onset (\u2229 end; incipient \u2229 peak)",
+      "n_abrupt_onsets": 8,
+      "n_onsets_in_set": 18,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 1,
+      "null_match_mean": 0.06741573033707865,
+      "fraction_shifts_ge_observed": 0.0,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "post_fit",
+      "window_key": "0-2h"
+    },
+    {
+      "view": "A",
+      "assignment_procedure": "A_original_chronological_greedy",
+      "window": "0\u20136 h post-onset (\u2229 end; incipient \u2229 peak)",
+      "n_abrupt_onsets": 8,
+      "n_onsets_in_set": 18,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 2,
+      "null_match_mean": 0.12359550561797752,
+      "fraction_shifts_ge_observed": 0.0,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "post_fit",
+      "window_key": "0-6h"
+    },
+    {
+      "view": "B",
+      "assignment_procedure": "B_abrupt_only",
+      "window": "native type window (abrupt 7d / incipient to peak\u222914d)",
+      "n_abrupt_onsets": 8,
+      "n_onsets_in_set": 18,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 4,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 2.0,
+      "null_match_min": 0,
+      "null_match_max": 5,
+      "null_match_mean": 2.460674157303371,
+      "fraction_shifts_ge_observed": 0.07865168539325842,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": true,
+          "delay_hours": 7.083333333333333,
+          "notify_time": "2019-10-25 20:30",
+          "stream_id": "n644"
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "post_fit",
+      "window_key": "native"
+    },
+    {
+      "view": "B",
+      "assignment_procedure": "B_abrupt_only",
+      "window": "0\u20132 h post-onset (\u2229 end; incipient \u2229 peak)",
+      "n_abrupt_onsets": 8,
+      "n_onsets_in_set": 18,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 1,
+      "null_match_mean": 0.06741573033707865,
+      "fraction_shifts_ge_observed": 0.0,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "post_fit",
+      "window_key": "0-2h"
+    },
+    {
+      "view": "B",
+      "assignment_procedure": "B_abrupt_only",
+      "window": "0\u20136 h post-onset (\u2229 end; incipient \u2229 peak)",
+      "n_abrupt_onsets": 8,
+      "n_onsets_in_set": 18,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 2,
+      "null_match_mean": 0.12359550561797752,
+      "fraction_shifts_ge_observed": 0.0,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "post_fit",
+      "window_key": "0-6h"
+    },
+    {
+      "view": "C",
+      "assignment_procedure": "C_joint_max_cardinality",
+      "window": "native type window (abrupt 7d / incipient to peak\u222914d)",
+      "n_abrupt_onsets": 8,
+      "n_onsets_in_set": 18,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 4,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 2.0,
+      "null_match_min": 0,
+      "null_match_max": 5,
+      "null_match_mean": 2.460674157303371,
+      "fraction_shifts_ge_observed": 0.07865168539325842,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": true,
+          "delay_hours": 7.083333333333333,
+          "notify_time": "2019-10-25 20:30",
+          "stream_id": "n644"
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "post_fit",
+      "window_key": "native"
+    },
+    {
+      "view": "C",
+      "assignment_procedure": "C_joint_max_cardinality",
+      "window": "0\u20132 h post-onset (\u2229 end; incipient \u2229 peak)",
+      "n_abrupt_onsets": 8,
+      "n_onsets_in_set": 18,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 1,
+      "null_match_mean": 0.06741573033707865,
+      "fraction_shifts_ge_observed": 0.0,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "post_fit",
+      "window_key": "0-2h"
+    },
+    {
+      "view": "C",
+      "assignment_procedure": "C_joint_max_cardinality",
+      "window": "0\u20136 h post-onset (\u2229 end; incipient \u2229 peak)",
+      "n_abrupt_onsets": 8,
+      "n_onsets_in_set": 18,
+      "n_incipient_in_set": 10,
+      "observed_abrupt_matches": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 2,
+      "null_match_mean": 0.12359550561797752,
+      "fraction_shifts_ge_observed": 0.0,
+      "observed_assignments_abrupt_clean": [
+        {
+          "pipe": "p827",
+          "matched": true,
+          "delay_hours": 0.9166666666666666,
+          "notify_time": "2019-01-24 19:25",
+          "stream_id": "n726"
+        },
+        {
+          "pipe": "p280",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p710",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p514",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p331",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        },
+        {
+          "pipe": "p142",
+          "matched": true,
+          "delay_hours": 1.0,
+          "notify_time": "2019-06-12 20:55",
+          "stream_id": "n613"
+        },
+        {
+          "pipe": "p680",
+          "matched": true,
+          "delay_hours": 1.3333333333333333,
+          "notify_time": "2019-07-10 10:05",
+          "stream_id": "n229"
+        },
+        {
+          "pipe": "p426",
+          "matched": false,
+          "delay_hours": null,
+          "notify_time": null,
+          "stream_id": null
+        }
+      ],
+      "caveat": "Circular daily shifts of frozen notifications; overlapping and dependent. Same assignment procedure on observed and shifted notifies. Diagnostic only \u2014 not a detector change.",
+      "eligible_set": "post_fit",
+      "window_key": "0-6h"
+    }
+  ],
+  "relation_to_original": "Original \u00a75 used one shortened-window joint greedy (equivalent here to **view A \u00b7 primary \u00b7 0\u20132h/0\u20136h**): obs abrupt = 3 (2h) / 3 (6h); frac\u2265obs = 0.00 / 0.00. Those figures must not be read as view-B/C nulls or as post_fit nulls. View-native primary nulls remain the shift diagnostics under registered type windows (see matrix rows window=`native`).",
+  "correction_note": "Reporting correction only. Registered YEAR2019 detector metrics unchanged."
+}

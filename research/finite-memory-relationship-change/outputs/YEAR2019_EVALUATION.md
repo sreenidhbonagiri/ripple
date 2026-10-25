@@ -6,6 +6,8 @@ Preserves production and all prior FMR3C / CUSUM research reports. **No** featur
 
 Honesty: prior 2019 examination is acknowledged — this is **not** an untouched holdout. Method and τ were frozen from 2018 DEV empirical calibration (`empirical_frozen.json`).
 
+> **Null reporting correction:** §5 below used a single shortened-window matcher, not per-view nulls. See `YEAR2019_NULL_CORRECTION.md` for nulls separated by matching view (A/B/C), eligible set (primary / post_fit), and window (native / 0–2h / 0–6h). Detector outputs and registered metrics are unchanged.
+
 ## 0. Pre-inference freeze
 
 - Protocol: `YEAR2019_EVALUATION_PROTOCOL.md`
