@@ -3,6 +3,7 @@ import type {
   SavedInvestigation,
 } from "./investigations";
 import type {
+  BenchmarkOutcomeResponse,
   HealthResponse,
   HourlyHistoryResponse,
   MethodMTimelineResponse,
@@ -123,6 +124,16 @@ export function fetchMethodMTimeline(
   const q = new URLSearchParams({ at });
   return fetchJson<MethodMTimelineResponse>(
     `/api/experimental/method-m-timeline?${q}`,
+    signal,
+  );
+}
+
+/** Retrospective benchmark answers (evaluation only — not detector input). */
+export function fetchBenchmarkOutcome(
+  signal?: AbortSignal,
+): Promise<BenchmarkOutcomeResponse> {
+  return fetchJson<BenchmarkOutcomeResponse>(
+    "/api/evaluation/benchmark-outcome",
     signal,
   );
 }

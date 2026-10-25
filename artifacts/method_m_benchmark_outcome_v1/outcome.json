@@ -1,0 +1,75 @@
+{
+  "artifact_id": "method_m_benchmark_outcome_v1",
+  "version": 1,
+  "kind": "retrospective_benchmark_evaluation",
+  "title": "Benchmark answers — retrospective evaluation, not available to the detector.",
+  "isolation": {
+    "not_in_detector_inputs": true,
+    "not_in_warning_api": true,
+    "not_in_timeline_api": true,
+    "not_in_saved_investigations": true,
+    "not_in_printed_briefs": true,
+    "opens_only_on_explicit_user_action": true
+  },
+  "evaluation_type": "frozen_diagnostic_not_blind_holdout",
+  "year_examined_note": "2019 was previously examined in research — not a blind holdout.",
+  "localization_note": "No validated localization. Contributing sensors are evidence to inspect, not predicted leak pipes.",
+  "matching_protocol": {
+    "method": "M",
+    "resolution": "five_minute",
+    "credit_window_hours": 6,
+    "one_to_one_abrupt_2019": true,
+    "source": "Frozen five-minute Method M diagnostic evaluation (detection_2019_method_m_5min); same matching recorded in artifacts/method_m_experimental_january/INTEGRATION_VERIFY.md and manifest matching_verification."
+  },
+  "diagnostic_summary": {
+    "abrupt_recall_excluding_development_example_p523": "2/8",
+    "abrupt_recall_inclusive": "3/9",
+    "incipient_recall": "0/10",
+    "unmatched_notifications_2019": 6,
+    "validated_localization": false
+  },
+  "verified_example": {
+    "id": "jan24_p827_abrupt",
+    "label": "24 Jan 2019 abrupt example (primary warning demo)",
+    "pipe_id": "p827",
+    "leak_type": "abrupt",
+    "development_example": false,
+    "official_labeled_onset": "2019-01-24 18:30:00",
+    "frozen_notification_time": "2019-01-24 18:30:00",
+    "delay_hours": 0.0,
+    "delay_five_minute_steps": 0,
+    "delay_note": "Delay at five-minute resolution: notify stamp equals official onset stamp (0 five-minute steps; 0.0 h). Do not imply finer-than-stamp precision.",
+    "matched": true,
+    "truth_map_label": "Actual benchmark location — not predicted.",
+    "contributing_sensor_note": "The strongest contributing sensor for the warning is not the labeled leak location and must not be presented as such."
+  },
+  "provenance": {
+    "official_labels": {
+      "dataset": "BattLeDIM L-Town (Zenodo 4017659)",
+      "file": "2019_Leakages.csv",
+      "field": "pipe column p827",
+      "onset_definition": "First five-minute stamp with non-zero labeled leak discharge on p827",
+      "verified_onset": "2019-01-24 18:30:00",
+      "sha256": "b2ffe56b6c2f3b6cdb6aae9aeb30b9c425ba911fff8e3716ae543a56ff7576cd",
+      "note": "Verified offline against the official leakage time series. The CSV is not loaded by product APIs or detector serving."
+    },
+    "frozen_notifications": {
+      "file": "research/dual-model-leak-detector/outputs/detection_2019_method_m_5min/notifications_2019.txt",
+      "sha256": "7283a0963f8af2d5cda14c031b934b97f97e06dd73b4cdaf9e11a541adf9616d",
+      "matches_serving_manifest_notifications_2019_sha256": true,
+      "january_notify_in_serving": "2019-01-24 18:30:00"
+    },
+    "frozen_matching_record": {
+      "results_md": "research/dual-model-leak-detector/outputs/detection_2019_method_m_5min/METHOD_M_5MIN_2019_RESULTS.md",
+      "integration_verify": "artifacts/method_m_experimental_january/INTEGRATION_VERIFY.md",
+      "serving_manifest_matching_verification": "artifacts/method_m_experimental_january/manifest.json#matching_verification",
+      "p827_row": {
+        "onset": "2019-01-24 18:30:00",
+        "hit": true,
+        "delay_h": 0.0
+      }
+    },
+    "tau": 4.517,
+    "score_M_2019_sha256": "569dc80acc4bad3016d025605ed621422a89923a27b6f3347d20077e79d206e2"
+  }
+}

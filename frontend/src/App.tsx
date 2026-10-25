@@ -14,6 +14,7 @@ import NetworkMap from "./components/NetworkMap";
 import ReplayControls from "./components/ReplayControls";
 import SaveInvestigationPanel from "./components/SaveInvestigationPanel";
 import InvestigationBriefPanel from "./components/InvestigationBriefPanel";
+import BenchmarkOutcomePanel from "./components/BenchmarkOutcomePanel";
 import InvestigationGuide from "./components/InvestigationGuide";
 import MethodMTimelinePanel from "./components/MethodMTimelinePanel";
 import MethodMWarningPanel from "./components/MethodMWarningPanel";
@@ -113,6 +114,9 @@ export default function App() {
   const [methodMWarning, setMethodMWarning] =
     useState<MethodMWarningResponse | null>(null);
   const [methodMWarningLoading, setMethodMWarningLoading] = useState(false);
+  /** Evaluation view — explicit only; clears truth overlay when returning. */
+  const [benchmarkOutcomeOpen, setBenchmarkOutcomeOpen] = useState(false);
+  const [truthLinkId, setTruthLinkId] = useState<string | null>(null);
 
   const timestamps = useMemo(() => {
     if (!windowStart || !windowEnd) return [];
@@ -523,7 +527,7 @@ export default function App() {
         </div>
       </header>
 
-      <InvestigationGuide />
+      {!benchmarkOutcomeOpen && <InvestigationGuide />}
 
       {restoreStatus === "loading" && (
         <div className="restore-banner" role="status">
@@ -559,7 +563,7 @@ export default function App() {
         </div>
       )}
 
-      {windowStart && windowEnd && cursor && (
+      {windowStart && windowEnd && cursor && !benchmarkOutcomeOpen && (
         <>
           <ReplayControls
             label={replayLabel}
@@ -593,6 +597,12 @@ export default function App() {
             }}
             onIllustrativeBookmark={applyIllustrativeBookmark}
             onWarningDemoBookmark={applyWarningDemoBookmark}
+            onCheckBenchmarkOutcome={() => {
+              setPlaying(false);
+              setBenchmarkOutcomeOpen(true);
+              setTruthLinkId("p827");
+              setFitToken((n) => n + 1);
+            }}
             index={cursorIndex}
             totalSteps={timestamps.length}
             timestamps={timestamps}
@@ -614,6 +624,16 @@ export default function App() {
             </p>
           )}
         </>
+      )}
+
+      {benchmarkOutcomeOpen && (
+        <BenchmarkOutcomePanel
+          onReturnToReplay={() => {
+            setBenchmarkOutcomeOpen(false);
+            setTruthLinkId(null);
+            setFitToken((n) => n + 1);
+          }}
+        />
       )}
 
       <main className="workspace">
@@ -643,121 +663,157 @@ export default function App() {
                   {state.network.counts.nodes} nodes · {state.network.counts.links} links
                   {sensors.length ? ` · ${sensors.length} sensors` : ""}
                 </span>
+                {truthLinkId ? (
+                  <span className="map-truth-note">
+                    Actual benchmark location — not predicted ({truthLinkId})
+                  </span>
+                ) : null}
               </div>
               <NetworkMap
                 nodes={state.network.nodes}
                 links={state.network.links}
                 sensors={sensors}
-                observations={snapshotMatched ? observations : []}
-                observationsPending={snapshotPending}
+                observations={
+                  benchmarkOutcomeOpen
+                    ? []
+                    : snapshotMatched
+                      ? observations
+                      : []
+                }
+                observationsPending={
+                  benchmarkOutcomeOpen ? false : snapshotPending
+                }
                 onSelect={setSelection}
                 fitToken={fitToken}
+                truthLinkId={truthLinkId}
               />
               <div className="legend">
                 <span><i className="swatch junction" /> Junction</span>
                 <span><i className="swatch reservoir" /> Reservoir</span>
                 <span><i className="swatch tank" /> Tank</span>
-                <span><i className="swatch current" /> Current</span>
-                <span><i className="swatch stale" /> Stale</span>
-                <span><i className="swatch missing" /> Missing</span>
+                {!benchmarkOutcomeOpen && (
+                  <>
+                    <span><i className="swatch current" /> Current</span>
+                    <span><i className="swatch stale" /> Stale</span>
+                    <span><i className="swatch missing" /> Missing</span>
+                  </>
+                )}
+                {benchmarkOutcomeOpen && (
+                  <span>
+                    <i className="swatch truth-benchmark" /> Actual benchmark
+                    location — not predicted
+                  </span>
+                )}
               </div>
             </>
           )}
         </section>
 
-        <DetailsPanel
-          selection={selection}
-          counts={state.status === "ready" ? state.network.counts : null}
-          networkName={state.status === "ready" ? state.network.name : null}
-          source={state.status === "ready" ? state.network.source : null}
-          coordinateSystem={
-            state.status === "ready" ? state.network.coordinate_system : null
-          }
-          observation={snapshotMatched ? selectedObservation : null}
-          observationStatus={
-            !cursor
-              ? "idle"
-              : snapshotMatched
-                ? "ready"
-                : snapshotStatus === "error"
-                  ? "error"
-                  : "loading"
-          }
-          observationError={snapshotError}
-          cursor={cursor}
-          series={seriesMatched ? chartSeries : []}
-          seriesStatus={
-            !selectedSensor
-              ? "idle"
-              : seriesMatched
-                ? "ready"
-                : seriesStatus === "error"
-                  ? "error"
-                  : "loading"
-          }
-          seriesError={seriesError}
-        />
+        {!benchmarkOutcomeOpen && (
+          <DetailsPanel
+            selection={selection}
+            counts={state.status === "ready" ? state.network.counts : null}
+            networkName={state.status === "ready" ? state.network.name : null}
+            source={state.status === "ready" ? state.network.source : null}
+            coordinateSystem={
+              state.status === "ready" ? state.network.coordinate_system : null
+            }
+            observation={snapshotMatched ? selectedObservation : null}
+            observationStatus={
+              !cursor
+                ? "idle"
+                : snapshotMatched
+                  ? "ready"
+                  : snapshotStatus === "error"
+                    ? "error"
+                    : "loading"
+            }
+            observationError={snapshotError}
+            cursor={cursor}
+            series={seriesMatched ? chartSeries : []}
+            seriesStatus={
+              !selectedSensor
+                ? "idle"
+                : seriesMatched
+                  ? "ready"
+                  : seriesStatus === "error"
+                    ? "error"
+                    : "loading"
+            }
+            seriesError={seriesError}
+          />
+        )}
       </main>
 
-      <MethodMWarningPanel
-        cursor={cursor}
-        onInspectSensor={inspectWarningSensor}
-        selectedSensorId={selectedSensorId}
-        onMatchedData={onMethodMMatchedData}
-      />
+      {!benchmarkOutcomeOpen && (
+        <MethodMWarningPanel
+          cursor={cursor}
+          onInspectSensor={inspectWarningSensor}
+          selectedSensorId={selectedSensorId}
+          onMatchedData={onMethodMMatchedData}
+        />
+      )}
 
-      <MethodMTimelinePanel
-        cursor={cursor}
-        selectedSensorId={selectedSensorId}
-        onSeek={seekTo}
-      />
+      {!benchmarkOutcomeOpen && (
+        <MethodMTimelinePanel
+          cursor={cursor}
+          selectedSensorId={selectedSensorId}
+          onSeek={seekTo}
+        />
+      )}
 
-      <InvestigationPanels
-        cursor={cursor}
-        observations={observations}
-        snapshotStatus={snapshotPending ? "loading" : snapshotStatus}
-        snapshotMatched={snapshotMatched}
-        snapshotError={snapshotError}
-        selectedPressure={selectedPressure}
-        pressureComparison={pressureComparison}
-        seriesStatus={seriesPending ? "loading" : seriesStatus}
-        seriesMatched={seriesMatched}
-        seriesError={seriesError}
-      />
+      {!benchmarkOutcomeOpen && (
+        <InvestigationPanels
+          cursor={cursor}
+          observations={observations}
+          snapshotStatus={snapshotPending ? "loading" : snapshotStatus}
+          snapshotMatched={snapshotMatched}
+          snapshotError={snapshotError}
+          selectedPressure={selectedPressure}
+          pressureComparison={pressureComparison}
+          seriesStatus={seriesPending ? "loading" : seriesStatus}
+          seriesMatched={seriesMatched}
+          seriesError={seriesError}
+        />
+      )}
 
-      <InvestigationBriefPanel
-        cursor={cursor}
-        windowStart={windowStart}
-        windowEnd={windowEnd}
-        selectedSensorId={selectedSensorId}
-        observations={observations}
-        snapshotMatched={snapshotMatched}
-        snapshotLoading={snapshotPending}
-        pressureComparison={pressureComparison}
-        seriesMatched={seriesMatched}
-        seriesLoading={seriesPending}
-        warning={methodMWarning}
-        warningLoading={methodMWarningLoading}
-        savedInvestigation={
-          restoreStatus === "ready" ? openedInvestigation : null
-        }
-      />
+      {!benchmarkOutcomeOpen && (
+        <>
+          <InvestigationBriefPanel
+            cursor={cursor}
+            windowStart={windowStart}
+            windowEnd={windowEnd}
+            selectedSensorId={selectedSensorId}
+            observations={observations}
+            snapshotMatched={snapshotMatched}
+            snapshotLoading={snapshotPending}
+            pressureComparison={pressureComparison}
+            seriesMatched={seriesMatched}
+            seriesLoading={seriesPending}
+            warning={methodMWarning}
+            warningLoading={methodMWarningLoading}
+            savedInvestigation={
+              restoreStatus === "ready" ? openedInvestigation : null
+            }
+          />
 
-      <TigerEvidencePanel />
+          <TigerEvidencePanel />
 
-      <SaveInvestigationPanel
-        sensorId={selectedSensorId}
-        cursor={cursor}
-        windowStart={windowStart}
-        windowEnd={windowEnd}
-        disabled={state.status !== "ready" || restoreStatus === "loading"}
-        onSaved={(row) => {
-          setOpenedInvestigation(row);
-          setRestoreStatus("ready");
-          replaceInvestigationQuery(row.id);
-          setReplayLabel(`Saved investigation — ${row.title}`);
-        }}
-      />
+          <SaveInvestigationPanel
+            sensorId={selectedSensorId}
+            cursor={cursor}
+            windowStart={windowStart}
+            windowEnd={windowEnd}
+            disabled={state.status !== "ready" || restoreStatus === "loading"}
+            onSaved={(row) => {
+              setOpenedInvestigation(row);
+              setRestoreStatus("ready");
+              replaceInvestigationQuery(row.id);
+              setReplayLabel(`Saved investigation — ${row.title}`);
+            }}
+          />
+        </>
+      )}
     </div>
   );
 }

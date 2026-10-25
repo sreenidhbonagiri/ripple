@@ -42,6 +42,7 @@ from app.schemas import (
     SensorReadingsResponse,
     SensorsResponse,
 )
+from app.benchmark_outcome import present_benchmark_outcome
 from app.method_m_timeline import present_method_m_timeline
 from app.method_m_warning import present_method_m_warning
 from app.tiger_evidence import present_tiger_evidence
@@ -273,6 +274,21 @@ def get_method_m_timeline(
         raise HTTPException(status_code=503, detail=str(exc)) from None
     except Exception as exc:  # noqa: BLE001
         raise HTTPException(status_code=500, detail=sanitize_db_error(str(exc))) from None
+
+
+@app.get("/api/evaluation/benchmark-outcome")
+def get_benchmark_outcome() -> dict:
+    """Frozen retrospective benchmark answers (evaluation only).
+
+    Strictly separate from historical replay / Method M serving. Does not accept
+    a cursor and does not load official leakage CSVs at request time.
+    """
+    try:
+        return present_benchmark_outcome()
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from None
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=str(exc)) from None
 
 
 def _client_rate_key(request: Request) -> str:

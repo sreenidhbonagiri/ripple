@@ -17,6 +17,8 @@ interface Props {
   onMidpoint: () => void;
   onIllustrativeBookmark: () => void;
   onWarningDemoBookmark: (id: WarningDemoId) => void;
+  /** Explicit evaluation entry — never automatic. */
+  onCheckBenchmarkOutcome?: () => void;
   index: number;
   totalSteps: number;
   timestamps: string[];
@@ -42,6 +44,7 @@ export default function ReplayControls({
   onMidpoint,
   onIllustrativeBookmark,
   onWarningDemoBookmark,
+  onCheckBenchmarkOutcome,
   index,
   totalSteps,
   timestamps,
@@ -81,6 +84,16 @@ export default function ReplayControls({
         <span className="warning-demo-hint">
           Five-minute · not a confirmed leak · not localization
         </span>
+        {onCheckBenchmarkOutcome && (
+          <button
+            type="button"
+            className="btn btn-ghost-dark"
+            onClick={onCheckBenchmarkOutcome}
+            title="Leave replay for retrospective benchmark answers (evaluation only)"
+          >
+            Check benchmark outcome
+          </button>
+        )}
       </div>
       <div className="presenter-bookmarks" role="group" aria-label="Jan 12 investigation preset">
         <span className="presenter-bookmarks-label">Jan 12 preset</span>

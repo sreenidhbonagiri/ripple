@@ -278,6 +278,44 @@ export interface MethodMTimelineResponse {
   predicted_leak_pipes: null;
 }
 
+/** Retrospective evaluation payload — isolated from Method M serving. */
+export interface BenchmarkOutcomeResponse {
+  artifact_id: string;
+  version: number;
+  kind: string;
+  title: string;
+  evaluation_type: string;
+  year_examined_note: string;
+  localization_note: string;
+  isolation: Record<string, boolean>;
+  matching_protocol: Record<string, unknown>;
+  diagnostic_summary: {
+    abrupt_recall_excluding_development_example_p523: string;
+    abrupt_recall_inclusive: string;
+    incipient_recall: string;
+    unmatched_notifications_2019: number;
+    validated_localization: boolean;
+  };
+  verified_example: {
+    id: string;
+    label: string;
+    pipe_id: string;
+    leak_type: string;
+    development_example: boolean;
+    official_labeled_onset: string;
+    frozen_notification_time: string;
+    delay_hours: number;
+    delay_five_minute_steps: number;
+    delay_note: string;
+    matched: boolean;
+    truth_map_label: string;
+    contributing_sensor_note: string;
+  };
+  provenance: Record<string, unknown>;
+  artifact_sha256: string;
+  notes: string[];
+}
+
 export interface TigerEvidenceResponse {
   mode: string;
   reran_expensive_benchmark: boolean;

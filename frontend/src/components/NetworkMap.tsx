@@ -18,6 +18,11 @@ interface Props {
   observationsPending?: boolean;
   onSelect: (selection: Selection) => void;
   fitToken: number;
+  /**
+   * Evaluation-only: highlight the official labeled pipe. Cleared when leaving
+   * the benchmark-outcome view so replay has no ground-truth overlay.
+   */
+  truthLinkId?: string | null;
 }
 
 const NODE_COLORS: Record<NetworkNode["type"], string> = {
@@ -142,6 +147,7 @@ export default function NetworkMap({
   observationsPending = false,
   onSelect,
   fitToken,
+  truthLinkId = null,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cyRef = useRef<Core | null>(null);
@@ -272,6 +278,27 @@ export default function NetworkMap({
               "z-index": 999,
             },
           },
+          {
+            selector: "edge.truth-benchmark",
+            style: {
+              width: 5,
+              "line-color": "#b07a12",
+              "line-style": "solid",
+              opacity: 1,
+              "z-index": 40,
+              label: "Actual benchmark location — not predicted.",
+              "font-size": 9,
+              "font-family": "DM Sans, sans-serif",
+              color: "#8a5a2b",
+              "text-rotation": "autorotate",
+              "text-margin-y": -8,
+              "text-background-color": "#fff8e6",
+              "text-background-opacity": 0.92,
+              "text-background-padding": "3px",
+              "text-border-width": 1,
+              "text-border-color": "rgba(176, 122, 18, 0.45)",
+            },
+          },
         ],
       });
 
@@ -352,12 +379,31 @@ export default function NetworkMap({
     cy.fit(undefined, 40);
   }, [fitToken]);
 
+  useEffect(() => {
+    const cy = cyRef.current;
+    if (!cy) return;
+    cy.batch(() => {
+      cy.edges(".truth-benchmark").removeClass("truth-benchmark");
+      if (truthLinkId) {
+        const edge = cy.getElementById(truthLinkId);
+        if (edge.nonempty()) {
+          edge.addClass("truth-benchmark");
+          cy.fit(edge, 80);
+        }
+      }
+    });
+  }, [truthLinkId, fitToken, nodes, links]);
+
   return (
     <div
       className="network-map"
       ref={containerRef}
       role="img"
-      aria-label="L-Town water network map with sensors"
+      aria-label={
+        truthLinkId
+          ? "L-Town network map with actual benchmark location highlighted"
+          : "L-Town water network map with sensors"
+      }
     />
   );
 }

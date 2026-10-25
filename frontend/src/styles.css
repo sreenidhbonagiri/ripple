@@ -107,6 +107,89 @@ body {
   border-radius: 2px;
 }
 
+.benchmark-outcome-panel {
+  background: rgba(242, 246, 244, 0.96);
+  box-shadow: var(--shadow);
+  padding: 0.9rem 1rem 1.1rem;
+  border-left: 3px solid #b07a12;
+}
+
+.benchmark-outcome-kicker {
+  margin: 0 0 0.25rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 650;
+  color: #8a5a2b;
+}
+
+.benchmark-outcome-title {
+  margin: 0;
+  max-width: 48rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.benchmark-outcome-disclaimer {
+  margin: 0.45rem 0 0.75rem;
+  max-width: 48rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--ink-muted);
+}
+
+.benchmark-outcome-header {
+  margin-bottom: 0.75rem;
+}
+
+.benchmark-outcome-section {
+  margin-top: 0.85rem;
+}
+
+.benchmark-outcome-section h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.benchmark-outcome-dl {
+  margin: 0.35rem 0;
+}
+
+.benchmark-outcome-list {
+  margin: 0.35rem 0 0;
+  padding-left: 1.15rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.truth-pill {
+  display: inline-block;
+  margin-left: 0.45rem;
+  padding: 0.12rem 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 650;
+  color: #8a5a2b;
+  background: rgba(176, 122, 18, 0.12);
+  border: 1px solid rgba(176, 122, 18, 0.4);
+  border-radius: 2px;
+  vertical-align: middle;
+}
+
+.map-truth-note {
+  color: #8a5a2b;
+  font-weight: 600;
+}
+
+.swatch.truth-benchmark {
+  background: #b07a12;
+  height: 0.2rem;
+  width: 0.9rem;
+  vertical-align: middle;
+}
+
 .app-panel:focus {
   outline: 2px solid rgba(196, 92, 38, 0.55);
   outline-offset: 2px;
