@@ -2,6 +2,9 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 outputs/synthetic/_scratch/
+outputs/calibration/_scratch/
+outputs/calibration/_scratch_audit/
+outputs/calibration/_scratch_timing/
 *.inp
 !fixtures/**/*.inp
 temp.bin

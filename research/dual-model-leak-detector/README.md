@@ -8,18 +8,21 @@ Isolated research package reconstructing the **pressure–leak dual model**
 | Stage | Status |
 |-------|--------|
 | 1 Dual hydraulic solver | **Implemented** |
-| 2 Synthetic mechanism verification | **Implemented — stop here for review** |
-| 3 Measured 2018 calibration | Not started |
+| 2 Synthetic mechanism verification | **Implemented** |
+| 3 Measured 2018 calibration | **Implemented — stop for review** (`PASS_WITH_LIMITATIONS`) |
 | 4 Detection + continuous metrics | Not started |
 
 ## Quick start
 
 ```bash
 cd research/dual-model-leak-detector
-# from repo root venv with wntr:
 ../../.venv/bin/python -m pytest tests/ -q
 ../../.venv/bin/python scripts/run_synthetic_verification.py
+../../.venv/bin/python scripts/run_nominal_ltown_audit.py
+../../.venv/bin/python scripts/run_stage3_calibration.py
 ```
+
+Requires `data/raw/2018_SCADA_{Pressures,Flows,Levels,Demands}.csv` (Demands from Zenodo 4017659 if missing).
 
 ## Docs
 
@@ -27,7 +30,9 @@ cd research/dual-model-leak-detector
 |------|------|
 | `ATTRIBUTION.md` | Method citations + licenses |
 | `DEPARTURES.md` | Explicit departures from papers |
-| `outputs/synthetic/SYNTHETIC_VERIFICATION_RESULTS.md` | Scenario results after running the script |
+| `CALIBRATION_WINDOWS.md` | Fit/validation windows (declared before fitting) |
+| `outputs/synthetic/SYNTHETIC_VERIFICATION_RESULTS.md` | Stage 2 results |
+| `outputs/calibration/STAGE3_VERDICT.md` | Stage 3 verdict |
 
 ## Layout
 
