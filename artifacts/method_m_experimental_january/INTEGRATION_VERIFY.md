@@ -51,6 +51,12 @@ are not independent detections.
 | est. Method M derived table (5-min Jan density) | ~60 MiB |
 
 **Decision:** capacity would allow a derived table, but January serving uses a
+**Default product path remains the file-backed artifact**
+(`artifacts/method_m_experimental_january/`). Optional Tiger persistence of the
+same frozen outputs is documented in [`docs/METHOD_M_TIGER.md`](../../docs/METHOD_M_TIGER.md)
+(migration `003`, importer, `RIPPLE_METHOD_M_STORE=tiger`) — verify locally before
+any production migration. Original capacity note:
+
 **file-backed artifact** (`artifacts/method_m_experimental_january/`) — no Tiger
 derived table and no additional raw import.
 

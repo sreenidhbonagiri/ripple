@@ -77,6 +77,59 @@ def present_tiger_evidence() -> dict[str, Any]:
             cur.execute("SELECT pg_database_size(current_database())::BIGINT AS n")
             db_bytes = int(cur.fetchone()["n"])
 
+            method_m_live: dict[str, Any] | None = None
+            try:
+                cur.execute(
+                    """
+                    SELECT 1 FROM information_schema.tables
+                    WHERE table_schema = 'public' AND table_name = 'method_m_runs'
+                    """
+                )
+                if cur.fetchone():
+                    cur.execute(
+                        """
+                        SELECT run_id, n_score_stamps, n_contributor_rows,
+                               n_notifications, serving_hours_sha256
+                        FROM method_m_runs
+                        ORDER BY run_id
+                        """
+                    )
+                    runs = [dict(r) for r in cur.fetchall()]
+                    cur.execute(
+                        """
+                        SELECT
+                            COALESCE(SUM(pg_total_relation_size(quote_ident(c.relname)::regclass)), 0)
+                                ::BIGINT AS bytes
+                        FROM pg_class c
+                        JOIN pg_namespace n ON n.oid = c.relnamespace
+                        WHERE n.nspname = 'public'
+                          AND c.relname IN (
+                            'method_m_runs',
+                            'method_m_scores',
+                            'method_m_sensor_evidence',
+                            'method_m_notifications'
+                          )
+                        """
+                    )
+                    mm_bytes = int(cur.fetchone()["bytes"] or 0)
+                    method_m_live = {
+                        "tables_present": True,
+                        "runs": runs,
+                        "relation_bytes_approx": mm_bytes,
+                        "relation_pretty": _pretty_bytes(mm_bytes),
+                        "note": (
+                            "Frozen Method M detector outputs only "
+                            "(no evaluation labels, no raw SCADA duplication). "
+                            "Serving defaults to file unless RIPPLE_METHOD_M_STORE=tiger."
+                        ),
+                    }
+            except Exception:  # noqa: BLE001
+                conn.rollback()
+                method_m_live = {
+                    "tables_present": False,
+                    "note": "method_m_* tables not available (migration 003 not applied).",
+                }
+
     snap = None
     try:
         snap = get_storage_snapshot()
@@ -151,6 +204,7 @@ def present_tiger_evidence() -> dict[str, Any]:
                 "start": PRESENTER_START.strftime("%Y-%m-%d %H:%M:%S"),
                 "end": PRESENTER_END.strftime("%Y-%m-%d %H:%M:%S"),
             },
+            "method_m_evidence": method_m_live,
         },
         "storage": {
             "database_bytes": db_bytes,

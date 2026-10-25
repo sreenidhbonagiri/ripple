@@ -29,8 +29,8 @@ Historical water-network investigation workspace for the official [BattLeDIM](ht
 | Layer | Role |
 |-------|------|
 | Frontend | React + Cytoscape + ECharts; same-origin `/api` in Docker |
-| Backend | FastAPI; cursor-safe reads; Method M warning from file-backed January artifact |
-| Tiger Data | Hypertables for raw SCADA; continuous aggregates for historical context; relational metadata for saved investigations |
+| Backend | FastAPI; cursor-safe reads; Method M warning from file-backed January artifact (optional Tiger store) |
+| Tiger Data | Hypertables for raw SCADA; continuous aggregates for historical context; relational metadata for saved investigations; optional frozen Method M evidence (`003`) |
 | Deploy | Docker Compose on Vultr; Caddy TLS at `followtheripple.us` |
 
 ## Evaluation limitations (Method M)
@@ -50,6 +50,7 @@ Same detected abrupt events as hourly Method M on shared hits, with earlier noti
 
 - Presenter walkthrough (Tiger + Jan 12 observation): [`docs/PRESENTER_90S.md`](docs/PRESENTER_90S.md)
 - **Experimental Method M warning demo:** [`docs/METHOD_M_WARNING_DEMO.md`](docs/METHOD_M_WARNING_DEMO.md)
+- **Method M in Tiger (optional, local verify first):** [`docs/METHOD_M_TIGER.md`](docs/METHOD_M_TIGER.md)
 
 Loading metrics: [`docs/LOADING_PERFORMANCE.md`](docs/LOADING_PERFORMANCE.md). Deploy: [`deploy/VULTR_CHECKLIST.md`](deploy/VULTR_CHECKLIST.md), `docker-compose.yml`. HTTPS: [`docs/HTTPS_CADDY.md`](docs/HTTPS_CADDY.md).
 
