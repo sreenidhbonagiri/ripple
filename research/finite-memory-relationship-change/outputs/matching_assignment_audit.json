@@ -1,0 +1,688 @@
+{
+  "generated_at": "2026-10-24T22:02:49-04:00",
+  "frozen": {
+    "l_q_hours": 2.0,
+    "l_r_hours": 48.0,
+    "tau": 26.732944547756674
+  },
+  "n_episodes_replayed": 4,
+  "n_episodes_preserved_empirical": 4,
+  "train_end": "2018-07-15 00:00",
+  "conflict": {
+    "p810": {
+      "onset": "2018-07-28 03:05",
+      "leak_type": "incipient",
+      "end": "2019-12-31 23:55",
+      "peak": "2018-11-02 22:25",
+      "matching_interval": [
+        "2018-07-28 03:05",
+        "2018-08-11 03:05"
+      ],
+      "all_eligible_notifications": [
+        {
+          "episode_idx": 0,
+          "stream_id": "n752",
+          "notify_time": "2018-08-07 03:35",
+          "notify_idx": 62827,
+          "delay_hours": 240.5,
+          "end": "2018-08-08 05:25",
+          "already_assigned": false,
+          "assigned_to": "p810"
+        }
+      ],
+      "eligible_after_view_A_assignments": [],
+      "original_assignment_A": {
+        "pipe": "p810",
+        "leak_type": "incipient",
+        "onset": "2018-07-28 03:05",
+        "matched": true,
+        "notify_time": "2018-08-07 03:35",
+        "delay_hours": 240.5,
+        "stream_id": "n752",
+        "episode_idx": 0
+      },
+      "note": "Eligible list is membership in the official window only \u2014 temporal proximity does not prove which leak caused a notification."
+    },
+    "p183": {
+      "onset": "2018-08-07 02:35",
+      "leak_type": "abrupt",
+      "end": "2018-09-01 17:10",
+      "peak": "2018-08-07 02:35",
+      "matching_interval": [
+        "2018-08-07 02:35",
+        "2018-08-14 02:35"
+      ],
+      "all_eligible_notifications": [
+        {
+          "episode_idx": 0,
+          "stream_id": "n752",
+          "notify_time": "2018-08-07 03:35",
+          "notify_idx": 62827,
+          "delay_hours": 1.0,
+          "end": "2018-08-08 05:25",
+          "already_assigned": true,
+          "assigned_to": "p810"
+        }
+      ],
+      "eligible_after_view_A_assignments": [],
+      "original_assignment_A": {
+        "pipe": "p183",
+        "leak_type": "abrupt",
+        "onset": "2018-08-07 02:35",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null,
+        "episode_idx": null
+      },
+      "note": "Eligible list is membership in the official window only \u2014 temporal proximity does not prove which leak caused a notification."
+    },
+    "p810_support_analysis": {
+      "n_eligible": 1,
+      "n_shared_with_p183_window": 1,
+      "n_exclusive_to_p810_window": 0,
+      "exclusive_notifications": [],
+      "shared_notifications": [
+        {
+          "episode_idx": 0,
+          "stream_id": "n752",
+          "notify_time": "2018-08-07 03:35",
+          "notify_idx": 62827,
+          "delay_hours": 240.5,
+          "end": "2018-08-08 05:25",
+          "already_assigned": false,
+          "assigned_to": "p810"
+        }
+      ],
+      "interpretation": "If exclusive_to_p810_window is empty, p810's only eligible notifies also fall in p183's window (or there are none). Presence of exclusive notifies would be independent eligibility support for p810 \u2014 still not proof of causation."
+    }
+  },
+  "conflict_resolution_note": "Joint max-cardinality (C) assigns a notify to p183 (2018-08-07 03:35, ep=0) while A left p183 unmatched. Under C, p810 matched=False (notify=None). This **reassigns credit** among competing eligibility windows \u2014 it does not prove the notification was caused by p183, nor that the conflict is 'resolved' in a causal sense; it shows the chronological greedy rule (A) chose a different one-to-one allocation (A: p810\u21922018-08-07 03:35, p183 unmatched).",
+  "views": {
+    "A": {
+      "name": "A_original_chronological_greedy",
+      "label": "Original registered evaluation (unchanged)",
+      "post_hoc": false,
+      "description": "Onsets chronological; each takes earliest unused notification in its type-specific eligibility window (abrupt 7d / incipient to peak\u222914d).",
+      "used_episode_indices": [
+        0,
+        1
+      ],
+      "matches": [
+        {
+          "pipe": "p810",
+          "leak_type": "incipient",
+          "onset": "2018-07-28 03:05",
+          "matched": true,
+          "notify_time": "2018-08-07 03:35",
+          "delay_hours": 240.5,
+          "stream_id": "n752",
+          "episode_idx": 0
+        },
+        {
+          "pipe": "p183",
+          "leak_type": "abrupt",
+          "onset": "2018-08-07 02:35",
+          "matched": false,
+          "notify_time": null,
+          "delay_hours": null,
+          "stream_id": null,
+          "episode_idx": null
+        },
+        {
+          "pipe": "p158",
+          "leak_type": "abrupt",
+          "onset": "2018-10-06 02:35",
+          "matched": true,
+          "notify_time": "2018-10-06 03:30",
+          "delay_hours": 0.9166666666666666,
+          "stream_id": "n644",
+          "episode_idx": 1
+        },
+        {
+          "pipe": "p369",
+          "leak_type": "abrupt",
+          "onset": "2018-10-26 02:05",
+          "matched": false,
+          "notify_time": null,
+          "delay_hours": null,
+          "stream_id": null,
+          "episode_idx": null
+        }
+      ]
+    },
+    "B": {
+      "name": "B_abrupt_only",
+      "label": "Post-hoc diagnostic: abrupt-only matching",
+      "post_hoc": true,
+      "description": "Same chronological greedy rule, but only abrupt onsets compete for notifications. Measures abrupt-onset sensitivity, not joint detection of all leaks. Incipient events are excluded (not scored as misses).",
+      "excluded_incipient": [
+        {
+          "pipe": "p810",
+          "leak_type": "incipient",
+          "onset": "2018-07-28 03:05",
+          "matched": null,
+          "note": "excluded_from_abrupt_only_view"
+        }
+      ],
+      "used_episode_indices": [
+        0,
+        1
+      ],
+      "matches": [
+        {
+          "pipe": "p183",
+          "leak_type": "abrupt",
+          "onset": "2018-08-07 02:35",
+          "matched": true,
+          "notify_time": "2018-08-07 03:35",
+          "delay_hours": 1.0,
+          "stream_id": "n752",
+          "refs_used": [
+            "n726",
+            "n769",
+            "n288"
+          ],
+          "change_estimate_time": "2018-08-07 03:35",
+          "open_leaks_at_notify": 6,
+          "episode_end": "2018-08-08 05:25",
+          "episode_idx": 0
+        },
+        {
+          "pipe": "p158",
+          "leak_type": "abrupt",
+          "onset": "2018-10-06 02:35",
+          "matched": true,
+          "notify_time": "2018-10-06 03:30",
+          "delay_hours": 0.9166666666666666,
+          "stream_id": "n644",
+          "refs_used": [
+            "n636",
+            "n679",
+            "n332"
+          ],
+          "change_estimate_time": "2018-10-06 03:30",
+          "open_leaks_at_notify": 5,
+          "episode_end": "2018-10-07 05:30",
+          "episode_idx": 1
+        },
+        {
+          "pipe": "p369",
+          "leak_type": "abrupt",
+          "onset": "2018-10-26 02:05",
+          "matched": false,
+          "notify_time": null,
+          "delay_hours": null,
+          "stream_id": null,
+          "refs_used": null,
+          "pre_onset_notifications_nearby": 0
+        }
+      ]
+    },
+    "C": {
+      "name": "C_joint_max_cardinality",
+      "label": "Post-hoc diagnostic: joint max-cardinality + min-sum-delay",
+      "post_hoc": true,
+      "description": "Bipartite assignment over original eligibility windows. Maximize number of matched events; among maxima minimize sum of notification delays (Hungarian / linear_sum_assignment). One notification \u2192 at most one event. Does not prove causation from temporal proximity.",
+      "tie_break": "Primary: maximum cardinality (dummy cost >> any delay). Secondary: minimize sum of delay_hours on assigned edges. Tertiary: deterministic solver output for the fixed cost matrix.",
+      "n_eligible_edges": 5,
+      "used_episode_indices": [
+        0,
+        1
+      ],
+      "matches": [
+        {
+          "pipe": "p810",
+          "leak_type": "incipient",
+          "onset": "2018-07-28 03:05",
+          "matched": false,
+          "notify_time": null,
+          "delay_hours": null,
+          "stream_id": null,
+          "episode_idx": null
+        },
+        {
+          "pipe": "p183",
+          "leak_type": "abrupt",
+          "onset": "2018-08-07 02:35",
+          "matched": true,
+          "notify_time": "2018-08-07 03:35",
+          "delay_hours": 1.0,
+          "stream_id": "n752",
+          "episode_idx": 0
+        },
+        {
+          "pipe": "p158",
+          "leak_type": "abrupt",
+          "onset": "2018-10-06 02:35",
+          "matched": true,
+          "notify_time": "2018-10-06 03:30",
+          "delay_hours": 0.9166666666666666,
+          "stream_id": "n644",
+          "episode_idx": 1
+        },
+        {
+          "pipe": "p369",
+          "leak_type": "abrupt",
+          "onset": "2018-10-26 02:05",
+          "matched": false,
+          "notify_time": null,
+          "delay_hours": null,
+          "stream_id": null,
+          "episode_idx": null
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "A": {
+      "n_abrupt": 3,
+      "n_incipient": 1,
+      "abrupt_recall": 0.3333333333333333,
+      "incipient_recall": 1.0,
+      "abrupt_delay_hours": {
+        "n": 1,
+        "median": 0.9166666666666666,
+        "values": [
+          0.9166666666666666
+        ]
+      },
+      "n_episodes": 4,
+      "n_matched_episodes": 2,
+      "n_unmatched_episodes": 2,
+      "unmatched_per_week": 0.07608695652173914,
+      "assignments": [
+        {
+          "pipe": "p810",
+          "leak_type": "incipient",
+          "onset": "2018-07-28 03:05",
+          "matched": true,
+          "notify_time": "2018-08-07 03:35",
+          "delay_hours": 240.5,
+          "stream_id": "n752",
+          "episode_idx": 0
+        },
+        {
+          "pipe": "p183",
+          "leak_type": "abrupt",
+          "onset": "2018-08-07 02:35",
+          "matched": false,
+          "notify_time": null,
+          "delay_hours": null,
+          "stream_id": null,
+          "episode_idx": null
+        },
+        {
+          "pipe": "p158",
+          "leak_type": "abrupt",
+          "onset": "2018-10-06 02:35",
+          "matched": true,
+          "notify_time": "2018-10-06 03:30",
+          "delay_hours": 0.9166666666666666,
+          "stream_id": "n644",
+          "episode_idx": 1
+        },
+        {
+          "pipe": "p369",
+          "leak_type": "abrupt",
+          "onset": "2018-10-26 02:05",
+          "matched": false,
+          "notify_time": null,
+          "delay_hours": null,
+          "stream_id": null,
+          "episode_idx": null
+        }
+      ]
+    },
+    "B": {
+      "n_abrupt": 3,
+      "n_incipient": 0,
+      "abrupt_recall": 0.6666666666666666,
+      "incipient_recall": null,
+      "abrupt_delay_hours": {
+        "n": 2,
+        "median": 0.9583333333333333,
+        "values": [
+          1.0,
+          0.9166666666666666
+        ]
+      },
+      "n_episodes": 4,
+      "n_matched_episodes": 2,
+      "n_unmatched_episodes": 2,
+      "unmatched_per_week": 0.07608695652173914,
+      "assignments": [
+        {
+          "pipe": "p183",
+          "leak_type": "abrupt",
+          "onset": "2018-08-07 02:35",
+          "matched": true,
+          "notify_time": "2018-08-07 03:35",
+          "delay_hours": 1.0,
+          "stream_id": "n752",
+          "refs_used": [
+            "n726",
+            "n769",
+            "n288"
+          ],
+          "change_estimate_time": "2018-08-07 03:35",
+          "open_leaks_at_notify": 6,
+          "episode_end": "2018-08-08 05:25",
+          "episode_idx": 0
+        },
+        {
+          "pipe": "p158",
+          "leak_type": "abrupt",
+          "onset": "2018-10-06 02:35",
+          "matched": true,
+          "notify_time": "2018-10-06 03:30",
+          "delay_hours": 0.9166666666666666,
+          "stream_id": "n644",
+          "refs_used": [
+            "n636",
+            "n679",
+            "n332"
+          ],
+          "change_estimate_time": "2018-10-06 03:30",
+          "open_leaks_at_notify": 5,
+          "episode_end": "2018-10-07 05:30",
+          "episode_idx": 1
+        },
+        {
+          "pipe": "p369",
+          "leak_type": "abrupt",
+          "onset": "2018-10-26 02:05",
+          "matched": false,
+          "notify_time": null,
+          "delay_hours": null,
+          "stream_id": null,
+          "refs_used": null,
+          "pre_onset_notifications_nearby": 0
+        }
+      ]
+    },
+    "C": {
+      "n_abrupt": 3,
+      "n_incipient": 1,
+      "abrupt_recall": 0.6666666666666666,
+      "incipient_recall": 0.0,
+      "abrupt_delay_hours": {
+        "n": 2,
+        "median": 0.9583333333333333,
+        "values": [
+          1.0,
+          0.9166666666666666
+        ]
+      },
+      "n_episodes": 4,
+      "n_matched_episodes": 2,
+      "n_unmatched_episodes": 2,
+      "unmatched_per_week": 0.07608695652173914,
+      "assignments": [
+        {
+          "pipe": "p810",
+          "leak_type": "incipient",
+          "onset": "2018-07-28 03:05",
+          "matched": false,
+          "notify_time": null,
+          "delay_hours": null,
+          "stream_id": null,
+          "episode_idx": null
+        },
+        {
+          "pipe": "p183",
+          "leak_type": "abrupt",
+          "onset": "2018-08-07 02:35",
+          "matched": true,
+          "notify_time": "2018-08-07 03:35",
+          "delay_hours": 1.0,
+          "stream_id": "n752",
+          "episode_idx": 0
+        },
+        {
+          "pipe": "p158",
+          "leak_type": "abrupt",
+          "onset": "2018-10-06 02:35",
+          "matched": true,
+          "notify_time": "2018-10-06 03:30",
+          "delay_hours": 0.9166666666666666,
+          "stream_id": "n644",
+          "episode_idx": 1
+        },
+        {
+          "pipe": "p369",
+          "leak_type": "abrupt",
+          "onset": "2018-10-26 02:05",
+          "matched": false,
+          "notify_time": null,
+          "delay_hours": null,
+          "stream_id": null,
+          "episode_idx": null
+        }
+      ]
+    }
+  },
+  "nulls": {
+    "A": {
+      "observed_abrupt_matches": 1,
+      "n_abrupt_onsets": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 2,
+      "null_match_mean": 0.33707865168539325,
+      "fraction_shifts_ge_observed": 0.30337078651685395,
+      "assignment_procedure": "A_original_chronological_greedy",
+      "caveat": "Same assignment view applied to circularly shifted notifications. Overlapping shifts; small n; diagnostic only."
+    },
+    "B": {
+      "observed_abrupt_matches": 2,
+      "n_abrupt_onsets": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 2,
+      "null_match_mean": 0.3707865168539326,
+      "fraction_shifts_ge_observed": 0.06741573033707865,
+      "assignment_procedure": "B_abrupt_only",
+      "caveat": "Same assignment view applied to circularly shifted notifications. Overlapping shifts; small n; diagnostic only."
+    },
+    "C": {
+      "observed_abrupt_matches": 2,
+      "n_abrupt_onsets": 3,
+      "null_n_valid_shifts": 89,
+      "null_match_median": 0.0,
+      "null_match_min": 0,
+      "null_match_max": 2,
+      "null_match_mean": 0.3707865168539326,
+      "fraction_shifts_ge_observed": 0.06741573033707865,
+      "assignment_procedure": "C_joint_max_cardinality",
+      "caveat": "Same assignment view applied to circularly shifted notifications. Overlapping shifts; small n; diagnostic only."
+    }
+  },
+  "miss_classes": [
+    {
+      "pipe": "p654",
+      "leak_type": "incipient",
+      "onset": "2018-07-05 03:40",
+      "primary_eligible": false,
+      "classification": "training_prefix_ineligibility",
+      "detail": "Onset before pairwise-training end; excluded from primary recall.",
+      "n_eligible_notifications": 0,
+      "already_active_at_onset": [],
+      "view_A": null,
+      "view_B": null,
+      "view_C": null
+    },
+    {
+      "pipe": "p810",
+      "leak_type": "incipient",
+      "onset": "2018-07-28 03:05",
+      "primary_eligible": true,
+      "classification": "matched_under_A",
+      "detail": "Matched under original view A.",
+      "n_eligible_notifications": 1,
+      "already_active_at_onset": [],
+      "view_A": {
+        "pipe": "p810",
+        "leak_type": "incipient",
+        "onset": "2018-07-28 03:05",
+        "matched": true,
+        "notify_time": "2018-08-07 03:35",
+        "delay_hours": 240.5,
+        "stream_id": "n752",
+        "episode_idx": 0
+      },
+      "view_B": null,
+      "view_C": {
+        "pipe": "p810",
+        "leak_type": "incipient",
+        "onset": "2018-07-28 03:05",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null,
+        "episode_idx": null
+      }
+    },
+    {
+      "pipe": "p183",
+      "leak_type": "abrupt",
+      "onset": "2018-08-07 02:35",
+      "primary_eligible": true,
+      "classification": "assignment_ambiguity_or_conflict",
+      "detail": "Eligible notification(s) exist but chronological greedy assigned them elsewhere (or left unmatched under competition).",
+      "n_eligible_notifications": 1,
+      "already_active_at_onset": [],
+      "view_A": {
+        "pipe": "p183",
+        "leak_type": "abrupt",
+        "onset": "2018-08-07 02:35",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null,
+        "episode_idx": null
+      },
+      "view_B": {
+        "pipe": "p183",
+        "leak_type": "abrupt",
+        "onset": "2018-08-07 02:35",
+        "matched": true,
+        "notify_time": "2018-08-07 03:35",
+        "delay_hours": 1.0,
+        "stream_id": "n752",
+        "refs_used": [
+          "n726",
+          "n769",
+          "n288"
+        ],
+        "change_estimate_time": "2018-08-07 03:35",
+        "open_leaks_at_notify": 6,
+        "episode_end": "2018-08-08 05:25",
+        "episode_idx": 0
+      },
+      "view_C": {
+        "pipe": "p183",
+        "leak_type": "abrupt",
+        "onset": "2018-08-07 02:35",
+        "matched": true,
+        "notify_time": "2018-08-07 03:35",
+        "delay_hours": 1.0,
+        "stream_id": "n752",
+        "episode_idx": 0
+      }
+    },
+    {
+      "pipe": "p158",
+      "leak_type": "abrupt",
+      "onset": "2018-10-06 02:35",
+      "primary_eligible": true,
+      "classification": "matched_under_A",
+      "detail": "Matched under original view A.",
+      "n_eligible_notifications": 3,
+      "already_active_at_onset": [],
+      "view_A": {
+        "pipe": "p158",
+        "leak_type": "abrupt",
+        "onset": "2018-10-06 02:35",
+        "matched": true,
+        "notify_time": "2018-10-06 03:30",
+        "delay_hours": 0.9166666666666666,
+        "stream_id": "n644",
+        "episode_idx": 1
+      },
+      "view_B": {
+        "pipe": "p158",
+        "leak_type": "abrupt",
+        "onset": "2018-10-06 02:35",
+        "matched": true,
+        "notify_time": "2018-10-06 03:30",
+        "delay_hours": 0.9166666666666666,
+        "stream_id": "n644",
+        "refs_used": [
+          "n636",
+          "n679",
+          "n332"
+        ],
+        "change_estimate_time": "2018-10-06 03:30",
+        "open_leaks_at_notify": 5,
+        "episode_end": "2018-10-07 05:30",
+        "episode_idx": 1
+      },
+      "view_C": {
+        "pipe": "p158",
+        "leak_type": "abrupt",
+        "onset": "2018-10-06 02:35",
+        "matched": true,
+        "notify_time": "2018-10-06 03:30",
+        "delay_hours": 0.9166666666666666,
+        "stream_id": "n644",
+        "episode_idx": 1
+      }
+    },
+    {
+      "pipe": "p369",
+      "leak_type": "abrupt",
+      "onset": "2018-10-26 02:05",
+      "primary_eligible": true,
+      "classification": "genuine_signal_failure_weak_score",
+      "detail": "Preserved transfer diagnosis: 6 h network max \u226a \u03c4 and overlaps ordinary same-month controls. Matching views cannot create a score.",
+      "n_eligible_notifications": 0,
+      "already_active_at_onset": [],
+      "view_A": {
+        "pipe": "p369",
+        "leak_type": "abrupt",
+        "onset": "2018-10-26 02:05",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null,
+        "episode_idx": null
+      },
+      "view_B": {
+        "pipe": "p369",
+        "leak_type": "abrupt",
+        "onset": "2018-10-26 02:05",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null,
+        "refs_used": null,
+        "pre_onset_notifications_nearby": 0
+      },
+      "view_C": {
+        "pipe": "p369",
+        "leak_type": "abrupt",
+        "onset": "2018-10-26 02:05",
+        "matched": false,
+        "notify_time": null,
+        "delay_hours": null,
+        "stream_id": null,
+        "episode_idx": null
+      }
+    }
+  ],
+  "summary": "View A (registered): abrupt_recall=0.3333333333333333, p183 matched=False, p810 matched=True. View B (abrupt-only, post-hoc): abrupt_recall=0.6666666666666666, p183 matched=True. View C (joint max-cardinality, post-hoc): abrupt_recall=0.6666666666666666, p183 matched=True, p810 matched=False. p369 remains unmatched across views when no eligible notify exists \u2014 signal failure. B/C must not replace A as the registered headline.",
+  "holdout_honesty": "DIAG notifications and labels were previously examined. Views B/C are post-hoc diagnostics, not a new blind evaluation."
+}

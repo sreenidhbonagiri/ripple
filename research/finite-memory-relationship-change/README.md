@@ -30,6 +30,13 @@ DEV→DIAG transfer diagnosis (frozen τ; no new selection):
 .venv/bin/python research/finite-memory-relationship-change/diagnose_transfer.py
 ```
 
+Matching-assignment audit (frozen notifications; views B/C post-hoc):
+`outputs/MATCHING_ASSIGNMENT_AUDIT.md`
+
+```bash
+.venv/bin/python research/finite-memory-relationship-change/audit_matching_assignment.py
+```
+
 ## Boundary
 
 No production/UI/Tiger/main changes. No 2019. No CUSUM retuning.
