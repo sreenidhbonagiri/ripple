@@ -16,6 +16,9 @@ outputs/detection_2018_measured_pump1/dual_qv_hourly.csv
 outputs/detection_2018_measured_pump1/dual_qv_hourly.parquet
 outputs/detection_2018_measured_pump1/score_*.csv
 outputs/detection_2018_measured_pump1/run.log
+outputs/detection_2018_measured_pump1/signal_preservation/_scratch*/
+outputs/detection_2018_measured_pump1/signal_preservation/primal_P_*.csv
+outputs/detection_2018_measured_pump1/signal_preservation/per_sensor_contrasts.csv
 *.inp
 !fixtures/**/*.inp
 temp.bin
