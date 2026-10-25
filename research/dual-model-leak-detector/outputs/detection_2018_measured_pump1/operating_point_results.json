@@ -1,0 +1,952 @@
+{
+  "generated_at_utc": "2026-10-25T05:03:14.362249+00:00",
+  "protocol": "outputs/detection_2018_measured_pump1/OPERATING_POINT_PROTOCOL.md",
+  "acknowledgement": "2018 events have already been examined; all measured findings are diagnostic.",
+  "frozen_calibration_sha256": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+  "pump_boundary": "measured_pump1",
+  "score_source": "outputs/detection_2018_measured_pump1/score_*.csv",
+  "gates": {
+    "abrupt_6h_recall_min": 0.6666666666666666,
+    "unmatched_per_week_max": 3.0,
+    "occupancy_max": 0.2
+  },
+  "tau_grid_registered": {
+    "A": [
+      0.669,
+      1.097,
+      1.343,
+      1.791
+    ],
+    "B": [
+      7.843,
+      10.999,
+      13.031,
+      19.747
+    ],
+    "C": [
+      1.103,
+      1.53,
+      1.929,
+      2.349
+    ]
+  },
+  "score_distributions": {
+    "A": {
+      "DEV": {
+        "n": 4151,
+        "mean": -0.0736545085442441,
+        "std": 1.264466078294998,
+        "min": -10.279182571818195,
+        "max": 2.9234463181077,
+        "quantiles": {
+          "0.5": 0.15457472943034753,
+          "0.75": 0.6686177385932758,
+          "0.9": 1.0968101394870227,
+          "0.95": 1.3431535643720554,
+          "0.99": 1.790878231526896
+        },
+        "frac_ge_0": 0.5695013249819321
+      },
+      "DIAG": {
+        "n": 4391,
+        "mean": -0.06977542657309237,
+        "std": 1.2524609269969602,
+        "min": -11.142040058756347,
+        "max": 2.913742813997097,
+        "quantiles": {
+          "0.5": 0.16015822905367785,
+          "0.75": 0.6702658796611645,
+          "0.9": 1.0604125588598368,
+          "0.95": 1.3108031922660595,
+          "0.99": 1.7724613523543793
+        },
+        "frac_ge_0": 0.5686631746754726
+      }
+    },
+    "B": {
+      "DEV": {
+        "n": 4151,
+        "mean": 6.670278594534785,
+        "std": 3.4143297380950584,
+        "min": 1.9164891541726463,
+        "max": 30.92511635992305,
+        "quantiles": {
+          "0.5": 5.586970174855574,
+          "0.75": 7.842618047281983,
+          "0.9": 10.999216046618388,
+          "0.95": 13.030754126103037,
+          "0.99": 19.747308464240184
+        },
+        "frac_ge_0": 1.0
+      },
+      "DIAG": {
+        "n": 4391,
+        "mean": 6.624088598399813,
+        "std": 3.5566935354608633,
+        "min": 1.5563794796090067,
+        "max": 32.23891022309283,
+        "quantiles": {
+          "0.5": 5.565492577420955,
+          "0.75": 7.732042977521385,
+          "0.9": 10.860277256345096,
+          "0.95": 12.966510479494827,
+          "0.99": 21.13226613809444
+        },
+        "frac_ge_0": 1.0
+      }
+    },
+    "C": {
+      "DEV": {
+        "n": 4151,
+        "mean": 0.8058079079087003,
+        "std": 0.5428221823035027,
+        "min": 8.258898393862593e-05,
+        "max": 2.707536047577415,
+        "quantiles": {
+          "0.5": 0.7277337772096165,
+          "0.75": 1.1030660610239362,
+          "0.9": 1.530480475704034,
+          "0.95": 1.9290686142817983,
+          "0.99": 2.3489188360503745
+        },
+        "frac_ge_0": 1.0
+      },
+      "DIAG": {
+        "n": 4391,
+        "mean": 0.8041323738414162,
+        "std": 0.5404811882683238,
+        "min": 0.00018513830440417938,
+        "max": 2.7060888614334657,
+        "quantiles": {
+          "0.5": 0.7229704706585303,
+          "0.75": 1.1006551211691944,
+          "0.9": 1.5390093198182782,
+          "0.95": 1.9324277041327402,
+          "0.99": 2.319660509204287
+        },
+        "frac_ge_0": 1.0
+      }
+    }
+  },
+  "dev": {
+    "A": {
+      "grid": [
+        0.669,
+        1.097,
+        1.343,
+        1.791
+      ],
+      "selection": {
+        "selection_passed": true,
+        "tau": 1.791,
+        "reason": "largest_tau_passing_recall_burden_occupancy"
+      },
+      "by_tau": {
+        "0.669": {
+          "tau": 0.669,
+          "abrupt_6h_recall": 0.6666666666666666,
+          "unmatched_per_week": 18.26473229430664,
+          "occupancy": 0.42049808429118773,
+          "n_hit": 2,
+          "n_eligible_abrupt": 3,
+          "n_notifications": 456,
+          "n_unmatched": 454,
+          "gate_pass": false,
+          "mean_delay_hours": 0.8333333333333334,
+          "events_detail": [
+            {
+              "pipe": "p673",
+              "onset": "2018-03-05 15:45:00",
+              "period": "DEV",
+              "hit": true,
+              "delay_hours": 0.25,
+              "matched_notify": "2018-03-05 16:00:00",
+              "pre_onset_blocked": false,
+              "credit_max_score": 2.0622887747774885,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 1
+            },
+            {
+              "pipe": "p538",
+              "onset": "2018-05-18 08:35:00",
+              "period": "DEV",
+              "hit": true,
+              "delay_hours": 1.4166666666666667,
+              "matched_notify": "2018-05-18 10:00:00",
+              "pre_onset_blocked": true,
+              "credit_max_score": 1.7911248450692658,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 1
+            },
+            {
+              "pipe": "p866",
+              "onset": "2018-06-01 09:05:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 0.5310874592234005,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            }
+          ],
+          "timing_nulls": {
+            "n_nulls": 50,
+            "true_recall": 0.6666666666666666,
+            "null_recall_mean": 0.6666666666666665,
+            "null_recall_std": 0.24944382578492943,
+            "true_percentile_vs_null": 0.72
+          },
+          "unmatched_on_transition_frac": 0.9295154185022027
+        },
+        "1.097": {
+          "tau": 1.097,
+          "abrupt_6h_recall": 0.6666666666666666,
+          "unmatched_per_week": 9.977210592484683,
+          "occupancy": 0.20450191570881227,
+          "n_hit": 2,
+          "n_eligible_abrupt": 3,
+          "n_notifications": 250,
+          "n_unmatched": 248,
+          "gate_pass": false,
+          "mean_delay_hours": 1.8333333333333333,
+          "events_detail": [
+            {
+              "pipe": "p673",
+              "onset": "2018-03-05 15:45:00",
+              "period": "DEV",
+              "hit": true,
+              "delay_hours": 0.25,
+              "matched_notify": "2018-03-05 16:00:00",
+              "pre_onset_blocked": false,
+              "credit_max_score": 2.0622887747774885,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 2
+            },
+            {
+              "pipe": "p538",
+              "onset": "2018-05-18 08:35:00",
+              "period": "DEV",
+              "hit": true,
+              "delay_hours": 3.4166666666666665,
+              "matched_notify": "2018-05-18 12:00:00",
+              "pre_onset_blocked": false,
+              "credit_max_score": 1.7911248450692658,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 1
+            },
+            {
+              "pipe": "p866",
+              "onset": "2018-06-01 09:05:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 0.5310874592234005,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            }
+          ],
+          "timing_nulls": {
+            "n_nulls": 50,
+            "true_recall": 0.6666666666666666,
+            "null_recall_mean": 0.4533333333333333,
+            "null_recall_std": 0.26465910988372277,
+            "true_percentile_vs_null": 0.92
+          },
+          "unmatched_on_transition_frac": 0.9556451612903226
+        },
+        "1.343": {
+          "tau": 1.343,
+          "abrupt_6h_recall": 0.6666666666666666,
+          "unmatched_per_week": 5.672526990082018,
+          "occupancy": 0.11230842911877395,
+          "n_hit": 2,
+          "n_eligible_abrupt": 3,
+          "n_notifications": 143,
+          "n_unmatched": 141,
+          "gate_pass": false,
+          "mean_delay_hours": 2.833333333333333,
+          "events_detail": [
+            {
+              "pipe": "p673",
+              "onset": "2018-03-05 15:45:00",
+              "period": "DEV",
+              "hit": true,
+              "delay_hours": 2.25,
+              "matched_notify": "2018-03-05 18:00:00",
+              "pre_onset_blocked": false,
+              "credit_max_score": 2.0622887747774885,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 1
+            },
+            {
+              "pipe": "p538",
+              "onset": "2018-05-18 08:35:00",
+              "period": "DEV",
+              "hit": true,
+              "delay_hours": 3.4166666666666665,
+              "matched_notify": "2018-05-18 12:00:00",
+              "pre_onset_blocked": false,
+              "credit_max_score": 1.7911248450692658,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 1
+            },
+            {
+              "pipe": "p866",
+              "onset": "2018-06-01 09:05:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 0.5310874592234005,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            }
+          ],
+          "timing_nulls": {
+            "n_nulls": 50,
+            "true_recall": 0.6666666666666666,
+            "null_recall_mean": 0.24666666666666667,
+            "null_recall_std": 0.2733333333333333,
+            "true_percentile_vs_null": 0.96
+          },
+          "unmatched_on_transition_frac": 0.9787234042553191
+        },
+        "1.791": {
+          "tau": 1.791,
+          "abrupt_6h_recall": 0.6666666666666666,
+          "unmatched_per_week": 1.4885354512981182,
+          "occupancy": 0.03017241379310345,
+          "n_hit": 2,
+          "n_eligible_abrupt": 3,
+          "n_notifications": 39,
+          "n_unmatched": 37,
+          "gate_pass": true,
+          "mean_delay_hours": 3.333333333333333,
+          "events_detail": [
+            {
+              "pipe": "p673",
+              "onset": "2018-03-05 15:45:00",
+              "period": "DEV",
+              "hit": true,
+              "delay_hours": 3.25,
+              "matched_notify": "2018-03-05 19:00:00",
+              "pre_onset_blocked": false,
+              "credit_max_score": 2.0622887747774885,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 1
+            },
+            {
+              "pipe": "p538",
+              "onset": "2018-05-18 08:35:00",
+              "period": "DEV",
+              "hit": true,
+              "delay_hours": 3.4166666666666665,
+              "matched_notify": "2018-05-18 12:00:00",
+              "pre_onset_blocked": false,
+              "credit_max_score": 1.7911248450692658,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 1
+            },
+            {
+              "pipe": "p866",
+              "onset": "2018-06-01 09:05:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 0.5310874592234005,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            }
+          ],
+          "timing_nulls": {
+            "n_nulls": 50,
+            "true_recall": 0.6666666666666666,
+            "null_recall_mean": 0.08,
+            "null_recall_std": 0.14236104336041747,
+            "true_percentile_vs_null": 1.0
+          },
+          "unmatched_on_transition_frac": 1.0
+        }
+      }
+    },
+    "B": {
+      "grid": [
+        7.843,
+        10.999,
+        13.031,
+        19.747
+      ],
+      "selection": {
+        "selection_passed": false,
+        "tau": null,
+        "reason": "no_tau_passed_dev_gates"
+      },
+      "by_tau": {
+        "7.843": {
+          "tau": 7.843,
+          "abrupt_6h_recall": 0.3333333333333333,
+          "unmatched_per_week": 9.53467302588254,
+          "occupancy": 0.6623563218390804,
+          "n_hit": 1,
+          "n_eligible_abrupt": 3,
+          "n_notifications": 238,
+          "n_unmatched": 237,
+          "gate_pass": false,
+          "mean_delay_hours": 0.25,
+          "events_detail": [
+            {
+              "pipe": "p673",
+              "onset": "2018-03-05 15:45:00",
+              "period": "DEV",
+              "hit": true,
+              "delay_hours": 0.25,
+              "matched_notify": "2018-03-05 16:00:00",
+              "pre_onset_blocked": false,
+              "credit_max_score": 14.939733156137246,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 1
+            },
+            {
+              "pipe": "p538",
+              "onset": "2018-05-18 08:35:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": true,
+              "credit_max_score": 10.628247595449247,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            },
+            {
+              "pipe": "p866",
+              "onset": "2018-06-01 09:05:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": true,
+              "credit_max_score": 16.08415622873911,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            }
+          ],
+          "timing_nulls": {
+            "n_nulls": 50,
+            "true_recall": 0.3333333333333333,
+            "null_recall_mean": 0.24666666666666665,
+            "null_recall_std": 0.2650786046942806,
+            "true_percentile_vs_null": 0.82
+          },
+          "unmatched_on_transition_frac": 0.9662447257383966
+        },
+        "10.999": {
+          "tau": 10.999,
+          "abrupt_6h_recall": 0.6666666666666666,
+          "unmatched_per_week": 9.33351958651793,
+          "occupancy": 0.2739463601532567,
+          "n_hit": 2,
+          "n_eligible_abrupt": 3,
+          "n_notifications": 234,
+          "n_unmatched": 232,
+          "gate_pass": false,
+          "mean_delay_hours": 0.5833333333333333,
+          "events_detail": [
+            {
+              "pipe": "p673",
+              "onset": "2018-03-05 15:45:00",
+              "period": "DEV",
+              "hit": true,
+              "delay_hours": 0.25,
+              "matched_notify": "2018-03-05 16:00:00",
+              "pre_onset_blocked": false,
+              "credit_max_score": 14.939733156137246,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 1
+            },
+            {
+              "pipe": "p538",
+              "onset": "2018-05-18 08:35:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 10.628247595449247,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            },
+            {
+              "pipe": "p866",
+              "onset": "2018-06-01 09:05:00",
+              "period": "DEV",
+              "hit": true,
+              "delay_hours": 0.9166666666666666,
+              "matched_notify": "2018-06-01 10:00:00",
+              "pre_onset_blocked": true,
+              "credit_max_score": 16.08415622873911,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 1
+            }
+          ],
+          "timing_nulls": {
+            "n_nulls": 50,
+            "true_recall": 0.6666666666666666,
+            "null_recall_mean": 0.2533333333333333,
+            "null_recall_std": 0.25438378704451886,
+            "true_percentile_vs_null": 0.98
+          },
+          "unmatched_on_transition_frac": 0.9525862068965517
+        },
+        "13.031": {
+          "tau": 13.031,
+          "abrupt_6h_recall": 0.6666666666666666,
+          "unmatched_per_week": 5.954141805192473,
+          "occupancy": 0.1503831417624521,
+          "n_hit": 2,
+          "n_eligible_abrupt": 3,
+          "n_notifications": 150,
+          "n_unmatched": 148,
+          "gate_pass": false,
+          "mean_delay_hours": 0.5833333333333333,
+          "events_detail": [
+            {
+              "pipe": "p673",
+              "onset": "2018-03-05 15:45:00",
+              "period": "DEV",
+              "hit": true,
+              "delay_hours": 0.25,
+              "matched_notify": "2018-03-05 16:00:00",
+              "pre_onset_blocked": false,
+              "credit_max_score": 14.939733156137246,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 1
+            },
+            {
+              "pipe": "p538",
+              "onset": "2018-05-18 08:35:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 10.628247595449247,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            },
+            {
+              "pipe": "p866",
+              "onset": "2018-06-01 09:05:00",
+              "period": "DEV",
+              "hit": true,
+              "delay_hours": 0.9166666666666666,
+              "matched_notify": "2018-06-01 10:00:00",
+              "pre_onset_blocked": true,
+              "credit_max_score": 16.08415622873911,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 1
+            }
+          ],
+          "timing_nulls": {
+            "n_nulls": 50,
+            "true_recall": 0.6666666666666666,
+            "null_recall_mean": 0.14666666666666664,
+            "null_recall_std": 0.19043809142780932,
+            "true_percentile_vs_null": 1.0
+          },
+          "unmatched_on_transition_frac": 0.9121621621621622
+        },
+        "19.747": {
+          "tau": 19.747,
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 1.6896888906627288,
+          "occupancy": 0.028017241379310345,
+          "n_hit": 0,
+          "n_eligible_abrupt": 3,
+          "n_notifications": 42,
+          "n_unmatched": 42,
+          "gate_pass": false,
+          "mean_delay_hours": null,
+          "events_detail": [
+            {
+              "pipe": "p673",
+              "onset": "2018-03-05 15:45:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 14.939733156137246,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            },
+            {
+              "pipe": "p538",
+              "onset": "2018-05-18 08:35:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 10.628247595449247,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            },
+            {
+              "pipe": "p866",
+              "onset": "2018-06-01 09:05:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 16.08415622873911,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            }
+          ],
+          "timing_nulls": {
+            "n_nulls": 50,
+            "true_recall": 0.0,
+            "null_recall_mean": 0.02,
+            "null_recall_std": 0.07916228058025278,
+            "true_percentile_vs_null": 0.94
+          },
+          "unmatched_on_transition_frac": 0.8571428571428571
+        }
+      }
+    },
+    "C": {
+      "grid": [
+        1.103,
+        1.53,
+        1.929,
+        2.349
+      ],
+      "selection": {
+        "selection_passed": false,
+        "tau": null,
+        "reason": "no_tau_passed_dev_gates"
+      },
+      "by_tau": {
+        "1.103": {
+          "tau": 1.103,
+          "abrupt_6h_recall": 0.3333333333333333,
+          "unmatched_per_week": 12.270359801241245,
+          "occupancy": 0.428639846743295,
+          "n_hit": 1,
+          "n_eligible_abrupt": 3,
+          "n_notifications": 306,
+          "n_unmatched": 305,
+          "gate_pass": false,
+          "mean_delay_hours": 3.9166666666666665,
+          "events_detail": [
+            {
+              "pipe": "p673",
+              "onset": "2018-03-05 15:45:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": true,
+              "credit_max_score": 1.3614120800651943,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            },
+            {
+              "pipe": "p538",
+              "onset": "2018-05-18 08:35:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": true,
+              "credit_max_score": 0.9208928969405438,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            },
+            {
+              "pipe": "p866",
+              "onset": "2018-06-01 09:05:00",
+              "period": "DEV",
+              "hit": true,
+              "delay_hours": 3.9166666666666665,
+              "matched_notify": "2018-06-01 13:00:00",
+              "pre_onset_blocked": true,
+              "credit_max_score": 1.291425743503885,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 1
+            }
+          ],
+          "timing_nulls": {
+            "n_nulls": 50,
+            "true_recall": 0.3333333333333333,
+            "null_recall_mean": 0.36666666666666664,
+            "null_recall_std": 0.2603416558635551,
+            "true_percentile_vs_null": 0.72
+          },
+          "unmatched_on_transition_frac": 0.9475409836065574
+        },
+        "1.53": {
+          "tau": 1.53,
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 7.161062441380136,
+          "occupancy": 0.19013409961685823,
+          "n_hit": 0,
+          "n_eligible_abrupt": 3,
+          "n_notifications": 178,
+          "n_unmatched": 178,
+          "gate_pass": false,
+          "mean_delay_hours": null,
+          "events_detail": [
+            {
+              "pipe": "p673",
+              "onset": "2018-03-05 15:45:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 1.3614120800651943,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            },
+            {
+              "pipe": "p538",
+              "onset": "2018-05-18 08:35:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": true,
+              "credit_max_score": 0.9208928969405438,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            },
+            {
+              "pipe": "p866",
+              "onset": "2018-06-01 09:05:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 1.291425743503885,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            }
+          ],
+          "timing_nulls": {
+            "n_nulls": 50,
+            "true_recall": 0.0,
+            "null_recall_mean": 0.04,
+            "null_recall_std": 0.10832051206181283,
+            "true_percentile_vs_null": 0.88
+          },
+          "unmatched_on_transition_frac": 0.949438202247191
+        },
+        "1.929": {
+          "tau": 1.929,
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 5.672526990082018,
+          "occupancy": 0.12643678160919541,
+          "n_hit": 0,
+          "n_eligible_abrupt": 3,
+          "n_notifications": 141,
+          "n_unmatched": 141,
+          "gate_pass": false,
+          "mean_delay_hours": null,
+          "events_detail": [
+            {
+              "pipe": "p673",
+              "onset": "2018-03-05 15:45:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 1.3614120800651943,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            },
+            {
+              "pipe": "p538",
+              "onset": "2018-05-18 08:35:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": true,
+              "credit_max_score": 0.9208928969405438,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            },
+            {
+              "pipe": "p866",
+              "onset": "2018-06-01 09:05:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 1.291425743503885,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            }
+          ],
+          "timing_nulls": {
+            "n_nulls": 50,
+            "true_recall": 0.0,
+            "null_recall_mean": 0.006666666666666666,
+            "null_recall_std": 0.04666666666666666,
+            "true_percentile_vs_null": 0.98
+          },
+          "unmatched_on_transition_frac": 0.9787234042553191
+        },
+        "2.349": {
+          "tau": 2.349,
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 1.5689968270439623,
+          "occupancy": 0.032806513409961685,
+          "n_hit": 0,
+          "n_eligible_abrupt": 3,
+          "n_notifications": 39,
+          "n_unmatched": 39,
+          "gate_pass": false,
+          "mean_delay_hours": null,
+          "events_detail": [
+            {
+              "pipe": "p673",
+              "onset": "2018-03-05 15:45:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 1.3614120800651943,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            },
+            {
+              "pipe": "p538",
+              "onset": "2018-05-18 08:35:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 0.9208928969405438,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            },
+            {
+              "pipe": "p866",
+              "onset": "2018-06-01 09:05:00",
+              "period": "DEV",
+              "hit": false,
+              "delay_hours": null,
+              "matched_notify": null,
+              "pre_onset_blocked": false,
+              "credit_max_score": 1.291425743503885,
+              "credit_n_finite": 6,
+              "n_credit_notifies": 0
+            }
+          ],
+          "timing_nulls": {
+            "n_nulls": 50,
+            "true_recall": 0.0,
+            "null_recall_mean": 0.0,
+            "null_recall_std": 0.0,
+            "true_percentile_vs_null": 1.0
+          },
+          "unmatched_on_transition_frac": 1.0
+        }
+      }
+    }
+  },
+  "selection": {
+    "A": {
+      "selection_passed": true,
+      "tau": 1.791,
+      "reason": "largest_tau_passing_recall_burden_occupancy"
+    },
+    "B": {
+      "selection_passed": false,
+      "tau": null,
+      "reason": "no_tau_passed_dev_gates"
+    },
+    "C": {
+      "selection_passed": false,
+      "tau": null,
+      "reason": "no_tau_passed_dev_gates"
+    }
+  },
+  "any_selection_passed": true,
+  "diag": {
+    "A": {
+      "tau": 1.791,
+      "abrupt_6h_recall": 0.0,
+      "mean_delay_hours": null,
+      "unmatched_per_week": 1.293502670264762,
+      "occupancy": 0.024682971014492752,
+      "n_hit": 0,
+      "n_eligible_abrupt": 3,
+      "n_notifications": 34,
+      "n_unmatched": 34,
+      "unmatched_on_transition_frac": 0.9117647058823529,
+      "timing_nulls": {
+        "n_nulls": 200,
+        "true_recall": 0.0,
+        "null_recall_mean": 0.0,
+        "null_recall_std": 0.0,
+        "true_percentile_vs_null": 1.0
+      },
+      "events_detail": [
+        {
+          "pipe": "p183",
+          "onset": "2018-08-07 02:35:00",
+          "period": "DIAG",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": false,
+          "credit_max_score": 0.7679838769889281,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 0
+        },
+        {
+          "pipe": "p158",
+          "onset": "2018-10-06 02:35:00",
+          "period": "DIAG",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": false,
+          "credit_max_score": 1.1665834012526746,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 0
+        },
+        {
+          "pipe": "p369",
+          "onset": "2018-10-26 02:05:00",
+          "period": "DIAG",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": false,
+          "credit_max_score": 0.9131898663550483,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 0
+        }
+      ]
+    }
+  },
+  "diag_skipped_reason": null
+}
