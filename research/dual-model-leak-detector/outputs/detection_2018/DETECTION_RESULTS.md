@@ -64,5 +64,14 @@ That is a method failure under this normalization, not a quiet detector.
 - A = signed total q_v change; B = per-sensor vector L2 change; C = |external inflow| change.
 - Virtual flow is not measured leak discharge.
 - No event-specific sensor selection or post-hoc τ retuning.
+- **Transition-fraction columns above are invalidated** by an hourly `×12`
+  storage-rate bug in the confounding helper (frozen JSON unchanged). See
+  `DETECTION_FAILURE_AUDIT.md`. Helper corrected in code; detection **not** re-run.
 - Stop: no 2019 / UI / Tiger / production / main.
+
+## Failure audit
+
+Full post-selection audit (hash provenance, pump/tank q_v, per-missed-event,
+Method B occupancy, one recommended intervention):
+[`DETECTION_FAILURE_AUDIT.md`](DETECTION_FAILURE_AUDIT.md).
 

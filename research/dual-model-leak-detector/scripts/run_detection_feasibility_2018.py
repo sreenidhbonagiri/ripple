@@ -49,12 +49,13 @@ def main() -> int:
     # Actually protocol: FIT excluded from evaluation; reference may use hours after FIT_END only.
     series_start = str(pd.Timestamp(FIT_END) + pd.Timedelta(minutes=5))
     print(f"Building dual q_v {series_start} → {DIAG_END} …", flush=True)
-    qv, flows, levels = build_dual_qv_hourly(
+    qv, flows, levels, _meta = build_dual_qv_hourly(
         series_start,
         DIAG_END,
         frozen_path=frozen_path,
         scratch=scratch,
         chunk_days=7,
+        pump_boundary="inp_controls",
     )
     qv_path = out_dir / "dual_qv_hourly.parquet"
     try:

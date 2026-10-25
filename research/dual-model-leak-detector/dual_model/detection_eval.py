@@ -21,6 +21,24 @@ from .detection_protocol import (
 from .notifier import Episode, episodes_from_scores
 
 
+def storage_rate_m3h(levels: pd.Series, tank_area_m2: float) -> pd.Series:
+    """Tank storage rate A·dh/dt in m³/h.
+
+    Scales by the index step so hourly series are not treated as 5 min
+    (the previous helper used ``diff()*12`` unconditionally, which inflated
+    hourly |dV| ~12× — see DETECTION_FAILURE_AUDIT.md).
+    """
+    lv = levels.astype(float)
+    if len(lv) < 2:
+        return pd.Series(np.nan, index=lv.index)
+    dt_hours = lv.index.to_series().diff().dt.total_seconds() / 3600.0
+    med = float(np.nanmedian(dt_hours.to_numpy(dtype=float)))
+    if not np.isfinite(med) or med <= 0:
+        med = 1.0
+    step_h = dt_hours.where(dt_hours > 0, med)
+    return tank_area_m2 * (lv.diff() / step_h)
+
+
 def period_bounds(period: str) -> tuple[pd.Timestamp, pd.Timestamp]:
     from .detection_protocol import DEV_END, DEV_START, DIAG_END, DIAG_START
 
@@ -117,7 +135,7 @@ def evaluate_scores(
         fl = flows.reindex(index)
         lv = levels.reindex(index)
         d_pump = fl["PUMP_1"].astype(float).diff().abs()
-        dV = tank_area_m2 * (lv.astype(float).diff() * 12.0).abs()
+        dV = storage_rate_m3h(lv, tank_area_m2).abs()
         trans = (d_pump > PUMP_TRANSITION_M3H) | (dV > STORAGE_TRANSITION_M3H)
         n_trans = sum(1 for t in unmatched if bool(trans.get(t, False)))
         transition_frac = float(n_trans / len(unmatched))

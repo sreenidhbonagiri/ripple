@@ -124,6 +124,64 @@ def build_tank_pump_network(
     return wn, ("J1", "J2")
 
 
+def build_ltown_like_pump_tank_network(
+    *,
+    duration_sec: int = 12 * 3600,
+    timestep_sec: int = 3600,
+    pump_power_kw: float = 8.0,
+) -> tuple[wntr.network.WaterNetworkModel, tuple[str, ...]]:
+    """Reservoir → n54 → PUMP → T1, with a sensor branch off n54.
+
+    Mirrors L-Town PUMP_1 (junction → tank). Timed control turns the pump off
+    at t = 6 h. Sensors at n54 and J_branch.
+    """
+    wn = wntr.network.WaterNetworkModel()
+    wn.options.hydraulic.inpfile_units = "CMH"
+    wn.options.hydraulic.headloss = "H-W"
+    wn.options.time.duration = duration_sec
+    wn.options.time.hydraulic_timestep = timestep_sec
+    wn.options.time.report_timestep = timestep_sec
+    wn.options.time.pattern_timestep = timestep_sec
+
+    n_steps = duration_sec // timestep_sec + 1
+    wn.add_pattern("pat", [1.0] * max(n_steps, 2))
+
+    wn.add_reservoir("R", base_head=90.0, coordinates=(0.0, 0.0))
+    wn.add_junction(
+        "n54",
+        elevation=50.0,
+        base_demand=m3h_to_m3s(6.0),
+        demand_pattern="pat",
+        coordinates=(100.0, 0.0),
+    )
+    wn.add_junction(
+        "J_branch",
+        elevation=52.0,
+        base_demand=m3h_to_m3s(4.0),
+        demand_pattern="pat",
+        coordinates=(100.0, 80.0),
+    )
+    wn.add_tank(
+        "T1",
+        elevation=55.0,
+        init_level=2.5,
+        min_level=0.5,
+        max_level=5.0,
+        diameter=12.0,
+        coordinates=(200.0, 0.0),
+    )
+    wn.add_pipe("P_R_n54", "R", "n54", length=200.0, diameter=0.25, roughness=130.0)
+    wn.add_pipe("P_branch", "n54", "J_branch", length=150.0, diameter=0.12, roughness=130.0)
+    wn.add_pump("PUMP_1", "n54", "T1", pump_type="POWER", pump_parameter=pump_power_kw)
+
+    pump = wn.get_link("PUMP_1")
+    act_off = wntr.network.controls.ControlAction(pump, "status", 0)
+    cond = wntr.network.controls.SimTimeCondition(wn, ">=", 6 * 3600)
+    wn.add_control("pump_off", wntr.network.controls.Control(cond, act_off))
+
+    return wn, ("n54", "J_branch")
+
+
 def inject_nodal_leak(
     wn: wntr.network.WaterNetworkModel,
     node_name: str,

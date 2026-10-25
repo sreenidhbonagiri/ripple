@@ -95,7 +95,9 @@ onsets (bootstrap hours from true onsets). Recompute abrupt 6 h recall. Report
 null mean/std and percentile of the true recall among nulls.
 
 **Operating-transition confounding:** mark hours where `|ΔPUMP_1| > 10` m³/h or
-`|A dh/dt| > 15` m³/h; report fraction of unmatched notifies that fall on such hours.
+`|A dh/dt| > 15` m³/h; report fraction of unmatched notifies that fall on such
+hours. `A dh/dt` must use the series timestep (hourly dual: `A·Δh/Δt` with
+`Δt` in hours — do **not** apply the 5 min `×12` factor to hourly diffs).
 
 ---
 

@@ -47,8 +47,12 @@ def build_dual_qv_hourly(
     frozen_path: Path,
     scratch: Path,
     chunk_days: int = 7,
-) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series]:
-    """Return (q_v_m3h, flows_m3h_hourly, level_m_hourly) on hourly grid."""
+    pump_boundary: str = "inp_controls",
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, dict]:
+    """Return (q_v_m3h, flows_m3h_hourly, level_m_hourly, run_meta) on hourly grid.
+
+    ``pump_boundary``: ``inp_controls`` (baseline) or ``measured_pump1`` (isolated variant).
+    """
     dm, roughness, tcv = load_frozen(frozen_path)
     wn = load_nominal_wn()
     clusters = build_roughness_clusters(wn)
@@ -61,6 +65,8 @@ def build_dual_qv_hourly(
     start_ts = pd.Timestamp(start)
     end_ts = pd.Timestamp(end)
     chunks = []
+    chunk_notes: list[dict] = []
+    n_fail = 0
     cur = start_ts
     while cur <= end_ts:
         chunk_end = min(cur + pd.Timedelta(days=chunk_days) - pd.Timedelta(minutes=5), end_ts)
@@ -86,7 +92,13 @@ def build_dual_qv_hourly(
             clusters=clusters,
             tcv_setting=tcv,
             timestep_sec=3600,
+            pump_boundary=pump_boundary,
+            pump_flow_m3h=Fh["PUMP_1"] if pump_boundary == "measured_pump1" else None,
         )
+        note = {"chunk_start": str(cur), "chunk_end": str(chunk_end), **dual.notes}
+        chunk_notes.append(note)
+        if not dual.notes.get("converged", True):
+            n_fail += 1
         qvh = dual.q_v_m3h
         qvh.index = Ph.index[: len(qvh)]
         chunks.append(qvh)
@@ -96,4 +108,10 @@ def build_dual_qv_hourly(
     qv = qv[~qv.index.duplicated(keep="first")]
     flows = subsample_hourly(F.loc[start_ts:end_ts]).reindex(qv.index)
     levels = subsample_hourly(L.loc[start_ts:end_ts])["T1"].reindex(qv.index)
-    return qv, flows, levels
+    meta = {
+        "pump_boundary": pump_boundary,
+        "n_chunks": len(chunk_notes),
+        "n_solver_failures": n_fail,
+        "chunks": chunk_notes,
+    }
+    return qv, flows, levels, meta

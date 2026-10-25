@@ -138,9 +138,22 @@ def run_dual_window(
     clusters=None,
     tcv_setting: float = 1e-3,
     timestep_sec: int = 3600,
+    pump_boundary: str = "inp_controls",
+    pump_flow_m3h: pd.Series | None = None,
 ) -> DualSimulationResult:
-    """Dual EPS: VR heads = measured P + elevation; demands/roughness as specified."""
+    """Dual EPS: VR heads = measured P + elevation; demands/roughness as specified.
+
+    ``pump_boundary``:
+      - ``inp_controls`` (default): INP tank-level pump open/close (baseline).
+      - ``measured_pump1``: close PUMP_1, drop its controls, impose measured
+        internal transfer n54→T1 (see PUMP1_MEASURED_BOUNDARY.md). Requires
+        ``pump_flow_m3h`` aligned to ``timestamps``.
+    """
     from .area_topology import apply_cluster_roughness
+    from .pump_boundary import impose_measured_internal_pump_transfer
+
+    if pump_boundary not in ("inp_controls", "measured_pump1"):
+        raise ValueError(f"Unknown pump_boundary={pump_boundary!r}")
 
     sensors = load_pressure_sensors()
     wn = clone_wn(wn_template, scratch)
@@ -151,31 +164,60 @@ def run_dual_window(
     if roughness is not None and clusters is not None:
         apply_cluster_roughness(wn, clusters, roughness)
 
+    pump_notes: dict[str, Any] = {"pump_boundary": pump_boundary}
+    if pump_boundary == "measured_pump1" and pump_flow_m3h is None:
+        raise ValueError("pump_flow_m3h required when pump_boundary='measured_pump1'")
+
     elev = sensor_elevations(wn, sensors)
     P = pressures_m[list(sensors)].reindex(timestamps).interpolate(limit=2)
     head_ts = {s: (P[s].astype(float) + elev[s]).tolist() for s in sensors}
     spec = DualModelSpec(sensor_nodes=sensors, tcv_setting=tcv_setting)
-    wd = attach_virtual_reservoirs(
-        wn,
-        spec,
-        head_timeseries=head_ts,
-        pattern_timestep_sec=timestep_sec,
-        scratch_dir=scratch,
-    )
-    configure_time(wd, timestamps, timestep_sec)
-    set_tank_init_from_measurement(wd, float(levels_m.iloc[0]))
+    try:
+        wd = attach_virtual_reservoirs(
+            wn,
+            spec,
+            head_timeseries=head_ts,
+            pattern_timestep_sec=timestep_sec,
+            scratch_dir=scratch,
+        )
+        configure_time(wd, timestamps, timestep_sec)
+        set_tank_init_from_measurement(wd, float(levels_m.iloc[0]))
+        # Impose after VR attach so the dual clone carries the measured transfer
+        # without a second INP round-trip that could drop demand categories.
+        if pump_boundary == "measured_pump1":
+            assert pump_flow_m3h is not None
+            q_pump = pump_flow_m3h.reindex(timestamps).astype(float)
+            pump_notes.update(
+                impose_measured_internal_pump_transfer(wd, q_pump.tolist())
+            )
 
-    res = wntr.sim.EpanetSimulator(wd).run_sim()
-    qv = _extract_qv(res.link["flowrate"], spec)
-    n = min(len(qv), len(timestamps))
-    qv = qv.iloc[:n].copy()
-    qv.index = timestamps[:n]
-    return DualSimulationResult(
-        q_v_m3s=qv,
-        q_v_sum_m3s=qv.sum(axis=1),
-        spec=spec,
-        notes={"timestep_sec": timestep_sec, "n": n},
-    )
+        res = wntr.sim.EpanetSimulator(wd).run_sim()
+        qv = _extract_qv(res.link["flowrate"], spec)
+        n = min(len(qv), len(timestamps))
+        qv = qv.iloc[:n].copy()
+        qv.index = timestamps[:n]
+        return DualSimulationResult(
+            q_v_m3s=qv,
+            q_v_sum_m3s=qv.sum(axis=1),
+            spec=spec,
+            notes={"timestep_sec": timestep_sec, "n": n, "converged": True, **pump_notes},
+        )
+    except Exception as exc:  # noqa: BLE001
+        empty = pd.DataFrame(
+            np.nan, index=timestamps, columns=list(sensors), dtype=float
+        )
+        return DualSimulationResult(
+            q_v_m3s=empty,
+            q_v_sum_m3s=empty.sum(axis=1),
+            spec=spec,
+            notes={
+                "timestep_sec": timestep_sec,
+                "n": 0,
+                "converged": False,
+                "error": str(exc),
+                **pump_notes,
+            },
+        )
 
 
 def pressure_metrics(sim: pd.DataFrame, meas: pd.DataFrame) -> dict[str, Any]:

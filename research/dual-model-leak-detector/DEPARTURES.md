@@ -28,7 +28,7 @@ explicit engineering reconstructions or intentional scope limits.
 | Roughness optimizer | Projected LM + Huber κ=3, α=0, bounds [60,160], analytical Jacobian | `scipy.optimize.least_squares` TRF + `soft_l1` (f_scale=3), same bounds; **finite-difference residuals** via WNTR EPS |
 | Closed valves | Identified in calibration | **Not implemented** |
 | Time resolution | 5 min SCADA | Hydraulics / dual eval at **1 h** subsample for tractability (SCADA still loaded at 5 min for demand TSA) |
-| Pump BC | Authors update pump flow from measurement in dual | INP **tank-level controls** retained; measured PUMP_1 used in mass-balance demand scaling and flow metrics only |
+| Pump BC | Authors update pump flow from measurement in dual | **Baseline dual** (`pump_boundary=inp_controls`): INP tank-level controls; measured PUMP_1 in demand scaling / flow metrics only. **Isolated variant** (`pump_boundary=measured_pump1`): close PUMP_1, drop its controls, impose measured internal transfer n54→T1 via demand-pair (see `PUMP1_MEASURED_BOUNDARY.md`); outputs under `outputs/detection_2018_measured_pump1/` — does not replace baseline artifacts |
 | Validation | Competition narrative on 2019 | **2018 multi-season held-out weeks only**; 2019 sealed |
 | TCV K | Unpublished | Audited on FIT snapshot mean|q_v|; **not** chosen by leak-detection score; default 1e-3 preferred when competitive |
 

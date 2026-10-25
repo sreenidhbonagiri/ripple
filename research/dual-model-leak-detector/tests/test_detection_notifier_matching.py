@@ -12,7 +12,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from dual_model.detection_eval import select_tau_on_dev  # noqa: E402
+from dual_model.detection_eval import select_tau_on_dev, storage_rate_m3h  # noqa: E402
 from dual_model.detection_protocol import GATE_RECALL, GATE_UNMATCHED_PER_WEEK, TAU_GRID  # noqa: E402
 from dual_model.detection_scores import (  # noqa: E402
     score_A_signed_sum_change,
@@ -94,3 +94,18 @@ def test_missing_ref_yields_nan_score():
     a = score_A_signed_sum_change(qv)
     # Too short for 24h ref → all NaN
     assert not np.isfinite(a).any()
+
+
+def test_storage_rate_hourly_vs_five_min():
+    area = 100.0
+    # Hourly: +0.1 m over 1 h → 10 m³/h (must NOT apply ×12)
+    idx_h = pd.date_range("2018-01-01", periods=3, freq="h")
+    lv_h = pd.Series([1.0, 1.1, 1.1], index=idx_h)
+    r_h = storage_rate_m3h(lv_h, area)
+    assert r_h.iloc[1] == pytest.approx(10.0)
+
+    # 5 min: +0.1 m over 5 min → 0.1/(1/12)=1.2 m/h → 120 m³/h
+    idx_5 = pd.date_range("2018-01-01", periods=3, freq="5min")
+    lv_5 = pd.Series([1.0, 1.1, 1.1], index=idx_5)
+    r_5 = storage_rate_m3h(lv_5, area)
+    assert r_5.iloc[1] == pytest.approx(120.0)

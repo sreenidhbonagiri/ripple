@@ -1,0 +1,127 @@
+{
+  "generated_at_utc": "2026-10-25T04:58:14.176709+00:00",
+  "formulation": "PUMP1_MEASURED_BOUNDARY.md",
+  "scenarios": [
+    {
+      "id": "measured_pump_matched_transition",
+      "description": "Matched no-leak pump/tank transition with measured PUMP_1 BC",
+      "actual_leak_m3h": 0.0,
+      "result": {
+        "max_abs_sum_m3h": 0.0006953541870302615,
+        "sum_at_switch_m3h": 0.000579461854499641,
+        "n54_abs_delta_at_switch_m3h": 0.0,
+        "pump_m3h_at_switch": 0.0,
+        "pump_boundary": {
+          "converged": true,
+          "pump_link": "PUMP_1",
+          "extract_node": "n54",
+          "inject_node": "_PUMP1_TANK_INJ",
+          "end_node": "T1",
+          "controls_removed": [
+            "control 1"
+          ],
+          "pump_closed": true,
+          "pattern": "MEAS_PUMP1_Q",
+          "n_steps": 13,
+          "n_pump_finite": 13,
+          "n_pump_ffill": 0,
+          "n_pump_zero_impute": 0,
+          "counts_as_external_supply": false
+        }
+      },
+      "pass_criterion": "max_abs_sum_m3h < 0.5",
+      "passed": true,
+      "interpretation": "With measured internal transfer matching the primal pump, \u03a3q_v stays near zero across the pump-off transition."
+    },
+    {
+      "id": "measured_pump_leak_stable",
+      "description": "Leak during stable pump operation; dual omits leak, uses measured Qp+heads",
+      "actual_leak_m3h": 5.0,
+      "result": {
+        "mean_sum_m3h": 5.001491141524639,
+        "max_abs_sum_m3h": 5.001593225370016,
+        "pump_boundary": {
+          "converged": true,
+          "pump_link": "PUMP_1",
+          "extract_node": "n54",
+          "inject_node": "_PUMP1_TANK_INJ",
+          "end_node": "T1",
+          "controls_removed": [],
+          "pump_closed": true,
+          "pattern": "MEAS_PUMP1_Q",
+          "n_steps": 13,
+          "n_pump_finite": 13,
+          "n_pump_ffill": 0,
+          "n_pump_zero_impute": 0,
+          "counts_as_external_supply": false
+        }
+      },
+      "pass_criterion": "mean_sum_m3h within [2, 8] (tracks ~5 m\u00b3/h leak)",
+      "passed": true,
+      "interpretation": "Virtual-flow sum should reflect the omitted leak under a matched pump BC."
+    },
+    {
+      "id": "measured_pump_leak_coincident_transition",
+      "description": "Leak coincident with pump transition; measured PUMP_1 BC",
+      "actual_leak_m3h": 5.0,
+      "result": {
+        "mean_sum_before_m3h": 5.00155619681891,
+        "mean_sum_after_m3h": 5.001561426217904,
+        "sum_delta_at_switch_m3h": 0.0,
+        "pump_boundary": {
+          "converged": true,
+          "pump_link": "PUMP_1",
+          "extract_node": "n54",
+          "inject_node": "_PUMP1_TANK_INJ",
+          "end_node": "T1",
+          "controls_removed": [
+            "control 1"
+          ],
+          "pump_closed": true,
+          "pattern": "MEAS_PUMP1_Q",
+          "n_steps": 13,
+          "n_pump_finite": 13,
+          "n_pump_ffill": 0,
+          "n_pump_zero_impute": 0,
+          "counts_as_external_supply": false
+        }
+      },
+      "pass_criterion": "before/after means in [2, 8] and |switch \u0394\u03a3| < 3 (transition not a large artifact)",
+      "passed": true,
+      "interpretation": "Leak imprint in \u03a3q_v should persist across the switch; measured Qp should prevent a large transition-only residual jump."
+    },
+    {
+      "id": "measured_pump_noisy_missing",
+      "description": "Noisy + missing pump samples with causal fill; matched heads, no leak",
+      "actual_leak_m3h": 0.0,
+      "result": {
+        "converged": true,
+        "max_abs_sum_m3h": 1.9538315263162076,
+        "n_ffill": 2,
+        "n_zero_impute": 0,
+        "error": "",
+        "pump_boundary": {
+          "converged": true,
+          "pump_link": "PUMP_1",
+          "extract_node": "n54",
+          "inject_node": "_PUMP1_TANK_INJ",
+          "end_node": "T1",
+          "controls_removed": [
+            "control 1"
+          ],
+          "pump_closed": true,
+          "pattern": "MEAS_PUMP1_Q",
+          "n_steps": 13,
+          "n_pump_finite": 13,
+          "n_pump_ffill": 0,
+          "n_pump_zero_impute": 0,
+          "counts_as_external_supply": false
+        }
+      },
+      "pass_criterion": "converged and max_abs_sum_m3h < 5 (bounded artifact under noise/ffill)",
+      "passed": true,
+      "interpretation": "Causal fill must not look ahead; solver should still converge; \u03a3q_v artifacts stay bounded versus a matched zero-leak case."
+    }
+  ],
+  "all_passed": true
+}
