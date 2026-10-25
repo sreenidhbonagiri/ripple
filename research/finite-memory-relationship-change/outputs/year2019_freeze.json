@@ -1,0 +1,39 @@
+{
+  "frozen_at": "2026-10-24T22:14:12-04:00",
+  "protocol": "YEAR2019_EVALUATION_PROTOCOL.md",
+  "git_commit_at_freeze": "fbcbd9007908eaf358adc87303843e95f71c9b42",
+  "method": {
+    "l_q_hours": 2.0,
+    "l_r_hours": 48.0,
+    "tau": 26.732944547756674,
+    "tau_source": "outputs/empirical_frozen.json selected.tau",
+    "train_days": 14,
+    "n_refs": 3,
+    "recover_steps": 12,
+    "period": {
+      "name": "YEAR2019",
+      "start": "2019-01-01 00:00",
+      "end": "2019-12-31 23:55"
+    }
+  },
+  "code_file_sha256": {
+    "DESIGN.md": "317767c6526ccf2ccc9f8c79d40c20f0b1db8bcfe62503d69d6da344be7f8a1b",
+    "YEAR2019_EVALUATION_PROTOCOL.md": "a408fc62dea0cd4df3069efd82055d93977e5a832bd6ef6a85eed55c86cf4fc9",
+    "detector.py": "df0c2fed831efe9c7dd4051cfebd3e9a8a7ce87b9672ee295c7dfd876e5556bb",
+    "scale.py": "67f7f22a5151640fe3c3a8c207de4dde5d124fdd0f799ab058567c7a474b6b0f",
+    "windows.py": "e442464420ba9c93f33c531a6f0f96293255e80b543d0aeff1b49a35e3aa3419",
+    "signals.py": "63071f2da010c2c14715ef8777e46cc280c2326d00deb3f52bc0d3835c76b831",
+    "run_year2019_evaluation.py": "eaa601441f3cb7c699edf1daa7ab5441f133f263fcf10946a1d3ffeea43b5e1d",
+    "run_empirical_calibration.py": "610ba105ce2255848eb7f33ccefd36066e9a56b53ac32918724ff849217397fc"
+  },
+  "package_config_sha256": "c9e1ec4b267fb690584f42f716f9761679266b589ecb4059a9649b696a174141",
+  "input_sha256": {
+    "2019_SCADA_Pressures.csv": "a4af6616059cc9b366bbab76d880b2c772df544970c6ff4d4a29a58704ce05b1",
+    "2019_SCADA_Flows.csv": "c709ea5ecc03197e1fe70cf4c2de7225f71015acb50a7445ed7765b5029f7f15",
+    "2019_SCADA_Levels.csv": "00624e97b72e63233beeccb48db528d43e59a87b116d0295d5c2a206ee0e75a8",
+    "leakages_2018_2019.json": "4b467db9f9c93cfc84a420ba4b2d8dd583158fee23fd271ede4c295f5933345f",
+    "empirical_frozen.json": "463a247e7c595e90508d678a0f4d296a01b425542963f95648bbb710ac51cc6d",
+    "YEAR2019_EVALUATION_PROTOCOL.md": "a408fc62dea0cd4df3069efd82055d93977e5a832bd6ef6a85eed55c86cf4fc9"
+  },
+  "note": "Recorded before 2019 score inference. \u03c4 not recomputed from 2019. Fit uses first 14 days of 2019 only."
+}

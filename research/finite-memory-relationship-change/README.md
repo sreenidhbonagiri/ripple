@@ -44,6 +44,13 @@ p369 reference-suppression diagnosis (diagnostic intervention only):
 .venv/bin/python research/finite-memory-relationship-change/diagnose_reference_suppression.py
 ```
 
+Frozen 2019 full-year evaluation (protocol before inference; no τ retune):
+`YEAR2019_EVALUATION_PROTOCOL.md`, `outputs/YEAR2019_EVALUATION.md`
+
+```bash
+.venv/bin/python research/finite-memory-relationship-change/run_year2019_evaluation.py
+```
+
 ## Boundary
 
-No production/UI/Tiger/main changes. No 2019. No CUSUM retuning.
+No production/UI/Tiger/main changes. No CUSUM retuning. No feature addition from this evaluation.

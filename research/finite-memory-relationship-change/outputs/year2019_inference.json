@@ -1,0 +1,1989 @@
+{
+  "generated_at": "2026-10-24T22:14:17-04:00",
+  "gt_loaded": true,
+  "fitting": {
+    "train_start": "2019-01-01 00:00",
+    "train_last_sample": "2019-01-14 23:55",
+    "train_end": "2019-01-15 00:00",
+    "train_days": 14,
+    "warm_up_steps": 599,
+    "warm_up_hours": 49.916666666666664,
+    "earliest_eligible_notification": "2019-01-17 01:55",
+    "n_q": 24,
+    "n_r": 576
+  },
+  "tau": 26.732944547756674,
+  "l_q_hours": 2.0,
+  "l_r_hours": 48.0,
+  "n_sensors": 33,
+  "n_eligible_sensors": 33,
+  "analysis_offset": 4032,
+  "analysis_end": 105120,
+  "analysis_steps": 101088,
+  "z_sha256": "3f955864b3c07f49385eafa432931b0186e56d63b11819a7f91071f1d835899a",
+  "z_sha256_16": "3f955864b3c07f49",
+  "scores_sha256": "49e738a4958fbbcd992e00441892689d6701b5a102eaf1eb6f88354a0acd15f6",
+  "episodes_sha256": "3db05ac9472fffe4dab923a11cdf5801afd967356723a5b740782c7cb3fb7064",
+  "n_episodes": 74,
+  "runtime_seconds": 4.3452031668275595,
+  "score_meta": {
+    "n1": {
+      "target_idx": 0,
+      "refs": [
+        "n31",
+        "n4",
+        "n740"
+      ],
+      "sigma": 0.5713634519044049,
+      "n_finite": 100489,
+      "max": 18.86685334851206
+    },
+    "n4": {
+      "target_idx": 1,
+      "refs": [
+        "n31",
+        "n1",
+        "n740"
+      ],
+      "sigma": 0.44587307177047514,
+      "n_finite": 100489,
+      "max": 27.310327016830268
+    },
+    "n31": {
+      "target_idx": 2,
+      "refs": [
+        "n4",
+        "n1",
+        "n740"
+      ],
+      "sigma": 0.5370220047990637,
+      "n_finite": 100489,
+      "max": 9.097765698948894
+    },
+    "n54": {
+      "target_idx": 3,
+      "refs": [
+        "n429",
+        "n410",
+        "n415"
+      ],
+      "sigma": 0.7453001322016637,
+      "n_finite": 100489,
+      "max": 5.018630545746681
+    },
+    "n105": {
+      "target_idx": 4,
+      "refs": [
+        "n469",
+        "n506",
+        "n114"
+      ],
+      "sigma": 0.15069928032579105,
+      "n_finite": 100489,
+      "max": 13.937485116400753
+    },
+    "n114": {
+      "target_idx": 5,
+      "refs": [
+        "n469",
+        "n105",
+        "n506"
+      ],
+      "sigma": 0.23563871153619007,
+      "n_finite": 100489,
+      "max": 13.662525084301421
+    },
+    "n163": {
+      "target_idx": 6,
+      "refs": [
+        "n613",
+        "n519",
+        "n188"
+      ],
+      "sigma": 0.13303116625486455,
+      "n_finite": 100489,
+      "max": 32.58717551726025
+    },
+    "n188": {
+      "target_idx": 7,
+      "refs": [
+        "n163",
+        "n519",
+        "n613"
+      ],
+      "sigma": 0.47358847898999407,
+      "n_finite": 100489,
+      "max": 13.441318668582234
+    },
+    "n215": {
+      "target_idx": 8,
+      "refs": [
+        "n740",
+        "n722",
+        "n769"
+      ],
+      "sigma": 0.2558978355067663,
+      "n_finite": 100489,
+      "max": 36.29209984963044
+    },
+    "n229": {
+      "target_idx": 9,
+      "refs": [
+        "n636",
+        "n613",
+        "n163"
+      ],
+      "sigma": 0.2287723214791987,
+      "n_finite": 100489,
+      "max": 44.69851216393311
+    },
+    "n288": {
+      "target_idx": 10,
+      "refs": [
+        "n726",
+        "n752",
+        "n296"
+      ],
+      "sigma": 0.3482904875588462,
+      "n_finite": 100489,
+      "max": 29.021110601957545
+    },
+    "n296": {
+      "target_idx": 11,
+      "refs": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "sigma": 0.18197939072448505,
+      "n_finite": 100489,
+      "max": 69.66307632931131
+    },
+    "n332": {
+      "target_idx": 12,
+      "refs": [
+        "n549",
+        "n495",
+        "n516"
+      ],
+      "sigma": 0.25740844838989824,
+      "n_finite": 100489,
+      "max": 22.87364451318703
+    },
+    "n342": {
+      "target_idx": 13,
+      "refs": [
+        "n458",
+        "n415",
+        "n613"
+      ],
+      "sigma": 0.17867074576603195,
+      "n_finite": 100489,
+      "max": 33.63387961690017
+    },
+    "n410": {
+      "target_idx": 14,
+      "refs": [
+        "n429",
+        "n54",
+        "n415"
+      ],
+      "sigma": 0.34564169727128263,
+      "n_finite": 100489,
+      "max": 21.476542832582375
+    },
+    "n415": {
+      "target_idx": 15,
+      "refs": [
+        "n458",
+        "n342",
+        "n613"
+      ],
+      "sigma": 0.33596906343323063,
+      "n_finite": 100489,
+      "max": 24.42116872293747
+    },
+    "n429": {
+      "target_idx": 16,
+      "refs": [
+        "n410",
+        "n54",
+        "n415"
+      ],
+      "sigma": 0.28694053020151544,
+      "n_finite": 100489,
+      "max": 6.163798527827018
+    },
+    "n458": {
+      "target_idx": 17,
+      "refs": [
+        "n342",
+        "n415",
+        "n613"
+      ],
+      "sigma": 0.09846309979451186,
+      "n_finite": 100489,
+      "max": 28.650078536586122
+    },
+    "n469": {
+      "target_idx": 18,
+      "refs": [
+        "n105",
+        "n114",
+        "n506"
+      ],
+      "sigma": 0.23983763613038261,
+      "n_finite": 100489,
+      "max": 11.978906319801986
+    },
+    "n495": {
+      "target_idx": 19,
+      "refs": [
+        "n332",
+        "n549",
+        "n506"
+      ],
+      "sigma": 0.17435584410607213,
+      "n_finite": 100489,
+      "max": 20.15815105178228
+    },
+    "n506": {
+      "target_idx": 20,
+      "refs": [
+        "n105",
+        "n469",
+        "n516"
+      ],
+      "sigma": 0.24847023345578995,
+      "n_finite": 100489,
+      "max": 18.734393693401298
+    },
+    "n516": {
+      "target_idx": 21,
+      "refs": [
+        "n506",
+        "n105",
+        "n549"
+      ],
+      "sigma": 0.18619419565732082,
+      "n_finite": 100489,
+      "max": 24.59452988751653
+    },
+    "n519": {
+      "target_idx": 22,
+      "refs": [
+        "n163",
+        "n613",
+        "n188"
+      ],
+      "sigma": 0.2029888747660397,
+      "n_finite": 100489,
+      "max": 53.286688223409705
+    },
+    "n549": {
+      "target_idx": 23,
+      "refs": [
+        "n332",
+        "n495",
+        "n516"
+      ],
+      "sigma": 0.1843398578407673,
+      "n_finite": 100489,
+      "max": 35.345296907793205
+    },
+    "n613": {
+      "target_idx": 24,
+      "refs": [
+        "n163",
+        "n519",
+        "n188"
+      ],
+      "sigma": 0.3000665847626268,
+      "n_finite": 100489,
+      "max": 35.694888530597105
+    },
+    "n636": {
+      "target_idx": 25,
+      "refs": [
+        "n188",
+        "n229",
+        "n163"
+      ],
+      "sigma": 0.22763850975918312,
+      "n_finite": 100489,
+      "max": 55.6109823358279
+    },
+    "n644": {
+      "target_idx": 26,
+      "refs": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "sigma": 0.219010232405024,
+      "n_finite": 100489,
+      "max": 67.82514003099406
+    },
+    "n679": {
+      "target_idx": 27,
+      "refs": [
+        "n288",
+        "n296",
+        "n726"
+      ],
+      "sigma": 0.7128701268596987,
+      "n_finite": 100489,
+      "max": 5.883484228715417
+    },
+    "n722": {
+      "target_idx": 28,
+      "refs": [
+        "n726",
+        "n752",
+        "n296"
+      ],
+      "sigma": 0.21021450721814813,
+      "n_finite": 100489,
+      "max": 30.51231226899778
+    },
+    "n726": {
+      "target_idx": 29,
+      "refs": [
+        "n752",
+        "n769",
+        "n288"
+      ],
+      "sigma": 0.15848330310068232,
+      "n_finite": 100489,
+      "max": 169.87104541832804
+    },
+    "n740": {
+      "target_idx": 30,
+      "refs": [
+        "n722",
+        "n769",
+        "n296"
+      ],
+      "sigma": 0.21655787723835493,
+      "n_finite": 100489,
+      "max": 10.971063524042183
+    },
+    "n752": {
+      "target_idx": 31,
+      "refs": [
+        "n726",
+        "n769",
+        "n722"
+      ],
+      "sigma": 0.17033994179952422,
+      "n_finite": 100489,
+      "max": 48.55462506368774
+    },
+    "n769": {
+      "target_idx": 32,
+      "refs": [
+        "n752",
+        "n726",
+        "n722"
+      ],
+      "sigma": 0.21918746476036718,
+      "n_finite": 100489,
+      "max": 30.67345142904234
+    }
+  },
+  "scale_meta": {
+    "n1": {
+      "mad": 0.520794115960598,
+      "rho_lag1": 0.9295875092901172,
+      "n_eff_q": 2.0,
+      "n_eff_r": 21.018790002332334,
+      "n_train_finite": 4032,
+      "sigma": 0.5713634519044049,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n4": {
+      "mad": 0.40768946520984173,
+      "rho_lag1": 0.9243231223443686,
+      "n_eff_q": 2.0,
+      "n_eff_r": 22.652059325950876,
+      "n_train_finite": 4032,
+      "sigma": 0.44587307177047514,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n31": {
+      "mad": 0.48798108100891113,
+      "rho_lag1": 0.9341246366950602,
+      "n_eff_q": 2.0,
+      "n_eff_r": 19.61828547330982,
+      "n_train_finite": 4032,
+      "sigma": 0.5370220047990637,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n54": {
+      "mad": 0.6671823794022202,
+      "rho_lag1": 0.95,
+      "n_eff_q": 2.0,
+      "n_eff_r": 14.769230769230782,
+      "n_train_finite": 4032,
+      "sigma": 0.7453001322016637,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n105": {
+      "mad": 0.45220554748084396,
+      "rho_lag1": 0.07582231254373985,
+      "n_eff_q": 20.61703335238128,
+      "n_eff_r": 494.8088004571508,
+      "n_train_finite": 4032,
+      "sigma": 0.15069928032579105,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n114": {
+      "mad": 0.6370282606221735,
+      "rho_lag1": 0.17837554415742926,
+      "n_eff_q": 16.734042927139424,
+      "n_eff_r": 401.61703025134614,
+      "n_train_finite": 4032,
+      "sigma": 0.23563871153619007,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n163": {
+      "mad": 0.4139773203060031,
+      "rho_lag1": 0.03957018531386539,
+      "n_eff_q": 22.172928656575426,
+      "n_eff_r": 532.1502877578101,
+      "n_train_finite": 4032,
+      "sigma": 0.13303116625486455,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n188": {
+      "mad": 0.6251815129071474,
+      "rho_lag1": 0.7148903763913941,
+      "n_eff_q": 3.9901273345561243,
+      "n_eff_r": 95.76305602934698,
+      "n_train_finite": 4032,
+      "sigma": 0.47358847898999407,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n215": {
+      "mad": 0.6743235485482728,
+      "rho_lag1": 0.2030262158563091,
+      "n_eff_q": 15.899379886608537,
+      "n_eff_r": 381.58511727860486,
+      "n_train_finite": 4032,
+      "sigma": 0.2558978355067663,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n229": {
+      "mad": 0.6301847398281097,
+      "rho_lag1": 0.16014243830986635,
+      "n_eff_q": 17.37422993501382,
+      "n_eff_r": 416.98151844033174,
+      "n_train_finite": 4032,
+      "sigma": 0.2287723214791987,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n288": {
+      "mad": 0.6017716210408253,
+      "rho_lag1": 0.5566579776927846,
+      "n_eff_q": 6.835289888883399,
+      "n_eff_r": 164.0469573332016,
+      "n_train_finite": 4032,
+      "sigma": 0.3482904875588462,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n296": {
+      "mad": 0.5712962988764048,
+      "rho_lag1": 0.030794330739510288,
+      "n_eff_q": 22.56603026285946,
+      "n_eff_r": 541.5847263086271,
+      "n_train_finite": 4032,
+      "sigma": 0.18197939072448505,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n332": {
+      "mad": 0.5704115834378172,
+      "rho_lag1": 0.36194695182576425,
+      "n_eff_q": 11.243663444933283,
+      "n_eff_r": 269.8479226783988,
+      "n_train_finite": 4032,
+      "sigma": 0.25740844838989824,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n342": {
+      "mad": 0.4434607829898596,
+      "rho_lag1": 0.25966947017222747,
+      "n_eff_q": 14.105234060675638,
+      "n_eff_r": 338.52561745621534,
+      "n_train_finite": 4032,
+      "sigma": 0.17867074576603195,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n410": {
+      "mad": 0.4598861029371619,
+      "rho_lag1": 0.7110193567060595,
+      "n_eff_q": 4.053452353926843,
+      "n_eff_r": 97.28285649424424,
+      "n_train_finite": 4032,
+      "sigma": 0.34564169727128263,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n415": {
+      "mad": 0.6222618315368891,
+      "rho_lag1": 0.5068463637708945,
+      "n_eff_q": 7.854607844611068,
+      "n_eff_r": 188.5105882706656,
+      "n_train_finite": 4032,
+      "sigma": 0.33596906343323063,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n429": {
+      "mad": 0.37052598514128476,
+      "rho_lag1": 0.7255045369244942,
+      "n_eff_q": 3.8179506184053666,
+      "n_eff_r": 91.6308148417288,
+      "n_train_finite": 4032,
+      "sigma": 0.28694053020151544,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n458": {
+      "mad": 0.2639986742287874,
+      "rho_lag1": 0.18635310456082613,
+      "n_eff_q": 16.460129294953067,
+      "n_eff_r": 395.04310307887357,
+      "n_train_finite": 4032,
+      "sigma": 0.09846309979451186,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n469": {
+      "mad": 0.5664169436204247,
+      "rho_lag1": 0.30538731794579876,
+      "n_eff_q": 12.77069582346978,
+      "n_eff_r": 306.4966997632747,
+      "n_train_finite": 4032,
+      "sigma": 0.23983763613038261,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n495": {
+      "mad": 0.5158148975369841,
+      "rho_lag1": 0.08992535242238735,
+      "n_eff_q": 20.039713264141216,
+      "n_eff_r": 480.95311833938916,
+      "n_train_finite": 4032,
+      "sigma": 0.17435584410607213,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n506": {
+      "mad": 0.5598991924125585,
+      "rho_lag1": 0.3473129995075255,
+      "n_eff_q": 11.626465429744332,
+      "n_eff_r": 279.035170313864,
+      "n_train_finite": 4032,
+      "sigma": 0.24847023345578995,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n516": {
+      "mad": 0.5624444938875968,
+      "rho_lag1": 0.0692055515965212,
+      "n_eff_q": 20.893145128480807,
+      "n_eff_r": 501.43548308353945,
+      "n_train_finite": 4032,
+      "sigma": 0.18619419565732082,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n519": {
+      "mad": 0.5865568444132805,
+      "rho_lag1": 0.11321276166004171,
+      "n_eff_q": 19.118442092256995,
+      "n_eff_r": 458.84261021416796,
+      "n_train_finite": 4032,
+      "sigma": 0.2029888747660397,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n549": {
+      "mad": 0.5201609809882939,
+      "rho_lag1": 0.1366020673880963,
+      "n_eff_q": 18.231139091893144,
+      "n_eff_r": 437.54733820543544,
+      "n_train_finite": 4032,
+      "sigma": 0.1843398578407673,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n613": {
+      "mad": 0.6071602734737098,
+      "rho_lag1": 0.4382237282627017,
+      "n_eff_q": 9.374501516520983,
+      "n_eff_r": 224.9880363965036,
+      "n_train_finite": 4032,
+      "sigma": 0.3000665847626268,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n636": {
+      "mad": 0.5968943536281586,
+      "rho_lag1": 0.20776785823687247,
+      "n_eff_q": 15.742736712725169,
+      "n_eff_r": 377.82568110540404,
+      "n_train_finite": 4032,
+      "sigma": 0.22763850975918312,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n644": {
+      "mad": 0.6568668466061354,
+      "rho_lag1": 0.07630711156914913,
+      "n_eff_q": 20.596936584411075,
+      "n_eff_r": 494.3264780258658,
+      "n_train_finite": 4032,
+      "sigma": 0.219010232405024,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n679": {
+      "mad": 0.6739787822589278,
+      "rho_lag1": 0.8428457535158107,
+      "n_eff_q": 2.0466726031871247,
+      "n_eff_r": 49.120142476491,
+      "n_train_finite": 4032,
+      "sigma": 0.7128701268596987,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n722": {
+      "mad": 0.6367644593119621,
+      "rho_lag1": 0.0664492034005999,
+      "n_eff_q": 21.009176102285792,
+      "n_eff_r": 504.220226454859,
+      "n_train_finite": 4032,
+      "sigma": 0.21021450721814813,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n726": {
+      "mad": 0.5005687602388207,
+      "rho_lag1": 0.02471785099562655,
+      "n_eff_q": 22.842162409255096,
+      "n_eff_r": 548.2118978221223,
+      "n_train_finite": 4032,
+      "sigma": 0.15848330310068232,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n740": {
+      "mad": 0.6687864322448149,
+      "rho_lag1": 0.04717663675742005,
+      "n_eff_q": 21.837539069465766,
+      "n_eff_r": 524.1009376671783,
+      "n_train_finite": 4032,
+      "sigma": 0.21655787723835493,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n752": {
+      "mad": 0.5514850402250886,
+      "rho_lag1": 0.0,
+      "n_eff_q": 24.0,
+      "n_eff_r": 576.0,
+      "n_train_finite": 4032,
+      "sigma": 0.17033994179952422,
+      "eligible": true,
+      "reason": "ok"
+    },
+    "n769": {
+      "mad": 0.6080408903071657,
+      "rho_lag1": 0.15328606533560352,
+      "n_eff_q": 17.620202864440326,
+      "n_eff_r": 422.88486874656786,
+      "n_train_finite": 4032,
+      "sigma": 0.21918746476036718,
+      "eligible": true,
+      "reason": "ok"
+    }
+  },
+  "episodes": [
+    {
+      "episode_idx": 0,
+      "stream_id": "n644",
+      "target_idx": 26,
+      "notify_time": "2019-01-18 04:35",
+      "notify_idx": 4951,
+      "end_time": "2019-01-18 08:55",
+      "end_idx": 5003,
+      "change_estimate_time": "2019-01-18 04:35",
+      "refs_used": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "peak_score": 30.056524537546522,
+      "duration_hours": 4.333333333333333
+    },
+    {
+      "episode_idx": 1,
+      "stream_id": "n644",
+      "target_idx": 26,
+      "notify_time": "2019-01-19 04:20",
+      "notify_idx": 5236,
+      "end_time": "2019-01-19 09:50",
+      "end_idx": 5302,
+      "change_estimate_time": "2019-01-19 04:20",
+      "refs_used": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "peak_score": 29.655436134130873,
+      "duration_hours": 5.5
+    },
+    {
+      "episode_idx": 2,
+      "stream_id": "n644",
+      "target_idx": 26,
+      "notify_time": "2019-01-20 06:05",
+      "notify_idx": 5545,
+      "end_time": "2019-01-20 10:40",
+      "end_idx": 5600,
+      "change_estimate_time": "2019-01-20 06:05",
+      "refs_used": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "peak_score": 26.810599622751592,
+      "duration_hours": 4.583333333333333
+    },
+    {
+      "episode_idx": 3,
+      "stream_id": "n644",
+      "target_idx": 26,
+      "notify_time": "2019-01-21 04:40",
+      "notify_idx": 5816,
+      "end_time": "2019-01-21 08:30",
+      "end_idx": 5862,
+      "change_estimate_time": "2019-01-21 04:40",
+      "refs_used": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "peak_score": 27.862052636075514,
+      "duration_hours": 3.8333333333333335
+    },
+    {
+      "episode_idx": 4,
+      "stream_id": "n644",
+      "target_idx": 26,
+      "notify_time": "2019-01-22 04:30",
+      "notify_idx": 6102,
+      "end_time": "2019-01-22 08:45",
+      "end_idx": 6153,
+      "change_estimate_time": "2019-01-22 04:30",
+      "refs_used": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "peak_score": 28.189661471548256,
+      "duration_hours": 4.25
+    },
+    {
+      "episode_idx": 5,
+      "stream_id": "n644",
+      "target_idx": 26,
+      "notify_time": "2019-01-23 04:45",
+      "notify_idx": 6393,
+      "end_time": "2019-01-23 08:50",
+      "end_idx": 6442,
+      "change_estimate_time": "2019-01-23 04:45",
+      "refs_used": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "peak_score": 31.46742085559197,
+      "duration_hours": 4.083333333333333
+    },
+    {
+      "episode_idx": 6,
+      "stream_id": "n644",
+      "target_idx": 26,
+      "notify_time": "2019-01-24 05:05",
+      "notify_idx": 6685,
+      "end_time": "2019-01-24 08:50",
+      "end_idx": 6730,
+      "change_estimate_time": "2019-01-24 05:05",
+      "refs_used": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "peak_score": 30.418141813306924,
+      "duration_hours": 3.75
+    },
+    {
+      "episode_idx": 7,
+      "stream_id": "n726",
+      "target_idx": 29,
+      "notify_time": "2019-01-24 19:25",
+      "notify_idx": 6857,
+      "end_time": "2019-01-26 02:25",
+      "end_idx": 7229,
+      "change_estimate_time": "2019-01-24 19:25",
+      "refs_used": [
+        "n752",
+        "n769",
+        "n288"
+      ],
+      "peak_score": 169.87104541832804,
+      "duration_hours": 31.0
+    },
+    {
+      "episode_idx": 8,
+      "stream_id": "n636",
+      "target_idx": 25,
+      "notify_time": "2019-01-24 19:30",
+      "notify_idx": 6858,
+      "end_time": "2019-01-25 21:30",
+      "end_idx": 7170,
+      "change_estimate_time": "2019-01-24 19:30",
+      "refs_used": [
+        "n188",
+        "n229",
+        "n163"
+      ],
+      "peak_score": 38.05278595357149,
+      "duration_hours": 26.0
+    },
+    {
+      "episode_idx": 9,
+      "stream_id": "n644",
+      "target_idx": 26,
+      "notify_time": "2019-01-24 19:30",
+      "notify_idx": 6858,
+      "end_time": "2019-01-25 20:20",
+      "end_idx": 7156,
+      "change_estimate_time": "2019-01-24 19:30",
+      "refs_used": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "peak_score": 43.29311488861789,
+      "duration_hours": 24.833333333333332
+    },
+    {
+      "episode_idx": 10,
+      "stream_id": "n644",
+      "target_idx": 26,
+      "notify_time": "2019-02-01 10:55",
+      "notify_idx": 9059,
+      "end_time": "2019-02-02 15:00",
+      "end_idx": 9396,
+      "change_estimate_time": "2019-02-01 10:55",
+      "refs_used": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "peak_score": 67.82514003099406,
+      "duration_hours": 28.083333333333332
+    },
+    {
+      "episode_idx": 11,
+      "stream_id": "n636",
+      "target_idx": 25,
+      "notify_time": "2019-02-01 15:00",
+      "notify_idx": 9108,
+      "end_time": "2019-02-02 04:35",
+      "end_idx": 9271,
+      "change_estimate_time": "2019-02-01 15:00",
+      "refs_used": [
+        "n188",
+        "n229",
+        "n163"
+      ],
+      "peak_score": 31.509068502143517,
+      "duration_hours": 13.583333333333334
+    },
+    {
+      "episode_idx": 12,
+      "stream_id": "n644",
+      "target_idx": 26,
+      "notify_time": "2019-02-02 15:55",
+      "notify_idx": 9407,
+      "end_time": "2019-02-03 00:45",
+      "end_idx": 9513,
+      "change_estimate_time": "2019-02-02 15:55",
+      "refs_used": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "peak_score": 29.51593621184464,
+      "duration_hours": 8.833333333333334
+    },
+    {
+      "episode_idx": 13,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-02-07 10:10",
+      "notify_idx": 10778,
+      "end_time": "2019-02-08 12:05",
+      "end_idx": 11089,
+      "change_estimate_time": "2019-02-07 10:10",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 51.346426600363614,
+      "duration_hours": 25.916666666666668
+    },
+    {
+      "episode_idx": 14,
+      "stream_id": "n769",
+      "target_idx": 32,
+      "notify_time": "2019-02-07 10:20",
+      "notify_idx": 10780,
+      "end_time": "2019-02-08 12:15",
+      "end_idx": 11091,
+      "change_estimate_time": "2019-02-07 10:20",
+      "refs_used": [
+        "n752",
+        "n726",
+        "n722"
+      ],
+      "peak_score": 30.67345142904234,
+      "duration_hours": 25.916666666666668
+    },
+    {
+      "episode_idx": 15,
+      "stream_id": "n519",
+      "target_idx": 22,
+      "notify_time": "2019-05-05 13:20",
+      "notify_idx": 35872,
+      "end_time": "2019-05-06 17:05",
+      "end_idx": 36205,
+      "change_estimate_time": "2019-05-05 13:20",
+      "refs_used": [
+        "n163",
+        "n613",
+        "n188"
+      ],
+      "peak_score": 34.72216666864787,
+      "duration_hours": 27.75
+    },
+    {
+      "episode_idx": 16,
+      "stream_id": "n163",
+      "target_idx": 6,
+      "notify_time": "2019-05-05 13:30",
+      "notify_idx": 35874,
+      "end_time": "2019-05-06 15:05",
+      "end_idx": 36181,
+      "change_estimate_time": "2019-05-05 13:30",
+      "refs_used": [
+        "n613",
+        "n519",
+        "n188"
+      ],
+      "peak_score": 32.48491020826817,
+      "duration_hours": 25.583333333333332
+    },
+    {
+      "episode_idx": 17,
+      "stream_id": "n636",
+      "target_idx": 25,
+      "notify_time": "2019-05-05 15:15",
+      "notify_idx": 35895,
+      "end_time": "2019-05-06 10:35",
+      "end_idx": 36127,
+      "change_estimate_time": "2019-05-05 15:15",
+      "refs_used": [
+        "n188",
+        "n229",
+        "n163"
+      ],
+      "peak_score": 29.455357436397392,
+      "duration_hours": 19.333333333333332
+    },
+    {
+      "episode_idx": 18,
+      "stream_id": "n644",
+      "target_idx": 26,
+      "notify_time": "2019-05-23 16:00",
+      "notify_idx": 41088,
+      "end_time": "2019-05-24 18:20",
+      "end_idx": 41404,
+      "change_estimate_time": "2019-05-23 16:00",
+      "refs_used": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "peak_score": 45.65809410375873,
+      "duration_hours": 26.333333333333332
+    },
+    {
+      "episode_idx": 19,
+      "stream_id": "n549",
+      "target_idx": 23,
+      "notify_time": "2019-05-23 16:05",
+      "notify_idx": 41089,
+      "end_time": "2019-05-24 17:10",
+      "end_idx": 41390,
+      "change_estimate_time": "2019-05-23 16:05",
+      "refs_used": [
+        "n332",
+        "n495",
+        "n516"
+      ],
+      "peak_score": 35.345296907793205,
+      "duration_hours": 25.083333333333332
+    },
+    {
+      "episode_idx": 20,
+      "stream_id": "n613",
+      "target_idx": 24,
+      "notify_time": "2019-06-12 20:55",
+      "notify_idx": 46907,
+      "end_time": "2019-06-13 22:50",
+      "end_idx": 47218,
+      "change_estimate_time": "2019-06-12 20:55",
+      "refs_used": [
+        "n163",
+        "n519",
+        "n188"
+      ],
+      "peak_score": 35.694888530597105,
+      "duration_hours": 25.916666666666668
+    },
+    {
+      "episode_idx": 21,
+      "stream_id": "n4",
+      "target_idx": 1,
+      "notify_time": "2019-06-28 07:35",
+      "notify_idx": 51355,
+      "end_time": "2019-06-28 12:30",
+      "end_idx": 51414,
+      "change_estimate_time": "2019-06-28 07:35",
+      "refs_used": [
+        "n31",
+        "n1",
+        "n740"
+      ],
+      "peak_score": 26.91228945334782,
+      "duration_hours": 4.916666666666667
+    },
+    {
+      "episode_idx": 22,
+      "stream_id": "n229",
+      "target_idx": 9,
+      "notify_time": "2019-07-10 10:05",
+      "notify_idx": 54841,
+      "end_time": "2019-07-11 14:35",
+      "end_idx": 55183,
+      "change_estimate_time": "2019-07-10 10:05",
+      "refs_used": [
+        "n636",
+        "n613",
+        "n163"
+      ],
+      "peak_score": 35.870260974554874,
+      "duration_hours": 28.5
+    },
+    {
+      "episode_idx": 23,
+      "stream_id": "n215",
+      "target_idx": 8,
+      "notify_time": "2019-07-10 10:25",
+      "notify_idx": 54845,
+      "end_time": "2019-07-11 11:45",
+      "end_idx": 55149,
+      "change_estimate_time": "2019-07-10 10:25",
+      "refs_used": [
+        "n740",
+        "n722",
+        "n769"
+      ],
+      "peak_score": 36.29209984963044,
+      "duration_hours": 25.333333333333332
+    },
+    {
+      "episode_idx": 24,
+      "stream_id": "n458",
+      "target_idx": 17,
+      "notify_time": "2019-07-17 03:55",
+      "notify_idx": 56783,
+      "end_time": "2019-07-18 06:15",
+      "end_idx": 57099,
+      "change_estimate_time": "2019-07-17 03:55",
+      "refs_used": [
+        "n342",
+        "n415",
+        "n613"
+      ],
+      "peak_score": 28.650078536586122,
+      "duration_hours": 26.333333333333332
+    },
+    {
+      "episode_idx": 25,
+      "stream_id": "n519",
+      "target_idx": 22,
+      "notify_time": "2019-07-17 05:00",
+      "notify_idx": 56796,
+      "end_time": "2019-07-17 08:25",
+      "end_idx": 56837,
+      "change_estimate_time": "2019-07-17 05:00",
+      "refs_used": [
+        "n163",
+        "n613",
+        "n188"
+      ],
+      "peak_score": 26.839779414858032,
+      "duration_hours": 3.4166666666666665
+    },
+    {
+      "episode_idx": 26,
+      "stream_id": "n636",
+      "target_idx": 25,
+      "notify_time": "2019-07-17 10:25",
+      "notify_idx": 56861,
+      "end_time": "2019-07-18 13:15",
+      "end_idx": 57183,
+      "change_estimate_time": "2019-07-17 10:25",
+      "refs_used": [
+        "n188",
+        "n229",
+        "n163"
+      ],
+      "peak_score": 55.6109823358279,
+      "duration_hours": 26.833333333333332
+    },
+    {
+      "episode_idx": 27,
+      "stream_id": "n519",
+      "target_idx": 22,
+      "notify_time": "2019-07-17 10:30",
+      "notify_idx": 56862,
+      "end_time": "2019-07-18 13:00",
+      "end_idx": 57180,
+      "change_estimate_time": "2019-07-17 10:30",
+      "refs_used": [
+        "n163",
+        "n613",
+        "n188"
+      ],
+      "peak_score": 53.286688223409705,
+      "duration_hours": 26.5
+    },
+    {
+      "episode_idx": 28,
+      "stream_id": "n229",
+      "target_idx": 9,
+      "notify_time": "2019-07-17 10:50",
+      "notify_idx": 56866,
+      "end_time": "2019-07-18 06:40",
+      "end_idx": 57104,
+      "change_estimate_time": "2019-07-17 10:50",
+      "refs_used": [
+        "n636",
+        "n613",
+        "n163"
+      ],
+      "peak_score": 43.27206141236045,
+      "duration_hours": 19.833333333333332
+    },
+    {
+      "episode_idx": 29,
+      "stream_id": "n163",
+      "target_idx": 6,
+      "notify_time": "2019-07-17 11:00",
+      "notify_idx": 56868,
+      "end_time": "2019-07-18 12:10",
+      "end_idx": 57170,
+      "change_estimate_time": "2019-07-17 11:00",
+      "refs_used": [
+        "n613",
+        "n519",
+        "n188"
+      ],
+      "peak_score": 32.58717551726025,
+      "duration_hours": 25.166666666666668
+    },
+    {
+      "episode_idx": 30,
+      "stream_id": "n229",
+      "target_idx": 9,
+      "notify_time": "2019-07-18 11:00",
+      "notify_idx": 57156,
+      "end_time": "2019-07-18 21:30",
+      "end_idx": 57282,
+      "change_estimate_time": "2019-07-18 11:00",
+      "refs_used": [
+        "n636",
+        "n613",
+        "n163"
+      ],
+      "peak_score": 28.28900852744187,
+      "duration_hours": 10.5
+    },
+    {
+      "episode_idx": 31,
+      "stream_id": "n4",
+      "target_idx": 1,
+      "notify_time": "2019-07-19 07:30",
+      "notify_idx": 57402,
+      "end_time": "2019-07-19 11:05",
+      "end_idx": 57445,
+      "change_estimate_time": "2019-07-19 07:30",
+      "refs_used": [
+        "n31",
+        "n1",
+        "n740"
+      ],
+      "peak_score": 27.310327016830268,
+      "duration_hours": 3.5833333333333335
+    },
+    {
+      "episode_idx": 32,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-08-28 09:40",
+      "notify_idx": 68948,
+      "end_time": "2019-08-29 00:25",
+      "end_idx": 69125,
+      "change_estimate_time": "2019-08-28 09:40",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 33.342089158394685,
+      "duration_hours": 14.75
+    },
+    {
+      "episode_idx": 33,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-08-29 09:35",
+      "notify_idx": 69235,
+      "end_time": "2019-08-30 00:50",
+      "end_idx": 69418,
+      "change_estimate_time": "2019-08-29 09:35",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 32.839665979052775,
+      "duration_hours": 15.25
+    },
+    {
+      "episode_idx": 34,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-08-30 08:30",
+      "notify_idx": 69510,
+      "end_time": "2019-08-31 02:05",
+      "end_idx": 69721,
+      "change_estimate_time": "2019-08-30 08:30",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 38.679389517425214,
+      "duration_hours": 17.583333333333332
+    },
+    {
+      "episode_idx": 35,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-08-31 10:20",
+      "notify_idx": 69820,
+      "end_time": "2019-09-01 01:50",
+      "end_idx": 70006,
+      "change_estimate_time": "2019-08-31 10:20",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 36.564634009050316,
+      "duration_hours": 15.5
+    },
+    {
+      "episode_idx": 36,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-01 10:25",
+      "notify_idx": 70109,
+      "end_time": "2019-09-02 02:05",
+      "end_idx": 70297,
+      "change_estimate_time": "2019-09-01 10:25",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 39.29200599816923,
+      "duration_hours": 15.666666666666666
+    },
+    {
+      "episode_idx": 37,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-02 07:40",
+      "notify_idx": 70364,
+      "end_time": "2019-09-03 01:05",
+      "end_idx": 70573,
+      "change_estimate_time": "2019-09-02 07:40",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 51.2023889294291,
+      "duration_hours": 17.416666666666668
+    },
+    {
+      "episode_idx": 38,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-03 08:05",
+      "notify_idx": 70657,
+      "end_time": "2019-09-04 01:50",
+      "end_idx": 70870,
+      "change_estimate_time": "2019-09-03 08:05",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 59.20662973455679,
+      "duration_hours": 17.75
+    },
+    {
+      "episode_idx": 39,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-04 07:45",
+      "notify_idx": 70941,
+      "end_time": "2019-09-05 01:35",
+      "end_idx": 71155,
+      "change_estimate_time": "2019-09-04 07:45",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 66.37847012078939,
+      "duration_hours": 17.833333333333332
+    },
+    {
+      "episode_idx": 40,
+      "stream_id": "n722",
+      "target_idx": 28,
+      "notify_time": "2019-09-04 11:55",
+      "notify_idx": 70991,
+      "end_time": "2019-09-05 00:25",
+      "end_idx": 71141,
+      "change_estimate_time": "2019-09-04 11:55",
+      "refs_used": [
+        "n726",
+        "n752",
+        "n296"
+      ],
+      "peak_score": 27.834970203105858,
+      "duration_hours": 12.5
+    },
+    {
+      "episode_idx": 41,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-05 07:40",
+      "notify_idx": 71228,
+      "end_time": "2019-09-06 01:45",
+      "end_idx": 71445,
+      "change_estimate_time": "2019-09-05 07:40",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 69.66307632931131,
+      "duration_hours": 18.083333333333332
+    },
+    {
+      "episode_idx": 42,
+      "stream_id": "n722",
+      "target_idx": 28,
+      "notify_time": "2019-09-05 13:00",
+      "notify_idx": 71292,
+      "end_time": "2019-09-06 00:15",
+      "end_idx": 71427,
+      "change_estimate_time": "2019-09-05 13:00",
+      "refs_used": [
+        "n726",
+        "n752",
+        "n296"
+      ],
+      "peak_score": 30.51231226899778,
+      "duration_hours": 11.25
+    },
+    {
+      "episode_idx": 43,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-06 08:15",
+      "notify_idx": 71523,
+      "end_time": "2019-09-07 02:15",
+      "end_idx": 71739,
+      "change_estimate_time": "2019-09-06 08:15",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 69.35810705258167,
+      "duration_hours": 18.0
+    },
+    {
+      "episode_idx": 44,
+      "stream_id": "n722",
+      "target_idx": 28,
+      "notify_time": "2019-09-06 09:25",
+      "notify_idx": 71537,
+      "end_time": "2019-09-07 00:25",
+      "end_idx": 71717,
+      "change_estimate_time": "2019-09-06 09:25",
+      "refs_used": [
+        "n726",
+        "n752",
+        "n296"
+      ],
+      "peak_score": 30.136346899945675,
+      "duration_hours": 15.0
+    },
+    {
+      "episode_idx": 45,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-07 08:40",
+      "notify_idx": 71816,
+      "end_time": "2019-09-08 02:00",
+      "end_idx": 72024,
+      "change_estimate_time": "2019-09-07 08:40",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 68.653943190747,
+      "duration_hours": 17.333333333333332
+    },
+    {
+      "episode_idx": 46,
+      "stream_id": "n722",
+      "target_idx": 28,
+      "notify_time": "2019-09-07 20:15",
+      "notify_idx": 71955,
+      "end_time": "2019-09-07 23:50",
+      "end_idx": 71998,
+      "change_estimate_time": "2019-09-07 20:15",
+      "refs_used": [
+        "n726",
+        "n752",
+        "n296"
+      ],
+      "peak_score": 27.902503105862618,
+      "duration_hours": 3.5833333333333335
+    },
+    {
+      "episode_idx": 47,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-08 10:25",
+      "notify_idx": 72125,
+      "end_time": "2019-09-08 23:30",
+      "end_idx": 72282,
+      "change_estimate_time": "2019-09-08 10:25",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 38.72922202339528,
+      "duration_hours": 13.083333333333334
+    },
+    {
+      "episode_idx": 48,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-09 10:00",
+      "notify_idx": 72408,
+      "end_time": "2019-09-09 17:00",
+      "end_idx": 72492,
+      "change_estimate_time": "2019-09-09 10:00",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 40.0437017591677,
+      "duration_hours": 7.0
+    },
+    {
+      "episode_idx": 49,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-09 21:10",
+      "notify_idx": 72542,
+      "end_time": "2019-09-10 00:00",
+      "end_idx": 72576,
+      "change_estimate_time": "2019-09-09 21:10",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 27.941713392711957,
+      "duration_hours": 2.8333333333333335
+    },
+    {
+      "episode_idx": 50,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-10 08:55",
+      "notify_idx": 72683,
+      "end_time": "2019-09-10 16:25",
+      "end_idx": 72773,
+      "change_estimate_time": "2019-09-10 08:55",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 36.805705110862185,
+      "duration_hours": 7.5
+    },
+    {
+      "episode_idx": 51,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-11 11:00",
+      "notify_idx": 72996,
+      "end_time": "2019-09-11 16:30",
+      "end_idx": 73062,
+      "change_estimate_time": "2019-09-11 11:00",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 33.81425595186867,
+      "duration_hours": 5.5
+    },
+    {
+      "episode_idx": 52,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-12 12:20",
+      "notify_idx": 73300,
+      "end_time": "2019-09-12 15:25",
+      "end_idx": 73337,
+      "change_estimate_time": "2019-09-12 12:20",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 30.496780937221573,
+      "duration_hours": 3.0833333333333335
+    },
+    {
+      "episode_idx": 53,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-13 08:35",
+      "notify_idx": 73543,
+      "end_time": "2019-09-13 16:15",
+      "end_idx": 73635,
+      "change_estimate_time": "2019-09-13 08:35",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 35.60618234753265,
+      "duration_hours": 7.666666666666667
+    },
+    {
+      "episode_idx": 54,
+      "stream_id": "n342",
+      "target_idx": 13,
+      "notify_time": "2019-09-16 05:00",
+      "notify_idx": 74364,
+      "end_time": "2019-09-17 06:15",
+      "end_idx": 74667,
+      "change_estimate_time": "2019-09-16 05:00",
+      "refs_used": [
+        "n458",
+        "n415",
+        "n613"
+      ],
+      "peak_score": 33.63387961690017,
+      "duration_hours": 25.25
+    },
+    {
+      "episode_idx": 55,
+      "stream_id": "n644",
+      "target_idx": 26,
+      "notify_time": "2019-09-16 06:15",
+      "notify_idx": 74379,
+      "end_time": "2019-09-17 03:40",
+      "end_idx": 74636,
+      "change_estimate_time": "2019-09-16 06:15",
+      "refs_used": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "peak_score": 66.81853156598032,
+      "duration_hours": 21.416666666666668
+    },
+    {
+      "episode_idx": 56,
+      "stream_id": "n636",
+      "target_idx": 25,
+      "notify_time": "2019-09-16 07:10",
+      "notify_idx": 74390,
+      "end_time": "2019-09-17 02:55",
+      "end_idx": 74627,
+      "change_estimate_time": "2019-09-16 07:10",
+      "refs_used": [
+        "n188",
+        "n229",
+        "n163"
+      ],
+      "peak_score": 49.66120166959986,
+      "duration_hours": 19.75
+    },
+    {
+      "episode_idx": 57,
+      "stream_id": "n229",
+      "target_idx": 9,
+      "notify_time": "2019-09-16 08:55",
+      "notify_idx": 74411,
+      "end_time": "2019-09-17 02:20",
+      "end_idx": 74620,
+      "change_estimate_time": "2019-09-16 08:55",
+      "refs_used": [
+        "n636",
+        "n613",
+        "n163"
+      ],
+      "peak_score": 44.69851216393311,
+      "duration_hours": 17.416666666666668
+    },
+    {
+      "episode_idx": 58,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-16 09:55",
+      "notify_idx": 74423,
+      "end_time": "2019-09-16 16:45",
+      "end_idx": 74505,
+      "change_estimate_time": "2019-09-16 09:55",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 30.43251068238753,
+      "duration_hours": 6.833333333333333
+    },
+    {
+      "episode_idx": 59,
+      "stream_id": "n644",
+      "target_idx": 26,
+      "notify_time": "2019-09-17 12:55",
+      "notify_idx": 74747,
+      "end_time": "2019-09-17 23:45",
+      "end_idx": 74877,
+      "change_estimate_time": "2019-09-17 12:55",
+      "refs_used": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "peak_score": 43.31837056443619,
+      "duration_hours": 10.833333333333334
+    },
+    {
+      "episode_idx": 60,
+      "stream_id": "n636",
+      "target_idx": 25,
+      "notify_time": "2019-09-17 13:15",
+      "notify_idx": 74751,
+      "end_time": "2019-09-17 23:45",
+      "end_idx": 74877,
+      "change_estimate_time": "2019-09-17 13:15",
+      "refs_used": [
+        "n188",
+        "n229",
+        "n163"
+      ],
+      "peak_score": 29.465113820197853,
+      "duration_hours": 10.5
+    },
+    {
+      "episode_idx": 61,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-18 09:10",
+      "notify_idx": 74990,
+      "end_time": "2019-09-18 16:40",
+      "end_idx": 75080,
+      "change_estimate_time": "2019-09-18 09:10",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 40.04692994548356,
+      "duration_hours": 7.5
+    },
+    {
+      "episode_idx": 62,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-19 09:30",
+      "notify_idx": 75282,
+      "end_time": "2019-09-19 16:00",
+      "end_idx": 75360,
+      "change_estimate_time": "2019-09-19 09:30",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 29.241247045086897,
+      "duration_hours": 6.5
+    },
+    {
+      "episode_idx": 63,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-20 09:35",
+      "notify_idx": 75571,
+      "end_time": "2019-09-20 15:40",
+      "end_idx": 75644,
+      "change_estimate_time": "2019-09-20 09:35",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 29.637056227010046,
+      "duration_hours": 6.083333333333333
+    },
+    {
+      "episode_idx": 64,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-23 12:55",
+      "notify_idx": 76475,
+      "end_time": "2019-09-23 16:55",
+      "end_idx": 76523,
+      "change_estimate_time": "2019-09-23 12:55",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 30.25588277396234,
+      "duration_hours": 4.0
+    },
+    {
+      "episode_idx": 65,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-24 08:50",
+      "notify_idx": 76714,
+      "end_time": "2019-09-24 17:25",
+      "end_idx": 76817,
+      "change_estimate_time": "2019-09-24 08:50",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 43.83449387069191,
+      "duration_hours": 8.583333333333334
+    },
+    {
+      "episode_idx": 66,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-25 09:05",
+      "notify_idx": 77005,
+      "end_time": "2019-09-25 16:45",
+      "end_idx": 77097,
+      "change_estimate_time": "2019-09-25 09:05",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 35.06697042153916,
+      "duration_hours": 7.666666666666667
+    },
+    {
+      "episode_idx": 67,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-27 10:30",
+      "notify_idx": 77598,
+      "end_time": "2019-09-27 16:20",
+      "end_idx": 77668,
+      "change_estimate_time": "2019-09-27 10:30",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 27.692713320289858,
+      "duration_hours": 5.833333333333333
+    },
+    {
+      "episode_idx": 68,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-30 08:40",
+      "notify_idx": 78440,
+      "end_time": "2019-09-30 16:45",
+      "end_idx": 78537,
+      "change_estimate_time": "2019-09-30 08:40",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 41.56211273243294,
+      "duration_hours": 8.083333333333334
+    },
+    {
+      "episode_idx": 69,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-09-30 21:35",
+      "notify_idx": 78595,
+      "end_time": "2019-10-01 00:05",
+      "end_idx": 78625,
+      "change_estimate_time": "2019-09-30 21:35",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 26.836122466274578,
+      "duration_hours": 2.5
+    },
+    {
+      "episode_idx": 70,
+      "stream_id": "n296",
+      "target_idx": 11,
+      "notify_time": "2019-10-01 11:20",
+      "notify_idx": 78760,
+      "end_time": "2019-10-01 16:00",
+      "end_idx": 78816,
+      "change_estimate_time": "2019-10-01 11:20",
+      "refs_used": [
+        "n722",
+        "n726",
+        "n288"
+      ],
+      "peak_score": 30.675159193421923,
+      "duration_hours": 4.666666666666667
+    },
+    {
+      "episode_idx": 71,
+      "stream_id": "n752",
+      "target_idx": 31,
+      "notify_time": "2019-10-01 17:45",
+      "notify_idx": 78837,
+      "end_time": "2019-10-02 22:25",
+      "end_idx": 79181,
+      "change_estimate_time": "2019-10-01 17:45",
+      "refs_used": [
+        "n726",
+        "n769",
+        "n722"
+      ],
+      "peak_score": 48.55462506368774,
+      "duration_hours": 28.666666666666668
+    },
+    {
+      "episode_idx": 72,
+      "stream_id": "n288",
+      "target_idx": 10,
+      "notify_time": "2019-10-01 18:15",
+      "notify_idx": 78843,
+      "end_time": "2019-10-02 19:40",
+      "end_idx": 79148,
+      "change_estimate_time": "2019-10-01 18:15",
+      "refs_used": [
+        "n726",
+        "n752",
+        "n296"
+      ],
+      "peak_score": 29.021110601957545,
+      "duration_hours": 25.416666666666668
+    },
+    {
+      "episode_idx": 73,
+      "stream_id": "n644",
+      "target_idx": 26,
+      "notify_time": "2019-10-25 20:30",
+      "notify_idx": 85782,
+      "end_time": "2019-10-26 00:55",
+      "end_idx": 85835,
+      "change_estimate_time": "2019-10-25 20:30",
+      "refs_used": [
+        "n332",
+        "n549",
+        "n495"
+      ],
+      "peak_score": 26.947033995490767,
+      "duration_hours": 4.416666666666667
+    }
+  ],
+  "first_notification": "2019-01-18 04:35",
+  "note": "Ground truth not used for scoring or episode generation.",
+  "gt_loaded_at": "2026-10-24T22:14:18-04:00"
+}
