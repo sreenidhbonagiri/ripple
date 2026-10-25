@@ -52,6 +52,16 @@ Results: `outputs/arm_a_synth_miss_audit/ARM_A_SYNTH_MISS_AUDIT.md`
 Shared t≈199 pre-onset trigger audit (diagnostic; no refit):
 `outputs/t199_trigger_audit/T199_TRIGGER_AUDIT.md`
 
+Scenario-phase correction (new scenarios only; synthetic stop):
+
+```bash
+.venv/bin/python research/supervised-event-detection/run_phase_correction_pilot.py
+```
+
+Protocol: `PHASE_CORRECTION_PROTOCOL.md`  
+Results: `outputs/phase_correction/PHASE_CORRECTION_RESULTS.md`  
+Scenarios: `outputs/synthetic_scenarios_phase/` (original `synthetic_scenarios/` untouched)
+
 ## Boundary
 
 - Preserves production and frozen FMR3C evaluations

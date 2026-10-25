@@ -1,0 +1,2022 @@
+{
+  "experiment": "scenario_phase_correction",
+  "master_seed": 20261025,
+  "phase_period_hours": 24.0,
+  "inp_path": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+  "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+  "n_planned": 40,
+  "n_ok": 40,
+  "n_failed": 0,
+  "changes": {
+    "pattern_phase": "Unif[0,24) hours \u2192 pattern_start and start_clocktime",
+    "leak_onset": "independent Unif[14,38] scenario-wall hours",
+    "matched_pairs": "first 16 leaks paired to controls with same phase",
+    "tank_pump_controls": "level-based unchanged"
+  },
+  "preserves_original_scenarios": true,
+  "original_scenarios_path": "outputs/synthetic_scenarios/",
+  "leak_sampling_note": "Pipes sampled with PHASE_MASTER_SEED from L-TOWN.inp; 2019 leak labels not used.",
+  "scenarios": [
+    {
+      "spec": {
+        "scenario_id": "leak_000_p578",
+        "kind": "leak_abrupt",
+        "seed": 1267131825,
+        "pipe": "p578",
+        "pipe_group": 0,
+        "demand_scale": 0.92,
+        "leak_area_m2": 0.0002,
+        "leak_start_hour": 29.76139879075503,
+        "leak_end_hour": 39.429041104002934,
+        "operating_realization": 2,
+        "pattern_phase_offset_hours": 11.668958137304262,
+        "pair_id": "pair_000",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 11.668958137304262,
+        "pattern_start_s": 42008.24929429535,
+        "start_clocktime_s": 42008.24929429535,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_000_p578.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_001_p567",
+        "kind": "leak_abrupt",
+        "seed": 419426357,
+        "pipe": "p567",
+        "pipe_group": 4,
+        "demand_scale": 1.0,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 24.656669466958554,
+        "leak_end_hour": 32.47496392016003,
+        "operating_realization": 2,
+        "pattern_phase_offset_hours": 6.100302732884086,
+        "pair_id": "pair_001",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 6.100302732884086,
+        "pattern_start_s": 21961.089838382708,
+        "start_clocktime_s": 21961.089838382708,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_001_p567.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_002_p157",
+        "kind": "leak_abrupt",
+        "seed": 523657021,
+        "pipe": "p157",
+        "pipe_group": 4,
+        "demand_scale": 0.97,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 14.29083726830487,
+        "leak_end_hour": 31.189481304134453,
+        "operating_realization": 2,
+        "pattern_phase_offset_hours": 15.156119935836301,
+        "pair_id": "pair_002",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 15.156119935836301,
+        "pattern_start_s": 54562.03176901068,
+        "start_clocktime_s": 54562.03176901068,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_002_p157.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_003_p596",
+        "kind": "leak_abrupt",
+        "seed": 1917274538,
+        "pipe": "p596",
+        "pipe_group": 2,
+        "demand_scale": 1.0,
+        "leak_area_m2": 0.0002,
+        "leak_start_hour": 24.470824516608708,
+        "leak_end_hour": 32.09737812793625,
+        "operating_realization": 2,
+        "pattern_phase_offset_hours": 19.30250641307495,
+        "pair_id": "pair_003",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 19.30250641307495,
+        "pattern_start_s": 69489.02308706983,
+        "start_clocktime_s": 69489.02308706983,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_003_p596.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_004_p244",
+        "kind": "leak_abrupt",
+        "seed": 758252446,
+        "pipe": "p244",
+        "pipe_group": 3,
+        "demand_scale": 1.0,
+        "leak_area_m2": 0.0002,
+        "leak_start_hour": 34.45919623074087,
+        "leak_end_hour": 45.722859936308936,
+        "operating_realization": 1,
+        "pattern_phase_offset_hours": 10.763449367252573,
+        "pair_id": "pair_004",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 10.763449367252573,
+        "pattern_start_s": 38748.41772210926,
+        "start_clocktime_s": 38748.41772210926,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_004_p244.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_005_p790",
+        "kind": "leak_abrupt",
+        "seed": 721230484,
+        "pipe": "p790",
+        "pipe_group": 0,
+        "demand_scale": 1.0,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 24.821437615504582,
+        "leak_end_hour": 41.860467074129744,
+        "operating_realization": 0,
+        "pattern_phase_offset_hours": 6.266268750348765,
+        "pair_id": "pair_005",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 6.266268750348765,
+        "pattern_start_s": 22558.56750125555,
+        "start_clocktime_s": 22558.56750125555,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_005_p790.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_006_p142",
+        "kind": "leak_abrupt",
+        "seed": 1747623285,
+        "pipe": "p142",
+        "pipe_group": 0,
+        "demand_scale": 1.08,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 35.16169767645635,
+        "leak_end_hour": 47.5,
+        "operating_realization": 0,
+        "pattern_phase_offset_hours": 4.382353554857654,
+        "pair_id": "pair_006",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 4.382353554857654,
+        "pattern_start_s": 15776.472797487555,
+        "start_clocktime_s": 15776.472797487555,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_006_p142.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_007_p886",
+        "kind": "leak_abrupt",
+        "seed": 1465477394,
+        "pipe": "p886",
+        "pipe_group": 4,
+        "demand_scale": 1.03,
+        "leak_area_m2": 0.0001,
+        "leak_start_hour": 25.605507126389018,
+        "leak_end_hour": 33.569729001711934,
+        "operating_realization": 2,
+        "pattern_phase_offset_hours": 10.092454850319282,
+        "pair_id": "pair_007",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 10.092454850319282,
+        "pattern_start_s": 36332.837461149415,
+        "start_clocktime_s": 36332.837461149415,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_007_p886.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_008_p836",
+        "kind": "leak_abrupt",
+        "seed": 881763918,
+        "pipe": "p836",
+        "pipe_group": 1,
+        "demand_scale": 0.97,
+        "leak_area_m2": 0.0002,
+        "leak_start_hour": 35.4038684751684,
+        "leak_end_hour": 47.5,
+        "operating_realization": 0,
+        "pattern_phase_offset_hours": 18.323739886883295,
+        "pair_id": "pair_008",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 18.323739886883295,
+        "pattern_start_s": 65965.46359277987,
+        "start_clocktime_s": 65965.46359277987,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_008_p836.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_009_p278",
+        "kind": "leak_abrupt",
+        "seed": 966677450,
+        "pipe": "p278",
+        "pipe_group": 1,
+        "demand_scale": 0.97,
+        "leak_area_m2": 5e-05,
+        "leak_start_hour": 27.862979649027757,
+        "leak_end_hour": 42.402428598461015,
+        "operating_realization": 3,
+        "pattern_phase_offset_hours": 8.077160484587399,
+        "pair_id": "pair_009",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 8.077160484587399,
+        "pattern_start_s": 29077.777744514635,
+        "start_clocktime_s": 29077.777744514635,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_009_p278.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_010_p48",
+        "kind": "leak_abrupt",
+        "seed": 649525169,
+        "pipe": "p48",
+        "pipe_group": 1,
+        "demand_scale": 1.08,
+        "leak_area_m2": 0.0001,
+        "leak_start_hour": 29.64658003391207,
+        "leak_end_hour": 42.03388028364408,
+        "operating_realization": 0,
+        "pattern_phase_offset_hours": 21.477032025988024,
+        "pair_id": "pair_010",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 21.477032025988024,
+        "pattern_start_s": 77317.31529355688,
+        "start_clocktime_s": 77317.31529355688,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_010_p48.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_011_p287",
+        "kind": "leak_abrupt",
+        "seed": 1433447114,
+        "pipe": "p287",
+        "pipe_group": 0,
+        "demand_scale": 1.08,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 31.57596134454591,
+        "leak_end_hour": 39.497238621234914,
+        "operating_realization": 0,
+        "pattern_phase_offset_hours": 3.4465836877370997,
+        "pair_id": "pair_011",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 3.4465836877370997,
+        "pattern_start_s": 12407.701275853558,
+        "start_clocktime_s": 12407.701275853558,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_011_p287.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_012_p489",
+        "kind": "leak_abrupt",
+        "seed": 911378609,
+        "pipe": "p489",
+        "pipe_group": 3,
+        "demand_scale": 0.97,
+        "leak_area_m2": 0.0001,
+        "leak_start_hour": 25.979592832245878,
+        "leak_end_hour": 33.42872037493364,
+        "operating_realization": 1,
+        "pattern_phase_offset_hours": 14.909647747226948,
+        "pair_id": "pair_012",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 14.909647747226948,
+        "pattern_start_s": 53674.731890017014,
+        "start_clocktime_s": 53674.731890017014,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_012_p489.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_013_p33",
+        "kind": "leak_abrupt",
+        "seed": 1984395176,
+        "pipe": "p33",
+        "pipe_group": 3,
+        "demand_scale": 1.0,
+        "leak_area_m2": 0.0002,
+        "leak_start_hour": 16.91639253300671,
+        "leak_end_hour": 24.542004986759522,
+        "operating_realization": 1,
+        "pattern_phase_offset_hours": 16.291339143318307,
+        "pair_id": "pair_013",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 16.291339143318307,
+        "pattern_start_s": 58648.82091594591,
+        "start_clocktime_s": 58648.82091594591,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_013_p33.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_014_p712",
+        "kind": "leak_abrupt",
+        "seed": 1849228391,
+        "pipe": "p712",
+        "pipe_group": 1,
+        "demand_scale": 0.97,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 16.415110116168723,
+        "leak_end_hour": 23.988494297259976,
+        "operating_realization": 2,
+        "pattern_phase_offset_hours": 4.689770800246792,
+        "pair_id": "pair_014",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 4.689770800246792,
+        "pattern_start_s": 16883.17488088845,
+        "start_clocktime_s": 16883.17488088845,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_014_p712.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_015_p73",
+        "kind": "leak_abrupt",
+        "seed": 479577284,
+        "pipe": "p73",
+        "pipe_group": 4,
+        "demand_scale": 1.03,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 19.69657430035768,
+        "leak_end_hour": 28.487604744067006,
+        "operating_realization": 2,
+        "pattern_phase_offset_hours": 13.338010719455742,
+        "pair_id": "pair_015",
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 13.338010719455742,
+        "pattern_start_s": 48016.83859004067,
+        "start_clocktime_s": 48016.83859004067,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_015_p73.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_016_p525",
+        "kind": "leak_abrupt",
+        "seed": 1969768528,
+        "pipe": "p525",
+        "pipe_group": 1,
+        "demand_scale": 1.08,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 20.728898151191128,
+        "leak_end_hour": 27.10969663957981,
+        "operating_realization": 2,
+        "pattern_phase_offset_hours": 6.429285092929106,
+        "pair_id": null,
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 6.429285092929106,
+        "pattern_start_s": 23145.426334544783,
+        "start_clocktime_s": 23145.426334544783,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_016_p525.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_017_p553",
+        "kind": "leak_abrupt",
+        "seed": 1524133731,
+        "pipe": "p553",
+        "pipe_group": 1,
+        "demand_scale": 0.92,
+        "leak_area_m2": 0.0001,
+        "leak_start_hour": 16.92095743834855,
+        "leak_end_hour": 28.35735930966488,
+        "operating_realization": 2,
+        "pattern_phase_offset_hours": 1.6713506745285844,
+        "pair_id": null,
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 1.6713506745285844,
+        "pattern_start_s": 6016.862428302904,
+        "start_clocktime_s": 6016.862428302904,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_017_p553.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_018_p272",
+        "kind": "leak_abrupt",
+        "seed": 1653350095,
+        "pipe": "p272",
+        "pipe_group": 0,
+        "demand_scale": 0.92,
+        "leak_area_m2": 0.00035,
+        "leak_start_hour": 28.330774690937837,
+        "leak_end_hour": 38.56537450228215,
+        "operating_realization": 3,
+        "pattern_phase_offset_hours": 18.306003858942788,
+        "pair_id": null,
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 18.306003858942788,
+        "pattern_start_s": 65901.61389219403,
+        "start_clocktime_s": 65901.61389219403,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_018_p272.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_019_p127",
+        "kind": "leak_abrupt",
+        "seed": 866697030,
+        "pipe": "p127",
+        "pipe_group": 0,
+        "demand_scale": 1.08,
+        "leak_area_m2": 0.0001,
+        "leak_start_hour": 33.154755127206634,
+        "leak_end_hour": 45.7668360936472,
+        "operating_realization": 0,
+        "pattern_phase_offset_hours": 5.449669496535915,
+        "pair_id": null,
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 5.449669496535915,
+        "pattern_start_s": 19618.810187529292,
+        "start_clocktime_s": 19618.810187529292,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_019_p127.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_020_p561",
+        "kind": "leak_abrupt",
+        "seed": 1884112433,
+        "pipe": "p561",
+        "pipe_group": 1,
+        "demand_scale": 0.97,
+        "leak_area_m2": 0.0001,
+        "leak_start_hour": 16.890706286497455,
+        "leak_end_hour": 28.902964607828928,
+        "operating_realization": 0,
+        "pattern_phase_offset_hours": 0.6869014578961767,
+        "pair_id": null,
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 0.6869014578961767,
+        "pattern_start_s": 2472.845248426236,
+        "start_clocktime_s": 2472.845248426236,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_020_p561.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_021_p57",
+        "kind": "leak_abrupt",
+        "seed": 1571327315,
+        "pipe": "p57",
+        "pipe_group": 0,
+        "demand_scale": 1.08,
+        "leak_area_m2": 5e-05,
+        "leak_start_hour": 21.91040987092572,
+        "leak_end_hour": 33.99974853000499,
+        "operating_realization": 0,
+        "pattern_phase_offset_hours": 14.203271338318412,
+        "pair_id": null,
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 14.203271338318412,
+        "pattern_start_s": 51131.77681794629,
+        "start_clocktime_s": 51131.77681794629,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_021_p57.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_022_p670",
+        "kind": "leak_abrupt",
+        "seed": 314692334,
+        "pipe": "p670",
+        "pipe_group": 1,
+        "demand_scale": 1.08,
+        "leak_area_m2": 5e-05,
+        "leak_start_hour": 23.51560727249585,
+        "leak_end_hour": 39.479876431213945,
+        "operating_realization": 3,
+        "pattern_phase_offset_hours": 10.567215771989025,
+        "pair_id": null,
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 10.567215771989025,
+        "pattern_start_s": 38041.97677916049,
+        "start_clocktime_s": 38041.97677916049,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_022_p670.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "leak_023_p490",
+        "kind": "leak_abrupt",
+        "seed": 1239213962,
+        "pipe": "p490",
+        "pipe_group": 4,
+        "demand_scale": 0.97,
+        "leak_area_m2": 0.0001,
+        "leak_start_hour": 14.808132783001588,
+        "leak_end_hour": 30.98543571677994,
+        "operating_realization": 3,
+        "pattern_phase_offset_hours": 18.949591864209015,
+        "pair_id": null,
+        "notes": "phase-corrected abrupt leak; pattern_start randomized; onset independent of phase"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 18.949591864209015,
+        "pattern_start_s": 68218.53071115246,
+        "start_clocktime_s": 68218.53071115246,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "leak_023_p490.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_000_control_tank",
+        "kind": "control_tank",
+        "seed": 664336612,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.2,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 1,
+        "pattern_phase_offset_hours": 11.668958137304262,
+        "pair_id": "pair_000",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 11.668958137304262,
+        "pattern_start_s": 42008.24929429535,
+        "start_clocktime_s": 42008.24929429535,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_000_control_tank.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_001_control_sensor",
+        "kind": "control_sensor",
+        "seed": 1179697106,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.2,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 3,
+        "pattern_phase_offset_hours": 6.100302732884086,
+        "pair_id": "pair_001",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 6.100302732884086,
+        "pattern_start_s": 21961.089838382708,
+        "start_clocktime_s": 21961.089838382708,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_001_control_sensor.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_002_control_demand",
+        "kind": "control_demand",
+        "seed": 1540358592,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 0.9,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 3,
+        "pattern_phase_offset_hours": 15.156119935836301,
+        "pair_id": "pair_002",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 15.156119935836301,
+        "pattern_start_s": 54562.03176901068,
+        "start_clocktime_s": 54562.03176901068,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_002_control_demand.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_003_control_pump",
+        "kind": "control_pump",
+        "seed": 276813825,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 0.85,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 2,
+        "pattern_phase_offset_hours": 19.30250641307495,
+        "pair_id": "pair_003",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 19.30250641307495,
+        "pattern_start_s": 69489.02308706983,
+        "start_clocktime_s": 69489.02308706983,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_003_control_pump.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_004_control_pump",
+        "kind": "control_pump",
+        "seed": 231100850,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.1,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 2,
+        "pattern_phase_offset_hours": 10.763449367252573,
+        "pair_id": "pair_004",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 10.763449367252573,
+        "pattern_start_s": 38748.41772210926,
+        "start_clocktime_s": 38748.41772210926,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_004_control_pump.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_005_control_demand",
+        "kind": "control_demand",
+        "seed": 694087326,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.15,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 3,
+        "pattern_phase_offset_hours": 6.266268750348765,
+        "pair_id": "pair_005",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 6.266268750348765,
+        "pattern_start_s": 22558.56750125555,
+        "start_clocktime_s": 22558.56750125555,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_005_control_demand.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_006_control_sensor",
+        "kind": "control_sensor",
+        "seed": 922372839,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 0.9,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 1,
+        "pattern_phase_offset_hours": 4.382353554857654,
+        "pair_id": "pair_006",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 4.382353554857654,
+        "pattern_start_s": 15776.472797487555,
+        "start_clocktime_s": 15776.472797487555,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_006_control_sensor.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_007_control_tank",
+        "kind": "control_tank",
+        "seed": 1324832459,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.15,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 0,
+        "pattern_phase_offset_hours": 10.092454850319282,
+        "pair_id": "pair_007",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 10.092454850319282,
+        "pattern_start_s": 36332.837461149415,
+        "start_clocktime_s": 36332.837461149415,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_007_control_tank.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_008_control_tank",
+        "kind": "control_tank",
+        "seed": 538914504,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.2,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 0,
+        "pattern_phase_offset_hours": 18.323739886883295,
+        "pair_id": "pair_008",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 18.323739886883295,
+        "pattern_start_s": 65965.46359277987,
+        "start_clocktime_s": 65965.46359277987,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_008_control_tank.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_009_control_pump",
+        "kind": "control_pump",
+        "seed": 1389927665,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 0.9,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 1,
+        "pattern_phase_offset_hours": 8.077160484587399,
+        "pair_id": "pair_009",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 8.077160484587399,
+        "pattern_start_s": 29077.777744514635,
+        "start_clocktime_s": 29077.777744514635,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_009_control_pump.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_010_control_demand",
+        "kind": "control_demand",
+        "seed": 2112810157,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 0.85,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 0,
+        "pattern_phase_offset_hours": 21.477032025988024,
+        "pair_id": "pair_010",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 21.477032025988024,
+        "pattern_start_s": 77317.31529355688,
+        "start_clocktime_s": 77317.31529355688,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_010_control_demand.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_011_control_pump",
+        "kind": "control_pump",
+        "seed": 939974322,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.1,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 3,
+        "pattern_phase_offset_hours": 3.4465836877370997,
+        "pair_id": "pair_011",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 3.4465836877370997,
+        "pattern_start_s": 12407.701275853558,
+        "start_clocktime_s": 12407.701275853558,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_011_control_pump.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_012_control_sensor",
+        "kind": "control_sensor",
+        "seed": 894113303,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.15,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 2,
+        "pattern_phase_offset_hours": 14.909647747226948,
+        "pair_id": "pair_012",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 14.909647747226948,
+        "pattern_start_s": 53674.731890017014,
+        "start_clocktime_s": 53674.731890017014,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_012_control_sensor.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_013_control_sensor",
+        "kind": "control_sensor",
+        "seed": 1225118895,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.2,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 2,
+        "pattern_phase_offset_hours": 16.291339143318307,
+        "pair_id": "pair_013",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 16.291339143318307,
+        "pattern_start_s": 58648.82091594591,
+        "start_clocktime_s": 58648.82091594591,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_013_control_sensor.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_014_control_demand",
+        "kind": "control_demand",
+        "seed": 1921302248,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.15,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 1,
+        "pattern_phase_offset_hours": 4.689770800246792,
+        "pair_id": "pair_014",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 4.689770800246792,
+        "pattern_start_s": 16883.17488088845,
+        "start_clocktime_s": 16883.17488088845,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_014_control_demand.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    },
+    {
+      "spec": {
+        "scenario_id": "ctrl_015_control_demand",
+        "kind": "control_demand",
+        "seed": 1593946526,
+        "pipe": null,
+        "pipe_group": null,
+        "demand_scale": 1.2,
+        "leak_area_m2": null,
+        "leak_start_hour": null,
+        "leak_end_hour": null,
+        "operating_realization": 1,
+        "pattern_phase_offset_hours": 13.338010719455742,
+        "pair_id": "pair_015",
+        "notes": "phase-matched no-leak control; shares pattern_phase_offset_hours with paired leak"
+      },
+      "ok": true,
+      "error": null,
+      "provenance": {
+        "inp": "/Users/sreenidhbonagiri/Desktop/rippple/data/L-TOWN.inp",
+        "inp_sha256": "a7551b86745f4cc3433c78e60023077fa1386947d4d35372ffd3a0405622b436",
+        "simulator": "wntr.sim.EpanetSimulator",
+        "duration_hours": 48,
+        "step_seconds": 300,
+        "pattern_phase_offset_hours": 13.338010719455742,
+        "pattern_start_s": 48016.83859004067,
+        "start_clocktime_s": 48016.83859004067,
+        "tank_pump_controls": "level-based (unchanged; follow shifted demand)",
+        "flow_unit_conversion": "wntr_m3s_times_3600_to_m3h",
+        "tank_level": "head_minus_elevation_m",
+        "pressure_unit": "m",
+        "n_steps": 577,
+        "phase_master_seed": 20261025
+      },
+      "npz": "ctrl_015_control_demand.npz",
+      "shape": {
+        "pressures": [
+          577,
+          33
+        ],
+        "flows": [
+          577,
+          3
+        ],
+        "levels": [
+          577,
+          1
+        ]
+      }
+    }
+  ],
+  "failures": []
+}

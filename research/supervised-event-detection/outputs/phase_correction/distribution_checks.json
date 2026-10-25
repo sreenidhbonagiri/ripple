@@ -1,0 +1,20 @@
+{
+  "n_leak": 24,
+  "n_control": 16,
+  "phase_in_range_leaks": true,
+  "phase_in_range_controls": true,
+  "onset_after_warmup": true,
+  "onset_before_horizon": true,
+  "paired_phases_identical": true,
+  "n_pairs_checked": 16,
+  "corr_phase_onset": 0.024189508887035693,
+  "corr_phase_onset_abs_lt_0_5": true,
+  "leak_phase_mean": 10.856207824694605,
+  "ctrl_phase_mean": 11.517856139832592,
+  "leak_phase_std": 6.010126588544282,
+  "ctrl_phase_std": 5.53974893163991,
+  "onset_mean": 24.707702899864827,
+  "onset_std": 6.521543461600503,
+  "phase_means_within_6h": true,
+  "all_passed": true
+}
