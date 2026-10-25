@@ -136,8 +136,15 @@ export default function PressureHistoryPanel({ sensor, cursor }: Props) {
   return (
     <section className="history-panel" aria-label="Available pressure history">
       <header className="history-header">
-        <p className="eyebrow">Available history — up to 30 days</p>
-        <p className="history-cursor">Investigation cursor {normalizeNaive(cursor)}</p>
+        <div>
+          <p className="eyebrow">Available history — up to 30 days</p>
+          <p className="tiger-inline-note">
+            Historical context powered by precomputed summaries.
+          </p>
+        </div>
+        <p className="history-cursor">
+          Investigation cursor {normalizeNaive(cursor)}
+        </p>
       </header>
       <p className="chart-title">Hourly observed pressure (m)</p>
       {loading && <p className="chart-status">Loading historical context…</p>}
@@ -166,9 +173,11 @@ export default function PressureHistoryPanel({ sensor, cursor }: Props) {
             )
           )}
           <p className="history-footnote">
-            Distinct from the detailed 5-minute replay chart. Incomplete hours are
-            included and labeled in the API; empty hours are omitted. Min/max are
-            observed, not limits. Observation only — not a confirmed leak.
+            Distinct from the detailed 5-minute replay chart. Built from
+            precomputed historical summaries (continuous aggregates). Incomplete
+            hours are included and labeled in the API; empty hours are omitted.
+            Min/max are observed, not limits. Observation only — not a confirmed
+            leak.
           </p>
         </>
       )}

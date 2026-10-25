@@ -57,7 +57,12 @@ export default function DetailsPanel({
   seriesError,
 }: Props) {
   return (
-    <aside className="details-panel">
+    <aside
+      id="panel-details"
+      className="details-panel app-panel"
+      tabIndex={-1}
+      aria-label="Selected network details"
+    >
       <header className="details-header">
         <p className="eyebrow">Historical benchmark replay</p>
         <h2>
@@ -66,7 +71,7 @@ export default function DetailsPanel({
               ? "Node"
               : selection.kind === "link"
                 ? "Link"
-                : "Sensor"
+                : "Inspect sensor"
             : "Network"}
         </h2>
       </header>

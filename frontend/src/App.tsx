@@ -14,6 +14,7 @@ import NetworkMap from "./components/NetworkMap";
 import ReplayControls from "./components/ReplayControls";
 import SaveInvestigationPanel from "./components/SaveInvestigationPanel";
 import InvestigationBriefPanel from "./components/InvestigationBriefPanel";
+import InvestigationGuide from "./components/InvestigationGuide";
 import MethodMTimelinePanel from "./components/MethodMTimelinePanel";
 import MethodMWarningPanel from "./components/MethodMWarningPanel";
 import TigerEvidencePanel from "./components/TigerEvidencePanel";
@@ -501,13 +502,10 @@ export default function App() {
         <div className="brand-block">
           <p className="product-tag">Historical benchmark replay</p>
           <h1 className="brand">Ripple</h1>
-          <p className="headline">Turn water-network signals into an investigation.</p>
+          <p className="headline">Follow the signal. Investigate the change.</p>
           <p className="tagline">
-            Explore experimental warnings, inspect synchronized sensor evidence,
-            and share findings.
-          </p>
-          <p className="method-m-inline-badge" role="note">
-            Experimental Method M · five-minute scoring · not a confirmed leak
+            Review unusual water-network patterns, explore sensor evidence, and
+            share an investigation.
           </p>
         </div>
         <div className="toolbar">
@@ -524,6 +522,8 @@ export default function App() {
           </button>
         </div>
       </header>
+
+      <InvestigationGuide />
 
       {restoreStatus === "loading" && (
         <div className="restore-banner" role="status">

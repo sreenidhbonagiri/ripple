@@ -181,7 +181,7 @@ export default function MethodMTimelinePanel({
       },
       series: [
         {
-          name: "Method M score",
+          name: "Anomaly score",
           type: "line",
           data: scores,
           connectNulls: false,
@@ -195,9 +195,9 @@ export default function MethodMTimelinePanel({
             data: [
               {
                 yAxis: timeline.threshold,
-                name: "τ",
+                name: "Warning threshold",
                 lineStyle: { color: "#c45c26", type: "solid", width: 1.5 },
-                label: { formatter: "τ" },
+                label: { formatter: "threshold" },
               },
             ],
           },
@@ -290,7 +290,11 @@ export default function MethodMTimelinePanel({
 
   if (!cursor) {
     return (
-      <section className="method-m-timeline" aria-label="Method M warning timeline">
+      <section
+        id="panel-timeline"
+        className="method-m-timeline app-panel"
+        aria-label="Experimental warning timeline"
+      >
         <p className="channel-note">
           Set a replay cursor to load the preceding 24-hour experimental score
           timeline.
@@ -300,16 +304,21 @@ export default function MethodMTimelinePanel({
   }
 
   return (
-    <section className="method-m-timeline" aria-label="Method M warning timeline">
+    <section
+      id="panel-timeline"
+      className="method-m-timeline app-panel"
+      aria-label="Experimental warning timeline"
+    >
       <header className="method-m-timeline-header">
         <p className="eyebrow">{timeline?.replay_label ?? "Historical benchmark replay"}</p>
-        <h2 className="method-m-timeline-title">
-          {timeline?.label ?? "Experimental anomaly score"}
-        </h2>
+        <h2 className="method-m-timeline-title">Experimental anomaly score</h2>
+        <p className="tiger-inline-note">
+          Warning history queried from Tiger Data.
+        </p>
         <p className="method-m-disclaimer" role="note">
           Preceding 24 hours ending at the replay cursor. Higher score means
-          stronger dual-model deviation — not a leak probability. Notification
-          markers are frozen five-minute stamps ≤ cursor only.
+          stronger deviation from the reference pattern — not a leak probability.
+          Notification markers are frozen five-minute stamps ≤ cursor only.
         </p>
         <p className="method-m-timeline-cursor">
           Selected cursor {normalizeNaive(cursor)}
@@ -357,8 +366,8 @@ export default function MethodMTimelinePanel({
             )
           )}
           <p className="channel-note">
-            Click a five-minute stamp to seek the replay cursor. Threshold line is
-            frozen τ = {timeline.threshold.toFixed(3)}.
+            Click a five-minute stamp to seek the replay cursor. Warning threshold
+            line is frozen at {timeline.threshold.toFixed(3)}.
           </p>
 
           <p className="chart-title">
@@ -368,8 +377,8 @@ export default function MethodMTimelinePanel({
           {!selectedSensorId && (
             <p className="channel-note">
               Inspect a contributing pressure sensor to align raw readings on this
-              axis. Hourly CAGG history remains in the details panel for longer
-              context.
+              axis. Longer historical context uses precomputed historical summaries
+              in the details panel.
             </p>
           )}
           {selectedSensorId && pressureLoading && (
@@ -390,16 +399,17 @@ export default function MethodMTimelinePanel({
             !pressureOption &&
             !pressureLoading && (
               <p className="chart-status">
-                No pressure readings on the Method M stamps in this window.
+                No pressure readings on the score stamps in this window.
               </p>
             )}
 
           <details className="method-m-tech">
-            <summary>Technical methodology and provenance</summary>
+            <summary>How it works · technical details</summary>
             <p className="channel-note">{timeline.score_interpretation}</p>
             <p className="channel-note">
-              {timeline.resolution_note} Provenance run{" "}
-              <code>{timeline.provenance.run_id}</code> · serving_hours sha256{" "}
+              Method M frozen scores from Tiger. {timeline.resolution_note}{" "}
+              Provenance run <code>{timeline.provenance.run_id}</code> ·
+              serving_hours sha256{" "}
               <code>
                 {timeline.provenance.serving_hours_sha256?.slice(0, 16) ?? "—"}…
               </code>
@@ -407,6 +417,7 @@ export default function MethodMTimelinePanel({
               {timeline.missingness.expected_stamps_in_method_coverage} expected in
               coverage
               {timeline.missingness.coverage_complete ? " (complete)" : " (partial)"}.
+              Warning threshold is τ in the frozen research protocol.
             </p>
           </details>
         </>

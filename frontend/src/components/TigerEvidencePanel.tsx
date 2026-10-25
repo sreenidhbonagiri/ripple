@@ -33,7 +33,9 @@ function TimingBars({ wl }: { wl: TigerWorkload }) {
         <span className="tiger-bar-ms">{fmtMs(raw)}</span>
       </div>
       <div className="tiger-bar-row">
-        <span className="tiger-bar-label">CAGG</span>
+        <span className="tiger-bar-label" title="Continuous aggregate (CAGG)">
+          Summary
+        </span>
         <div className="tiger-bar-track">
           <div className="tiger-bar-fill tiger-bar-cagg" style={{ width: `${caggPct}%` }} />
         </div>
@@ -59,8 +61,9 @@ function WorkloadCard({ wl }: { wl: TigerWorkload }) {
       <p className="tiger-supports">{wl.supports_investigation}</p>
       <TimingBars wl={wl} />
       <p className="channel-note">
-        Exact DB exec: raw {fmtMs(wl.db_median_raw_s)} · CAGG {fmtMs(wl.db_median_cagg_s)}{" "}
-        (database execution — not whole-app load time)
+        Exact DB exec: raw {fmtMs(wl.db_median_raw_s)} · precomputed summary{" "}
+        {fmtMs(wl.db_median_cagg_s)} (database execution — not whole-app load
+        time)
       </p>
     </article>
   );
@@ -200,7 +203,12 @@ export default function TigerEvidencePanel() {
                   </>
                 )}
 
-              <h3 className="details-section">January raw vs CAGG (saved)</h3>
+              <h3 className="details-section">
+                January raw vs precomputed summaries (saved)
+              </h3>
+              <p className="tiger-inline-note">
+                Historical context powered by precomputed summaries.
+              </p>
               {!bench?.available && (
                 <p className="channel-note">
                   Benchmark artifact missing. Run{" "}
@@ -230,6 +238,13 @@ export default function TigerEvidencePanel() {
                 onToggle={(e) => setDetailsOpen((e.target as HTMLDetailsElement).open)}
               >
                 <summary>Methodology, storage, and hashes</summary>
+                <p className="channel-note">
+                  Precomputed historical summaries are continuous aggregates
+                  (CAGGs) over raw Tiger readings. Method M scores and
+                  contributor rows are persisted separately from raw SCADA.
+                  Benchmarks below are exact saved database timings — not
+                  re-run on page load.
+                </p>
                 <h3 className="details-section">Storage</h3>
                 <dl className="tiger-dl">
                   <div className="detail-row">
@@ -261,7 +276,9 @@ export default function TigerEvidencePanel() {
                             <th>Workload</th>
                             <th>Match</th>
                             <th>Raw DB exec</th>
-                            <th>CAGG DB exec</th>
+                            <th title="Continuous aggregate (CAGG)">
+                              Precomputed summary DB exec
+                            </th>
                             <th>Speedup</th>
                           </tr>
                         </thead>

@@ -19,14 +19,16 @@ export const CONTEXT = {
     {
       sensorId: "p227",
       role: "external_inflow",
-      label: "External inflow p227",
+      label: "Supply line p227",
+      group: "External water supply",
       hint: "R1 → network · measured supply (m³/h)",
       unit: "m³/h",
     },
     {
       sensorId: "p235",
       role: "external_inflow",
-      label: "External inflow p235",
+      label: "Supply line p235",
+      group: "External water supply",
       hint: "R2 → network · measured supply (m³/h)",
       unit: "m³/h",
     },
@@ -34,21 +36,23 @@ export const CONTEXT = {
   internalTransfer: {
     sensorId: "PUMP_1",
     role: "internal_transfer",
-    label: "Internal pump transfer PUMP_1",
+    label: "Pump transfer",
+    group: "Internal pump transfer",
     hint: "n54 → T1 · internal transfer, not external supply (m³/h)",
     unit: "m³/h",
   },
   tankLevel: {
     sensorId: "T1",
     role: "tank_level",
-    label: "Tank T1 level",
+    label: "Tank level",
+    group: "Tank level",
     hint: "Observed tank water level (m)",
     unit: "m",
   },
 } as const;
 
 export const DISCLAIMER =
-  "Inspect pressure (m) alongside external inflows (m³/h), internal pump transfer (m³/h), and tank level (m). Historical benchmark evidence — measurements do not confirm a leak or location.";
+  "Compare selected pressure with supply, internal pump transfer, and tank level at the same cursor. Historical benchmark evidence — measurements do not confirm a leak or location.";
 
 export interface ReadingPoint {
   ts: string;

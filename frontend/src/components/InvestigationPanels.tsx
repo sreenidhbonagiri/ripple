@@ -24,12 +24,14 @@ function fmt(value: number | null | undefined, digits = 2): string {
 
 function ChannelCard({
   title,
+  sensorId,
   unit,
   hint,
   observation,
   loading,
 }: {
   title: string;
+  sensorId: string;
   unit: string;
   hint?: string;
   observation: SnapshotObservation | null;
@@ -39,6 +41,9 @@ function ChannelCard({
     return (
       <article className="channel-card status-loading">
         <h3>{title}</h3>
+        <p className="channel-id" title="Sensor ID">
+          {sensorId}
+        </p>
         {hint && <p className="channel-note">{hint}</p>}
         <p className="channel-note">Loading…</p>
       </article>
@@ -48,6 +53,9 @@ function ChannelCard({
   return (
     <article className={`channel-card status-${status}`}>
       <h3>{title}</h3>
+      <p className="channel-id" title="Sensor ID">
+        {sensorId}
+      </p>
       {hint && <p className="channel-note">{hint}</p>}
       <p className="channel-value">
         {observation?.value === null || observation?.value === undefined
@@ -92,9 +100,15 @@ export default function InvestigationPanels({
     Boolean(selectedPressure) && !seriesMatched && seriesStatus === "loading";
 
   return (
-    <section className="investigation" aria-label="Coordinated investigation evidence">
+    <section
+      id="panel-conditions"
+      className="investigation app-panel"
+      aria-label="Operating conditions"
+      tabIndex={-1}
+    >
       <div className="investigation-header">
         <p className="replay-label">Historical benchmark replay</p>
+        <h2 className="investigation-title">Compare conditions</h2>
         <p className="investigation-disclaimer">{DISCLAIMER}</p>
       </div>
 
@@ -110,14 +124,15 @@ export default function InvestigationPanels({
             channelsLoading ? "loading" : (selectedObs?.status ?? "missing")
           }`}
         >
-          <h3>
-            {selectedPressure
-              ? `Selected pressure ${selectedPressure.id}`
-              : "Selected pressure"}
-          </h3>
+          <h3>Selected pressure</h3>
+          {selectedPressure ? (
+            <p className="channel-id" title="Sensor ID">
+              {selectedPressure.id}
+            </p>
+          ) : null}
           <p className="channel-note">Observed head / pressure (m)</p>
           {!selectedPressure && (
-            <p className="channel-note">Select a pressure sensor on the map.</p>
+            <p className="channel-note">Select a pressure sensor on the map or use Inspect sensor.</p>
           )}
           {selectedPressure && channelsLoading && (
             <p className="channel-note">Loading snapshot…</p>
@@ -177,35 +192,63 @@ export default function InvestigationPanels({
             </>
           )}
         </article>
+      </div>
 
-        <ChannelCard
-          title={CONTEXT.externalInflows[0].label}
-          unit={CONTEXT.externalInflows[0].unit}
-          hint={CONTEXT.externalInflows[0].hint}
-          observation={snapshotMatched ? p227 : null}
-          loading={channelsLoading}
-        />
-        <ChannelCard
-          title={CONTEXT.externalInflows[1].label}
-          unit={CONTEXT.externalInflows[1].unit}
-          hint={CONTEXT.externalInflows[1].hint}
-          observation={snapshotMatched ? p235 : null}
-          loading={channelsLoading}
-        />
-        <ChannelCard
-          title={CONTEXT.internalTransfer.label}
-          unit={CONTEXT.internalTransfer.unit}
-          hint={CONTEXT.internalTransfer.hint}
-          observation={snapshotMatched ? pump : null}
-          loading={channelsLoading}
-        />
-        <ChannelCard
-          title={CONTEXT.tankLevel.label}
-          unit={CONTEXT.tankLevel.unit}
-          hint={CONTEXT.tankLevel.hint}
-          observation={snapshotMatched ? tank : null}
-          loading={channelsLoading}
-        />
+      <div className="channel-group">
+        <h3 className="channel-group-title">External water supply</h3>
+        <p className="channel-group-note">
+          Measured inflows from reservoirs into the network.
+        </p>
+        <div className="channel-grid channel-grid-pair">
+          <ChannelCard
+            title={CONTEXT.externalInflows[0].label}
+            sensorId={CONTEXT.externalInflows[0].sensorId}
+            unit={CONTEXT.externalInflows[0].unit}
+            hint={CONTEXT.externalInflows[0].hint}
+            observation={snapshotMatched ? p227 : null}
+            loading={channelsLoading}
+          />
+          <ChannelCard
+            title={CONTEXT.externalInflows[1].label}
+            sensorId={CONTEXT.externalInflows[1].sensorId}
+            unit={CONTEXT.externalInflows[1].unit}
+            hint={CONTEXT.externalInflows[1].hint}
+            observation={snapshotMatched ? p235 : null}
+            loading={channelsLoading}
+          />
+        </div>
+      </div>
+
+      <div className="channel-group">
+        <h3 className="channel-group-title">Internal pump transfer</h3>
+        <p className="channel-group-note">
+          Internal transfer toward the tank — not external supply.
+        </p>
+        <div className="channel-grid channel-grid-pair">
+          <ChannelCard
+            title={CONTEXT.internalTransfer.label}
+            sensorId={CONTEXT.internalTransfer.sensorId}
+            unit={CONTEXT.internalTransfer.unit}
+            hint={CONTEXT.internalTransfer.hint}
+            observation={snapshotMatched ? pump : null}
+            loading={channelsLoading}
+          />
+        </div>
+      </div>
+
+      <div className="channel-group">
+        <h3 className="channel-group-title">Tank level</h3>
+        <p className="channel-group-note">Observed tank water level.</p>
+        <div className="channel-grid channel-grid-pair">
+          <ChannelCard
+            title={CONTEXT.tankLevel.label}
+            sensorId={CONTEXT.tankLevel.sensorId}
+            unit={CONTEXT.tankLevel.unit}
+            hint={CONTEXT.tankLevel.hint}
+            observation={snapshotMatched ? tank : null}
+            loading={channelsLoading}
+          />
+        </div>
       </div>
 
       {cursor && snapshotMatched && (

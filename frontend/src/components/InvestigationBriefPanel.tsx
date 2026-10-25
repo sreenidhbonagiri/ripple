@@ -99,8 +99,10 @@ export default function InvestigationBriefPanel({
 
   return (
     <section
-      className="investigation-brief-panel"
+      id="panel-brief"
+      className="investigation-brief-panel app-panel"
       aria-labelledby={titleId}
+      tabIndex={-1}
     >
       <div className="investigation-brief-toolbar no-print">
         <div>
@@ -173,7 +175,7 @@ export default function InvestigationBriefPanel({
           </section>
 
           <section className="brief-section">
-            <h4>Experimental warning (Method M)</h4>
+            <h4>Experimental warning</h4>
             {warningLoading || !warning ? (
               <p className="channel-note" role="status">
                 {warningLoading
@@ -184,24 +186,37 @@ export default function InvestigationBriefPanel({
               <ul className="brief-list">
                 <li>
                   <strong>Status:</strong> {warningStatusLine(warning)}
+                  {warning.warning_active ? (
+                    <span className="brief-muted">
+                      {" "}
+                      · Experimental — not a confirmed leak
+                    </span>
+                  ) : null}
                 </li>
                 <li>
                   <strong>Notification time (five-minute stamp):</strong>{" "}
                   {fmtTs(warning.notification?.notify_ts ?? null)}
                 </li>
                 <li>
-                  <strong>Score / threshold:</strong> {fmtNum(warning.score, 3)} / τ{" "}
-                  {fmtNum(warning.threshold, 3)}
+                  <strong>Anomaly score / warning threshold:</strong>{" "}
+                  {fmtNum(warning.score, 3)} / {fmtNum(warning.threshold, 3)}
                 </li>
                 <li>
                   <strong>Score stamp ≤ cursor:</strong>{" "}
                   {fmtTs(warning.score_hour ?? null)}
                 </li>
+                {warning.argmax_sensor_id ? (
+                  <li>
+                    <strong>Strongest contributing sensor:</strong>{" "}
+                    {warning.argmax_sensor_id}
+                  </li>
+                ) : null}
               </ul>
             )}
             <p className="brief-muted">
-              Experimental anomaly warning — not a confirmed leak and not a pipe
-              localization result.
+              Experimental — not a confirmed leak. Anomaly score is not a
+              probability. Method M identity and hashes are in the on-screen
+              technical details, not repeated here.
             </p>
           </section>
 

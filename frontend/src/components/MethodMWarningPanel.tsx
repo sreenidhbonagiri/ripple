@@ -62,23 +62,26 @@ export default function MethodMWarningPanel({
   const showLoading = Boolean(cursor) && (!matched || loading) && !error;
 
   return (
-    <section className="method-m-panel" aria-label="Experimental Method M warning">
+    <section
+      id="panel-warning"
+      className="method-m-panel app-panel"
+      aria-label="Experimental warning"
+      tabIndex={-1}
+    >
       <div className="method-m-header">
         <p className="method-m-badge">Experimental · five-minute scoring</p>
-        <h2 className="method-m-title">Experimental anomaly warning</h2>
+        <h2 className="method-m-title">Experimental warning</h2>
         <p className="method-m-disclaimer" role="note">
-          Experimental anomaly warning — not a confirmed leak. Not a pipe
-          localization result. Scores and notifications use a native five-minute
-          grid; do not treat notify times as finer than the 5-minute stamp.
-          Contributing sensors are dual-context evidence to inspect — not leak
-          locations.
+          Experimental — not a confirmed leak. Scores and notification times use
+          a five-minute grid. Sensors listed below are evidence to inspect — not
+          leak locations.
         </p>
       </div>
 
       {!cursor && (
         <p className="channel-note">
-          Set a replay cursor to load Method M evidence. Investigation stays
-          usable without a warning.
+          Set a replay cursor to load the experimental warning. Investigation
+          stays usable without a warning.
         </p>
       )}
 
@@ -97,8 +100,7 @@ export default function MethodMWarningPanel({
       {matched && data && (
         <div className="method-m-body">
           <p className="method-m-meta">
-            Five-minute resolution (latest score stamp ≤ cursor). Score stamp{" "}
-            {data.score_hour ?? "—"}.
+            Latest score stamp at or before the cursor: {data.score_hour ?? "—"}.
             {data.data_age_hours !== null && data.data_age_hours !== undefined
               ? ` Data age ${data.data_age_hours.toFixed(2)} h vs cursor.`
               : null}
@@ -106,17 +108,30 @@ export default function MethodMWarningPanel({
 
           {data.warning_active ? (
             <div className="method-m-active" role="status">
-              <p className="method-m-status">Experimental warning active</p>
+              <p className="method-m-status">
+                Experimental warning active{" "}
+                <span className="warn-pill">
+                  Experimental — not a confirmed leak
+                </span>
+              </p>
+              <p className="method-m-explain">
+                An unusual pattern was flagged. Review the sensor measurements and
+                operating conditions to investigate its cause.
+              </p>
               <p className="method-m-score">
-                Score {fmtScore(data.score)}
+                Anomaly score {fmtScore(data.score)}
                 <span className="channel-unit">
                   {" "}
-                  / threshold τ {fmtScore(data.threshold)}
+                  / warning threshold {fmtScore(data.threshold)}
                 </span>
+              </p>
+              <p className="channel-note">
+                Higher score means stronger deviation from the reference pattern —
+                not a leak probability.
               </p>
               {data.notification?.notify_ts && (
                 <p className="channel-note">
-                  Notification time (five-minute stamp ≤ cursor):{" "}
+                  Warning notification time (five-minute stamp ≤ cursor):{" "}
                   {data.notification.notify_ts}
                 </p>
               )}
@@ -133,21 +148,24 @@ export default function MethodMWarningPanel({
             <div className="method-m-idle" role="status">
               <p className="method-m-status">
                 {data.status === "before_coverage" || data.status === "missing"
-                  ? "No Method M evidence at this cursor"
-                  : "No experimental warning at this cursor"}
+                  ? "No experimental warning evidence at this cursor"
+                  : "No warning at this time"}
+              </p>
+              <p className="method-m-explain">
+                No warning at this time. This does not rule out a leak.
               </p>
               {data.score !== null && data.score !== undefined && (
                 <p className="method-m-score">
-                  Score {fmtScore(data.score)}
+                  Anomaly score {fmtScore(data.score)}
                   <span className="channel-unit">
                     {" "}
-                    / threshold τ {fmtScore(data.threshold)}
+                    / warning threshold {fmtScore(data.threshold)}
                   </span>
                 </p>
               )}
               <p className="channel-note">
-                Investigation remains usable without a warning. No predicted
-                leaking pipes are shown.
+                Investigation remains usable. No predicted leaking pipes are
+                shown.
               </p>
             </div>
           )}
@@ -155,27 +173,35 @@ export default function MethodMWarningPanel({
           {data.contributors.length > 0 && (
             <>
               <h3 className="details-section">
-                Contributing sensors (dual-context evidence)
+                Sensors contributing to this warning
               </h3>
               <p className="channel-note">
                 Use <strong>Inspect sensor</strong> to update the map selection and
-                pressure chart at the current replay cursor. This does not identify a
-                leaking pipe.
+                pressure chart at the current replay cursor. This does not identify
+                a leaking pipe.
               </p>
-              <p className="channel-note">
-                <strong>Virtual flow (qᵥ)</strong> is a model-derived mismatch used
-                for scoring — not a measured water loss at that node.
-              </p>
+              {data.argmax_sensor_id ? (
+                <p className="channel-note">
+                  Strongest contributing sensor:{" "}
+                  <strong>{data.argmax_sensor_id}</strong>
+                </p>
+              ) : null}
               <div className="tiger-table-wrap">
                 <table className="tiger-table">
                   <thead>
                     <tr>
                       <th>Sensor</th>
-                      <th title="Calibrated absolute z-score">|z| (cal)</th>
-                      <th title="Dual-context residual flow">δ (m³/h)</th>
-                      <th title="Scale used for calibration">σ scale (m³/h)</th>
-                      <th title="Model-derived virtual flow mismatch">
-                        Virtual flow qᵥ (m³/h)
+                      <th title="Calibrated absolute z-score (|z|)">
+                        Calibrated |z|
+                      </th>
+                      <th title="Change in flow mismatch (δ), m³/h">
+                        Change in flow mismatch (m³/h)
+                      </th>
+                      <th title="Reference variability (σ_SCALE), m³/h">
+                        Reference variability (m³/h)
+                      </th>
+                      <th title="Model-estimated flow mismatch (qᵥ), m³/h — not measured leak discharge">
+                        Model-estimated flow mismatch (m³/h)
                       </th>
                       <th>Inspect</th>
                     </tr>
@@ -183,6 +209,7 @@ export default function MethodMWarningPanel({
                   <tbody>
                     {data.contributors.map((c) => {
                       const selected = selectedSensorId === c.sensor_id;
+                      const strongest = data.argmax_sensor_id === c.sensor_id;
                       return (
                         <tr
                           key={c.sensor_id}
@@ -190,7 +217,7 @@ export default function MethodMWarningPanel({
                         >
                           <td>
                             {c.sensor_id}
-                            {data.argmax_sensor_id === c.sensor_id ? " · max" : ""}
+                            {strongest ? " · strongest" : ""}
                           </td>
                           <td>{fmtScore(c.abs_z_calibrated)}</td>
                           <td>{fmtScore(c.delta_m3h)}</td>
@@ -218,7 +245,14 @@ export default function MethodMWarningPanel({
           )}
 
           <details className="method-m-tech">
-            <summary>Technical methodology and version hashes</summary>
+            <summary>How it works · technical details</summary>
+            <p className="channel-note">
+              Method M experimental warning. Anomaly score is not a probability.
+              Model-estimated flow mismatch (qᵥ) is a dual-context residual used
+              for scoring — not measured leak discharge. δ is the change in that
+              mismatch; σ_SCALE is reference variability. Strongest contributing
+              sensor is the argmax of calibrated |z|.
+            </p>
             <p className="channel-note">
               Serving store:{" "}
               <strong>
@@ -234,7 +268,7 @@ export default function MethodMWarningPanel({
                   · run <code>{data.run_id}</code>
                 </>
               ) : null}
-              . Threshold τ = {fmtScore(data.threshold)} (recover{" "}
+              . Warning threshold τ = {fmtScore(data.threshold)} (recover{" "}
               {fmtScore(data.recover_threshold)}). Resolution{" "}
               {data.resolution === "five_minute" ? "five-minute" : data.resolution}.
               Calibration sha256{" "}

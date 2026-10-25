@@ -59,7 +59,7 @@ export default function ReplayControls({
       <div
         className="presenter-bookmarks warning-demo-bookmarks"
         role="group"
-        aria-label="Experimental Method M warning demo"
+        aria-label="Experimental warning demo"
       >
         <span className="presenter-bookmarks-label">Experimental warning demo</span>
         <button

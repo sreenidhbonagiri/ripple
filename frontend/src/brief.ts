@@ -44,9 +44,9 @@ export function warningStatusLine(data: MethodMWarningResponse | null): string {
   if (!data) return "Unavailable at this cursor";
   if (data.warning_active) return "Experimental warning active";
   if (data.status === "before_coverage" || data.status === "missing") {
-    return "No Method M evidence at this cursor";
+    return "No experimental warning evidence at this cursor";
   }
-  return "No experimental warning at this cursor";
+  return "No warning at this time";
 }
 
 export function pressureDeltaLine(cmp: PressureComparison | null): string {
@@ -67,25 +67,25 @@ export const BRIEF_CAUSE_LABEL =
 export const BRIEF_CONTEXT_CHANNELS = [
   {
     id: CONTEXT.externalInflows[0].sensorId,
-    title: "External inflow p227",
+    title: "External water supply · p227",
     detail: "R1 → network (measured supply)",
     unit: "m³/h",
   },
   {
     id: CONTEXT.externalInflows[1].sensorId,
-    title: "External inflow p235",
+    title: "External water supply · p235",
     detail: "R2 → network (measured supply)",
     unit: "m³/h",
   },
   {
     id: CONTEXT.internalTransfer.sensorId,
-    title: "Internal pump transfer PUMP_1",
+    title: "Internal pump transfer · PUMP_1",
     detail: "n54 → T1 — internal transfer, not external supply",
     unit: "m³/h",
   },
   {
     id: CONTEXT.tankLevel.sensorId,
-    title: "Tank T1 level",
+    title: "Tank level · T1",
     detail: "Observed tank water level",
     unit: "m",
   },
