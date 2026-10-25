@@ -1,7 +1,8 @@
 # Supervised multivariate event detection — design only (no fits)
 
-**Status:** design and feasibility assessment only. **Do not fit models** under
-this document until a later, explicit run request.  
+**Status:** design registered. A **bounded synthetic-trained pilot** was authorized
+and implemented separately (`run_pilot.py`, `outputs/PILOT_RESULTS.md`). This
+document remains the protocol reference; the pilot must not expand the §8 budget.  
 **Preserves:** frozen FMR3C detector and all of its registered reports; production;
 Tiger unused.  
 **Development year:** **2018 only**. **2019 is sealed** for this experiment’s
