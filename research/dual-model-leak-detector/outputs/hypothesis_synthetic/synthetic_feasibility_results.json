@@ -1,0 +1,1469 @@
+{
+  "generated_at_utc": "2026-10-25T07:34:54.622740+00:00",
+  "stage": "synthetic_feasibility",
+  "branch": "research/uncertainty-aware-hypothesis",
+  "calibration_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+  "method_m_tau_5min_ref": 4.517,
+  "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+  "config": {
+    "delta_min_m3h": -3.0,
+    "delta_max_m3h": 3.0,
+    "rho_min": 0.92,
+    "rho_max": 1.08,
+    "q_max_m3h": 12.0,
+    "q_min_m3h": 0.25,
+    "lambda_delta": 0.001,
+    "lambda_rho": 0.01,
+    "pi0_m2": 0.05,
+    "region_eps_m2": 0.02,
+    "ambiguity_delta_q_m3h": 0.5,
+    "clear_margin_extra": 0.05,
+    "tau_dev": 0.0
+  },
+  "selected_tau_dev": 0.0,
+  "selected_signature_tau_m3h": 3.0,
+  "selected_method_m_sigma_floor_m3h": 1.875205759810683,
+  "split_map": {
+    "nl_nominal": "train",
+    "leak_nominal_J3": "train",
+    "nl_demand_scale": "train",
+    "nl_noise": "dev",
+    "leak_noise_J3": "dev",
+    "ambiguous_demand_J1": "dev",
+    "nl_roughness": "dev",
+    "leak_demand_var_J2": "test",
+    "nl_pump_transition": "test",
+    "leak_pump_J1": "test",
+    "leak_roughness_J3": "test",
+    "nl_demand_node_J1": "test"
+  },
+  "metrics": {
+    "train_hypothesis": {
+      "n": 3,
+      "n_leak": 1,
+      "n_control": 2,
+      "tpr_detect": 1.0,
+      "fpr_detect": 0.0,
+      "control_burden_fpr": 0.0,
+      "false_detect_count_controls": 0,
+      "inconclusive_rate": 0.3333333333333333,
+      "ambiguous_admit_rate": null,
+      "n_ambiguous": 0,
+      "localization_exact_among_detects": 1.0,
+      "localization_error_rate_among_detects": 0.0,
+      "mean_candidate_region_size_among_detects": 1.0,
+      "region_coverage_among_detects": 1.0,
+      "note": "Exact-match localization is reported only among detects and is not the sole headline. Inconclusive and region coverage are first-class."
+    },
+    "dev_hypothesis": {
+      "n": 8,
+      "n_leak": 3,
+      "n_control": 5,
+      "tpr_detect": 1.0,
+      "fpr_detect": 0.0,
+      "control_burden_fpr": 0.0,
+      "false_detect_count_controls": 0,
+      "inconclusive_rate": 0.125,
+      "ambiguous_admit_rate": 1.0,
+      "n_ambiguous": 1,
+      "localization_exact_among_detects": 1.0,
+      "localization_error_rate_among_detects": 0.0,
+      "mean_candidate_region_size_among_detects": 1.0,
+      "region_coverage_among_detects": 1.0,
+      "note": "Exact-match localization is reported only among detects and is not the sole headline. Inconclusive and region coverage are first-class."
+    },
+    "test_hypothesis": {
+      "n": 5,
+      "n_leak": 3,
+      "n_control": 2,
+      "tpr_detect": 0.6666666666666666,
+      "fpr_detect": 0.0,
+      "control_burden_fpr": 0.0,
+      "false_detect_count_controls": 0,
+      "inconclusive_rate": 0.4,
+      "ambiguous_admit_rate": null,
+      "n_ambiguous": 0,
+      "localization_exact_among_detects": 0.5,
+      "localization_error_rate_among_detects": 0.5,
+      "mean_candidate_region_size_among_detects": 1.0,
+      "region_coverage_among_detects": 0.5,
+      "note": "Exact-match localization is reported only among detects and is not the sole headline. Inconclusive and region coverage are first-class."
+    },
+    "test_signature": {
+      "tpr_detect": 1.0,
+      "fpr_detect": 0.0,
+      "localization_exact_among_detects": 1.0,
+      "inconclusive_rate": null,
+      "note": "Baselines force a detect/no-detect bit; they do not admit inconclusive."
+    },
+    "test_method_m_style": {
+      "tpr_detect": 0.0,
+      "fpr_detect": 0.0,
+      "localization_exact_among_detects": null,
+      "inconclusive_rate": null,
+      "note": "Baselines force a detect/no-detect bit; they do not admit inconclusive."
+    }
+  },
+  "rows": [
+    {
+      "scenario_id": "nl_nominal",
+      "split": "train",
+      "seed": 0,
+      "description": "No leak; model matches truth",
+      "factors": [
+        "no_leak",
+        "nominal"
+      ],
+      "has_new_leak": false,
+      "true_leak_node": null,
+      "true_leak_m3h": 0.0,
+      "ambiguous_by_design": false,
+      "network_id": "branched3",
+      "candidates": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "obs_heads": {
+        "J1": 99.83428192138672,
+        "J2": 99.572998046875,
+        "J3": 99.32685089111328
+      },
+      "hypothesis": {
+        "decision": "no_new_leak",
+        "J_H0": 0.0,
+        "J_H1": 0.0,
+        "delta_J": 0.0,
+        "penalty": 0.15000000000000002,
+        "tau_dev": 0.0,
+        "best_candidate": "J1",
+        "leak_m3h": 0.0,
+        "candidate_region": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "region_size": 3,
+        "reasons": [
+          "near_null_deltaJ_and_leak_below_qmin"
+        ],
+        "H0_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H0_rho": 1.0,
+        "H1_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H1_rho": 1.0
+      },
+      "localization_correct": null,
+      "region_covers_truth": null,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": -0.000289730952829359,
+        "abs_sum_m3h": 0.000289730952829359,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": false,
+        "localized_node": null,
+        "q_v_m3h": {
+          "J1": -0.0006374080271598359,
+          "J2": 0.000405623259780441,
+          "J3": -5.7946185449964105e-05
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 0.000339913646182586,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 0.000339913646182586,
+          "J2": 0.00021630866781328142,
+          "J3": 3.090124118209526e-05
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "leak_nominal_J3",
+      "split": "train",
+      "seed": 0,
+      "description": "Clear leak 5 m\u00b3/h at J3; matched model otherwise",
+      "factors": [
+        "leak",
+        "nominal"
+      ],
+      "has_new_leak": true,
+      "true_leak_node": "J3",
+      "true_leak_m3h": 5.0,
+      "ambiguous_by_design": false,
+      "network_id": "branched3",
+      "candidates": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "obs_heads": {
+        "J1": 99.76771545410156,
+        "J2": 99.32258605957031,
+        "J3": 98.43397521972656
+      },
+      "hypothesis": {
+        "decision": "leak",
+        "J_H0": 0.7328174291179297,
+        "J_H1": 0.37023400387261063,
+        "delta_J": 0.36258342524531906,
+        "penalty": 0.15000000000000002,
+        "tau_dev": 0.0,
+        "best_candidate": "J3",
+        "leak_m3h": 2.0,
+        "candidate_region": [
+          "J3"
+        ],
+        "region_size": 1,
+        "reasons": [
+          "deltaJ_exceeds_penalty_and_qmin"
+        ],
+        "H0_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.5
+        },
+        "H0_rho": 1.0,
+        "H1_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H1_rho": 1.0
+      },
+      "localization_correct": true,
+      "region_covers_truth": true,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": 4.999714273093048,
+        "abs_sum_m3h": 4.999714273093048,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": true,
+        "localized_node": "J3",
+        "q_v_m3h": {
+          "J1": -0.000405623259780441,
+          "J2": 0.00017383855634989231,
+          "J3": 4.999946057796478
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 2.6663452965829535,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 0.00021630866781328142,
+          "J2": 9.270372354628578e-05,
+          "J3": 2.6663452965829535
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "nl_demand_scale",
+      "split": "train",
+      "seed": 0,
+      "description": "No leak; uniform +25% demand in truth (inside H0 demand box via \u03b4)",
+      "factors": [
+        "no_leak",
+        "demand_variation"
+      ],
+      "has_new_leak": false,
+      "true_leak_node": null,
+      "true_leak_m3h": 0.0,
+      "ambiguous_by_design": false,
+      "network_id": "branched3",
+      "candidates": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "obs_heads": {
+        "J1": 99.74947357177734,
+        "J2": 99.3544921875,
+        "J3": 98.98236846923828
+      },
+      "hypothesis": {
+        "decision": "inconclusive",
+        "J_H0": 0.12012962712720598,
+        "J_H1": 0.020594726433046162,
+        "delta_J": 0.09953490069415982,
+        "penalty": 0.15000000000000002,
+        "tau_dev": 0.0,
+        "best_candidate": "J3",
+        "leak_m3h": 2.0,
+        "candidate_region": [
+          "J3"
+        ],
+        "region_size": 1,
+        "reasons": [
+          "improvement_inside_ambiguity_band"
+        ],
+        "H0_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.5
+        },
+        "H0_rho": 1.0,
+        "H1_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H1_rho": 1.0
+      },
+      "localization_correct": null,
+      "region_covers_truth": null,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": 6.249711813870817,
+        "abs_sum_m3h": 6.249711813870817,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": true,
+        "localized_node": "J2",
+        "q_v_m3h": {
+          "J1": 2.4996266467496753,
+          "J2": 2.5000618770718575,
+          "J3": 1.2500232900492847
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 1.3332200287846059,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 1.332987931416141,
+          "J2": 1.3332200287846059,
+          "J3": 0.6666059356470218
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "nl_noise",
+      "split": "dev",
+      "seed": 0,
+      "description": "No leak; sensor head noise \u03c3=0.05 m",
+      "factors": [
+        "no_leak",
+        "sensor_noise"
+      ],
+      "has_new_leak": false,
+      "true_leak_node": null,
+      "true_leak_m3h": 0.0,
+      "ambiguous_by_design": false,
+      "network_id": "branched3",
+      "candidates": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "obs_heads": {
+        "J1": 99.84056843244139,
+        "J2": 99.56639280371043,
+        "J3": 99.35887202363544
+      },
+      "hypothesis": {
+        "decision": "no_new_leak",
+        "J_H0": 0.0011085023865053591,
+        "J_H1": 0.0011085023865053591,
+        "delta_J": 0.0,
+        "penalty": 0.15000000000000002,
+        "tau_dev": 0.0,
+        "best_candidate": "J1",
+        "leak_m3h": 0.0,
+        "candidate_region": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "region_size": 3,
+        "reasons": [
+          "near_null_deltaJ_and_leak_below_qmin"
+        ],
+        "H0_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H0_rho": 1.0,
+        "H1_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H1_rho": 1.0
+      },
+      "localization_correct": null,
+      "region_covers_truth": null,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": -0.517027429305017,
+        "abs_sum_m3h": 0.517027429305017,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": false,
+        "localized_node": null,
+        "q_v_m3h": {
+          "J1": -0.9125411510467529,
+          "J2": 0.8358336926903576,
+          "J3": -0.44031997094862163
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 0.48663521124150194,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 0.48663521124150194,
+          "J2": 0.4457290557675877,
+          "J3": 0.2348115499565634
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "nl_noise",
+      "split": "dev",
+      "seed": 1,
+      "description": "No leak; sensor head noise \u03c3=0.05 m",
+      "factors": [
+        "no_leak",
+        "sensor_noise"
+      ],
+      "has_new_leak": false,
+      "true_leak_node": null,
+      "true_leak_m3h": 0.0,
+      "ambiguous_by_design": false,
+      "network_id": "branched3",
+      "candidates": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "obs_heads": {
+        "J1": 99.85156113098996,
+        "J2": 99.61407895405006,
+        "J3": 99.34337274492245
+      },
+      "hypothesis": {
+        "decision": "no_new_leak",
+        "J_H0": 0.002259183672130063,
+        "J_H1": 0.002259183672130063,
+        "delta_J": 0.0,
+        "penalty": 0.15000000000000002,
+        "tau_dev": 0.0,
+        "best_candidate": "J1",
+        "leak_m3h": 0.0,
+        "candidate_region": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "region_size": 3,
+        "reasons": [
+          "near_null_deltaJ_and_leak_below_qmin"
+        ],
+        "H0_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H0_rho": 1.0,
+        "H1_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H1_rho": 1.0
+      },
+      "localization_correct": null,
+      "region_covers_truth": null,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": -1.443483037292026,
+        "abs_sum_m3h": 1.443483037292026,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": false,
+        "localized_node": null,
+        "q_v_m3h": {
+          "J1": -0.6897870975080878,
+          "J2": -1.017081190366298,
+          "J3": 0.26338525058235973
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 0.5423837811104956,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 0.36784608510253686,
+          "J2": 0.5423837811104956,
+          "J3": 0.14045672012491608
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "nl_noise",
+      "split": "dev",
+      "seed": 2,
+      "description": "No leak; sensor head noise \u03c3=0.05 m",
+      "factors": [
+        "no_leak",
+        "sensor_noise"
+      ],
+      "has_new_leak": false,
+      "true_leak_node": null,
+      "true_leak_m3h": 0.0,
+      "ambiguous_by_design": false,
+      "network_id": "branched3",
+      "candidates": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "obs_heads": {
+        "J1": 99.8437345904764,
+        "J2": 99.54686062480096,
+        "J3": 99.30619771394369
+      },
+      "hypothesis": {
+        "decision": "no_new_leak",
+        "J_H0": 0.00043923267656128677,
+        "J_H1": 0.00043923267656128677,
+        "delta_J": 0.0,
+        "penalty": 0.15000000000000002,
+        "tau_dev": 0.0,
+        "best_candidate": "J1",
+        "leak_m3h": 0.0,
+        "candidate_region": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "region_size": 3,
+        "reasons": [
+          "near_null_deltaJ_and_leak_below_qmin"
+        ],
+        "H0_deltas_m3h": {
+          "J1": 5.935317421727588e-07,
+          "J2": 0.38305571931010457,
+          "J3": 5.935317421727588e-07
+        },
+        "H0_rho": 1.0000003021843542,
+        "H1_deltas_m3h": {
+          "J1": 5.935317421727588e-07,
+          "J2": 0.38305571931010457,
+          "J3": 5.935317421727588e-07
+        },
+        "H1_rho": 1.0000003021843542
+      },
+      "localization_correct": null,
+      "region_covers_truth": null,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": -0.780756285530515,
+        "abs_sum_m3h": 0.780756285530515,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": false,
+        "localized_node": null,
+        "q_v_m3h": {
+          "J1": -1.8518670927733183,
+          "J2": 1.1316531104966998,
+          "J3": -0.060542303253896534
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 0.987554076711176,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 0.987554076711176,
+          "J2": 0.6034821003381245,
+          "J3": 0.032285685417267895
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "leak_noise_J3",
+      "split": "dev",
+      "seed": 0,
+      "description": "Leak at J3 + sensor noise \u03c3=0.05 m",
+      "factors": [
+        "leak",
+        "sensor_noise"
+      ],
+      "has_new_leak": true,
+      "true_leak_node": "J3",
+      "true_leak_m3h": 5.0,
+      "ambiguous_by_design": false,
+      "network_id": "branched3",
+      "candidates": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "obs_heads": {
+        "J1": 99.77400196515623,
+        "J2": 99.31598081640574,
+        "J3": 98.46599635224872
+      },
+      "hypothesis": {
+        "decision": "leak",
+        "J_H0": 0.6834831652049564,
+        "J_H1": 0.33533911407514483,
+        "delta_J": 0.3481440511298116,
+        "penalty": 0.15000000000000002,
+        "tau_dev": 0.0,
+        "best_candidate": "J3",
+        "leak_m3h": 2.0,
+        "candidate_region": [
+          "J3"
+        ],
+        "region_size": 1,
+        "reasons": [
+          "deltaJ_exceeds_penalty_and_qmin"
+        ],
+        "H0_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.5
+        },
+        "H0_rho": 1.0,
+        "H1_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H1_rho": 1.0
+      },
+      "localization_correct": true,
+      "region_covers_truth": true,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": 4.5586065331008285,
+        "abs_sum_m3h": 4.5586065331008285,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": true,
+        "localized_node": "J3",
+        "q_v_m3h": {
+          "J1": -0.7522035681176931,
+          "J2": 0.5479692248627543,
+          "J3": 4.762840876355767
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 2.53990307540257,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 0.401131216765052,
+          "J2": 0.29221818565557106,
+          "J3": 2.53990307540257
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "leak_noise_J3",
+      "split": "dev",
+      "seed": 1,
+      "description": "Leak at J3 + sensor noise \u03c3=0.05 m",
+      "factors": [
+        "leak",
+        "sensor_noise"
+      ],
+      "has_new_leak": true,
+      "true_leak_node": "J3",
+      "true_leak_m3h": 5.0,
+      "ambiguous_by_design": false,
+      "network_id": "branched3",
+      "candidates": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "obs_heads": {
+        "J1": 99.78499466370481,
+        "J2": 99.36366696674537,
+        "J3": 98.45049707353573
+      },
+      "hypothesis": {
+        "decision": "leak",
+        "J_H0": 0.6870799484225888,
+        "J_H1": 0.3388029671275946,
+        "delta_J": 0.3482769812949942,
+        "penalty": 0.15000000000000002,
+        "tau_dev": 0.0,
+        "best_candidate": "J3",
+        "leak_m3h": 2.0,
+        "candidate_region": [
+          "J3"
+        ],
+        "region_size": 1,
+        "reasons": [
+          "deltaJ_exceeds_penalty_and_qmin"
+        ],
+        "H0_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.5
+        },
+        "H0_rho": 1.0,
+        "H1_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H1_rho": 1.0
+      },
+      "localization_correct": true,
+      "region_covers_truth": true,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": 3.7733845529146492,
+        "abs_sum_m3h": 3.7733845529146492,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": true,
+        "localized_node": "J3",
+        "q_v_m3h": {
+          "J1": -0.6419756740797311,
+          "J2": -0.7328797189984471,
+          "J3": 5.148239945992827
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 2.7454266920087655,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 0.34234945723745197,
+          "J2": 0.3908262947488158,
+          "J3": 2.7454266920087655
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "leak_noise_J3",
+      "split": "dev",
+      "seed": 2,
+      "description": "Leak at J3 + sensor noise \u03c3=0.05 m",
+      "factors": [
+        "leak",
+        "sensor_noise"
+      ],
+      "has_new_leak": true,
+      "true_leak_node": "J3",
+      "true_leak_m3h": 5.0,
+      "ambiguous_by_design": false,
+      "network_id": "branched3",
+      "candidates": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "obs_heads": {
+        "J1": 99.77716812319125,
+        "J2": 99.29644863749627,
+        "J3": 98.41332204255697
+      },
+      "hypothesis": {
+        "decision": "leak",
+        "J_H0": 0.7787737372132956,
+        "J_H1": 0.4030792531023788,
+        "delta_J": 0.37569448411091677,
+        "penalty": 0.15000000000000002,
+        "tau_dev": 0.0,
+        "best_candidate": "J3",
+        "leak_m3h": 2.0,
+        "candidate_region": [
+          "J3"
+        ],
+        "region_size": 1,
+        "reasons": [
+          "deltaJ_exceeds_penalty_and_qmin"
+        ],
+        "H0_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.5
+        },
+        "H0_rho": 1.0,
+        "H1_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H1_rho": 1.0
+      },
+      "localization_correct": true,
+      "region_covers_truth": true,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": 4.334289254620671,
+        "abs_sum_m3h": 4.334289254620671,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": true,
+        "localized_node": "J3",
+        "q_v_m3h": {
+          "J1": -1.5139608294703066,
+          "J2": 0.8816753164865077,
+          "J3": 4.96657476760447
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 2.6485492280622505,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 0.8073571774988325,
+          "J2": 0.47017523910310505,
+          "J3": 2.6485492280622505
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "ambiguous_demand_J1",
+      "split": "dev",
+      "seed": 0,
+      "description": "No physical leak; +2.5 m\u00b3/h customer demand at J1 (\u2261 leak at J1)",
+      "factors": [
+        "no_leak",
+        "indistinguishable_demand"
+      ],
+      "has_new_leak": false,
+      "true_leak_node": null,
+      "true_leak_m3h": 0.0,
+      "ambiguous_by_design": true,
+      "network_id": "branched3",
+      "candidates": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "obs_heads": {
+        "J1": 99.80227661132812,
+        "J2": 99.541015625,
+        "J3": 99.29486083984375
+      },
+      "hypothesis": {
+        "decision": "inconclusive",
+        "J_H0": 0.0006343412014382308,
+        "J_H1": 0.00013095967005938292,
+        "delta_J": 0.0005033815313788478,
+        "penalty": 0.15000000000000002,
+        "tau_dev": 0.0,
+        "best_candidate": "J1",
+        "leak_m3h": 2.0,
+        "candidate_region": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "region_size": 3,
+        "reasons": [
+          "improvement_inside_ambiguity_band"
+        ],
+        "H0_deltas_m3h": {
+          "J1": 0.4959907403523983,
+          "J2": -7.948200484680882e-11,
+          "J3": -7.948200484680882e-11
+        },
+        "H0_rho": 0.9753744918536,
+        "H1_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H1_rho": 1.0
+      },
+      "localization_correct": null,
+      "region_covers_truth": null,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": 2.500429373287716,
+        "abs_sum_m3h": 2.500429373287716,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": false,
+        "localized_node": null,
+        "q_v_m3h": {
+          "J1": 2.5008929427713156,
+          "J2": -0.00046356948359971284,
+          "J3": 0.0
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 1.3336632151896763,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 1.3336632151896763,
+          "J2": 0.00024720992945676207,
+          "J3": 0.0
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "nl_roughness",
+      "split": "dev",
+      "seed": 0,
+      "description": "No leak; truth roughness \u00d70.95",
+      "factors": [
+        "no_leak",
+        "model_mismatch"
+      ],
+      "has_new_leak": false,
+      "true_leak_node": null,
+      "true_leak_m3h": 0.0,
+      "ambiguous_by_design": false,
+      "network_id": "branched3",
+      "candidates": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "obs_heads": {
+        "J1": 99.81775665283203,
+        "J2": 99.53045654296875,
+        "J3": 99.259765625
+      },
+      "hypothesis": {
+        "decision": "no_new_leak",
+        "J_H0": 0.00043799275250012954,
+        "J_H1": 0.00043799275250012954,
+        "delta_J": 0.0,
+        "penalty": 0.15000000000000002,
+        "tau_dev": 0.0,
+        "best_candidate": "J1",
+        "leak_m3h": 0.0,
+        "candidate_region": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "region_size": 3,
+        "reasons": [
+          "near_null_deltaJ_and_leak_below_qmin"
+        ],
+        "H0_deltas_m3h": {
+          "J1": 4.835972159555126e-11,
+          "J2": 0.3332825461161,
+          "J3": 4.835972159555126e-11
+        },
+        "H0_rho": 0.9733398264689546,
+        "H1_deltas_m3h": {
+          "J1": 4.835972159555126e-11,
+          "J2": 0.3332825461161,
+          "J3": 4.835972159555126e-11
+        },
+        "H1_rho": 0.9733398264689546
+      },
+      "localization_correct": null,
+      "region_covers_truth": null,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": 1.3162099930923432,
+        "abs_sum_m3h": 1.3162099930923432,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": false,
+        "localized_node": null,
+        "q_v_m3h": {
+          "J1": 0.5270444846246392,
+          "J2": 0.5259403260424733,
+          "J3": 0.26322518242523074
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 0.2810595487280545,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 0.2810595487280545,
+          "J2": 0.28047072876715734,
+          "J3": 0.14037135980843266
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "leak_demand_var_J2",
+      "split": "test",
+      "seed": 0,
+      "description": "Leak at J2 + uniform demand scale 1.15",
+      "factors": [
+        "leak",
+        "demand_variation"
+      ],
+      "has_new_leak": true,
+      "true_leak_node": "J2",
+      "true_leak_m3h": 4.0,
+      "ambiguous_by_design": false,
+      "network_id": "branched3",
+      "candidates": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "obs_heads": {
+        "J1": 99.72673797607422,
+        "J2": 99.22872161865234,
+        "J3": 98.90985107421875
+      },
+      "hypothesis": {
+        "decision": "leak",
+        "J_H0": 0.23438892002043762,
+        "J_H1": 0.08184395008720458,
+        "delta_J": 0.15254496993323305,
+        "penalty": 0.15000000000000002,
+        "tau_dev": 0.0,
+        "best_candidate": "J3",
+        "leak_m3h": 2.0,
+        "candidate_region": [
+          "J3"
+        ],
+        "region_size": 1,
+        "reasons": [
+          "deltaJ_exceeds_penalty_and_qmin"
+        ],
+        "H0_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.5
+        },
+        "H0_rho": 1.0,
+        "H1_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H1_rho": 1.0
+      },
+      "localization_correct": false,
+      "region_covers_truth": false,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": 7.750394084723666,
+        "abs_sum_m3h": 7.750394084723666,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": true,
+        "localized_node": "J2",
+        "q_v_m3h": {
+          "J1": 1.500428980216384,
+          "J2": 5.499976454302669,
+          "J3": 0.7499886502046138
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 2.9329989125342357,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 0.8001409831248941,
+          "J2": 2.9329989125342357,
+          "J3": 0.3999500568302068
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "nl_pump_transition",
+      "split": "test",
+      "seed": 0,
+      "description": "No leak; pump\u2013tank analogue matched",
+      "factors": [
+        "no_leak",
+        "pump_tank"
+      ],
+      "has_new_leak": false,
+      "true_leak_node": null,
+      "true_leak_m3h": 0.0,
+      "ambiguous_by_design": false,
+      "network_id": "pump_tank",
+      "candidates": [
+        "J1",
+        "J2"
+      ],
+      "obs_heads": {
+        "J1": 79.88032531738281,
+        "J2": 68.41242980957031
+      },
+      "hypothesis": {
+        "decision": "no_new_leak",
+        "J_H0": 0.0,
+        "J_H1": 0.0,
+        "delta_J": 0.0,
+        "penalty": 0.1,
+        "tau_dev": 0.0,
+        "best_candidate": "J1",
+        "leak_m3h": 0.0,
+        "candidate_region": [
+          "J1",
+          "J2"
+        ],
+        "region_size": 2,
+        "reasons": [
+          "near_null_deltaJ_and_leak_below_qmin"
+        ],
+        "H0_deltas_m3h": {
+          "J0": 0.0,
+          "J1": 0.0,
+          "J2": 0.0
+        },
+        "H0_rho": 1.0,
+        "H1_deltas_m3h": {
+          "J0": 0.0,
+          "J1": 0.0,
+          "J2": 0.0
+        },
+        "H1_rho": 1.0
+      },
+      "localization_correct": null,
+      "region_covers_truth": null,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": 0.0009561119959755615,
+        "abs_sum_m3h": 0.0009561119959755615,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": false,
+        "localized_node": null,
+        "q_v_m3h": {
+          "J1": 0.0008691927178006154,
+          "J2": 8.691927817494616e-05
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 0.00046351858362911986,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 0.00046351858362911986,
+          "J2": 4.635186177314289e-05
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "leak_pump_J1",
+      "split": "test",
+      "seed": 0,
+      "description": "Leak at J1 on pump\u2013tank analogue (matched BC snapshot)",
+      "factors": [
+        "leak",
+        "pump_tank"
+      ],
+      "has_new_leak": true,
+      "true_leak_node": "J1",
+      "true_leak_m3h": 4.0,
+      "ambiguous_by_design": false,
+      "network_id": "pump_tank",
+      "candidates": [
+        "J1",
+        "J2"
+      ],
+      "obs_heads": {
+        "J1": 79.87281036376953,
+        "J2": 68.40997314453125
+      },
+      "hypothesis": {
+        "decision": "inconclusive",
+        "J_H0": 6.250973092392087e-05,
+        "J_H1": 1.578993396833539e-05,
+        "delta_J": 4.671979695558548e-05,
+        "penalty": 0.1,
+        "tau_dev": 0.0,
+        "best_candidate": "J1",
+        "leak_m3h": 2.0,
+        "candidate_region": [
+          "J1",
+          "J2"
+        ],
+        "region_size": 2,
+        "reasons": [
+          "improvement_inside_ambiguity_band"
+        ],
+        "H0_deltas_m3h": {
+          "J0": 0.0,
+          "J1": 0.0,
+          "J2": 0.0
+        },
+        "H0_rho": 1.0,
+        "H1_deltas_m3h": {
+          "J0": 0.0,
+          "J1": 0.0,
+          "J2": 0.0
+        },
+        "H1_rho": 1.0
+      },
+      "localization_correct": null,
+      "region_covers_truth": null,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": 3.999106697033028,
+        "abs_sum_m3h": 3.999106697033028,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": true,
+        "localized_node": "J1",
+        "q_v_m3h": {
+          "J1": 3.999048750847578,
+          "J2": 5.7946185449964105e-05
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 2.1325919728677207,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 2.1325919728677207,
+          "J2": 3.090124118209526e-05
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "leak_roughness_J3",
+      "split": "test",
+      "seed": 0,
+      "description": "Leak at J3 + roughness mismatch",
+      "factors": [
+        "leak",
+        "model_mismatch"
+      ],
+      "has_new_leak": true,
+      "true_leak_node": "J3",
+      "true_leak_m3h": 5.0,
+      "ambiguous_by_design": false,
+      "network_id": "branched3",
+      "candidates": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "obs_heads": {
+        "J1": 99.74456024169922,
+        "J2": 99.25507354736328,
+        "J3": 98.27790832519531
+      },
+      "hypothesis": {
+        "decision": "leak",
+        "J_H0": 1.0526555780284905,
+        "J_H1": 0.6058257829863578,
+        "delta_J": 0.4468297950421327,
+        "penalty": 0.15000000000000002,
+        "tau_dev": 0.0,
+        "best_candidate": "J3",
+        "leak_m3h": 2.0,
+        "candidate_region": [
+          "J3"
+        ],
+        "region_size": 1,
+        "reasons": [
+          "deltaJ_exceeds_penalty_and_qmin"
+        ],
+        "H0_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.5
+        },
+        "H0_rho": 1.0,
+        "H1_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H1_rho": 1.0
+      },
+      "localization_correct": true,
+      "region_covers_truth": true,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": 6.579182686982676,
+        "abs_sum_m3h": 6.579182686982676,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": true,
+        "localized_node": "J3",
+        "q_v_m3h": {
+          "J1": 0.5264764011371881,
+          "J2": 0.5264408304356039,
+          "J3": 5.5262654554098845
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 2.9470181746710318,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 0.2807566041127882,
+          "J2": 0.28073763515356964,
+          "J3": 2.9470181746710318
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    },
+    {
+      "scenario_id": "nl_demand_node_J1",
+      "split": "test",
+      "seed": 0,
+      "description": "No leak; +1.5 m\u00b3/h demand at J1 (inside \u03b4 box; control)",
+      "factors": [
+        "no_leak",
+        "demand_variation"
+      ],
+      "has_new_leak": false,
+      "true_leak_node": null,
+      "true_leak_m3h": 0.0,
+      "ambiguous_by_design": false,
+      "network_id": "branched3",
+      "candidates": [
+        "J1",
+        "J2",
+        "J3"
+      ],
+      "obs_heads": {
+        "J1": 99.81539916992188,
+        "J2": 99.55411529541016,
+        "J3": 99.30796813964844
+      },
+      "hypothesis": {
+        "decision": "inconclusive",
+        "J_H0": 0.00024940622283297004,
+        "J_H1": 0.0001268587657250464,
+        "delta_J": 0.00012254745710792365,
+        "penalty": 0.15000000000000002,
+        "tau_dev": 0.0,
+        "best_candidate": "J1",
+        "leak_m3h": 2.0,
+        "candidate_region": [
+          "J1",
+          "J2",
+          "J3"
+        ],
+        "region_size": 3,
+        "reasons": [
+          "improvement_inside_ambiguity_band"
+        ],
+        "H0_deltas_m3h": {
+          "J1": -1.2879751745009802e-05,
+          "J2": 0.10793309210602343,
+          "J3": -1.2879751745009802e-05
+        },
+        "H0_rho": 0.9896196862859405,
+        "H1_deltas_m3h": {
+          "J1": 0.0,
+          "J2": 0.0,
+          "J3": 0.0
+        },
+        "H1_rho": 1.0
+      },
+      "localization_correct": null,
+      "region_covers_truth": null,
+      "baseline_signature": {
+        "method": "dual_signature",
+        "sum_m3h": 1.4995547916740293,
+        "abs_sum_m3h": 1.4995547916740293,
+        "tau_abs_sum_m3h": 3.0,
+        "detect": false,
+        "localized_node": null,
+        "q_v_m3h": {
+          "J1": 1.4991491683758795,
+          "J2": 0.00046356948359971284,
+          "J3": -5.7946185449964105e-05
+        }
+      },
+      "baseline_method_m_style": {
+        "method": "method_m_style_steady",
+        "score": 0.7994584917055878,
+        "tau": 4.517,
+        "sigma_floor_m3h": 1.875205759810683,
+        "detect": false,
+        "localized_node": null,
+        "per_sensor_score": {
+          "J1": 0.7994584917055878,
+          "J2": 0.00024720992945676207,
+          "J3": 3.090124118209526e-05
+        },
+        "method_m_cal_sha256_ref": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+        "note": "Steady dual analogue; not a claim of five-minute product parity on BattLeDIM."
+      }
+    }
+  ],
+  "scope_exclusions": [
+    "no_measured_event_tuning",
+    "no_2019",
+    "no_main_merge",
+    "no_tiger",
+    "no_ui",
+    "no_deployment"
+  ]
+}
