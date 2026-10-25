@@ -42,13 +42,13 @@ export const PRESENTER = {
 export const WARNING_DEMO = {
   label: "Experimental Method M warning demo",
   disclaimer:
-    "Frozen Method M hourly notification for walkthrough only. Experimental anomaly warning — not a confirmed leak. Not pipe localization.",
+    "Frozen Method M five-minute notification for walkthrough only. Experimental anomaly warning — not a confirmed leak. Not pipe localization.",
   /** Short window around the frozen notify so the timeline can leave Jan 12. */
   windowStart: "2019-01-15 21:00:00",
   windowEnd: "2019-01-16 01:00:00",
-  /** First frozen January Method M notification (hourly grid). */
+  /** First frozen January Method M notification (five-minute grid). */
   cursor: "2019-01-15 23:00:00",
-  /** Argmax contributing sensor at the notify hour (measured dual context). */
+  /** Argmax contributing sensor at the notify stamp (measured dual context). */
   sensorId: "n506",
   notifyTs: "2019-01-15 23:00:00",
 } as const;

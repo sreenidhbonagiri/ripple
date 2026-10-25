@@ -1,0 +1,21 @@
+{
+  "artifact": "method_m_5min_2019_diagnostic",
+  "generated_at_utc": "2026-10-25T06:49:13.907499+00:00",
+  "acknowledgement": "2019 has already been examined during previous research; this is a frozen diagnostic evaluation of five-minute Method M, not a blind holdout.",
+  "frozen_tau": 4.517,
+  "calibration_sha256": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+  "pre_inference_hashes_sha256": "0d8b83b04d214139dc2fccd4861cea304f06dc30f71a28803a1e488ce80bf813",
+  "pre_label_hashes_sha256": "2921b82197c538df12addf4a9f1cbabca7259d42ba5ac691742ad10b03973265",
+  "results_json_sha256": "afda397200b18be2f5188dc2416927a429b0ce34ff6faa5c832705ec39a19cbf",
+  "score_M_5min_2019_sha256": "569dc80acc4bad3016d025605ed621422a89923a27b6f3347d20077e79d206e2",
+  "notifications_2019_sha256": "7283a0963f8af2d5cda14c031b934b97f97e06dd73b4cdaf9e11a541adf9616d",
+  "notifications_txt_sha256": "7283a0963f8af2d5cda14c031b934b97f97e06dd73b4cdaf9e11a541adf9616d",
+  "dual_qv_5min_2019_sha256": "4b033992c74e2c4b8c21ded5e149a682eadb0ae05f96bdb88d2d1fcf57669cb6",
+  "dual_meta_2019_sha256": "91e09eed8ea0f573d78117de38e0f2bbf797a6a619d266d95cfc8ae9b6105840",
+  "reproducibility": {
+    "script": "scripts/run_method_m_5min_2019_frozen.py",
+    "script_sha256": "ffa8a590f26ea28399edd4c5bb4bedec6fac81e73241d426c9f38f07c03b50a3",
+    "command": "PYTHONPATH=. python scripts/run_method_m_5min_2019_frozen.py",
+    "notes": "Dual CSV may be cached; delete dual_qv_5min_2019.csv to rebuild. Scores/notifies are hashed before labels."
+  }
+}

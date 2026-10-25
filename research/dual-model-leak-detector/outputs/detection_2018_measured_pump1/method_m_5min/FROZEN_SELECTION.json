@@ -1,0 +1,37 @@
+{
+  "variant": "method_m_5min",
+  "selection_passed": true,
+  "tau": 4.517,
+  "tau_grid_registered": [1.175, 1.565, 2.117, 4.517],
+  "frozen_calibration_sha256": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+  "pump_boundary": "measured_pump1",
+  "timestep_sec": 300,
+  "ref_min_samples": 144,
+  "min_scale_samples": 288,
+  "recover_steps": 12,
+  "causal_fill_max_age_steps": 2,
+  "scale_period": ["2018-01-09 01:00:00", "2018-01-21 23:00:00"],
+  "dev": {
+    "abrupt_6h_recall": 1.0,
+    "unmatched_per_week": 0.201,
+    "occupancy": 0.031,
+    "mean_delay_hours": 0.2777777777777778,
+    "n_hit": 3,
+    "n_eligible_abrupt": 3
+  },
+  "diag": {
+    "abrupt_6h_recall": 0.3333333333333333,
+    "unmatched_per_week": 0.038,
+    "occupancy": 0.008,
+    "mean_delay_hours": 0.0,
+    "n_hit": 1,
+    "n_eligible_abrupt": 3
+  },
+  "hourly_baseline_reproduced": {
+    "tau": 4.347,
+    "source": "existing score_M.csv (hydraulics not re-run)",
+    "abrupt_6h_recall": 1.0,
+    "unmatched_per_week": 0.201,
+    "occupancy": 0.028
+  }
+}

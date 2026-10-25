@@ -2,6 +2,8 @@
 
 Serving data is January 2019 only, matching existing Tiger raw coverage.
 Evaluation labels are never loaded into the serving payload.
+
+Frozen five-minute Method M (τ from 2018 DEV freeze); scores on a 5-minute grid.
 """
 
 from __future__ import annotations
@@ -18,11 +20,12 @@ from app.config import REPO_ROOT
 DEFAULT_ARTIFACT_DIR = REPO_ROOT / "artifacts" / "method_m_experimental_january"
 
 EXPERIMENTAL_DISCLAIMER = "Experimental anomaly warning — not a confirmed leak."
-RESOLUTION = "hourly"
+RESOLUTION = "five_minute"
 RESOLUTION_NOTE = (
-    "Scores and notifications are on an hourly grid. "
-    "Sub-hour precision must not be implied."
+    "Scores and notifications are on a native five-minute grid. "
+    "Do not treat notify times as sub-sample precision beyond the 5-minute stamp."
 )
+SCORE_STEP = timedelta(minutes=5)
 
 
 @dataclass(frozen=True)
@@ -50,9 +53,16 @@ def _fmt(ts: datetime) -> str:
     return ts.strftime("%Y-%m-%d %H:%M:%S")
 
 
-def floor_to_hour(cursor: datetime) -> datetime:
+def floor_to_score_step(cursor: datetime) -> datetime:
+    """Floor cursor to the native Method M score grid (5-minute)."""
     c = cursor.replace(tzinfo=None)
-    return c.replace(minute=0, second=0, microsecond=0)
+    minute = (c.minute // 5) * 5
+    return c.replace(minute=minute, second=0, microsecond=0)
+
+
+# Back-compat alias used by older tests/docs wording
+def floor_to_hour(cursor: datetime) -> datetime:
+    return floor_to_score_step(cursor)
 
 
 @lru_cache(maxsize=1)
@@ -75,9 +85,8 @@ def clear_artifact_cache() -> None:
     load_artifact.cache_clear()
 
 
-def _latest_hour_at_or_before(cursor: datetime, hour_index: list[str]) -> str | None:
-    target = _fmt(floor_to_hour(cursor))
-    # binary search last <= target
+def _latest_stamp_at_or_before(cursor: datetime, hour_index: list[str]) -> str | None:
+    target = _fmt(floor_to_score_step(cursor))
     lo, hi = 0, len(hour_index)
     while lo < hi:
         mid = (lo + hi) // 2
@@ -99,18 +108,17 @@ def _active_episode_at(
     episode remains active if notify ≤ cursor (we never invent a future end).
     """
     c = cursor.replace(tzinfo=None)
+    score_floor = floor_to_score_step(c)
     active: dict[str, Any] | None = None
     for ep in episodes:
         notify = _parse_naive(ep["notify_ts"])
         end = _parse_naive(ep["end_ts"])
         if notify > c:
             continue
-        # Still open at cursor if recovery hour is strictly after cursor hour
-        if end > floor_to_hour(c):
-            # Prefer the latest notify still open
+        # Still open at cursor if recovery stamp is strictly after current score stamp
+        if end > score_floor:
             if active is None or notify > _parse_naive(active["notify_ts"]):
                 active = ep
-        # else recovered at/before cursor — not active
     return active
 
 
@@ -122,13 +130,15 @@ def present_method_m_warning(cursor: datetime) -> dict[str, Any]:
     coverage_start = _parse_naive(man["coverage"]["start"])
     coverage_end = _parse_naive(man["coverage"]["end"])
     tau = float(man["tau"])
+    resolution = str(man.get("resolution") or RESOLUTION)
+    resolution_note = str(man.get("resolution_note") or RESOLUTION_NOTE)
 
     base: dict[str, Any] = {
         "method": "M",
         "experimental": True,
         "disclaimer": EXPERIMENTAL_DISCLAIMER,
-        "resolution": RESOLUTION,
-        "resolution_note": RESOLUTION_NOTE,
+        "resolution": resolution,
+        "resolution_note": resolution_note,
         "cursor": _fmt(c),
         "score_hour": None,
         "threshold": tau,
@@ -156,10 +166,10 @@ def present_method_m_warning(cursor: datetime) -> dict[str, Any]:
         )
         return base
 
-    hour_key = _latest_hour_at_or_before(c, art.hour_index)
+    hour_key = _latest_stamp_at_or_before(c, art.hour_index)
     if hour_key is None:
         base["status"] = "missing"
-        base["notes"].append("No Method M score hour at or before cursor.")
+        base["notes"].append("No Method M score stamp at or before cursor.")
         return base
 
     hour = art.hours_by_ts[hour_key]
@@ -172,23 +182,20 @@ def present_method_m_warning(cursor: datetime) -> dict[str, Any]:
     base["argmax_sensor_id"] = hour.get("argmax_sensor_id")
     base["contributors"] = list(hour.get("contributors") or [])
     base["data_age_hours"] = round(age_hours, 3)
-    base["notes"].append(RESOLUTION_NOTE)
+    base["notes"].append(resolution_note)
 
     if score is None:
         base["status"] = "score_missing"
         base["notes"].append(
-            "Score is missing for this hour (NaN / insufficient causal reference)."
+            "Score is missing for this stamp (NaN / insufficient causal reference)."
         )
         return base
 
-    if c > coverage_end + timedelta(hours=1) - timedelta(seconds=1):
-        # Cursor past January serving package — still show last available hour
-        # but mark out_of_serving_coverage (Tiger may still have raw Jan data only).
-        if floor_to_hour(c) > coverage_end:
-            base["notes"].append(
-                "Cursor is past January Method M serving coverage; "
-                "showing last available hour at or before cursor."
-            )
+    if floor_to_score_step(c) > coverage_end:
+        base["notes"].append(
+            "Cursor is past January Method M serving coverage; "
+            "showing last available stamp at or before cursor."
+        )
 
     active = _active_episode_at(c, art.episodes)
     if active is not None:
@@ -197,7 +204,6 @@ def present_method_m_warning(cursor: datetime) -> dict[str, Any]:
         end_dt = _parse_naive(end_ts)
         notify_dt = _parse_naive(notify_ts)
 
-        # Causal peak: max score from notify hour through current score hour
         peak_to_cursor = None
         for ts in art.hour_index:
             tdt = _parse_naive(ts)
@@ -216,7 +222,6 @@ def present_method_m_warning(cursor: datetime) -> dict[str, Any]:
             "notify_ts": notify_ts,
             "score_at_notify": (art.hours_by_ts.get(notify_ts) or {}).get("score"),
         }
-        # Never expose future episode end or full-episode peak before cursor reaches them
         if end_dt <= score_hour:
             base["episode_end_ts"] = end_ts
             base["episode_peak_score"] = float(active["peak_score"])
@@ -230,7 +235,6 @@ def present_method_m_warning(cursor: datetime) -> dict[str, Any]:
             )
     else:
         if float(score) >= tau:
-            # Score above τ but notifier not active (edge / recovery boundary)
             base["status"] = "elevated_no_notify"
             base["notes"].append(
                 "Score at or above threshold without an active notification "
@@ -243,8 +247,6 @@ def present_method_m_warning(cursor: datetime) -> dict[str, Any]:
                 "Investigation remains usable."
             )
 
-        # If the cursor sits exactly on a completed episode end hour, expose
-        # end/peak (both ≤ cursor). Do not describe future peaks/ends.
         for ep in art.episodes:
             end = _parse_naive(ep["end_ts"])
             notify = _parse_naive(ep["notify_ts"])

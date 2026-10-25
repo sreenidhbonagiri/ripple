@@ -2,27 +2,30 @@
   "method": "M",
   "label": "experimental_historical_anomaly_warning",
   "experimental_disclaimer": "Experimental anomaly warning \u2014 not a confirmed leak.",
-  "resolution": "hourly",
-  "resolution_note": "Scores and notifications are on an hourly grid. Sub-hour precision must not be implied.",
+  "resolution": "five_minute",
+  "resolution_note": "Scores and notifications are on a native five-minute grid. Do not treat notify times as sub-sample precision beyond the 5-minute stamp.",
   "coverage": {
     "start": "2019-01-01 00:00:00",
-    "end": "2019-01-31 23:00:00",
+    "end": "2019-01-31 23:55:00",
     "note": "January 2019 only \u2014 matches existing Tiger raw coverage; no additional raw import."
   },
-  "tau": 4.347,
-  "tau_recover": 2.1735,
-  "raw_max_median": 1.843999066008619,
+  "tau": 4.517,
+  "tau_recover": 2.2585,
+  "timestep_sec": 300,
+  "recover_steps": 12,
+  "ref_min_samples": 144,
+  "raw_max_median": 1.8627628082175554,
   "version_hashes": {
     "calibration_sha256": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
-    "sensor_scales_sha256": "34003a0ad5ea69cf145794babefd08ba03b742d51977f8bd54be9294eaf72e55",
-    "tau_sha256": "adc85b01b1d8e84939d0490efb2c09278d6a910a0d901dd0baa700b498c42348",
-    "score_M_2019_sha256": "6578b9b04d073732320a14d45f0e5197e909660b51d740f1a20081dfbdb5bb42",
-    "notifications_2019_sha256": "3ae2528e1c832a06e0bc2848f31a10c612c82189a3303e8e98c92b61f52b775c",
-    "detection_scores_py_sha256": "058df5f9d5ae892a2ee9adce545376134907dafbc8a324f26c2d785ca4d6247f",
+    "sensor_scales_sha256": "ecc59eafedb934e9d6b66bb4cbaac89f8e9a0eda37b11cf899ee98664cd5c135",
+    "tau_sha256": "47e02f331e23e466f5df6c79788aa8ce8a323738568464fc938bb3aae06d846e",
+    "score_M_2019_sha256": "569dc80acc4bad3016d025605ed621422a89923a27b6f3347d20077e79d206e2",
+    "notifications_2019_sha256": "7283a0963f8af2d5cda14c031b934b97f97e06dd73b4cdaf9e11a541adf9616d",
+    "detection_scores_py_sha256": "1bc40108bdb59bd1a7c5f7e69f3258ccd19baedc9e14e6571f7ef26fc3cccd26",
     "notifier_py_sha256": "fd377799e2a9cadc1cdee0295d221fb29002207d6cb0be30f58ce104d1290e30",
-    "METHOD_M_PROTOCOL_sha256": "ba1148746aa66c07120cf6488fcc98e19405d37f87cb4280177d88e2259ca3b7",
-    "serving_hours_sha256": "d8ed9ff1f539f424e2c28cd64a3a13c2fe94b7b9b5f48a992edc2ca56e22f199",
-    "serving_notifications_sha256": "8c951284c9bd20069e3fd24428b0759797f7278ff5f08266a719caadbed85d02"
+    "METHOD_M_PROTOCOL_sha256": "1de86e7ba10c7d9d6daa1fa24542b7c8b25ca4e2156d42b210f0f251d281f321",
+    "serving_hours_sha256": "372f53c8b5dd82438cdc59d535afc3b296c57d5818ad7957cc4210a3541ea07c",
+    "serving_notifications_sha256": "4db2d745b31397ffd3d1b6d543bb523a00094d06570716c2a7c0b6d94dad3096"
   },
   "evaluation_labels_in_serving": false,
   "tiger_capacity": {
@@ -31,19 +34,24 @@
     "limit_bytes": 786432000,
     "working_ceiling_bytes": 629145600,
     "usable_bytes": 529131841,
-    "estimated_derived_table_bytes": 5059200,
+    "estimated_derived_table_bytes": 60710400,
     "would_fit": true,
     "decision": "file_backed_artifact_no_tiger_derived_table",
-    "rationale": "Capacity allows ~5 MiB derived rows, but serving stays file-backed to avoid hypertable growth and keep eval labels out of the database."
+    "rationale": "Capacity allows a derived table at five-minute density, but serving stays file-backed to avoid hypertable growth and keep eval labels out of the database."
   },
-  "n_hours": 744,
+  "n_hours": 8928,
+  "n_score_stamps": 8928,
   "n_notifications_january": 2,
   "matching_verification": {
     "one_to_one_abrupt_2019": true,
     "abrupt_recall": "3/9",
     "abrupt_recall_excluding_p523_dev_example": "2/8",
+    "incipient_recall": "0/10",
+    "unmatched_notifications_2019": 6,
     "notification_timestamps_match_frozen_file": true,
-    "hourly_resolution_disclosed": true,
-    "carryover_note": "Carryover open-leak counts reuse the same 2019 notifications; they are not independent detections."
+    "five_minute_resolution_disclosed": true,
+    "evaluation_type": "frozen_diagnostic_not_blind_holdout",
+    "carryover_note": "Carryover open-leak counts reuse the same 2019 notifications; they are not independent detections.",
+    "vs_hourly": "Same detected abrupt events as hourly Method M; earlier notifications on shared hits where the five-minute grid allows."
   }
 }

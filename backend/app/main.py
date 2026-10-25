@@ -240,7 +240,7 @@ def get_tiger_evidence() -> dict:
 def get_method_m_warning(
     at: str = Query(..., description="Replay cursor (naive timestamp)"),
 ) -> dict:
-    """Cursor-safe Experimental Method M historical anomaly warning (January).
+    """Cursor-safe Experimental Method M historical anomaly warning (January, five-minute).
 
     File-backed serving artifact — not a confirmed leak; no predicted pipes;
     evidence and episode peaks/ends only at or before the cursor.

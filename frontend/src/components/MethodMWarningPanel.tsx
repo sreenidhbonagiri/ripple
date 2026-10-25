@@ -50,12 +50,12 @@ export default function MethodMWarningPanel({ cursor }: Props) {
   return (
     <section className="method-m-panel" aria-label="Experimental Method M warning">
       <div className="method-m-header">
-        <p className="method-m-badge">Experimental · hourly scoring</p>
+        <p className="method-m-badge">Experimental · five-minute scoring</p>
         <h2 className="method-m-title">Experimental anomaly warning</h2>
         <p className="method-m-disclaimer" role="note">
           Experimental anomaly warning — not a confirmed leak. Not a pipe
-          localization result. Scores and notifications use an hourly grid;
-          sub-hour precision is not implied.
+          localization result. Scores and notifications use a native five-minute
+          grid; do not treat notify times as finer than the 5-minute stamp.
         </p>
       </div>
 
@@ -81,8 +81,9 @@ export default function MethodMWarningPanel({ cursor }: Props) {
       {matched && data && (
         <div className="method-m-body">
           <p className="method-m-meta">
-            Resolution: hourly (latest score hour ≤ cursor). Threshold τ ={" "}
-            {fmtScore(data.threshold)}. Score hour {data.score_hour ?? "—"}.
+            Resolution: {data.resolution === "five_minute" ? "five-minute" : data.resolution}{" "}
+            (latest score stamp ≤ cursor). Threshold τ ={" "}
+            {fmtScore(data.threshold)}. Score stamp {data.score_hour ?? "—"}.
             {data.data_age_hours !== null && data.data_age_hours !== undefined
               ? ` Data age ${data.data_age_hours.toFixed(2)} h vs cursor.`
               : null}
@@ -97,7 +98,7 @@ export default function MethodMWarningPanel({ cursor }: Props) {
               </p>
               {data.notification?.notify_ts && (
                 <p className="channel-note">
-                  Notification (hourly, ≤ cursor) {data.notification.notify_ts}
+                  Notification (five-minute, ≤ cursor) {data.notification.notify_ts}
                 </p>
               )}
               {data.peak_score_observed_to_cursor !== null &&

@@ -86,7 +86,7 @@ export default function ReplayControls({
           Method M notify 23:00 (15 Jan)
         </button>
         <span className="warning-demo-hint">
-          Hourly · not a confirmed leak · not localization
+          Five-minute · not a confirmed leak · not localization
         </span>
       </div>
       <div className="replay-controls">
