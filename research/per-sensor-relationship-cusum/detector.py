@@ -1,10 +1,23 @@
-"""Sequential one-sided CUSUM with episode semantics (notification = crossing time)."""
+"""Sequential one-sided CUSUM with episode semantics (notification = crossing time).
+
+Recovery modes
+--------------
+``cusum_zero`` (original frozen): while active, clear after ``recover_steps``
+consecutive finite samples with ``C==0``.
+
+``residual_le_k`` (registered variant): while active, clear after
+``residual_recover_steps`` consecutive finite samples with ``z <= k``; on clear
+reset ``C`` and rearm. See ``VARIANT_RESIDUAL_RECOVERY.md``.
+"""
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 
 import numpy as np
+
+RECOVERY_CUSUM_ZERO = "cusum_zero"
+RECOVERY_RESIDUAL_LE_K = "residual_le_k"
 
 
 @dataclass
@@ -16,6 +29,7 @@ class Episode:
     change_estimate_idx: int  # diagnostic only (last zero before notify)
     refs_used: list[str] = field(default_factory=list)
     peak_cusum: float = 0.0
+    recovery_mode: str = RECOVERY_CUSUM_ZERO
 
 
 def run_cusum_episodes(
@@ -28,13 +42,19 @@ def run_cusum_episodes(
     k: float,
     h: float,
     recover_steps: int,
+    recovery_mode: str = RECOVERY_CUSUM_ZERO,
+    residual_recover_steps: int = 12,
 ) -> list[Episode]:
     """One stream: z length = analysis span; indices relative then shifted by offset.
 
-    - Missing z: hold C (no update, no recovery credit).
+    Shared:
+    - Missing z: hold C; break recovery streak; do not clear / do not notify.
     - Notification = first t with C>=h while inactive (not backdated).
-    - No re-notify while active; rearm only after recover_steps consecutive C==0 on finite z.
+    - No re-notify while active; rearm only after a documented clear.
     """
+    if recovery_mode not in (RECOVERY_CUSUM_ZERO, RECOVERY_RESIDUAL_LE_K):
+        raise ValueError(f"unknown recovery_mode={recovery_mode!r}")
+
     episodes: list[Episode] = []
     c = 0.0
     last_zero_local = 0
@@ -57,6 +77,7 @@ def run_cusum_episodes(
                 change_estimate_idx=analysis_offset + change_local,
                 refs_used=list(refs),
                 peak_cusum=peak,
+                recovery_mode=recovery_mode,
             )
         )
         active = False
@@ -68,29 +89,46 @@ def run_cusum_episodes(
 
     for local, val in enumerate(z):
         if not np.isfinite(val):
-            # hold C; no recovery credit
+            # hold C; never clear on missing
+            if recovery_mode == RECOVERY_RESIDUAL_LE_K:
+                recover_run = 0  # variant: missing breaks residual recovery streak
+            # original cusum_zero: leave recover_run unchanged (finite C==0 samples only)
             continue
-        c = max(0.0, c + val - k)
-        if c == 0.0:
-            last_zero_local = local
-        peak = max(peak, c) if active else peak
 
-        if not active:
-            if c >= h:
-                active = True
-                notify_local = local
-                change_local = last_zero_local
-                peak = c
+        if active:
+            if recovery_mode == RECOVERY_RESIDUAL_LE_K:
+                # Residual-normalization recovery (registered variant).
+                if val <= k:
+                    recover_run += 1
+                else:
+                    recover_run = 0
+                if recover_run >= residual_recover_steps:
+                    close_episode(local)
+                    continue
+                c = max(0.0, c + val - k)
+                peak = max(peak, c)
+                continue
+
+            # Original: accumulate C first, then C==0 streak recovery.
+            c = max(0.0, c + val - k)
+            peak = max(peak, c)
+            if c == 0.0:
+                recover_run += 1
+                if recover_run >= recover_steps:
+                    close_episode(local)
+            else:
                 recover_run = 0
             continue
 
-        # active
-        peak = max(peak, c)
+        # inactive — notification path identical for both modes
+        c = max(0.0, c + val - k)
         if c == 0.0:
-            recover_run += 1
-            if recover_run >= recover_steps:
-                close_episode(local)
-        else:
+            last_zero_local = local
+        if c >= h:
+            active = True
+            notify_local = local
+            change_local = last_zero_local
+            peak = c
             recover_run = 0
 
     if active:
@@ -107,6 +145,8 @@ def run_all_targets(
     k: float,
     h: float,
     recover_hours: float,
+    recovery_mode: str = RECOVERY_CUSUM_ZERO,
+    residual_recover_steps: int = 12,
 ) -> list[Episode]:
     recover_steps = max(1, int(recover_hours * 12))
     out: list[Episode] = []
@@ -123,6 +163,8 @@ def run_all_targets(
                 k=k,
                 h=h,
                 recover_steps=recover_steps,
+                recovery_mode=recovery_mode,
+                residual_recover_steps=residual_recover_steps,
             )
         )
     out.sort(key=lambda e: e.notify_idx)
@@ -136,6 +178,8 @@ def run_global_stream(
     k: float,
     h: float,
     recover_hours: float,
+    recovery_mode: str = RECOVERY_CUSUM_ZERO,
+    residual_recover_steps: int = 12,
 ) -> list[Episode]:
     recover_steps = max(1, int(recover_hours * 12))
     return run_cusum_episodes(
@@ -147,4 +191,6 @@ def run_global_stream(
         k=k,
         h=h,
         recover_steps=recover_steps,
+        recovery_mode=recovery_mode,
+        residual_recover_steps=residual_recover_steps,
     )
