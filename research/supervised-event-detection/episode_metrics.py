@@ -21,8 +21,15 @@ SCENARIO_WEEKS = DURATION_HOURS / (24.0 * 7.0)
 
 
 def score_full_trajectory(pressures, flows, levels, frozen: dict) -> np.ndarray:
-    """Causal q(t) on the full scenario; NaN where features incomplete."""
-    X, _ = build_feature_matrix(pressures, flows, levels)
+    """Causal q(t) on the full scenario; NaN where features incomplete.
+
+    If frozen['feature_names'] is set, score only those columns (ablation arms).
+    """
+    X, names = build_feature_matrix(pressures, flows, levels)
+    keep = frozen.get("feature_names")
+    if keep is not None:
+        idx = [names.index(n) for n in keep]
+        X = np.ascontiguousarray(X[:, idx])
     q = np.full(X.shape[0], np.nan, dtype=np.float64)
     ok = np.all(np.isfinite(X), axis=1)
     if ok.any():

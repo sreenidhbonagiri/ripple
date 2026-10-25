@@ -176,9 +176,12 @@ def eval_period(
 
 
 def run_supervised_on_measured(frozen: dict, measured: dict) -> tuple[list[Episode], np.ndarray]:
-    X, _ = build_feature_matrix(
+    X, names = build_feature_matrix(
         measured["pressures"], measured["flows"], measured["levels"]
     )
+    keep = frozen.get("feature_names")
+    if keep is not None:
+        X = np.ascontiguousarray(X[:, [names.index(n) for n in keep]])
     # warm-up: scores NaN until warm_up_steps
     warm = FEATURE_CONFIG.warm_up_steps
     q = np.full(X.shape[0], np.nan, dtype=np.float64)

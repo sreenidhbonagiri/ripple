@@ -49,11 +49,18 @@ def fit_select_episode(
     sim_dir: Path,
     manifest: dict,
     assignments: dict[str, str],
+    *,
+    feature_names: list[str] | None = None,
+    feature_set_label: str | None = None,
 ) -> dict:
     Xtr, ytr = train["X"], train["y"]
     if Xtr.shape[0] < 50 or ytr.sum() < 5:
         raise RuntimeError(
             f"insufficient train rows/positives: n={Xtr.shape[0]} pos={int(ytr.sum())}"
+        )
+    if feature_names is not None and Xtr.shape[1] != len(feature_names):
+        raise RuntimeError(
+            f"train X cols {Xtr.shape[1]} != len(feature_names) {len(feature_names)}"
         )
 
     scaler = StandardScaler()
@@ -82,6 +89,7 @@ def fit_select_episode(
             "coef": by_C[C]["coef"],
             "intercept": by_C[C]["intercept"],
             "selected": {"C": C, "tau": TAU_GRID[0]},  # tau overwritten per eval
+            "feature_names": feature_names,
         }
         for tau in TAU_GRID:
             summary = evaluate_split_episodes(
@@ -136,7 +144,8 @@ def fit_select_episode(
     clf.fit(Xtr_s, ytr)
 
     return {
-        "feature_set": FEATURE_SET,
+        "feature_set": feature_set_label or FEATURE_SET,
+        "feature_names": list(feature_names) if feature_names is not None else None,
         "selected": {"C": C_sel, "tau": tau_sel},
         "gate_met": bool(best["gate_met"]),
         "selection_failure": selection_failure,

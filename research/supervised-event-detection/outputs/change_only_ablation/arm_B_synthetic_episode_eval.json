@@ -1,0 +1,374 @@
+{
+  "synthetic_dev": {
+    "split": "synthetic_dev",
+    "tau": 0.7,
+    "n_leak_scenarios": 5,
+    "episode_6h_recall": 0.8,
+    "n_episode_6h_hit": 4,
+    "median_delay_h": 5.291666666666666,
+    "delays_h": [
+      5.833333333333333,
+      4.75,
+      6.0,
+      4.0
+    ],
+    "row_credit_scenario_recall": 0.8,
+    "n_row_credit_hit": 4,
+    "n_row_vs_episode_disagree": 0,
+    "n_blocked_by_preonset_active": 4,
+    "n_control_scenarios": 3,
+    "n_control_episodes": 14,
+    "control_episodes_per_week": 16.333333333333336,
+    "n_leak_scenario_episodes": 23,
+    "leak_episodes_per_week": 16.1,
+    "label_note": "y=1 is the registered 6h recent-onset credit window, not ongoing leak presence.",
+    "per_leak_brief": [
+      {
+        "scenario_id": "leak_004_p709",
+        "pipe": "p709",
+        "episode_6h_hit": true,
+        "row_credit_hit": true,
+        "delay_hours": 5.833333333333333,
+        "blocked_by_preonset_active": true,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          29,
+          197
+        ]
+      },
+      {
+        "scenario_id": "leak_006_p128",
+        "pipe": "p128",
+        "episode_6h_hit": true,
+        "row_credit_hit": true,
+        "delay_hours": 4.75,
+        "blocked_by_preonset_active": false,
+        "n_episodes": 4,
+        "preonset_notifies": [
+          28,
+          198,
+          289
+        ]
+      },
+      {
+        "scenario_id": "leak_019_p488",
+        "pipe": "p488",
+        "episode_6h_hit": true,
+        "row_credit_hit": true,
+        "delay_hours": 6.0,
+        "blocked_by_preonset_active": true,
+        "n_episodes": 4,
+        "preonset_notifies": [
+          28,
+          198
+        ]
+      },
+      {
+        "scenario_id": "leak_020_p656",
+        "pipe": "p656",
+        "episode_6h_hit": false,
+        "row_credit_hit": false,
+        "delay_hours": null,
+        "blocked_by_preonset_active": true,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          25,
+          197,
+          285
+        ]
+      },
+      {
+        "scenario_id": "leak_022_p670",
+        "pipe": "p670",
+        "episode_6h_hit": true,
+        "row_credit_hit": true,
+        "delay_hours": 4.0,
+        "blocked_by_preonset_active": true,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          25,
+          197
+        ]
+      }
+    ],
+    "per_control_brief": [
+      {
+        "scenario_id": "ctrl_004_control_sensor",
+        "kind": "control_sensor",
+        "n_episodes": 4
+      },
+      {
+        "scenario_id": "ctrl_005_control_sensor",
+        "kind": "control_sensor",
+        "n_episodes": 5
+      },
+      {
+        "scenario_id": "ctrl_006_control_tank",
+        "kind": "control_tank",
+        "n_episodes": 5
+      }
+    ]
+  },
+  "synthetic_test": {
+    "split": "synthetic_test",
+    "tau": 0.7,
+    "n_leak_scenarios": 15,
+    "episode_6h_recall": 0.3333333333333333,
+    "n_episode_6h_hit": 5,
+    "median_delay_h": 4.75,
+    "delays_h": [
+      5.25,
+      4.75,
+      1.6666666666666667,
+      4.666666666666667,
+      5.833333333333333
+    ],
+    "row_credit_scenario_recall": 0.5333333333333333,
+    "n_row_credit_hit": 8,
+    "n_row_vs_episode_disagree": 3,
+    "n_blocked_by_preonset_active": 10,
+    "n_control_scenarios": 6,
+    "n_control_episodes": 21,
+    "control_episodes_per_week": 12.25,
+    "n_leak_scenario_episodes": 71,
+    "leak_episodes_per_week": 16.566666666666666,
+    "label_note": "y=1 is the registered 6h recent-onset credit window, not ongoing leak presence.",
+    "per_leak_brief": [
+      {
+        "scenario_id": "leak_000_p282",
+        "pipe": "p282",
+        "episode_6h_hit": false,
+        "row_credit_hit": false,
+        "delay_hours": null,
+        "blocked_by_preonset_active": true,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          24,
+          196,
+          285
+        ]
+      },
+      {
+        "scenario_id": "leak_001_p299",
+        "pipe": "p299",
+        "episode_6h_hit": false,
+        "row_credit_hit": false,
+        "delay_hours": null,
+        "blocked_by_preonset_active": false,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          24,
+          196,
+          285
+        ]
+      },
+      {
+        "scenario_id": "leak_002_p69",
+        "pipe": "p69",
+        "episode_6h_hit": true,
+        "row_credit_hit": true,
+        "delay_hours": 5.25,
+        "blocked_by_preonset_active": true,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          24,
+          196
+        ]
+      },
+      {
+        "scenario_id": "leak_003_p435",
+        "pipe": "p435",
+        "episode_6h_hit": false,
+        "row_credit_hit": false,
+        "delay_hours": null,
+        "blocked_by_preonset_active": true,
+        "n_episodes": 3,
+        "preonset_notifies": [
+          27,
+          199
+        ]
+      },
+      {
+        "scenario_id": "leak_005_p443",
+        "pipe": "p443",
+        "episode_6h_hit": false,
+        "row_credit_hit": false,
+        "delay_hours": null,
+        "blocked_by_preonset_active": false,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          25,
+          197,
+          286
+        ]
+      },
+      {
+        "scenario_id": "leak_008_p576",
+        "pipe": "p576",
+        "episode_6h_hit": true,
+        "row_credit_hit": true,
+        "delay_hours": 4.75,
+        "blocked_by_preonset_active": false,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          25,
+          197,
+          285
+        ]
+      },
+      {
+        "scenario_id": "leak_009_p210",
+        "pipe": "p210",
+        "episode_6h_hit": true,
+        "row_credit_hit": true,
+        "delay_hours": 1.6666666666666667,
+        "blocked_by_preonset_active": true,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          25,
+          197
+        ]
+      },
+      {
+        "scenario_id": "leak_010_p607",
+        "pipe": "p607",
+        "episode_6h_hit": false,
+        "row_credit_hit": false,
+        "delay_hours": null,
+        "blocked_by_preonset_active": true,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          29,
+          197
+        ]
+      },
+      {
+        "scenario_id": "leak_011_p19",
+        "pipe": "p19",
+        "episode_6h_hit": false,
+        "row_credit_hit": false,
+        "delay_hours": null,
+        "blocked_by_preonset_active": false,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          24,
+          196,
+          285
+        ]
+      },
+      {
+        "scenario_id": "leak_012_p801",
+        "pipe": "p801",
+        "episode_6h_hit": false,
+        "row_credit_hit": true,
+        "delay_hours": null,
+        "blocked_by_preonset_active": true,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          25,
+          197,
+          286
+        ]
+      },
+      {
+        "scenario_id": "leak_015_p655",
+        "pipe": "p655",
+        "episode_6h_hit": false,
+        "row_credit_hit": true,
+        "delay_hours": null,
+        "blocked_by_preonset_active": true,
+        "n_episodes": 3,
+        "preonset_notifies": [
+          27,
+          199
+        ]
+      },
+      {
+        "scenario_id": "leak_017_p445",
+        "pipe": "p445",
+        "episode_6h_hit": true,
+        "row_credit_hit": true,
+        "delay_hours": 4.666666666666667,
+        "blocked_by_preonset_active": false,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          24,
+          196,
+          285
+        ]
+      },
+      {
+        "scenario_id": "leak_018_p513",
+        "pipe": "p513",
+        "episode_6h_hit": false,
+        "row_credit_hit": false,
+        "delay_hours": null,
+        "blocked_by_preonset_active": true,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          25,
+          197
+        ]
+      },
+      {
+        "scenario_id": "leak_021_p800",
+        "pipe": "p800",
+        "episode_6h_hit": true,
+        "row_credit_hit": true,
+        "delay_hours": 5.833333333333333,
+        "blocked_by_preonset_active": true,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          25,
+          197
+        ]
+      },
+      {
+        "scenario_id": "leak_023_p891",
+        "pipe": "p891",
+        "episode_6h_hit": false,
+        "row_credit_hit": true,
+        "delay_hours": null,
+        "blocked_by_preonset_active": true,
+        "n_episodes": 5,
+        "preonset_notifies": [
+          24,
+          196,
+          285
+        ]
+      }
+    ],
+    "per_control_brief": [
+      {
+        "scenario_id": "ctrl_000_control_pump",
+        "kind": "control_pump",
+        "n_episodes": 3
+      },
+      {
+        "scenario_id": "ctrl_001_control_demand",
+        "kind": "control_demand",
+        "n_episodes": 4
+      },
+      {
+        "scenario_id": "ctrl_003_control_demand",
+        "kind": "control_demand",
+        "n_episodes": 3
+      },
+      {
+        "scenario_id": "ctrl_010_control_pump",
+        "kind": "control_pump",
+        "n_episodes": 4
+      },
+      {
+        "scenario_id": "ctrl_012_control_demand",
+        "kind": "control_demand",
+        "n_episodes": 4
+      },
+      {
+        "scenario_id": "ctrl_013_control_demand",
+        "kind": "control_demand",
+        "n_episodes": 3
+      }
+    ]
+  }
+}

@@ -1,0 +1,2798 @@
+{
+  "generated_at": "2026-10-24T23:01:40-04:00",
+  "experiment": "change_only_ablation_episode_objective",
+  "tests": "passed",
+  "selection_rule": "on synthetic_dev full trajectories: among (C,\u03c4) with episode_6h_recall>=0.666667 and control_episodes_per_week<=3, max episode_6h_recall, then min control_episodes_per_week, then min median_delay_h, then min C, then min \u03c4. If no candidate passes gates: report selection_failure=true and freeze rank-best under the same ordering without gates (gate_met=false).",
+  "arm_registry": {
+    "arm_A": {
+      "id": "arm_A",
+      "label": "full_pressure_context_v1",
+      "n_features": 53,
+      "feature_names": [
+        "P_median",
+        "P_p10",
+        "P_p90",
+        "P_max",
+        "P_min",
+        "P_spread_p90_p10",
+        "Pd_d1_median",
+        "Pd_d1_p10",
+        "Pd_d1_p90",
+        "Pd_d1_min",
+        "Pd_d1_max_abs",
+        "Pd_d1_topneg1",
+        "Pd_d1_topneg2",
+        "Pd_d1_topneg3",
+        "Pd_d1_topneg4",
+        "Pd_d1_topneg5",
+        "Pd_d6_median",
+        "Pd_d6_p10",
+        "Pd_d6_p90",
+        "Pd_d6_min",
+        "Pd_d6_max_abs",
+        "Pd_d6_topneg1",
+        "Pd_d6_topneg2",
+        "Pd_d6_topneg3",
+        "Pd_d6_topneg4",
+        "Pd_d6_topneg5",
+        "Pd_d24_median",
+        "Pd_d24_p10",
+        "Pd_d24_p90",
+        "Pd_d24_min",
+        "Pd_d24_max_abs",
+        "Pd_d24_topneg1",
+        "Pd_d24_topneg2",
+        "Pd_d24_topneg3",
+        "Pd_d24_topneg4",
+        "Pd_d24_topneg5",
+        "F_p227",
+        "Fd_p227_d1",
+        "Fd_p227_d6",
+        "Fd_p227_d24",
+        "F_p235",
+        "Fd_p235_d1",
+        "Fd_p235_d6",
+        "Fd_p235_d24",
+        "F_PUMP_1",
+        "Fd_PUMP_1_d1",
+        "Fd_PUMP_1_d6",
+        "Fd_PUMP_1_d24",
+        "pump1_on",
+        "L_T1",
+        "Ld_T1_d1",
+        "Ld_T1_d6",
+        "Ld_T1_d24"
+      ],
+      "removed": []
+    },
+    "arm_B": {
+      "id": "arm_B",
+      "label": "change_residual_only",
+      "n_features": 43,
+      "feature_names": [
+        "P_spread_p90_p10",
+        "Pd_d1_median",
+        "Pd_d1_p10",
+        "Pd_d1_p90",
+        "Pd_d1_min",
+        "Pd_d1_max_abs",
+        "Pd_d1_topneg1",
+        "Pd_d1_topneg2",
+        "Pd_d1_topneg3",
+        "Pd_d1_topneg4",
+        "Pd_d1_topneg5",
+        "Pd_d6_median",
+        "Pd_d6_p10",
+        "Pd_d6_p90",
+        "Pd_d6_min",
+        "Pd_d6_max_abs",
+        "Pd_d6_topneg1",
+        "Pd_d6_topneg2",
+        "Pd_d6_topneg3",
+        "Pd_d6_topneg4",
+        "Pd_d6_topneg5",
+        "Pd_d24_median",
+        "Pd_d24_p10",
+        "Pd_d24_p90",
+        "Pd_d24_min",
+        "Pd_d24_max_abs",
+        "Pd_d24_topneg1",
+        "Pd_d24_topneg2",
+        "Pd_d24_topneg3",
+        "Pd_d24_topneg4",
+        "Pd_d24_topneg5",
+        "Fd_p227_d1",
+        "Fd_p227_d6",
+        "Fd_p227_d24",
+        "Fd_p235_d1",
+        "Fd_p235_d6",
+        "Fd_p235_d24",
+        "Fd_PUMP_1_d1",
+        "Fd_PUMP_1_d6",
+        "Fd_PUMP_1_d24",
+        "Ld_T1_d1",
+        "Ld_T1_d6",
+        "Ld_T1_d24"
+      ],
+      "removed": [
+        "P_median",
+        "P_p10",
+        "P_p90",
+        "P_max",
+        "P_min",
+        "F_p227",
+        "F_p235",
+        "F_PUMP_1",
+        "L_T1",
+        "pump1_on"
+      ]
+    },
+    "n_full": 53,
+    "note": "Arm B drops absolute P/F/L levels and pump1_on; retains Pd_*/Fd_*/Ld_* and P_spread_p90_p10. No new features."
+  },
+  "arm_A_baseline_check": {
+    "C_match": true,
+    "tau_match": true,
+    "gate_met_match": true,
+    "selection_failure_match": true,
+    "dev_episode_6h_recall_match": true,
+    "dev_control_ep_per_week_match": true,
+    "n_grid_match": true,
+    "coef_allclose": true,
+    "all_passed": true
+  },
+  "raw_pressure_sha256": "7782d890a7195699be94ddc01cba392da7ca285908afff619065a9616e04dcae",
+  "scenarios_reused": true,
+  "preserves": [
+    "outputs/pilot_*",
+    "outputs/PILOT_RESULTS.md",
+    "outputs/TARGET_ALIGNMENT_BEFORE_ABLATION.md",
+    "outputs/TRANSFER_FAILURE_DIAGNOSIS.md",
+    "outputs/episode_objective/"
+  ],
+  "arms": {
+    "arm_A": {
+      "frozen": {
+        "feature_set": "pressure_context_v1",
+        "feature_names": [
+          "P_median",
+          "P_p10",
+          "P_p90",
+          "P_max",
+          "P_min",
+          "P_spread_p90_p10",
+          "Pd_d1_median",
+          "Pd_d1_p10",
+          "Pd_d1_p90",
+          "Pd_d1_min",
+          "Pd_d1_max_abs",
+          "Pd_d1_topneg1",
+          "Pd_d1_topneg2",
+          "Pd_d1_topneg3",
+          "Pd_d1_topneg4",
+          "Pd_d1_topneg5",
+          "Pd_d6_median",
+          "Pd_d6_p10",
+          "Pd_d6_p90",
+          "Pd_d6_min",
+          "Pd_d6_max_abs",
+          "Pd_d6_topneg1",
+          "Pd_d6_topneg2",
+          "Pd_d6_topneg3",
+          "Pd_d6_topneg4",
+          "Pd_d6_topneg5",
+          "Pd_d24_median",
+          "Pd_d24_p10",
+          "Pd_d24_p90",
+          "Pd_d24_min",
+          "Pd_d24_max_abs",
+          "Pd_d24_topneg1",
+          "Pd_d24_topneg2",
+          "Pd_d24_topneg3",
+          "Pd_d24_topneg4",
+          "Pd_d24_topneg5",
+          "F_p227",
+          "Fd_p227_d1",
+          "Fd_p227_d6",
+          "Fd_p227_d24",
+          "F_p235",
+          "Fd_p235_d1",
+          "Fd_p235_d6",
+          "Fd_p235_d24",
+          "F_PUMP_1",
+          "Fd_PUMP_1_d1",
+          "Fd_PUMP_1_d6",
+          "Fd_PUMP_1_d24",
+          "pump1_on",
+          "L_T1",
+          "Ld_T1_d1",
+          "Ld_T1_d6",
+          "Ld_T1_d24"
+        ],
+        "selected": {
+          "C": 10.0,
+          "tau": 0.7
+        },
+        "gate_met": false,
+        "selection_failure": true,
+        "dev_metrics": {
+          "episode_6h_recall": 0.6,
+          "n_episode_6h_hit": 3,
+          "n_leak_scenarios": 5,
+          "median_delay_h": 4.583333333333333,
+          "control_episodes_per_week": 7.0,
+          "n_control_episodes": 6,
+          "n_control_scenarios": 3,
+          "row_credit_scenario_recall": 0.8,
+          "n_row_vs_episode_disagree": 1,
+          "n_blocked_by_preonset_active": 4,
+          "gate_met": false
+        },
+        "grid_records": [
+          {
+            "C": 0.01,
+            "tau": 0.3,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 12.833333333333334,
+            "median_delay_h": 1.3333333333333333,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 0.01,
+            "tau": 0.5,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 15.166666666666668,
+            "median_delay_h": 3.25,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 0.01,
+            "tau": 0.7,
+            "episode_6h_recall": 0.4,
+            "control_episodes_per_week": 3.5,
+            "median_delay_h": 5.208333333333333,
+            "row_credit_scenario_recall": 0.4,
+            "n_blocked_by_preonset_active": 1,
+            "gate_met": false
+          },
+          {
+            "C": 0.01,
+            "tau": 0.85,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 0.0,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.0,
+            "n_blocked_by_preonset_active": 0,
+            "gate_met": false
+          },
+          {
+            "C": 0.01,
+            "tau": 0.95,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 0.0,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.0,
+            "n_blocked_by_preonset_active": 0,
+            "gate_met": false
+          },
+          {
+            "C": 0.1,
+            "tau": 0.3,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 18.666666666666668,
+            "median_delay_h": 0.5833333333333334,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 0.1,
+            "tau": 0.5,
+            "episode_6h_recall": 0.4,
+            "control_episodes_per_week": 12.833333333333334,
+            "median_delay_h": 3.25,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 0.1,
+            "tau": 0.7,
+            "episode_6h_recall": 0.4,
+            "control_episodes_per_week": 5.833333333333334,
+            "median_delay_h": 4.958333333333334,
+            "row_credit_scenario_recall": 0.6,
+            "n_blocked_by_preonset_active": 3,
+            "gate_met": false
+          },
+          {
+            "C": 0.1,
+            "tau": 0.85,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 0.0,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.0,
+            "n_blocked_by_preonset_active": 0,
+            "gate_met": false
+          },
+          {
+            "C": 0.1,
+            "tau": 0.95,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 0.0,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.0,
+            "n_blocked_by_preonset_active": 0,
+            "gate_met": false
+          },
+          {
+            "C": 1.0,
+            "tau": 0.3,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 16.333333333333336,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 5,
+            "gate_met": false
+          },
+          {
+            "C": 1.0,
+            "tau": 0.5,
+            "episode_6h_recall": 0.4,
+            "control_episodes_per_week": 14.0,
+            "median_delay_h": 3.25,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 1.0,
+            "tau": 0.7,
+            "episode_6h_recall": 0.6,
+            "control_episodes_per_week": 8.166666666666668,
+            "median_delay_h": 4.0,
+            "row_credit_scenario_recall": 0.6,
+            "n_blocked_by_preonset_active": 3,
+            "gate_met": false
+          },
+          {
+            "C": 1.0,
+            "tau": 0.85,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 5.833333333333334,
+            "median_delay_h": 5.833333333333333,
+            "row_credit_scenario_recall": 0.2,
+            "n_blocked_by_preonset_active": 1,
+            "gate_met": false
+          },
+          {
+            "C": 1.0,
+            "tau": 0.95,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 2.3333333333333335,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.0,
+            "n_blocked_by_preonset_active": 0,
+            "gate_met": false
+          },
+          {
+            "C": 10.0,
+            "tau": 0.3,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 16.333333333333336,
+            "median_delay_h": 2.9166666666666665,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 5,
+            "gate_met": false
+          },
+          {
+            "C": 10.0,
+            "tau": 0.5,
+            "episode_6h_recall": 0.4,
+            "control_episodes_per_week": 12.833333333333334,
+            "median_delay_h": 2.666666666666667,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 10.0,
+            "tau": 0.7,
+            "episode_6h_recall": 0.6,
+            "control_episodes_per_week": 7.0,
+            "median_delay_h": 4.583333333333333,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 10.0,
+            "tau": 0.85,
+            "episode_6h_recall": 0.4,
+            "control_episodes_per_week": 5.833333333333334,
+            "median_delay_h": 3.8333333333333335,
+            "row_credit_scenario_recall": 0.4,
+            "n_blocked_by_preonset_active": 1,
+            "gate_met": false
+          },
+          {
+            "C": 10.0,
+            "tau": 0.95,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 2.3333333333333335,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.0,
+            "n_blocked_by_preonset_active": 0,
+            "gate_met": false
+          },
+          {
+            "C": 100.0,
+            "tau": 0.3,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 16.333333333333336,
+            "median_delay_h": 2.9166666666666665,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 5,
+            "gate_met": false
+          },
+          {
+            "C": 100.0,
+            "tau": 0.5,
+            "episode_6h_recall": 0.4,
+            "control_episodes_per_week": 12.833333333333334,
+            "median_delay_h": 2.75,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 100.0,
+            "tau": 0.7,
+            "episode_6h_recall": 0.4,
+            "control_episodes_per_week": 8.166666666666668,
+            "median_delay_h": 4.125,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 100.0,
+            "tau": 0.85,
+            "episode_6h_recall": 0.4,
+            "control_episodes_per_week": 7.0,
+            "median_delay_h": 2.7083333333333335,
+            "row_credit_scenario_recall": 0.4,
+            "n_blocked_by_preonset_active": 1,
+            "gate_met": false
+          },
+          {
+            "C": 100.0,
+            "tau": 0.95,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 7.0,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.0,
+            "n_blocked_by_preonset_active": 0,
+            "gate_met": false
+          }
+        ],
+        "intercept": -3.2567994577252346,
+        "n_train": 4763,
+        "n_train_pos": 288,
+        "budget": {
+          "C_grid": [
+            0.01,
+            0.1,
+            1.0,
+            10.0,
+            100.0
+          ],
+          "tau_grid": [
+            0.3,
+            0.5,
+            0.7,
+            0.85,
+            0.95
+          ],
+          "feature_sets": [
+            "pressure_context_v1"
+          ]
+        },
+        "selection_rule": "on synthetic_dev full trajectories: among (C,\u03c4) with episode_6h_recall>=0.666667 and control_episodes_per_week<=3, max episode_6h_recall, then min control_episodes_per_week, then min median_delay_h, then min C, then min \u03c4. If no candidate passes gates: report selection_failure=true and freeze rank-best under the same ordering without gates (gate_met=false).",
+        "gates": {
+          "episode_6h_recall_min": 0.6666666666666666,
+          "control_episodes_per_week_max": 3.0
+        },
+        "label_note": "y=1 is the registered 6h recent-onset credit window, not ongoing leak presence. Labels unchanged for this controlled comparison.",
+        "frozen_at": "2026-10-24T23:00:51-04:00",
+        "arm_id": "arm_A"
+      },
+      "coef_analysis": {
+        "top10": [
+          {
+            "name": "P_p90",
+            "coef": 7.8486128867911,
+            "abs_coef": 7.8486128867911,
+            "share": 0.05505824633162722
+          },
+          {
+            "name": "Pd_d24_topneg3",
+            "coef": -7.804738957558933,
+            "abs_coef": 7.804738957558933,
+            "share": 0.054750469449515164
+          },
+          {
+            "name": "F_p227",
+            "coef": 6.8870227904288175,
+            "abs_coef": 6.8870227904288175,
+            "share": 0.04831266400272048
+          },
+          {
+            "name": "Pd_d24_median",
+            "coef": -6.4730513146369,
+            "abs_coef": 6.4730513146369,
+            "share": 0.045408642130680195
+          },
+          {
+            "name": "P_p10",
+            "coef": 5.592310499421865,
+            "abs_coef": 5.592310499421865,
+            "share": 0.039230219846656256
+          },
+          {
+            "name": "Pd_d24_min",
+            "coef": 5.50595583680551,
+            "abs_coef": 5.50595583680551,
+            "share": 0.038624439391587884
+          },
+          {
+            "name": "Pd_d24_topneg1",
+            "coef": 5.50595583680551,
+            "abs_coef": 5.50595583680551,
+            "share": 0.038624439391587884
+          },
+          {
+            "name": "Pd_d6_min",
+            "coef": 5.168285387947886,
+            "abs_coef": 5.168285387947886,
+            "share": 0.03625567142962061
+          },
+          {
+            "name": "Pd_d6_topneg1",
+            "coef": 5.168285387947886,
+            "abs_coef": 5.168285387947886,
+            "share": 0.03625567142962061
+          },
+          {
+            "name": "Pd_d24_p90",
+            "coef": 4.422100052581308,
+            "abs_coef": 4.422100052581308,
+            "share": 0.031021159727202076
+          }
+        ],
+        "pump_change_features": [
+          {
+            "name": "Fd_PUMP_1_d6",
+            "coef": 1.6220802215016337,
+            "abs_coef": 1.6220802215016337,
+            "share": 0.011378939653833693
+          },
+          {
+            "name": "Fd_PUMP_1_d1",
+            "coef": 1.6007762466518862,
+            "abs_coef": 1.6007762466518862,
+            "share": 0.011229491654290458
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "coef": 0.536759625803232,
+            "abs_coef": 0.536759625803232,
+            "share": 0.00376538429460357
+          }
+        ],
+        "pump_change_abs_coef_share": 0.02637381560272772,
+        "still_exploits_pump_change": false
+      },
+      "synthetic_episode": {
+        "synthetic_dev": {
+          "split": "synthetic_dev",
+          "tau": 0.7,
+          "n_leak_scenarios": 5,
+          "episode_6h_recall": 0.6,
+          "n_episode_6h_hit": 3,
+          "median_delay_h": 4.583333333333333,
+          "delays_h": [
+            5.5,
+            4.583333333333333,
+            3.9166666666666665
+          ],
+          "row_credit_scenario_recall": 0.8,
+          "n_row_credit_hit": 4,
+          "n_row_vs_episode_disagree": 1,
+          "n_blocked_by_preonset_active": 4,
+          "n_control_scenarios": 3,
+          "n_control_episodes": 6,
+          "control_episodes_per_week": 7.0,
+          "n_leak_scenario_episodes": 15,
+          "leak_episodes_per_week": 10.500000000000002,
+          "label_note": "y=1 is the registered 6h recent-onset credit window, not ongoing leak presence.",
+          "per_leak_brief": [
+            {
+              "scenario_id": "leak_004_p709",
+              "pipe": "p709",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 5.5,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 3,
+              "preonset_notifies": [
+                199
+              ]
+            },
+            {
+              "scenario_id": "leak_006_p128",
+              "pipe": "p128",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 4.583333333333333,
+              "blocked_by_preonset_active": false,
+              "n_episodes": 2,
+              "preonset_notifies": [
+                199
+              ]
+            },
+            {
+              "scenario_id": "leak_019_p488",
+              "pipe": "p488",
+              "episode_6h_hit": false,
+              "row_credit_hit": true,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 2,
+              "preonset_notifies": [
+                199
+              ]
+            },
+            {
+              "scenario_id": "leak_020_p656",
+              "pipe": "p656",
+              "episode_6h_hit": false,
+              "row_credit_hit": false,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 4,
+              "preonset_notifies": [
+                199,
+                284
+              ]
+            },
+            {
+              "scenario_id": "leak_022_p670",
+              "pipe": "p670",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 3.9166666666666665,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 4,
+              "preonset_notifies": [
+                199
+              ]
+            }
+          ],
+          "per_control_brief": [
+            {
+              "scenario_id": "ctrl_004_control_sensor",
+              "kind": "control_sensor",
+              "n_episodes": 2
+            },
+            {
+              "scenario_id": "ctrl_005_control_sensor",
+              "kind": "control_sensor",
+              "n_episodes": 2
+            },
+            {
+              "scenario_id": "ctrl_006_control_tank",
+              "kind": "control_tank",
+              "n_episodes": 2
+            }
+          ]
+        },
+        "synthetic_test": {
+          "split": "synthetic_test",
+          "tau": 0.7,
+          "n_leak_scenarios": 15,
+          "episode_6h_recall": 0.4666666666666667,
+          "n_episode_6h_hit": 7,
+          "median_delay_h": 5.583333333333333,
+          "delays_h": [
+            5.833333333333333,
+            5.0,
+            1.5,
+            5.833333333333333,
+            5.083333333333333,
+            6.0,
+            5.583333333333333
+          ],
+          "row_credit_scenario_recall": 0.6,
+          "n_row_credit_hit": 9,
+          "n_row_vs_episode_disagree": 4,
+          "n_blocked_by_preonset_active": 8,
+          "n_control_scenarios": 6,
+          "n_control_episodes": 9,
+          "control_episodes_per_week": 5.25,
+          "n_leak_scenario_episodes": 48,
+          "leak_episodes_per_week": 11.200000000000001,
+          "label_note": "y=1 is the registered 6h recent-onset credit window, not ongoing leak presence.",
+          "per_leak_brief": [
+            {
+              "scenario_id": "leak_000_p282",
+              "pipe": "p282",
+              "episode_6h_hit": false,
+              "row_credit_hit": false,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 3,
+              "preonset_notifies": [
+                200,
+                292
+              ]
+            },
+            {
+              "scenario_id": "leak_001_p299",
+              "pipe": "p299",
+              "episode_6h_hit": false,
+              "row_credit_hit": false,
+              "delay_hours": null,
+              "blocked_by_preonset_active": false,
+              "n_episodes": 3,
+              "preonset_notifies": [
+                200,
+                292
+              ]
+            },
+            {
+              "scenario_id": "leak_002_p69",
+              "pipe": "p69",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 5.833333333333333,
+              "blocked_by_preonset_active": false,
+              "n_episodes": 2,
+              "preonset_notifies": []
+            },
+            {
+              "scenario_id": "leak_003_p435",
+              "pipe": "p435",
+              "episode_6h_hit": false,
+              "row_credit_hit": false,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 2,
+              "preonset_notifies": [
+                199
+              ]
+            },
+            {
+              "scenario_id": "leak_005_p443",
+              "pipe": "p443",
+              "episode_6h_hit": false,
+              "row_credit_hit": false,
+              "delay_hours": null,
+              "blocked_by_preonset_active": false,
+              "n_episodes": 4,
+              "preonset_notifies": [
+                199,
+                283
+              ]
+            },
+            {
+              "scenario_id": "leak_008_p576",
+              "pipe": "p576",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 5.0,
+              "blocked_by_preonset_active": false,
+              "n_episodes": 4,
+              "preonset_notifies": [
+                199,
+                286
+              ]
+            },
+            {
+              "scenario_id": "leak_009_p210",
+              "pipe": "p210",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 1.5,
+              "blocked_by_preonset_active": false,
+              "n_episodes": 4,
+              "preonset_notifies": [
+                199
+              ]
+            },
+            {
+              "scenario_id": "leak_010_p607",
+              "pipe": "p607",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 5.833333333333333,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 3,
+              "preonset_notifies": [
+                199
+              ]
+            },
+            {
+              "scenario_id": "leak_011_p19",
+              "pipe": "p19",
+              "episode_6h_hit": false,
+              "row_credit_hit": false,
+              "delay_hours": null,
+              "blocked_by_preonset_active": false,
+              "n_episodes": 3,
+              "preonset_notifies": [
+                200,
+                292
+              ]
+            },
+            {
+              "scenario_id": "leak_012_p801",
+              "pipe": "p801",
+              "episode_6h_hit": false,
+              "row_credit_hit": true,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 4,
+              "preonset_notifies": [
+                199,
+                283
+              ]
+            },
+            {
+              "scenario_id": "leak_015_p655",
+              "pipe": "p655",
+              "episode_6h_hit": false,
+              "row_credit_hit": true,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 2,
+              "preonset_notifies": [
+                199
+              ]
+            },
+            {
+              "scenario_id": "leak_017_p445",
+              "pipe": "p445",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 5.083333333333333,
+              "blocked_by_preonset_active": false,
+              "n_episodes": 3,
+              "preonset_notifies": [
+                200,
+                292
+              ]
+            },
+            {
+              "scenario_id": "leak_018_p513",
+              "pipe": "p513",
+              "episode_6h_hit": true,
+              "row_credit_hit": false,
+              "delay_hours": 6.0,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 4,
+              "preonset_notifies": [
+                199
+              ]
+            },
+            {
+              "scenario_id": "leak_021_p800",
+              "pipe": "p800",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 5.583333333333333,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 4,
+              "preonset_notifies": [
+                199
+              ]
+            },
+            {
+              "scenario_id": "leak_023_p891",
+              "pipe": "p891",
+              "episode_6h_hit": false,
+              "row_credit_hit": true,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 3,
+              "preonset_notifies": [
+                200,
+                292
+              ]
+            }
+          ],
+          "per_control_brief": [
+            {
+              "scenario_id": "ctrl_000_control_pump",
+              "kind": "control_pump",
+              "n_episodes": 2
+            },
+            {
+              "scenario_id": "ctrl_001_control_demand",
+              "kind": "control_demand",
+              "n_episodes": 1
+            },
+            {
+              "scenario_id": "ctrl_003_control_demand",
+              "kind": "control_demand",
+              "n_episodes": 2
+            },
+            {
+              "scenario_id": "ctrl_010_control_pump",
+              "kind": "control_pump",
+              "n_episodes": 1
+            },
+            {
+              "scenario_id": "ctrl_012_control_demand",
+              "kind": "control_demand",
+              "n_episodes": 1
+            },
+            {
+              "scenario_id": "ctrl_013_control_demand",
+              "kind": "control_demand",
+              "n_episodes": 2
+            }
+          ]
+        }
+      },
+      "synthetic_row_table": {
+        "synthetic_dev": {
+          "empty": false,
+          "tau": 0.7,
+          "row_recall": 0.21666666666666667,
+          "row_precision": 0.14130434782608695,
+          "scenario_recall": 0.8,
+          "n_leak_scenarios_eval": 5,
+          "fp_row_rate": 0.13683602771362588,
+          "n_pred": 552,
+          "n_pos": 360
+        },
+        "synthetic_test": {
+          "empty": false,
+          "tau": 0.7,
+          "row_recall": 0.175,
+          "row_precision": 0.12574850299401197,
+          "scenario_recall": 0.6,
+          "n_leak_scenarios_eval": 15,
+          "fp_row_rate": 0.1445067634444078,
+          "n_pred": 1503,
+          "n_pos": 1080
+        }
+      },
+      "measured": {
+        "supervised": {
+          "DEV": {
+            "label": "change_only_arm_A",
+            "period": "DEV",
+            "train_end": "2018-01-15 00:00",
+            "n_eligible_onsets": 8,
+            "eligible_onsets": [
+              {
+                "pipe": "p461",
+                "leak_type": "incipient",
+                "onset": "2018-01-23 04:25"
+              },
+              {
+                "pipe": "p232",
+                "leak_type": "incipient",
+                "onset": "2018-01-31 02:35"
+              },
+              {
+                "pipe": "p427",
+                "leak_type": "incipient",
+                "onset": "2018-02-13 08:25"
+              },
+              {
+                "pipe": "p673",
+                "leak_type": "abrupt",
+                "onset": "2018-03-05 15:45"
+              },
+              {
+                "pipe": "p628",
+                "leak_type": "incipient",
+                "onset": "2018-05-02 14:55"
+              },
+              {
+                "pipe": "p538",
+                "leak_type": "abrupt",
+                "onset": "2018-05-18 08:35"
+              },
+              {
+                "pipe": "p866",
+                "leak_type": "abrupt",
+                "onset": "2018-06-01 09:05"
+              },
+              {
+                "pipe": "p31",
+                "leak_type": "incipient",
+                "onset": "2018-06-28 10:35"
+              }
+            ],
+            "n_episodes": 173,
+            "n_unmatched": 166,
+            "unmatched_per_week": 6.419889502762431,
+            "duplicate_unmatched_within_24h": 151,
+            "abrupt_6h": {
+              "n_abrupt": 3,
+              "n_hit": 0,
+              "recall": 0.0,
+              "delays": [],
+              "per_event": [
+                {
+                  "pipe": "p673",
+                  "onset": "2018-03-05 15:45",
+                  "matched": true,
+                  "notify_time": "2018-03-10 06:10",
+                  "delay_hours": 110.41666666666667,
+                  "within_6h": false,
+                  "stream_id": "supervised_pilot"
+                },
+                {
+                  "pipe": "p538",
+                  "onset": "2018-05-18 08:35",
+                  "matched": false,
+                  "notify_time": null,
+                  "delay_hours": null,
+                  "within_6h": false,
+                  "stream_id": null
+                },
+                {
+                  "pipe": "p866",
+                  "onset": "2018-06-01 09:05",
+                  "matched": true,
+                  "notify_time": "2018-06-02 06:20",
+                  "delay_hours": 21.25,
+                  "within_6h": false,
+                  "stream_id": "supervised_pilot"
+                }
+              ]
+            },
+            "matches": [
+              {
+                "pipe": "p461",
+                "leak_type": "incipient",
+                "onset": "2018-01-23 04:25",
+                "matched": true,
+                "notify_time": "2018-01-23 14:35",
+                "delay_hours": 10.166666666666666,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-01-23 14:35",
+                "open_leaks_at_notify": 2,
+                "episode_end": "2018-01-23 16:20"
+              },
+              {
+                "pipe": "p232",
+                "leak_type": "incipient",
+                "onset": "2018-01-31 02:35",
+                "matched": true,
+                "notify_time": "2018-01-31 10:25",
+                "delay_hours": 7.833333333333333,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-01-31 10:25",
+                "open_leaks_at_notify": 3,
+                "episode_end": "2018-01-31 11:35"
+              },
+              {
+                "pipe": "p427",
+                "leak_type": "incipient",
+                "onset": "2018-02-13 08:25",
+                "matched": true,
+                "notify_time": "2018-02-14 04:00",
+                "delay_hours": 19.583333333333332,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-02-14 04:00",
+                "open_leaks_at_notify": 3,
+                "episode_end": "2018-02-14 05:00"
+              },
+              {
+                "pipe": "p673",
+                "leak_type": "abrupt",
+                "onset": "2018-03-05 15:45",
+                "matched": true,
+                "notify_time": "2018-03-10 06:10",
+                "delay_hours": 110.41666666666667,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-03-10 06:10",
+                "open_leaks_at_notify": 4,
+                "episode_end": "2018-03-10 07:25"
+              },
+              {
+                "pipe": "p628",
+                "leak_type": "incipient",
+                "onset": "2018-05-02 14:55",
+                "matched": true,
+                "notify_time": "2018-05-03 02:00",
+                "delay_hours": 11.083333333333334,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-05-03 02:00",
+                "open_leaks_at_notify": 3,
+                "episode_end": "2018-05-03 04:35"
+              },
+              {
+                "pipe": "p538",
+                "leak_type": "abrupt",
+                "onset": "2018-05-18 08:35",
+                "matched": false,
+                "notify_time": null,
+                "delay_hours": null,
+                "stream_id": null,
+                "refs_used": null,
+                "pre_onset_notifications_nearby": 1
+              },
+              {
+                "pipe": "p866",
+                "leak_type": "abrupt",
+                "onset": "2018-06-01 09:05",
+                "matched": true,
+                "notify_time": "2018-06-02 06:20",
+                "delay_hours": 21.25,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-06-02 06:20",
+                "open_leaks_at_notify": 3,
+                "episode_end": "2018-06-02 10:10"
+              },
+              {
+                "pipe": "p31",
+                "leak_type": "incipient",
+                "onset": "2018-06-28 10:35",
+                "matched": true,
+                "notify_time": "2018-06-30 11:05",
+                "delay_hours": 48.5,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-06-30 11:05",
+                "open_leaks_at_notify": 3,
+                "episode_end": "2018-06-30 12:35"
+              }
+            ],
+            "prefix_n": 1,
+            "occupancy": {
+              "union_alarm_pct_of_analysis": 9.06230816451811,
+              "summed_sensor_alarm_pct_of_eligible": 9.06230816451811,
+              "episode_length_hours": {
+                "n": 173,
+                "median": 1.5833333333333333,
+                "p90": 4.083333333333333,
+                "max": 8.166666666666666,
+                "mean": 2.1921965317919074
+              },
+              "n_episodes_right_censored": 0
+            },
+            "misses": [
+              {
+                "pipe": "p538",
+                "leak_type": "abrupt",
+                "onset": "2018-05-18 08:35",
+                "matched": false,
+                "notify_time": null,
+                "delay_hours": null,
+                "stream_id": null,
+                "refs_used": null,
+                "pre_onset_notifications_nearby": 1
+              }
+            ]
+          },
+          "DIAG": {
+            "label": "change_only_arm_A",
+            "period": "DIAG",
+            "train_end": "2018-07-15 00:00",
+            "n_eligible_onsets": 4,
+            "eligible_onsets": [
+              {
+                "pipe": "p810",
+                "leak_type": "incipient",
+                "onset": "2018-07-28 03:05"
+              },
+              {
+                "pipe": "p183",
+                "leak_type": "abrupt",
+                "onset": "2018-08-07 02:35"
+              },
+              {
+                "pipe": "p158",
+                "leak_type": "abrupt",
+                "onset": "2018-10-06 02:35"
+              },
+              {
+                "pipe": "p369",
+                "leak_type": "abrupt",
+                "onset": "2018-10-26 02:05"
+              }
+            ],
+            "n_episodes": 227,
+            "n_unmatched": 223,
+            "unmatched_per_week": 8.483695652173914,
+            "duplicate_unmatched_within_24h": 206,
+            "abrupt_6h": {
+              "n_abrupt": 3,
+              "n_hit": 2,
+              "recall": 0.6666666666666666,
+              "delays": [
+                2.6666666666666665,
+                2.25
+              ],
+              "per_event": [
+                {
+                  "pipe": "p183",
+                  "onset": "2018-08-07 02:35",
+                  "matched": true,
+                  "notify_time": "2018-08-08 00:00",
+                  "delay_hours": 21.416666666666668,
+                  "within_6h": false,
+                  "stream_id": "supervised_pilot"
+                },
+                {
+                  "pipe": "p158",
+                  "onset": "2018-10-06 02:35",
+                  "matched": true,
+                  "notify_time": "2018-10-06 05:15",
+                  "delay_hours": 2.6666666666666665,
+                  "within_6h": true,
+                  "stream_id": "supervised_pilot"
+                },
+                {
+                  "pipe": "p369",
+                  "onset": "2018-10-26 02:05",
+                  "matched": true,
+                  "notify_time": "2018-10-26 04:20",
+                  "delay_hours": 2.25,
+                  "within_6h": true,
+                  "stream_id": "supervised_pilot"
+                }
+              ]
+            },
+            "matches": [
+              {
+                "pipe": "p810",
+                "leak_type": "incipient",
+                "onset": "2018-07-28 03:05",
+                "matched": true,
+                "notify_time": "2018-07-28 03:05",
+                "delay_hours": 0.0,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-07-28 03:05",
+                "open_leaks_at_notify": 5,
+                "episode_end": "2018-07-28 07:30"
+              },
+              {
+                "pipe": "p183",
+                "leak_type": "abrupt",
+                "onset": "2018-08-07 02:35",
+                "matched": true,
+                "notify_time": "2018-08-08 00:00",
+                "delay_hours": 21.416666666666668,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-08-08 00:00",
+                "open_leaks_at_notify": 6,
+                "episode_end": "2018-08-08 07:50"
+              },
+              {
+                "pipe": "p158",
+                "leak_type": "abrupt",
+                "onset": "2018-10-06 02:35",
+                "matched": true,
+                "notify_time": "2018-10-06 05:15",
+                "delay_hours": 2.6666666666666665,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-10-06 05:15",
+                "open_leaks_at_notify": 5,
+                "episode_end": "2018-10-06 07:20"
+              },
+              {
+                "pipe": "p369",
+                "leak_type": "abrupt",
+                "onset": "2018-10-26 02:05",
+                "matched": true,
+                "notify_time": "2018-10-26 04:20",
+                "delay_hours": 2.25,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-10-26 04:20",
+                "open_leaks_at_notify": 5,
+                "episode_end": "2018-10-26 06:40"
+              }
+            ],
+            "prefix_n": 1,
+            "occupancy": {
+              "union_alarm_pct_of_analysis": 13.70018115942029,
+              "summed_sensor_alarm_pct_of_eligible": 13.70018115942029,
+              "episode_length_hours": {
+                "n": 227,
+                "median": 2.1666666666666665,
+                "p90": 4.816666666666667,
+                "max": 10.0,
+                "mean": 2.5818649045521296
+              },
+              "n_episodes_right_censored": 0
+            },
+            "misses": []
+          }
+        }
+      }
+    },
+    "arm_B": {
+      "frozen": {
+        "feature_set": "change_residual_only_v1",
+        "feature_names": [
+          "P_spread_p90_p10",
+          "Pd_d1_median",
+          "Pd_d1_p10",
+          "Pd_d1_p90",
+          "Pd_d1_min",
+          "Pd_d1_max_abs",
+          "Pd_d1_topneg1",
+          "Pd_d1_topneg2",
+          "Pd_d1_topneg3",
+          "Pd_d1_topneg4",
+          "Pd_d1_topneg5",
+          "Pd_d6_median",
+          "Pd_d6_p10",
+          "Pd_d6_p90",
+          "Pd_d6_min",
+          "Pd_d6_max_abs",
+          "Pd_d6_topneg1",
+          "Pd_d6_topneg2",
+          "Pd_d6_topneg3",
+          "Pd_d6_topneg4",
+          "Pd_d6_topneg5",
+          "Pd_d24_median",
+          "Pd_d24_p10",
+          "Pd_d24_p90",
+          "Pd_d24_min",
+          "Pd_d24_max_abs",
+          "Pd_d24_topneg1",
+          "Pd_d24_topneg2",
+          "Pd_d24_topneg3",
+          "Pd_d24_topneg4",
+          "Pd_d24_topneg5",
+          "Fd_p227_d1",
+          "Fd_p227_d6",
+          "Fd_p227_d24",
+          "Fd_p235_d1",
+          "Fd_p235_d6",
+          "Fd_p235_d24",
+          "Fd_PUMP_1_d1",
+          "Fd_PUMP_1_d6",
+          "Fd_PUMP_1_d24",
+          "Ld_T1_d1",
+          "Ld_T1_d6",
+          "Ld_T1_d24"
+        ],
+        "selected": {
+          "C": 100.0,
+          "tau": 0.7
+        },
+        "gate_met": false,
+        "selection_failure": true,
+        "dev_metrics": {
+          "episode_6h_recall": 0.8,
+          "n_episode_6h_hit": 4,
+          "n_leak_scenarios": 5,
+          "median_delay_h": 5.291666666666666,
+          "control_episodes_per_week": 16.333333333333336,
+          "n_control_episodes": 14,
+          "n_control_scenarios": 3,
+          "row_credit_scenario_recall": 0.8,
+          "n_row_vs_episode_disagree": 0,
+          "n_blocked_by_preonset_active": 4,
+          "gate_met": false
+        },
+        "grid_records": [
+          {
+            "C": 0.01,
+            "tau": 0.3,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 12.833333333333334,
+            "median_delay_h": 0.6666666666666666,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 0.01,
+            "tau": 0.5,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 10.5,
+            "median_delay_h": 3.5,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 0.01,
+            "tau": 0.7,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 10.5,
+            "median_delay_h": 5.75,
+            "row_credit_scenario_recall": 0.4,
+            "n_blocked_by_preonset_active": 2,
+            "gate_met": false
+          },
+          {
+            "C": 0.01,
+            "tau": 0.85,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 0.0,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.0,
+            "n_blocked_by_preonset_active": 0,
+            "gate_met": false
+          },
+          {
+            "C": 0.01,
+            "tau": 0.95,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 0.0,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.0,
+            "n_blocked_by_preonset_active": 0,
+            "gate_met": false
+          },
+          {
+            "C": 0.1,
+            "tau": 0.3,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 12.833333333333334,
+            "median_delay_h": 0.5833333333333334,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 0.1,
+            "tau": 0.5,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 10.5,
+            "median_delay_h": 3.5,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 0.1,
+            "tau": 0.7,
+            "episode_6h_recall": 0.4,
+            "control_episodes_per_week": 14.0,
+            "median_delay_h": 5.375,
+            "row_credit_scenario_recall": 0.6,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 0.1,
+            "tau": 0.85,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 8.166666666666668,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.0,
+            "n_blocked_by_preonset_active": 0,
+            "gate_met": false
+          },
+          {
+            "C": 0.1,
+            "tau": 0.95,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 0.0,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.0,
+            "n_blocked_by_preonset_active": 0,
+            "gate_met": false
+          },
+          {
+            "C": 1.0,
+            "tau": 0.3,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 12.833333333333334,
+            "median_delay_h": 0.5,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 1.0,
+            "tau": 0.5,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 14.0,
+            "median_delay_h": 3.5,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 1.0,
+            "tau": 0.7,
+            "episode_6h_recall": 0.4,
+            "control_episodes_per_week": 14.0,
+            "median_delay_h": 4.916666666666666,
+            "row_credit_scenario_recall": 0.6,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 1.0,
+            "tau": 0.85,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 9.333333333333334,
+            "median_delay_h": 5.75,
+            "row_credit_scenario_recall": 0.2,
+            "n_blocked_by_preonset_active": 1,
+            "gate_met": false
+          },
+          {
+            "C": 1.0,
+            "tau": 0.95,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 2.3333333333333335,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.0,
+            "n_blocked_by_preonset_active": 0,
+            "gate_met": false
+          },
+          {
+            "C": 10.0,
+            "tau": 0.3,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 14.0,
+            "median_delay_h": 0.5,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 10.0,
+            "tau": 0.5,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 16.333333333333336,
+            "median_delay_h": 3.5,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 10.0,
+            "tau": 0.7,
+            "episode_6h_recall": 0.6,
+            "control_episodes_per_week": 15.166666666666668,
+            "median_delay_h": 4.75,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 10.0,
+            "tau": 0.85,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 11.666666666666668,
+            "median_delay_h": 5.25,
+            "row_credit_scenario_recall": 0.2,
+            "n_blocked_by_preonset_active": 1,
+            "gate_met": false
+          },
+          {
+            "C": 10.0,
+            "tau": 0.95,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 2.3333333333333335,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.0,
+            "n_blocked_by_preonset_active": 0,
+            "gate_met": false
+          },
+          {
+            "C": 100.0,
+            "tau": 0.3,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 12.833333333333334,
+            "median_delay_h": 0.6666666666666666,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 100.0,
+            "tau": 0.5,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 17.5,
+            "median_delay_h": 3.4166666666666665,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 100.0,
+            "tau": 0.7,
+            "episode_6h_recall": 0.8,
+            "control_episodes_per_week": 16.333333333333336,
+            "median_delay_h": 5.291666666666666,
+            "row_credit_scenario_recall": 0.8,
+            "n_blocked_by_preonset_active": 4,
+            "gate_met": false
+          },
+          {
+            "C": 100.0,
+            "tau": 0.85,
+            "episode_6h_recall": 0.2,
+            "control_episodes_per_week": 8.166666666666668,
+            "median_delay_h": 5.083333333333333,
+            "row_credit_scenario_recall": 0.2,
+            "n_blocked_by_preonset_active": 2,
+            "gate_met": false
+          },
+          {
+            "C": 100.0,
+            "tau": 0.95,
+            "episode_6h_recall": 0.0,
+            "control_episodes_per_week": 2.3333333333333335,
+            "median_delay_h": null,
+            "row_credit_scenario_recall": 0.0,
+            "n_blocked_by_preonset_active": 0,
+            "gate_met": false
+          }
+        ],
+        "intercept": -3.484566241202399,
+        "n_train": 4763,
+        "n_train_pos": 288,
+        "budget": {
+          "C_grid": [
+            0.01,
+            0.1,
+            1.0,
+            10.0,
+            100.0
+          ],
+          "tau_grid": [
+            0.3,
+            0.5,
+            0.7,
+            0.85,
+            0.95
+          ],
+          "feature_sets": [
+            "pressure_context_v1"
+          ]
+        },
+        "selection_rule": "on synthetic_dev full trajectories: among (C,\u03c4) with episode_6h_recall>=0.666667 and control_episodes_per_week<=3, max episode_6h_recall, then min control_episodes_per_week, then min median_delay_h, then min C, then min \u03c4. If no candidate passes gates: report selection_failure=true and freeze rank-best under the same ordering without gates (gate_met=false).",
+        "gates": {
+          "episode_6h_recall_min": 0.6666666666666666,
+          "control_episodes_per_week_max": 3.0
+        },
+        "label_note": "y=1 is the registered 6h recent-onset credit window, not ongoing leak presence. Labels unchanged for this controlled comparison.",
+        "frozen_at": "2026-10-24T23:01:22-04:00",
+        "arm_id": "arm_B"
+      },
+      "coef_analysis": {
+        "top10": [
+          {
+            "name": "Fd_p227_d24",
+            "coef": 20.57605148913631,
+            "abs_coef": 20.57605148913631,
+            "share": 0.10022153044750505
+          },
+          {
+            "name": "Fd_p235_d24",
+            "coef": -18.237814805623113,
+            "abs_coef": 18.237814805623113,
+            "share": 0.0888324814312777
+          },
+          {
+            "name": "Pd_d1_topneg5",
+            "coef": 12.130328321679858,
+            "abs_coef": 12.130328321679858,
+            "share": 0.05908422565288308
+          },
+          {
+            "name": "Pd_d24_topneg3",
+            "coef": -9.868295688587034,
+            "abs_coef": 9.868295688587034,
+            "share": 0.04806635021014047
+          },
+          {
+            "name": "Pd_d6_median",
+            "coef": -9.046256288586227,
+            "abs_coef": 9.046256288586227,
+            "share": 0.04406237273177307
+          },
+          {
+            "name": "Pd_d6_min",
+            "coef": 8.060813364890356,
+            "abs_coef": 8.060813364890356,
+            "share": 0.03926249176172357
+          },
+          {
+            "name": "Pd_d6_topneg1",
+            "coef": 8.060813364890356,
+            "abs_coef": 8.060813364890356,
+            "share": 0.03926249176172357
+          },
+          {
+            "name": "Pd_d6_topneg5",
+            "coef": 7.528136026603433,
+            "abs_coef": 7.528136026603433,
+            "share": 0.036667934778523696
+          },
+          {
+            "name": "Pd_d1_topneg4",
+            "coef": -6.472939214413025,
+            "abs_coef": 6.472939214413025,
+            "share": 0.031528297589294915
+          },
+          {
+            "name": "Pd_d6_max_abs",
+            "coef": 6.388926904207887,
+            "abs_coef": 6.388926904207887,
+            "share": 0.031119091658330218
+          }
+        ],
+        "pump_change_features": [
+          {
+            "name": "Fd_PUMP_1_d1",
+            "coef": 3.5570560678594987,
+            "abs_coef": 3.5570560678594987,
+            "share": 0.017325656635175306
+          },
+          {
+            "name": "Fd_PUMP_1_d6",
+            "coef": 3.068747492026615,
+            "abs_coef": 3.068747492026615,
+            "share": 0.01494721037076681
+          },
+          {
+            "name": "Fd_PUMP_1_d24",
+            "coef": 2.1265660851119166,
+            "abs_coef": 2.1265660851119166,
+            "share": 0.010358046963490646
+          }
+        ],
+        "pump_change_abs_coef_share": 0.04263091396943276,
+        "still_exploits_pump_change": false
+      },
+      "synthetic_episode": {
+        "synthetic_dev": {
+          "split": "synthetic_dev",
+          "tau": 0.7,
+          "n_leak_scenarios": 5,
+          "episode_6h_recall": 0.8,
+          "n_episode_6h_hit": 4,
+          "median_delay_h": 5.291666666666666,
+          "delays_h": [
+            5.833333333333333,
+            4.75,
+            6.0,
+            4.0
+          ],
+          "row_credit_scenario_recall": 0.8,
+          "n_row_credit_hit": 4,
+          "n_row_vs_episode_disagree": 0,
+          "n_blocked_by_preonset_active": 4,
+          "n_control_scenarios": 3,
+          "n_control_episodes": 14,
+          "control_episodes_per_week": 16.333333333333336,
+          "n_leak_scenario_episodes": 23,
+          "leak_episodes_per_week": 16.1,
+          "label_note": "y=1 is the registered 6h recent-onset credit window, not ongoing leak presence.",
+          "per_leak_brief": [
+            {
+              "scenario_id": "leak_004_p709",
+              "pipe": "p709",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 5.833333333333333,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                29,
+                197
+              ]
+            },
+            {
+              "scenario_id": "leak_006_p128",
+              "pipe": "p128",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 4.75,
+              "blocked_by_preonset_active": false,
+              "n_episodes": 4,
+              "preonset_notifies": [
+                28,
+                198,
+                289
+              ]
+            },
+            {
+              "scenario_id": "leak_019_p488",
+              "pipe": "p488",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 6.0,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 4,
+              "preonset_notifies": [
+                28,
+                198
+              ]
+            },
+            {
+              "scenario_id": "leak_020_p656",
+              "pipe": "p656",
+              "episode_6h_hit": false,
+              "row_credit_hit": false,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                25,
+                197,
+                285
+              ]
+            },
+            {
+              "scenario_id": "leak_022_p670",
+              "pipe": "p670",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 4.0,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                25,
+                197
+              ]
+            }
+          ],
+          "per_control_brief": [
+            {
+              "scenario_id": "ctrl_004_control_sensor",
+              "kind": "control_sensor",
+              "n_episodes": 4
+            },
+            {
+              "scenario_id": "ctrl_005_control_sensor",
+              "kind": "control_sensor",
+              "n_episodes": 5
+            },
+            {
+              "scenario_id": "ctrl_006_control_tank",
+              "kind": "control_tank",
+              "n_episodes": 5
+            }
+          ]
+        },
+        "synthetic_test": {
+          "split": "synthetic_test",
+          "tau": 0.7,
+          "n_leak_scenarios": 15,
+          "episode_6h_recall": 0.3333333333333333,
+          "n_episode_6h_hit": 5,
+          "median_delay_h": 4.75,
+          "delays_h": [
+            5.25,
+            4.75,
+            1.6666666666666667,
+            4.666666666666667,
+            5.833333333333333
+          ],
+          "row_credit_scenario_recall": 0.5333333333333333,
+          "n_row_credit_hit": 8,
+          "n_row_vs_episode_disagree": 3,
+          "n_blocked_by_preonset_active": 10,
+          "n_control_scenarios": 6,
+          "n_control_episodes": 21,
+          "control_episodes_per_week": 12.25,
+          "n_leak_scenario_episodes": 71,
+          "leak_episodes_per_week": 16.566666666666666,
+          "label_note": "y=1 is the registered 6h recent-onset credit window, not ongoing leak presence.",
+          "per_leak_brief": [
+            {
+              "scenario_id": "leak_000_p282",
+              "pipe": "p282",
+              "episode_6h_hit": false,
+              "row_credit_hit": false,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                24,
+                196,
+                285
+              ]
+            },
+            {
+              "scenario_id": "leak_001_p299",
+              "pipe": "p299",
+              "episode_6h_hit": false,
+              "row_credit_hit": false,
+              "delay_hours": null,
+              "blocked_by_preonset_active": false,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                24,
+                196,
+                285
+              ]
+            },
+            {
+              "scenario_id": "leak_002_p69",
+              "pipe": "p69",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 5.25,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                24,
+                196
+              ]
+            },
+            {
+              "scenario_id": "leak_003_p435",
+              "pipe": "p435",
+              "episode_6h_hit": false,
+              "row_credit_hit": false,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 3,
+              "preonset_notifies": [
+                27,
+                199
+              ]
+            },
+            {
+              "scenario_id": "leak_005_p443",
+              "pipe": "p443",
+              "episode_6h_hit": false,
+              "row_credit_hit": false,
+              "delay_hours": null,
+              "blocked_by_preonset_active": false,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                25,
+                197,
+                286
+              ]
+            },
+            {
+              "scenario_id": "leak_008_p576",
+              "pipe": "p576",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 4.75,
+              "blocked_by_preonset_active": false,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                25,
+                197,
+                285
+              ]
+            },
+            {
+              "scenario_id": "leak_009_p210",
+              "pipe": "p210",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 1.6666666666666667,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                25,
+                197
+              ]
+            },
+            {
+              "scenario_id": "leak_010_p607",
+              "pipe": "p607",
+              "episode_6h_hit": false,
+              "row_credit_hit": false,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                29,
+                197
+              ]
+            },
+            {
+              "scenario_id": "leak_011_p19",
+              "pipe": "p19",
+              "episode_6h_hit": false,
+              "row_credit_hit": false,
+              "delay_hours": null,
+              "blocked_by_preonset_active": false,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                24,
+                196,
+                285
+              ]
+            },
+            {
+              "scenario_id": "leak_012_p801",
+              "pipe": "p801",
+              "episode_6h_hit": false,
+              "row_credit_hit": true,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                25,
+                197,
+                286
+              ]
+            },
+            {
+              "scenario_id": "leak_015_p655",
+              "pipe": "p655",
+              "episode_6h_hit": false,
+              "row_credit_hit": true,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 3,
+              "preonset_notifies": [
+                27,
+                199
+              ]
+            },
+            {
+              "scenario_id": "leak_017_p445",
+              "pipe": "p445",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 4.666666666666667,
+              "blocked_by_preonset_active": false,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                24,
+                196,
+                285
+              ]
+            },
+            {
+              "scenario_id": "leak_018_p513",
+              "pipe": "p513",
+              "episode_6h_hit": false,
+              "row_credit_hit": false,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                25,
+                197
+              ]
+            },
+            {
+              "scenario_id": "leak_021_p800",
+              "pipe": "p800",
+              "episode_6h_hit": true,
+              "row_credit_hit": true,
+              "delay_hours": 5.833333333333333,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                25,
+                197
+              ]
+            },
+            {
+              "scenario_id": "leak_023_p891",
+              "pipe": "p891",
+              "episode_6h_hit": false,
+              "row_credit_hit": true,
+              "delay_hours": null,
+              "blocked_by_preonset_active": true,
+              "n_episodes": 5,
+              "preonset_notifies": [
+                24,
+                196,
+                285
+              ]
+            }
+          ],
+          "per_control_brief": [
+            {
+              "scenario_id": "ctrl_000_control_pump",
+              "kind": "control_pump",
+              "n_episodes": 3
+            },
+            {
+              "scenario_id": "ctrl_001_control_demand",
+              "kind": "control_demand",
+              "n_episodes": 4
+            },
+            {
+              "scenario_id": "ctrl_003_control_demand",
+              "kind": "control_demand",
+              "n_episodes": 3
+            },
+            {
+              "scenario_id": "ctrl_010_control_pump",
+              "kind": "control_pump",
+              "n_episodes": 4
+            },
+            {
+              "scenario_id": "ctrl_012_control_demand",
+              "kind": "control_demand",
+              "n_episodes": 4
+            },
+            {
+              "scenario_id": "ctrl_013_control_demand",
+              "kind": "control_demand",
+              "n_episodes": 3
+            }
+          ]
+        }
+      },
+      "synthetic_row_table": {
+        "synthetic_dev": {
+          "empty": false,
+          "tau": 0.7,
+          "row_recall": 0.09444444444444444,
+          "row_precision": 0.0709812108559499,
+          "scenario_recall": 0.8,
+          "n_leak_scenarios_eval": 5,
+          "fp_row_rate": 0.12846420323325636,
+          "n_pred": 479,
+          "n_pos": 360
+        },
+        "synthetic_test": {
+          "empty": false,
+          "tau": 0.7,
+          "row_recall": 0.14074074074074075,
+          "row_precision": 0.12101910828025478,
+          "scenario_recall": 0.5333333333333333,
+          "n_leak_scenarios_eval": 15,
+          "fp_row_rate": 0.12141207522269878,
+          "n_pred": 1256,
+          "n_pos": 1080
+        }
+      },
+      "measured": {
+        "supervised": {
+          "DEV": {
+            "label": "change_only_arm_B",
+            "period": "DEV",
+            "train_end": "2018-01-15 00:00",
+            "n_eligible_onsets": 8,
+            "eligible_onsets": [
+              {
+                "pipe": "p461",
+                "leak_type": "incipient",
+                "onset": "2018-01-23 04:25"
+              },
+              {
+                "pipe": "p232",
+                "leak_type": "incipient",
+                "onset": "2018-01-31 02:35"
+              },
+              {
+                "pipe": "p427",
+                "leak_type": "incipient",
+                "onset": "2018-02-13 08:25"
+              },
+              {
+                "pipe": "p673",
+                "leak_type": "abrupt",
+                "onset": "2018-03-05 15:45"
+              },
+              {
+                "pipe": "p628",
+                "leak_type": "incipient",
+                "onset": "2018-05-02 14:55"
+              },
+              {
+                "pipe": "p538",
+                "leak_type": "abrupt",
+                "onset": "2018-05-18 08:35"
+              },
+              {
+                "pipe": "p866",
+                "leak_type": "abrupt",
+                "onset": "2018-06-01 09:05"
+              },
+              {
+                "pipe": "p31",
+                "leak_type": "incipient",
+                "onset": "2018-06-28 10:35"
+              }
+            ],
+            "n_episodes": 795,
+            "n_unmatched": 787,
+            "unmatched_per_week": 30.436464088397788,
+            "duplicate_unmatched_within_24h": 787,
+            "abrupt_6h": {
+              "n_abrupt": 3,
+              "n_hit": 1,
+              "recall": 0.3333333333333333,
+              "delays": [
+                1.3333333333333333
+              ],
+              "per_event": [
+                {
+                  "pipe": "p673",
+                  "onset": "2018-03-05 15:45",
+                  "matched": true,
+                  "notify_time": "2018-03-05 23:15",
+                  "delay_hours": 7.5,
+                  "within_6h": false,
+                  "stream_id": "supervised_pilot"
+                },
+                {
+                  "pipe": "p538",
+                  "onset": "2018-05-18 08:35",
+                  "matched": true,
+                  "notify_time": "2018-05-18 17:50",
+                  "delay_hours": 9.25,
+                  "within_6h": false,
+                  "stream_id": "supervised_pilot"
+                },
+                {
+                  "pipe": "p866",
+                  "onset": "2018-06-01 09:05",
+                  "matched": true,
+                  "notify_time": "2018-06-01 10:25",
+                  "delay_hours": 1.3333333333333333,
+                  "within_6h": true,
+                  "stream_id": "supervised_pilot"
+                }
+              ]
+            },
+            "matches": [
+              {
+                "pipe": "p461",
+                "leak_type": "incipient",
+                "onset": "2018-01-23 04:25",
+                "matched": true,
+                "notify_time": "2018-01-23 11:45",
+                "delay_hours": 7.333333333333333,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-01-23 11:45",
+                "open_leaks_at_notify": 2,
+                "episode_end": "2018-01-23 15:05"
+              },
+              {
+                "pipe": "p232",
+                "leak_type": "incipient",
+                "onset": "2018-01-31 02:35",
+                "matched": true,
+                "notify_time": "2018-01-31 10:40",
+                "delay_hours": 8.083333333333334,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-01-31 10:40",
+                "open_leaks_at_notify": 3,
+                "episode_end": "2018-01-31 12:00"
+              },
+              {
+                "pipe": "p427",
+                "leak_type": "incipient",
+                "onset": "2018-02-13 08:25",
+                "matched": true,
+                "notify_time": "2018-02-13 13:35",
+                "delay_hours": 5.166666666666667,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-02-13 13:35",
+                "open_leaks_at_notify": 3,
+                "episode_end": "2018-02-13 14:35"
+              },
+              {
+                "pipe": "p673",
+                "leak_type": "abrupt",
+                "onset": "2018-03-05 15:45",
+                "matched": true,
+                "notify_time": "2018-03-05 23:15",
+                "delay_hours": 7.5,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-03-05 23:15",
+                "open_leaks_at_notify": 4,
+                "episode_end": "2018-03-06 05:30"
+              },
+              {
+                "pipe": "p628",
+                "leak_type": "incipient",
+                "onset": "2018-05-02 14:55",
+                "matched": true,
+                "notify_time": "2018-05-02 17:35",
+                "delay_hours": 2.6666666666666665,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-05-02 17:35",
+                "open_leaks_at_notify": 3,
+                "episode_end": "2018-05-02 18:35"
+              },
+              {
+                "pipe": "p538",
+                "leak_type": "abrupt",
+                "onset": "2018-05-18 08:35",
+                "matched": true,
+                "notify_time": "2018-05-18 17:50",
+                "delay_hours": 9.25,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-05-18 17:50",
+                "open_leaks_at_notify": 4,
+                "episode_end": "2018-05-18 19:15"
+              },
+              {
+                "pipe": "p866",
+                "leak_type": "abrupt",
+                "onset": "2018-06-01 09:05",
+                "matched": true,
+                "notify_time": "2018-06-01 10:25",
+                "delay_hours": 1.3333333333333333,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-06-01 10:25",
+                "open_leaks_at_notify": 4,
+                "episode_end": "2018-06-01 11:45"
+              },
+              {
+                "pipe": "p31",
+                "leak_type": "incipient",
+                "onset": "2018-06-28 10:35",
+                "matched": true,
+                "notify_time": "2018-06-28 10:35",
+                "delay_hours": 0.0,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-06-28 10:35",
+                "open_leaks_at_notify": 3,
+                "episode_end": "2018-06-28 11:35"
+              }
+            ],
+            "prefix_n": 1,
+            "occupancy": {
+              "union_alarm_pct_of_analysis": 53.91536218538981,
+              "summed_sensor_alarm_pct_of_eligible": 53.91536218538981,
+              "episode_length_hours": {
+                "n": 795,
+                "median": 2.0,
+                "p90": 6.083333333333333,
+                "max": 16.083333333333332,
+                "mean": 2.8700209643605867
+              },
+              "n_episodes_right_censored": 1
+            },
+            "misses": []
+          },
+          "DIAG": {
+            "label": "change_only_arm_B",
+            "period": "DIAG",
+            "train_end": "2018-07-15 00:00",
+            "n_eligible_onsets": 4,
+            "eligible_onsets": [
+              {
+                "pipe": "p810",
+                "leak_type": "incipient",
+                "onset": "2018-07-28 03:05"
+              },
+              {
+                "pipe": "p183",
+                "leak_type": "abrupt",
+                "onset": "2018-08-07 02:35"
+              },
+              {
+                "pipe": "p158",
+                "leak_type": "abrupt",
+                "onset": "2018-10-06 02:35"
+              },
+              {
+                "pipe": "p369",
+                "leak_type": "abrupt",
+                "onset": "2018-10-26 02:05"
+              }
+            ],
+            "n_episodes": 813,
+            "n_unmatched": 809,
+            "unmatched_per_week": 30.77717391304348,
+            "duplicate_unmatched_within_24h": 809,
+            "abrupt_6h": {
+              "n_abrupt": 3,
+              "n_hit": 1,
+              "recall": 0.3333333333333333,
+              "delays": [
+                2.1666666666666665
+              ],
+              "per_event": [
+                {
+                  "pipe": "p183",
+                  "onset": "2018-08-07 02:35",
+                  "matched": true,
+                  "notify_time": "2018-08-07 10:15",
+                  "delay_hours": 7.666666666666667,
+                  "within_6h": false,
+                  "stream_id": "supervised_pilot"
+                },
+                {
+                  "pipe": "p158",
+                  "onset": "2018-10-06 02:35",
+                  "matched": true,
+                  "notify_time": "2018-10-06 15:15",
+                  "delay_hours": 12.666666666666666,
+                  "within_6h": false,
+                  "stream_id": "supervised_pilot"
+                },
+                {
+                  "pipe": "p369",
+                  "onset": "2018-10-26 02:05",
+                  "matched": true,
+                  "notify_time": "2018-10-26 04:15",
+                  "delay_hours": 2.1666666666666665,
+                  "within_6h": true,
+                  "stream_id": "supervised_pilot"
+                }
+              ]
+            },
+            "matches": [
+              {
+                "pipe": "p810",
+                "leak_type": "incipient",
+                "onset": "2018-07-28 03:05",
+                "matched": true,
+                "notify_time": "2018-07-28 11:45",
+                "delay_hours": 8.666666666666666,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-07-28 11:45",
+                "open_leaks_at_notify": 5,
+                "episode_end": "2018-07-28 13:10"
+              },
+              {
+                "pipe": "p183",
+                "leak_type": "abrupt",
+                "onset": "2018-08-07 02:35",
+                "matched": true,
+                "notify_time": "2018-08-07 10:15",
+                "delay_hours": 7.666666666666667,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-08-07 10:15",
+                "open_leaks_at_notify": 6,
+                "episode_end": "2018-08-07 11:35"
+              },
+              {
+                "pipe": "p158",
+                "leak_type": "abrupt",
+                "onset": "2018-10-06 02:35",
+                "matched": true,
+                "notify_time": "2018-10-06 15:15",
+                "delay_hours": 12.666666666666666,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-10-06 15:15",
+                "open_leaks_at_notify": 5,
+                "episode_end": "2018-10-06 16:20"
+              },
+              {
+                "pipe": "p369",
+                "leak_type": "abrupt",
+                "onset": "2018-10-26 02:05",
+                "matched": true,
+                "notify_time": "2018-10-26 04:15",
+                "delay_hours": 2.1666666666666665,
+                "stream_id": "supervised_pilot",
+                "refs_used": [],
+                "change_estimate_time": "2018-10-26 04:15",
+                "open_leaks_at_notify": 5,
+                "episode_end": "2018-10-26 06:35"
+              }
+            ],
+            "prefix_n": 1,
+            "occupancy": {
+              "union_alarm_pct_of_analysis": 55.147946859903385,
+              "summed_sensor_alarm_pct_of_eligible": 55.147946859903385,
+              "episode_length_hours": {
+                "n": 813,
+                "median": 1.9166666666666667,
+                "p90": 6.583333333333333,
+                "max": 14.166666666666666,
+                "mean": 2.912156621566216
+              },
+              "n_episodes_right_censored": 1
+            },
+            "misses": []
+          }
+        }
+      }
+    }
+  },
+  "paired_synthetic_test": [
+    {
+      "scenario_id": "leak_000_p282",
+      "pipe": "p282",
+      "pair": "both_miss",
+      "A_hit": false,
+      "B_hit": false,
+      "A_delay_h": null,
+      "B_delay_h": null,
+      "A_blocked": true,
+      "B_blocked": true,
+      "A_row_credit": false,
+      "B_row_credit": false
+    },
+    {
+      "scenario_id": "leak_001_p299",
+      "pipe": "p299",
+      "pair": "both_miss",
+      "A_hit": false,
+      "B_hit": false,
+      "A_delay_h": null,
+      "B_delay_h": null,
+      "A_blocked": false,
+      "B_blocked": false,
+      "A_row_credit": false,
+      "B_row_credit": false
+    },
+    {
+      "scenario_id": "leak_002_p69",
+      "pipe": "p69",
+      "pair": "both_hit",
+      "A_hit": true,
+      "B_hit": true,
+      "A_delay_h": 5.833333333333333,
+      "B_delay_h": 5.25,
+      "A_blocked": false,
+      "B_blocked": true,
+      "A_row_credit": true,
+      "B_row_credit": true
+    },
+    {
+      "scenario_id": "leak_003_p435",
+      "pipe": "p435",
+      "pair": "both_miss",
+      "A_hit": false,
+      "B_hit": false,
+      "A_delay_h": null,
+      "B_delay_h": null,
+      "A_blocked": true,
+      "B_blocked": true,
+      "A_row_credit": false,
+      "B_row_credit": false
+    },
+    {
+      "scenario_id": "leak_005_p443",
+      "pipe": "p443",
+      "pair": "both_miss",
+      "A_hit": false,
+      "B_hit": false,
+      "A_delay_h": null,
+      "B_delay_h": null,
+      "A_blocked": false,
+      "B_blocked": false,
+      "A_row_credit": false,
+      "B_row_credit": false
+    },
+    {
+      "scenario_id": "leak_008_p576",
+      "pipe": "p576",
+      "pair": "both_hit",
+      "A_hit": true,
+      "B_hit": true,
+      "A_delay_h": 5.0,
+      "B_delay_h": 4.75,
+      "A_blocked": false,
+      "B_blocked": false,
+      "A_row_credit": true,
+      "B_row_credit": true
+    },
+    {
+      "scenario_id": "leak_009_p210",
+      "pipe": "p210",
+      "pair": "both_hit",
+      "A_hit": true,
+      "B_hit": true,
+      "A_delay_h": 1.5,
+      "B_delay_h": 1.6666666666666667,
+      "A_blocked": false,
+      "B_blocked": true,
+      "A_row_credit": true,
+      "B_row_credit": true
+    },
+    {
+      "scenario_id": "leak_010_p607",
+      "pipe": "p607",
+      "pair": "A_hit_B_miss",
+      "A_hit": true,
+      "B_hit": false,
+      "A_delay_h": 5.833333333333333,
+      "B_delay_h": null,
+      "A_blocked": true,
+      "B_blocked": true,
+      "A_row_credit": true,
+      "B_row_credit": false
+    },
+    {
+      "scenario_id": "leak_011_p19",
+      "pipe": "p19",
+      "pair": "both_miss",
+      "A_hit": false,
+      "B_hit": false,
+      "A_delay_h": null,
+      "B_delay_h": null,
+      "A_blocked": false,
+      "B_blocked": false,
+      "A_row_credit": false,
+      "B_row_credit": false
+    },
+    {
+      "scenario_id": "leak_012_p801",
+      "pipe": "p801",
+      "pair": "both_miss",
+      "A_hit": false,
+      "B_hit": false,
+      "A_delay_h": null,
+      "B_delay_h": null,
+      "A_blocked": true,
+      "B_blocked": true,
+      "A_row_credit": true,
+      "B_row_credit": true
+    },
+    {
+      "scenario_id": "leak_015_p655",
+      "pipe": "p655",
+      "pair": "both_miss",
+      "A_hit": false,
+      "B_hit": false,
+      "A_delay_h": null,
+      "B_delay_h": null,
+      "A_blocked": true,
+      "B_blocked": true,
+      "A_row_credit": true,
+      "B_row_credit": true
+    },
+    {
+      "scenario_id": "leak_017_p445",
+      "pipe": "p445",
+      "pair": "both_hit",
+      "A_hit": true,
+      "B_hit": true,
+      "A_delay_h": 5.083333333333333,
+      "B_delay_h": 4.666666666666667,
+      "A_blocked": false,
+      "B_blocked": false,
+      "A_row_credit": true,
+      "B_row_credit": true
+    },
+    {
+      "scenario_id": "leak_018_p513",
+      "pipe": "p513",
+      "pair": "A_hit_B_miss",
+      "A_hit": true,
+      "B_hit": false,
+      "A_delay_h": 6.0,
+      "B_delay_h": null,
+      "A_blocked": true,
+      "B_blocked": true,
+      "A_row_credit": false,
+      "B_row_credit": false
+    },
+    {
+      "scenario_id": "leak_021_p800",
+      "pipe": "p800",
+      "pair": "both_hit",
+      "A_hit": true,
+      "B_hit": true,
+      "A_delay_h": 5.583333333333333,
+      "B_delay_h": 5.833333333333333,
+      "A_blocked": true,
+      "B_blocked": true,
+      "A_row_credit": true,
+      "B_row_credit": true
+    },
+    {
+      "scenario_id": "leak_023_p891",
+      "pipe": "p891",
+      "pair": "both_miss",
+      "A_hit": false,
+      "B_hit": false,
+      "A_delay_h": null,
+      "B_delay_h": null,
+      "A_blocked": true,
+      "B_blocked": true,
+      "A_row_credit": true,
+      "B_row_credit": true
+    }
+  ],
+  "paired_measured": {
+    "DEV": [
+      {
+        "pipe": "p673",
+        "onset": "2018-03-05 15:45",
+        "pair": "both_miss6",
+        "A_within_6h": false,
+        "B_within_6h": false,
+        "A_delay_h": 110.41666666666667,
+        "B_delay_h": 7.5,
+        "A_matched": true,
+        "B_matched": true
+      },
+      {
+        "pipe": "p538",
+        "onset": "2018-05-18 08:35",
+        "pair": "both_miss6",
+        "A_within_6h": false,
+        "B_within_6h": false,
+        "A_delay_h": null,
+        "B_delay_h": 9.25,
+        "A_matched": false,
+        "B_matched": true
+      },
+      {
+        "pipe": "p866",
+        "onset": "2018-06-01 09:05",
+        "pair": "A_miss6_B_hit6",
+        "A_within_6h": false,
+        "B_within_6h": true,
+        "A_delay_h": 21.25,
+        "B_delay_h": 1.3333333333333333,
+        "A_matched": true,
+        "B_matched": true
+      }
+    ],
+    "DIAG": [
+      {
+        "pipe": "p183",
+        "onset": "2018-08-07 02:35",
+        "pair": "both_miss6",
+        "A_within_6h": false,
+        "B_within_6h": false,
+        "A_delay_h": 21.416666666666668,
+        "B_delay_h": 7.666666666666667,
+        "A_matched": true,
+        "B_matched": true
+      },
+      {
+        "pipe": "p158",
+        "onset": "2018-10-06 02:35",
+        "pair": "A_hit6_B_miss6",
+        "A_within_6h": true,
+        "B_within_6h": false,
+        "A_delay_h": 2.6666666666666665,
+        "B_delay_h": 12.666666666666666,
+        "A_matched": true,
+        "B_matched": true
+      },
+      {
+        "pipe": "p369",
+        "onset": "2018-10-26 02:05",
+        "pair": "both_hit6",
+        "A_within_6h": true,
+        "B_within_6h": true,
+        "A_delay_h": 2.25,
+        "B_delay_h": 2.1666666666666665,
+        "A_matched": true,
+        "B_matched": true
+      }
+    ]
+  },
+  "interpretation": {
+    "a_synthetic_operating_point_improved": false,
+    "a_synthetic_notes": "lower synth-test episode_6h_recall; higher synth-test control ep/wk",
+    "b_measured_transfer_improved_strict": false,
+    "b_measured_notes": "DEV abrupt6h A=0.0 B=0.3333333333333333; DIAG A=0.6666666666666666 B=0.3333333333333333; unmatched/wk DEV A=6.42 B=30.44; DIAG A=8.484 B=30.78. One favorable DIAG recall alone does not establish transfer improvement.",
+    "loose_any_period_recall_up": true
+  }
+}

@@ -32,6 +32,15 @@ not an ablation):
 Protocol: `EPISODE_SELECTION_PROTOCOL.md`  
 Results: `outputs/episode_objective/EPISODE_OBJECTIVE_RESULTS.md`
 
+Change-only feature ablation (paired Arms A/B; episode-notification objective):
+
+```bash
+.venv/bin/python research/supervised-event-detection/run_change_only_ablation.py
+```
+
+Protocol: `CHANGE_ONLY_ABLATION_PROTOCOL.md`  
+Results: `outputs/change_only_ablation/CHANGE_ONLY_ABLATION_RESULTS.md`
+
 ## Boundary
 
 - Preserves production and frozen FMR3C evaluations
