@@ -37,6 +37,13 @@ Matching-assignment audit (frozen notifications; views B/C post-hoc):
 .venv/bin/python research/finite-memory-relationship-change/audit_matching_assignment.py
 ```
 
+p369 reference-suppression diagnosis (diagnostic intervention only):
+`outputs/REFERENCE_SUPPRESSION_DIAGNOSIS.md`
+
+```bash
+.venv/bin/python research/finite-memory-relationship-change/diagnose_reference_suppression.py
+```
+
 ## Boundary
 
 No production/UI/Tiger/main changes. No 2019. No CUSUM retuning.
