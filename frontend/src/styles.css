@@ -952,6 +952,142 @@ body {
   font-size: 0.92rem;
 }
 
+.method-m-tech {
+  margin-top: 0.75rem;
+  border-top: 1px solid var(--line);
+  padding-top: 0.45rem;
+}
+
+.method-m-tech > summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--teal-deep);
+}
+
+.investigation-brief-panel {
+  background: rgba(242, 246, 244, 0.94);
+  box-shadow: var(--shadow);
+  padding: 0.85rem 1rem 1rem;
+}
+
+.investigation-brief-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.investigation-brief-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.investigation-brief-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.investigation-brief-print {
+  margin-top: 0.85rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+}
+
+.brief-header {
+  margin-bottom: 0.85rem;
+}
+
+.brief-kicker {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.brief-heading {
+  margin: 0.15rem 0 0.55rem;
+  font-size: 1.05rem;
+}
+
+.brief-banner {
+  margin: 0.25rem 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--ink-muted);
+}
+
+.brief-banner-warn {
+  color: #8a5a2b;
+  font-weight: 600;
+}
+
+.brief-section {
+  margin: 0.85rem 0;
+}
+
+.brief-section h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.brief-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.brief-muted {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+
+.brief-url {
+  word-break: break-all;
+}
+
+.brief-note-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.65rem;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+
+.brief-note-field textarea {
+  font: inherit;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  resize: vertical;
+  min-height: 4rem;
+  color: var(--ink);
+}
+
+.brief-footer {
+  margin-top: 1rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--ink-muted);
+}
+
+.brief-footer p {
+  margin: 0.2rem 0;
+}
+
 @media (max-width: 900px) {
   .workspace {
     grid-template-columns: 1fr;
@@ -960,5 +1096,42 @@ body {
   .map-stage,
   .details-panel {
     min-height: 420px;
+  }
+}
+
+@media print {
+  @page {
+    margin: 1.2cm;
+  }
+
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .investigation-brief-print,
+  .investigation-brief-print * {
+    visibility: visible;
+  }
+
+  .investigation-brief-print {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: #fff;
+  }
+
+  .no-print {
+    display: none !important;
+    visibility: hidden !important;
   }
 }

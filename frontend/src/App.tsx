@@ -13,6 +13,7 @@ import InvestigationPanels from "./components/InvestigationPanels";
 import NetworkMap from "./components/NetworkMap";
 import ReplayControls from "./components/ReplayControls";
 import SaveInvestigationPanel from "./components/SaveInvestigationPanel";
+import InvestigationBriefPanel from "./components/InvestigationBriefPanel";
 import MethodMWarningPanel from "./components/MethodMWarningPanel";
 import TigerEvidencePanel from "./components/TigerEvidencePanel";
 import {
@@ -38,6 +39,7 @@ import {
 } from "./presenter";
 import { addSeconds, clampTs, normalizeNaive, parseNaive } from "./time";
 import type {
+  MethodMWarningResponse,
   NetworkResponse,
   ReplaySnapshotResponse,
   Selection,
@@ -106,6 +108,9 @@ export default function App() {
   const [restoreError, setRestoreError] = useState<string | null>(null);
   const [openedInvestigation, setOpenedInvestigation] =
     useState<SavedInvestigation | null>(null);
+  const [methodMWarning, setMethodMWarning] =
+    useState<MethodMWarningResponse | null>(null);
+  const [methodMWarningLoading, setMethodMWarningLoading] = useState(false);
 
   const timestamps = useMemo(() => {
     if (!windowStart || !windowEnd) return [];
@@ -448,6 +453,22 @@ export default function App() {
     setSelection({ kind: "sensor", data: sensor });
   };
 
+  const onMethodMMatchedData = useCallback((data: MethodMWarningResponse | null) => {
+    setMethodMWarning(data);
+    setMethodMWarningLoading(false);
+  }, []);
+
+  useEffect(() => {
+    if (!cursor) {
+      setMethodMWarning(null);
+      setMethodMWarningLoading(false);
+      return;
+    }
+    // Drop previous cursor's warning until the panel reports a match.
+    setMethodMWarning(null);
+    setMethodMWarningLoading(true);
+  }, [cursor]);
+
   const activeDisclaimer = (() => {
     if (openedInvestigation && restoreStatus === "ready") {
       const matched =
@@ -681,6 +702,7 @@ export default function App() {
         cursor={cursor}
         onInspectSensor={inspectWarningSensor}
         selectedSensorId={selectedSensorId}
+        onMatchedData={onMethodMMatchedData}
       />
 
       <InvestigationPanels
@@ -694,6 +716,24 @@ export default function App() {
         seriesStatus={seriesPending ? "loading" : seriesStatus}
         seriesMatched={seriesMatched}
         seriesError={seriesError}
+      />
+
+      <InvestigationBriefPanel
+        cursor={cursor}
+        windowStart={windowStart}
+        windowEnd={windowEnd}
+        selectedSensorId={selectedSensorId}
+        observations={observations}
+        snapshotMatched={snapshotMatched}
+        snapshotLoading={snapshotPending}
+        pressureComparison={pressureComparison}
+        seriesMatched={seriesMatched}
+        seriesLoading={seriesPending}
+        warning={methodMWarning}
+        warningLoading={methodMWarningLoading}
+        savedInvestigation={
+          restoreStatus === "ready" ? openedInvestigation : null
+        }
       />
 
       <TigerEvidencePanel />

@@ -6,6 +6,8 @@ interface Props {
   cursor: string | null;
   onInspectSensor?: (sensorId: string) => void;
   selectedSensorId?: string | null;
+  /** Share the cursor-matched warning payload with the investigation brief. */
+  onMatchedData?: (data: MethodMWarningResponse | null) => void;
 }
 
 function fmtScore(v: number | null | undefined): string {
@@ -17,6 +19,7 @@ export default function MethodMWarningPanel({
   cursor,
   onInspectSensor,
   selectedSensorId = null,
+  onMatchedData,
 }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -29,6 +32,7 @@ export default function MethodMWarningPanel({
       setForCursor(null);
       setError(null);
       setLoading(false);
+      onMatchedData?.(null);
       return;
     }
     const controller = new AbortController();
@@ -41,13 +45,17 @@ export default function MethodMWarningPanel({
         setData(res);
         setForCursor(requestCursor);
         setLoading(false);
+        onMatchedData?.(res);
       })
       .catch((err: unknown) => {
         if (controller.signal.aborted) return;
         setError(err instanceof Error ? err.message : String(err));
         setLoading(false);
+        onMatchedData?.(null);
       });
     return () => controller.abort();
+    // onMatchedData intentionally omitted — parent should pass a stable callback.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cursor]);
 
   const matched = Boolean(cursor) && forCursor === cursor && data !== null;
@@ -89,9 +97,8 @@ export default function MethodMWarningPanel({
       {matched && data && (
         <div className="method-m-body">
           <p className="method-m-meta">
-            Resolution: {data.resolution === "five_minute" ? "five-minute" : data.resolution}{" "}
-            (latest score stamp ≤ cursor). Threshold τ ={" "}
-            {fmtScore(data.threshold)}. Score stamp {data.score_hour ?? "—"}.
+            Five-minute resolution (latest score stamp ≤ cursor). Score stamp{" "}
+            {data.score_hour ?? "—"}.
             {data.data_age_hours !== null && data.data_age_hours !== undefined
               ? ` Data age ${data.data_age_hours.toFixed(2)} h vs cursor.`
               : null}
@@ -102,17 +109,21 @@ export default function MethodMWarningPanel({
               <p className="method-m-status">Experimental warning active</p>
               <p className="method-m-score">
                 Score {fmtScore(data.score)}
-                <span className="channel-unit"> / τ {fmtScore(data.threshold)}</span>
+                <span className="channel-unit">
+                  {" "}
+                  / threshold τ {fmtScore(data.threshold)}
+                </span>
               </p>
               {data.notification?.notify_ts && (
                 <p className="channel-note">
-                  Notification (five-minute, ≤ cursor) {data.notification.notify_ts}
+                  Notification time (five-minute stamp ≤ cursor):{" "}
+                  {data.notification.notify_ts}
                 </p>
               )}
               {data.peak_score_observed_to_cursor !== null &&
                 data.peak_score_observed_to_cursor !== undefined && (
                   <p className="channel-note">
-                    Peak observed to cursor:{" "}
+                    Peak score observed to cursor:{" "}
                     {fmtScore(data.peak_score_observed_to_cursor)} (final episode
                     peak/end withheld until the cursor reaches them)
                   </p>
@@ -128,7 +139,10 @@ export default function MethodMWarningPanel({
               {data.score !== null && data.score !== undefined && (
                 <p className="method-m-score">
                   Score {fmtScore(data.score)}
-                  <span className="channel-unit"> / τ {fmtScore(data.threshold)}</span>
+                  <span className="channel-unit">
+                    {" "}
+                    / threshold τ {fmtScore(data.threshold)}
+                  </span>
                 </p>
               )}
               <p className="channel-note">
@@ -140,21 +154,29 @@ export default function MethodMWarningPanel({
 
           {data.contributors.length > 0 && (
             <>
-              <h3 className="details-section">Contributing sensors (measured dual context)</h3>
+              <h3 className="details-section">
+                Contributing sensors (dual-context evidence)
+              </h3>
               <p className="channel-note">
                 Use <strong>Inspect sensor</strong> to update the map selection and
                 pressure chart at the current replay cursor. This does not identify a
                 leaking pipe.
+              </p>
+              <p className="channel-note">
+                <strong>Virtual flow (qᵥ)</strong> is a model-derived mismatch used
+                for scoring — not a measured water loss at that node.
               </p>
               <div className="tiger-table-wrap">
                 <table className="tiger-table">
                   <thead>
                     <tr>
                       <th>Sensor</th>
-                      <th>|z|/cal</th>
-                      <th>δ (m³/h)</th>
-                      <th>σ_SCALE</th>
-                      <th>q_v</th>
+                      <th title="Calibrated absolute z-score">|z| (cal)</th>
+                      <th title="Dual-context residual flow">δ (m³/h)</th>
+                      <th title="Scale used for calibration">σ scale (m³/h)</th>
+                      <th title="Model-derived virtual flow mismatch">
+                        Virtual flow qᵥ (m³/h)
+                      </th>
                       <th>Inspect</th>
                     </tr>
                   </thead>
@@ -195,13 +217,25 @@ export default function MethodMWarningPanel({
             </>
           )}
 
-          <p className="method-m-meta">
-            Method M · experimental · calibration{" "}
-            {(data.version_hashes.calibration_sha256 ?? "").slice(0, 12)}…
-            {data.version_hashes.tau_sha256
-              ? ` · τ ${(data.version_hashes.tau_sha256 ?? "").slice(0, 8)}…`
-              : null}
-          </p>
+          <details className="method-m-tech">
+            <summary>Technical methodology and version hashes</summary>
+            <p className="channel-note">
+              Threshold τ = {fmtScore(data.threshold)} (recover{" "}
+              {fmtScore(data.recover_threshold)}). Resolution{" "}
+              {data.resolution === "five_minute" ? "five-minute" : data.resolution}.
+              Calibration sha256{" "}
+              <code>{data.version_hashes.calibration_sha256 ?? "—"}</code>
+              {data.version_hashes.tau_sha256 ? (
+                <>
+                  {" "}
+                  · τ sha256 <code>{data.version_hashes.tau_sha256}</code>
+                </>
+              ) : null}
+            </p>
+            {data.resolution_note ? (
+              <p className="channel-note">{data.resolution_note}</p>
+            ) : null}
+          </details>
         </div>
       )}
     </section>

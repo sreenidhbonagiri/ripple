@@ -25,20 +25,21 @@ function fmt(value: number | null | undefined, digits = 2): string {
 function ChannelCard({
   title,
   unit,
+  hint,
   observation,
   loading,
-  footnote,
 }: {
   title: string;
   unit: string;
+  hint?: string;
   observation: SnapshotObservation | null;
   loading: boolean;
-  footnote?: string;
 }) {
   if (loading) {
     return (
       <article className="channel-card status-loading">
         <h3>{title}</h3>
+        {hint && <p className="channel-note">{hint}</p>}
         <p className="channel-note">Loading…</p>
       </article>
     );
@@ -47,6 +48,7 @@ function ChannelCard({
   return (
     <article className={`channel-card status-${status}`}>
       <h3>{title}</h3>
+      {hint && <p className="channel-note">{hint}</p>}
       <p className="channel-value">
         {observation?.value === null || observation?.value === undefined
           ? "—"
@@ -59,7 +61,6 @@ function ChannelCard({
           ? ` · ${String(observation.observation_ts).replace("T", " ").slice(0, 19)}`
           : " · no observation ≤ cursor"}
       </p>
-      {footnote && <p className="channel-note">{footnote}</p>}
     </article>
   );
 }
@@ -111,9 +112,10 @@ export default function InvestigationPanels({
         >
           <h3>
             {selectedPressure
-              ? `Pressure ${selectedPressure.id}`
+              ? `Selected pressure ${selectedPressure.id}`
               : "Selected pressure"}
           </h3>
+          <p className="channel-note">Observed head / pressure (m)</p>
           {!selectedPressure && (
             <p className="channel-note">Select a pressure sensor on the map.</p>
           )}
@@ -135,7 +137,7 @@ export default function InvestigationPanels({
                   : " · no observation ≤ cursor"}
               </p>
               <div className="pressure-delta">
-                <h4>Change vs 30 minutes earlier</h4>
+                <h4>Change vs 30 minutes earlier (m)</h4>
                 {comparisonLoading && (
                   <p className="channel-note">Loading comparison…</p>
                 )}
@@ -178,26 +180,29 @@ export default function InvestigationPanels({
 
         <ChannelCard
           title={CONTEXT.externalInflows[0].label}
-          unit="m³/h"
+          unit={CONTEXT.externalInflows[0].unit}
+          hint={CONTEXT.externalInflows[0].hint}
           observation={snapshotMatched ? p227 : null}
           loading={channelsLoading}
         />
         <ChannelCard
           title={CONTEXT.externalInflows[1].label}
-          unit="m³/h"
+          unit={CONTEXT.externalInflows[1].unit}
+          hint={CONTEXT.externalInflows[1].hint}
           observation={snapshotMatched ? p235 : null}
           loading={channelsLoading}
         />
         <ChannelCard
           title={CONTEXT.internalTransfer.label}
-          unit="m³/h"
+          unit={CONTEXT.internalTransfer.unit}
+          hint={CONTEXT.internalTransfer.hint}
           observation={snapshotMatched ? pump : null}
           loading={channelsLoading}
-          footnote="Internal transfer to tank — not external supply."
         />
         <ChannelCard
           title={CONTEXT.tankLevel.label}
-          unit="m"
+          unit={CONTEXT.tankLevel.unit}
+          hint={CONTEXT.tankLevel.hint}
           observation={snapshotMatched ? tank : null}
           loading={channelsLoading}
         />
