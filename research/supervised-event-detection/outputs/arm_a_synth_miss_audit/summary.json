@@ -1,0 +1,2374 @@
+{
+  "generated_at": "2026-10-24T23:08:33-04:00",
+  "experiment": "arm_a_synth_miss_audit",
+  "frozen": {
+    "C": 10.0,
+    "tau": 0.7,
+    "gate_met": false,
+    "selection_failure": true,
+    "source": "outputs/change_only_ablation/arm_A_frozen_model.json"
+  },
+  "cause_definitions": {
+    "no_crossing_in_6h": "No finite q(t) \u2265 \u03c4 for any t in [onset, onset+6h] (inclusive).",
+    "preonset_active_block": "Some episode has notify_idx < onset \u2264 end_idx (notifier still active at onset), and no episode has notify_idx in [onset, onset+6h].",
+    "confirmation_not_met": "Reserved: this supervised notifier has no separate confirmation dwell beyond first q\u2265\u03c4 while inactive \u2014 always false for this pipeline.",
+    "warmup_missingness": "Onset index < feature warm-up, or every score in the credit window is non-finite, or >50% of credit-window scores are non-finite."
+  },
+  "counts": {
+    "n_leak": 15,
+    "n_hit": 7,
+    "n_miss": 8,
+    "episode_6h_recall": 0.4666666666666667,
+    "row_credit_scenario_recall": 0.6,
+    "row_credit_hit_but_episode_miss": 3,
+    "n_blocked_flag": 8
+  },
+  "leak_results": [
+    {
+      "scenario_id": "leak_000_p282",
+      "pipe": "p282",
+      "pipe_group": 0,
+      "demand_scale": 1.03,
+      "leak_area_m2": 0.00035,
+      "leak_start_hour": 28.476620218660365,
+      "leak_end_hour": 37.775517027957406,
+      "operating_realization": 3,
+      "onset_idx": 341,
+      "onset_hour": 28.416666666666668,
+      "episode_6h_hit": false,
+      "row_credit_hit": false,
+      "preonset_notify_idxs": [
+        200,
+        292
+      ],
+      "preonset_notify_hours": [
+        16.666666666666668,
+        24.333333333333332
+      ],
+      "classification": {
+        "primary": "preonset_active_no_crossing",
+        "causes": {
+          "no_crossing_in_6h": true,
+          "preonset_active_block": false,
+          "preonset_active_at_onset": true,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": false,
+        "blocked_at_onset": true,
+        "notify_in_credit": false,
+        "recovery_debt": {
+          "covering_notify_idx": 292,
+          "covering_end_idx": 354,
+          "covering_peak": 0.9057273812289699,
+          "hours_active_before_onset": 4.083333333333333,
+          "frac_q_ge_tau_half_preonset_segment": 1.0,
+          "frac_q_ge_tau_preonset_segment": 0.8,
+          "active_at_onset": true,
+          "recover_run_at_onset": 0,
+          "persistent_high_probability": true,
+          "recovery_debt_dominant": false
+        },
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.44524310709981174,
+        "mean_q_in_credit": 0.025959624291947057
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.625740422142876,
+          "Pd_d6_min_mean": 0.0010667906867133246,
+          "Pd_d6_median_mean": 0.06834464603000218,
+          "pump_on_frac": 1.0,
+          "F_PUMP_mean": 44.12848008796573,
+          "L_T1_mean": 3.360805935329861
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.53839932547675,
+          "Pd_d6_min_mean": -0.11360576417711046,
+          "Pd_d6_median_mean": -0.0652163823445638,
+          "pump_on_frac": 0.027777777777777776,
+          "F_PUMP_mean": 1.2250008527189493,
+          "L_T1_mean": 3.659145567152235
+        }
+      },
+      "ctx_at_covering_notify": {
+        "t": 292,
+        "hour": 24.333333333333332,
+        "P_median_m": 47.551734924316406,
+        "Pd_median_d6_m": 0.11006927490234375,
+        "Pd_min_d6_m": 0.0018157958984375,
+        "F_PUMP_1_m3h": 44.128406792879105,
+        "pump1_on": true,
+        "L_T1_m": 3.1801300048828125,
+        "dP_median_vs_winstart_m": 0.10499954223632812,
+        "win_steps": 6
+      },
+      "episodes": [
+        {
+          "notify_idx": 200,
+          "end_idx": 241,
+          "peak_score": 0.7211917322088455
+        },
+        {
+          "notify_idx": 292,
+          "end_idx": 354,
+          "peak_score": 0.9057273812289699
+        },
+        {
+          "notify_idx": 487,
+          "end_idx": 510,
+          "peak_score": 0.7541247058792672
+        }
+      ]
+    },
+    {
+      "scenario_id": "leak_001_p299",
+      "pipe": "p299",
+      "pipe_group": 4,
+      "demand_scale": 1.03,
+      "leak_area_m2": 0.0002,
+      "leak_start_hour": 33.52617416306175,
+      "leak_end_hour": 47.5,
+      "operating_realization": 3,
+      "onset_idx": 402,
+      "onset_hour": 33.5,
+      "episode_6h_hit": false,
+      "row_credit_hit": false,
+      "preonset_notify_idxs": [
+        200,
+        292
+      ],
+      "preonset_notify_hours": [
+        16.666666666666668,
+        24.333333333333332
+      ],
+      "classification": {
+        "primary": "no_crossing_in_6h",
+        "causes": {
+          "no_crossing_in_6h": true,
+          "preonset_active_block": false,
+          "preonset_active_at_onset": false,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": false,
+        "blocked_at_onset": false,
+        "notify_in_credit": false,
+        "recovery_debt": null,
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.5523219367247664,
+        "mean_q_in_credit": 0.17391182213240122
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.63294839859009,
+          "Pd_d6_min_mean": -0.10295436117384169,
+          "Pd_d6_median_mean": -0.06114800771077474,
+          "pump_on_frac": 0.18055555555555555,
+          "F_PUMP_mean": 7.9656836576759815,
+          "L_T1_mean": 3.7259196175469294
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.29380390379164,
+          "Pd_d6_min_mean": -0.06260908974541558,
+          "Pd_d6_median_mean": 0.017706976996527776,
+          "pump_on_frac": 0.0,
+          "F_PUMP_mean": 0.0,
+          "L_T1_mean": 3.00212033589681
+        }
+      },
+      "ctx_at_covering_notify": null,
+      "episodes": [
+        {
+          "notify_idx": 200,
+          "end_idx": 241,
+          "peak_score": 0.7211917322088455
+        },
+        {
+          "notify_idx": 292,
+          "end_idx": 354,
+          "peak_score": 0.9057273812289699
+        },
+        {
+          "notify_idx": 487,
+          "end_idx": 510,
+          "peak_score": 0.7541247058792672
+        }
+      ]
+    },
+    {
+      "scenario_id": "leak_002_p69",
+      "pipe": "p69",
+      "pipe_group": 3,
+      "demand_scale": 1.08,
+      "leak_area_m2": 0.0001,
+      "leak_start_hour": 18.541773368573516,
+      "leak_end_hour": 34.01119019084727,
+      "operating_realization": 0,
+      "onset_idx": 222,
+      "onset_hour": 18.5,
+      "episode_6h_hit": true,
+      "row_credit_hit": true,
+      "preonset_notify_idxs": [],
+      "preonset_notify_hours": [],
+      "classification": {
+        "primary": "hit_6h",
+        "causes": {
+          "no_crossing_in_6h": false,
+          "preonset_active_block": false,
+          "preonset_active_at_onset": false,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": true,
+        "blocked_at_onset": false,
+        "notify_in_credit": true,
+        "recovery_debt": null,
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.7090410171909306,
+        "mean_q_in_credit": 0.1751388973745128
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.25056552886963,
+          "Pd_d6_min_mean": -0.12290853924221462,
+          "Pd_d6_median_mean": -0.013912889692518447,
+          "pump_on_frac": 0.3055555555555556,
+          "F_PUMP_mean": 13.483560923486948,
+          "L_T1_mean": 2.6009048885769315
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.06215217378404,
+          "Pd_d6_min_mean": -0.01050522592332628,
+          "Pd_d6_median_mean": 0.04029936260647244,
+          "pump_on_frac": 1.0,
+          "F_PUMP_mean": 44.06345672905445,
+          "L_T1_mean": 2.873716778225369
+        }
+      },
+      "ctx_at_covering_notify": null,
+      "episodes": [
+        {
+          "notify_idx": 292,
+          "end_idx": 354,
+          "peak_score": 0.9072703695213111
+        },
+        {
+          "notify_idx": 488,
+          "end_idx": 505,
+          "peak_score": 0.7427318531382937
+        }
+      ]
+    },
+    {
+      "scenario_id": "leak_003_p435",
+      "pipe": "p435",
+      "pipe_group": 4,
+      "demand_scale": 0.92,
+      "leak_area_m2": 0.0002,
+      "leak_start_hour": 28.239095592636772,
+      "leak_end_hour": 42.56083361837362,
+      "operating_realization": 1,
+      "onset_idx": 338,
+      "onset_hour": 28.166666666666668,
+      "episode_6h_hit": false,
+      "row_credit_hit": false,
+      "preonset_notify_idxs": [
+        199
+      ],
+      "preonset_notify_hours": [
+        16.583333333333332
+      ],
+      "classification": {
+        "primary": "preonset_active_no_crossing",
+        "causes": {
+          "no_crossing_in_6h": true,
+          "preonset_active_block": false,
+          "preonset_active_at_onset": true,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": false,
+        "blocked_at_onset": true,
+        "notify_in_credit": false,
+        "recovery_debt": {
+          "covering_notify_idx": 199,
+          "covering_end_idx": 356,
+          "covering_peak": 0.8689851255304476,
+          "hours_active_before_onset": 11.583333333333334,
+          "frac_q_ge_tau_half_preonset_segment": 0.9857142857142858,
+          "frac_q_ge_tau_preonset_segment": 0.6,
+          "active_at_onset": true,
+          "recover_run_at_onset": 0,
+          "persistent_high_probability": true,
+          "recovery_debt_dominant": false
+        },
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.6438593542029368,
+        "mean_q_in_credit": 0.10239238404149065
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.67537307739258,
+          "Pd_d6_min_mean": 0.0008600023057725695,
+          "Pd_d6_median_mean": 0.06032713254292806,
+          "pump_on_frac": 1.0,
+          "F_PUMP_mean": 44.17239283211529,
+          "L_T1_mean": 3.2301850848727756
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.660481770833336,
+          "Pd_d6_min_mean": -0.08820303281148274,
+          "Pd_d6_median_mean": -0.04884036382039388,
+          "pump_on_frac": 0.1388888888888889,
+          "F_PUMP_mean": 6.127715855836868,
+          "L_T1_mean": 3.7118441263834634
+        }
+      },
+      "ctx_at_covering_notify": {
+        "t": 199,
+        "hour": 16.583333333333332,
+        "P_median_m": 47.58366012573242,
+        "Pd_median_d6_m": -0.009151458740234375,
+        "Pd_min_d6_m": -0.051967620849609375,
+        "F_PUMP_1_m3h": 0.0,
+        "pump1_on": false,
+        "L_T1_m": 2.6067123413085938,
+        "dP_median_vs_winstart_m": -0.006053924560546875,
+        "win_steps": 6
+      },
+      "episodes": [
+        {
+          "notify_idx": 199,
+          "end_idx": 356,
+          "peak_score": 0.8689851255304476
+        },
+        {
+          "notify_idx": 486,
+          "end_idx": 576,
+          "peak_score": 0.8107090195268327
+        }
+      ]
+    },
+    {
+      "scenario_id": "leak_005_p443",
+      "pipe": "p443",
+      "pipe_group": 2,
+      "demand_scale": 0.97,
+      "leak_area_m2": 0.0001,
+      "leak_start_hour": 29.834828615912585,
+      "leak_end_hour": 46.300736225100465,
+      "operating_realization": 3,
+      "onset_idx": 358,
+      "onset_hour": 29.833333333333332,
+      "episode_6h_hit": false,
+      "row_credit_hit": false,
+      "preonset_notify_idxs": [
+        199,
+        283
+      ],
+      "preonset_notify_hours": [
+        16.583333333333332,
+        23.583333333333332
+      ],
+      "classification": {
+        "primary": "no_crossing_in_6h",
+        "causes": {
+          "no_crossing_in_6h": true,
+          "preonset_active_block": false,
+          "preonset_active_at_onset": false,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": false,
+        "blocked_at_onset": false,
+        "notify_in_credit": false,
+        "recovery_debt": null,
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.23065705548243265,
+        "mean_q_in_credit": 0.06772855675905302
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.79303243425157,
+          "Pd_d6_min_mean": -0.0031619866689046225,
+          "Pd_d6_median_mean": 0.05136410395304362,
+          "pump_on_frac": 0.8194444444444444,
+          "F_PUMP_mean": 36.18063600733876,
+          "L_T1_mean": 3.5410103268093533
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.45961586634318,
+          "Pd_d6_min_mean": -0.1134323279062907,
+          "Pd_d6_median_mean": -0.06367079416910808,
+          "pump_on_frac": 0.0,
+          "F_PUMP_mean": 0.0,
+          "L_T1_mean": 3.523104773627387
+        }
+      },
+      "ctx_at_covering_notify": null,
+      "episodes": [
+        {
+          "notify_idx": 199,
+          "end_idx": 264,
+          "peak_score": 0.750120718414201
+        },
+        {
+          "notify_idx": 283,
+          "end_idx": 355,
+          "peak_score": 0.8854262225182277
+        },
+        {
+          "notify_idx": 486,
+          "end_idx": 556,
+          "peak_score": 0.7751086502297986
+        },
+        {
+          "notify_idx": 573,
+          "end_idx": 576,
+          "peak_score": 0.7478657847401451
+        }
+      ]
+    },
+    {
+      "scenario_id": "leak_008_p576",
+      "pipe": "p576",
+      "pipe_group": 4,
+      "demand_scale": 1.0,
+      "leak_area_m2": 0.00035,
+      "leak_start_hour": 35.53532525183409,
+      "leak_end_hour": 47.5,
+      "operating_realization": 3,
+      "onset_idx": 426,
+      "onset_hour": 35.5,
+      "episode_6h_hit": true,
+      "row_credit_hit": true,
+      "preonset_notify_idxs": [
+        199,
+        286
+      ],
+      "preonset_notify_hours": [
+        16.583333333333332,
+        23.833333333333332
+      ],
+      "classification": {
+        "primary": "hit_6h",
+        "causes": {
+          "no_crossing_in_6h": false,
+          "preonset_active_block": false,
+          "preonset_active_at_onset": false,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": true,
+        "blocked_at_onset": false,
+        "notify_in_credit": true,
+        "recovery_debt": null,
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.767778915807319,
+        "mean_q_in_credit": 0.41378261291760315
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.45422972573174,
+          "Pd_d6_min_mean": -0.11815918816460504,
+          "Pd_d6_median_mean": -0.07019827100965711,
+          "pump_on_frac": 0.0,
+          "F_PUMP_mean": 0.0,
+          "L_T1_mean": 3.549340989854601
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.40555180443658,
+          "Pd_d6_min_mean": -0.05818923314412435,
+          "Pd_d6_median_mean": 0.016790231068929035,
+          "pump_on_frac": 0.0,
+          "F_PUMP_mean": 0.0,
+          "L_T1_mean": 2.7808671527438693
+        }
+      },
+      "ctx_at_covering_notify": null,
+      "episodes": [
+        {
+          "notify_idx": 199,
+          "end_idx": 254,
+          "peak_score": 0.7430174088387316
+        },
+        {
+          "notify_idx": 286,
+          "end_idx": 355,
+          "peak_score": 0.8960950564790818
+        },
+        {
+          "notify_idx": 486,
+          "end_idx": 549,
+          "peak_score": 0.767778915807319
+        },
+        {
+          "notify_idx": 574,
+          "end_idx": 576,
+          "peak_score": 0.7067929097765385
+        }
+      ]
+    },
+    {
+      "scenario_id": "leak_009_p210",
+      "pipe": "p210",
+      "pipe_group": 4,
+      "demand_scale": 1.0,
+      "leak_area_m2": 0.0001,
+      "leak_start_hour": 22.15051580071662,
+      "leak_end_hour": 39.506580591800855,
+      "operating_realization": 1,
+      "onset_idx": 265,
+      "onset_hour": 22.083333333333332,
+      "episode_6h_hit": true,
+      "row_credit_hit": true,
+      "preonset_notify_idxs": [
+        199
+      ],
+      "preonset_notify_hours": [
+        16.583333333333332
+      ],
+      "classification": {
+        "primary": "hit_6h",
+        "causes": {
+          "no_crossing_in_6h": false,
+          "preonset_active_block": false,
+          "preonset_active_at_onset": false,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": true,
+        "blocked_at_onset": false,
+        "notify_in_credit": true,
+        "recovery_debt": null,
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.8877094918228465,
+        "mean_q_in_credit": 0.6945309607909772
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.15679428312514,
+          "Pd_d6_min_mean": -0.09980636172824436,
+          "Pd_d6_median_mean": -0.03119296497768826,
+          "pump_on_frac": 0.7638888888888888,
+          "F_PUMP_mean": 33.69685164652765,
+          "L_T1_mean": 2.598793559604221
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.61821757422553,
+          "Pd_d6_min_mean": 0.0010119014316134984,
+          "Pd_d6_median_mean": 0.06921042336357965,
+          "pump_on_frac": 1.0,
+          "F_PUMP_mean": 44.14207343943417,
+          "L_T1_mean": 3.2835577858818903
+        }
+      },
+      "ctx_at_covering_notify": null,
+      "episodes": [
+        {
+          "notify_idx": 199,
+          "end_idx": 261,
+          "peak_score": 0.7483753886264706
+        },
+        {
+          "notify_idx": 283,
+          "end_idx": 355,
+          "peak_score": 0.8877094918228465
+        },
+        {
+          "notify_idx": 486,
+          "end_idx": 553,
+          "peak_score": 0.7732058964197158
+        },
+        {
+          "notify_idx": 573,
+          "end_idx": 576,
+          "peak_score": 0.7346401331037533
+        }
+      ]
+    },
+    {
+      "scenario_id": "leak_010_p607",
+      "pipe": "p607",
+      "pipe_group": 4,
+      "demand_scale": 0.97,
+      "leak_area_m2": 0.00035,
+      "leak_start_hour": 17.72805850816046,
+      "leak_end_hour": 25.463189216524295,
+      "operating_realization": 2,
+      "onset_idx": 212,
+      "onset_hour": 17.666666666666668,
+      "episode_6h_hit": true,
+      "row_credit_hit": true,
+      "preonset_notify_idxs": [
+        199
+      ],
+      "preonset_notify_hours": [
+        16.583333333333332
+      ],
+      "classification": {
+        "primary": "hit_6h",
+        "causes": {
+          "no_crossing_in_6h": false,
+          "preonset_active_block": false,
+          "preonset_active_at_onset": false,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": true,
+        "blocked_at_onset": true,
+        "notify_in_credit": true,
+        "recovery_debt": {
+          "covering_notify_idx": 199,
+          "covering_end_idx": 268,
+          "covering_peak": 0.7512250401587243,
+          "hours_active_before_onset": 1.0833333333333333,
+          "frac_q_ge_tau_half_preonset_segment": 1.0,
+          "frac_q_ge_tau_preonset_segment": 0.7857142857142857,
+          "active_at_onset": true,
+          "recover_run_at_onset": 0,
+          "persistent_high_probability": true,
+          "recovery_debt_dominant": false
+        },
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.7531709770857082,
+        "mean_q_in_credit": 0.5079916178497073
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.46360545688205,
+          "Pd_d6_min_mean": -0.05490491125318739,
+          "Pd_d6_median_mean": 0.015413973066541884,
+          "pump_on_frac": 0.0,
+          "F_PUMP_mean": 0.0,
+          "L_T1_mean": 2.743280198838976
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.15356991026137,
+          "Pd_d6_min_mean": -0.08490792910257976,
+          "Pd_d6_median_mean": -0.006167835659450955,
+          "pump_on_frac": 0.9861111111111112,
+          "F_PUMP_mean": 43.50883457809687,
+          "L_T1_mean": 2.705107476976183
+        }
+      },
+      "ctx_at_covering_notify": {
+        "t": 199,
+        "hour": 16.583333333333332,
+        "P_median_m": 47.532142639160156,
+        "Pd_median_d6_m": -0.01027679443359375,
+        "Pd_min_d6_m": -0.055511474609375,
+        "F_PUMP_1_m3h": 0.0,
+        "pump1_on": false,
+        "L_T1_m": 2.5247268676757812,
+        "dP_median_vs_winstart_m": -0.00679779052734375,
+        "win_steps": 6
+      },
+      "episodes": [
+        {
+          "notify_idx": 199,
+          "end_idx": 268,
+          "peak_score": 0.7512250401587243
+        },
+        {
+          "notify_idx": 282,
+          "end_idx": 355,
+          "peak_score": 0.8811966001213686
+        },
+        {
+          "notify_idx": 486,
+          "end_idx": 576,
+          "peak_score": 0.7763078433135469
+        }
+      ]
+    },
+    {
+      "scenario_id": "leak_011_p19",
+      "pipe": "p19",
+      "pipe_group": 4,
+      "demand_scale": 1.03,
+      "leak_area_m2": 5e-05,
+      "leak_start_hour": 30.74749701034981,
+      "leak_end_hour": 44.862812012819695,
+      "operating_realization": 3,
+      "onset_idx": 368,
+      "onset_hour": 30.666666666666668,
+      "episode_6h_hit": false,
+      "row_credit_hit": false,
+      "preonset_notify_idxs": [
+        200,
+        292
+      ],
+      "preonset_notify_hours": [
+        16.666666666666668,
+        24.333333333333332
+      ],
+      "classification": {
+        "primary": "no_crossing_in_6h",
+        "causes": {
+          "no_crossing_in_6h": true,
+          "preonset_active_block": false,
+          "preonset_active_at_onset": false,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": false,
+        "blocked_at_onset": false,
+        "notify_in_credit": false,
+        "recovery_debt": null,
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.2080603811036573,
+        "mean_q_in_credit": 0.055106004727980606
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.81406201256646,
+          "Pd_d6_min_mean": -0.03203988075256348,
+          "Pd_d6_median_mean": 0.01971700456407335,
+          "pump_on_frac": 0.6527777777777778,
+          "F_PUMP_mean": 28.81615860387683,
+          "L_T1_mean": 3.654333962334527
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.306156953175865,
+          "Pd_d6_min_mean": -0.10539327727423774,
+          "Pd_d6_median_mean": -0.0479432741800944,
+          "pump_on_frac": 0.0,
+          "F_PUMP_mean": 0.0,
+          "L_T1_mean": 3.385925716824002
+        }
+      },
+      "ctx_at_covering_notify": null,
+      "episodes": [
+        {
+          "notify_idx": 200,
+          "end_idx": 241,
+          "peak_score": 0.7211917322088455
+        },
+        {
+          "notify_idx": 292,
+          "end_idx": 354,
+          "peak_score": 0.9057273812289699
+        },
+        {
+          "notify_idx": 487,
+          "end_idx": 510,
+          "peak_score": 0.7541247058792672
+        }
+      ]
+    },
+    {
+      "scenario_id": "leak_012_p801",
+      "pipe": "p801",
+      "pipe_group": 2,
+      "demand_scale": 0.97,
+      "leak_area_m2": 0.00035,
+      "leak_start_hour": 24.42814925250786,
+      "leak_end_hour": 33.75895047216901,
+      "operating_realization": 3,
+      "onset_idx": 293,
+      "onset_hour": 24.416666666666668,
+      "episode_6h_hit": false,
+      "row_credit_hit": true,
+      "preonset_notify_idxs": [
+        199,
+        283
+      ],
+      "preonset_notify_hours": [
+        16.583333333333332,
+        23.583333333333332
+      ],
+      "classification": {
+        "primary": "preonset_active_block",
+        "causes": {
+          "no_crossing_in_6h": false,
+          "preonset_active_block": true,
+          "preonset_active_at_onset": true,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": true,
+        "blocked_at_onset": true,
+        "notify_in_credit": false,
+        "recovery_debt": {
+          "covering_notify_idx": 283,
+          "covering_end_idx": 355,
+          "covering_peak": 0.8854262225182277,
+          "hours_active_before_onset": 0.8333333333333334,
+          "frac_q_ge_tau_half_preonset_segment": 1.0,
+          "frac_q_ge_tau_preonset_segment": 1.0,
+          "active_at_onset": true,
+          "recover_run_at_onset": 0,
+          "persistent_high_probability": true,
+          "recovery_debt_dominant": false
+        },
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.8854262225182277,
+        "mean_q_in_credit": 0.5369587572923848
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.18521637386746,
+          "Pd_d6_min_mean": -0.009673780865139432,
+          "Pd_d6_median_mean": 0.033950858645968966,
+          "pump_on_frac": 1.0,
+          "F_PUMP_mean": 44.11201667971909,
+          "L_T1_mean": 2.7978653377956815
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.8212095896403,
+          "Pd_d6_min_mean": -0.01776954862806532,
+          "Pd_d6_median_mean": 0.031175242529975042,
+          "pump_on_frac": 0.7222222222222222,
+          "F_PUMP_mean": 31.888987682759762,
+          "L_T1_mean": 3.6119243833753796
+        }
+      },
+      "ctx_at_covering_notify": {
+        "t": 283,
+        "hour": 23.583333333333332,
+        "P_median_m": 47.4599494934082,
+        "Pd_median_d6_m": 0.09087753295898438,
+        "Pd_min_d6_m": 0.000885009765625,
+        "F_PUMP_1_m3h": 44.12755183875561,
+        "pump1_on": true,
+        "L_T1_m": 3.0416946411132812,
+        "dP_median_vs_winstart_m": 0.10950469970703125,
+        "win_steps": 6
+      },
+      "episodes": [
+        {
+          "notify_idx": 199,
+          "end_idx": 264,
+          "peak_score": 0.750120718414201
+        },
+        {
+          "notify_idx": 283,
+          "end_idx": 355,
+          "peak_score": 0.8854262225182277
+        },
+        {
+          "notify_idx": 486,
+          "end_idx": 556,
+          "peak_score": 0.7751086502297986
+        },
+        {
+          "notify_idx": 573,
+          "end_idx": 576,
+          "peak_score": 0.7478657847401451
+        }
+      ]
+    },
+    {
+      "scenario_id": "leak_015_p655",
+      "pipe": "p655",
+      "pipe_group": 3,
+      "demand_scale": 0.92,
+      "leak_area_m2": 5e-05,
+      "leak_start_hour": 17.62885483855029,
+      "leak_end_hour": 27.418565874441278,
+      "operating_realization": 0,
+      "onset_idx": 211,
+      "onset_hour": 17.583333333333332,
+      "episode_6h_hit": false,
+      "row_credit_hit": true,
+      "preonset_notify_idxs": [
+        199
+      ],
+      "preonset_notify_hours": [
+        16.583333333333332
+      ],
+      "classification": {
+        "primary": "preonset_active_block",
+        "causes": {
+          "no_crossing_in_6h": false,
+          "preonset_active_block": true,
+          "preonset_active_at_onset": true,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": true,
+        "blocked_at_onset": true,
+        "notify_in_credit": false,
+        "recovery_debt": {
+          "covering_notify_idx": 199,
+          "covering_end_idx": 357,
+          "covering_peak": 0.8605251539513957,
+          "hours_active_before_onset": 1.0,
+          "frac_q_ge_tau_half_preonset_segment": 1.0,
+          "frac_q_ge_tau_preonset_segment": 0.8461538461538461,
+          "active_at_onset": true,
+          "recover_run_at_onset": 0,
+          "persistent_high_probability": true,
+          "recovery_debt_dominant": false
+        },
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.8605251539513957,
+        "mean_q_in_credit": 0.648298695386369
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.529891861809624,
+          "Pd_d6_min_mean": -0.05121599303351508,
+          "Pd_d6_median_mean": 0.013723903232150607,
+          "pump_on_frac": 0.0,
+          "F_PUMP_mean": 0.0,
+          "L_T1_mean": 2.8314284218682184
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.32314909829034,
+          "Pd_d6_min_mean": -0.08787941932678223,
+          "Pd_d6_median_mean": -0.008063846164279513,
+          "pump_on_frac": 0.8055555555555556,
+          "F_PUMP_mean": 35.57354314252734,
+          "L_T1_mean": 2.6292923821343317
+        }
+      },
+      "ctx_at_covering_notify": {
+        "t": 199,
+        "hour": 16.583333333333332,
+        "P_median_m": 47.59138488769531,
+        "Pd_median_d6_m": -0.008983612060546875,
+        "Pd_min_d6_m": -0.05142974853515625,
+        "F_PUMP_1_m3h": 0.0,
+        "pump1_on": false,
+        "L_T1_m": 2.6194076538085938,
+        "dP_median_vs_winstart_m": -0.00594329833984375,
+        "win_steps": 6
+      },
+      "episodes": [
+        {
+          "notify_idx": 199,
+          "end_idx": 357,
+          "peak_score": 0.8605251539513957
+        },
+        {
+          "notify_idx": 486,
+          "end_idx": 576,
+          "peak_score": 0.8384018343159184
+        }
+      ]
+    },
+    {
+      "scenario_id": "leak_017_p445",
+      "pipe": "p445",
+      "pipe_group": 1,
+      "demand_scale": 1.03,
+      "leak_area_m2": 5e-05,
+      "leak_start_hour": 35.5558534993813,
+      "leak_end_hour": 47.5,
+      "operating_realization": 3,
+      "onset_idx": 426,
+      "onset_hour": 35.5,
+      "episode_6h_hit": true,
+      "row_credit_hit": true,
+      "preonset_notify_idxs": [
+        200,
+        292
+      ],
+      "preonset_notify_hours": [
+        16.666666666666668,
+        24.333333333333332
+      ],
+      "classification": {
+        "primary": "hit_6h",
+        "causes": {
+          "no_crossing_in_6h": false,
+          "preonset_active_block": false,
+          "preonset_active_at_onset": false,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": true,
+        "blocked_at_onset": false,
+        "notify_in_credit": true,
+        "recovery_debt": null,
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.7541247058792672,
+        "mean_q_in_credit": 0.3599932010951257
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.413083182440865,
+          "Pd_d6_min_mean": -0.12379903263515896,
+          "Pd_d6_median_mean": -0.07413440280490452,
+          "pump_on_frac": 0.0,
+          "F_PUMP_mean": 0.0,
+          "L_T1_mean": 3.5370389090643988
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.353894816504585,
+          "Pd_d6_min_mean": -0.08407412634955512,
+          "Pd_d6_median_mean": 0.008474032084147135,
+          "pump_on_frac": 0.027777777777777776,
+          "F_PUMP_mean": 1.2263184878975153,
+          "L_T1_mean": 2.7458041508992515
+        }
+      },
+      "ctx_at_covering_notify": null,
+      "episodes": [
+        {
+          "notify_idx": 200,
+          "end_idx": 241,
+          "peak_score": 0.7211917322088455
+        },
+        {
+          "notify_idx": 292,
+          "end_idx": 354,
+          "peak_score": 0.9057273812289699
+        },
+        {
+          "notify_idx": 487,
+          "end_idx": 510,
+          "peak_score": 0.7541247058792672
+        }
+      ]
+    },
+    {
+      "scenario_id": "leak_018_p513",
+      "pipe": "p513",
+      "pipe_group": 3,
+      "demand_scale": 1.0,
+      "leak_area_m2": 0.00035,
+      "leak_start_hour": 17.675194056829415,
+      "leak_end_hour": 26.598429409504092,
+      "operating_realization": 2,
+      "onset_idx": 212,
+      "onset_hour": 17.666666666666668,
+      "episode_6h_hit": true,
+      "row_credit_hit": false,
+      "preonset_notify_idxs": [
+        199
+      ],
+      "preonset_notify_hours": [
+        16.583333333333332
+      ],
+      "classification": {
+        "primary": "hit_6h",
+        "causes": {
+          "no_crossing_in_6h": false,
+          "preonset_active_block": false,
+          "preonset_active_at_onset": false,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": true,
+        "blocked_at_onset": true,
+        "notify_in_credit": true,
+        "recovery_debt": {
+          "covering_notify_idx": 199,
+          "covering_end_idx": 260,
+          "covering_peak": 0.7460227773404752,
+          "hours_active_before_onset": 1.0833333333333333,
+          "frac_q_ge_tau_half_preonset_segment": 1.0,
+          "frac_q_ge_tau_preonset_segment": 0.7142857142857143,
+          "active_at_onset": true,
+          "recover_run_at_onset": 0,
+          "persistent_high_probability": true,
+          "recovery_debt_dominant": false
+        },
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.7138085985958419,
+        "mean_q_in_credit": 0.36852496185789035
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.41605069902208,
+          "Pd_d6_min_mean": -0.09147410922580296,
+          "Pd_d6_median_mean": 0.0029751459757486978,
+          "pump_on_frac": 0.041666666666666664,
+          "F_PUMP_mean": 1.8405082635581493,
+          "L_T1_mean": 2.710065735710992
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.09589301215278,
+          "Pd_d6_min_mean": -0.049663941065470375,
+          "Pd_d6_median_mean": 0.007540225982666016,
+          "pump_on_frac": 1.0,
+          "F_PUMP_mean": 44.10194591619074,
+          "L_T1_mean": 2.7376053068372936
+        }
+      },
+      "ctx_at_covering_notify": {
+        "t": 199,
+        "hour": 16.583333333333332,
+        "P_median_m": 47.50496292114258,
+        "Pd_median_d6_m": -0.0108795166015625,
+        "Pd_min_d6_m": -0.05731773376464844,
+        "F_PUMP_1_m3h": 0.0,
+        "pump1_on": false,
+        "L_T1_m": 2.4832763671875,
+        "dP_median_vs_winstart_m": -0.00719451904296875,
+        "win_steps": 6
+      },
+      "episodes": [
+        {
+          "notify_idx": 199,
+          "end_idx": 260,
+          "peak_score": 0.7460227773404752
+        },
+        {
+          "notify_idx": 284,
+          "end_idx": 355,
+          "peak_score": 0.8918855304261396
+        },
+        {
+          "notify_idx": 486,
+          "end_idx": 550,
+          "peak_score": 0.7709602998673626
+        },
+        {
+          "notify_idx": 574,
+          "end_idx": 576,
+          "peak_score": 0.7211322652469304
+        }
+      ]
+    },
+    {
+      "scenario_id": "leak_021_p800",
+      "pipe": "p800",
+      "pipe_group": 4,
+      "demand_scale": 0.97,
+      "leak_area_m2": 0.0001,
+      "leak_start_hour": 18.012115516413765,
+      "leak_end_hour": 25.984820864059294,
+      "operating_realization": 3,
+      "onset_idx": 216,
+      "onset_hour": 18.0,
+      "episode_6h_hit": true,
+      "row_credit_hit": true,
+      "preonset_notify_idxs": [
+        199
+      ],
+      "preonset_notify_hours": [
+        16.583333333333332
+      ],
+      "classification": {
+        "primary": "hit_6h",
+        "causes": {
+          "no_crossing_in_6h": false,
+          "preonset_active_block": false,
+          "preonset_active_at_onset": false,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": true,
+        "blocked_at_onset": true,
+        "notify_in_credit": true,
+        "recovery_debt": {
+          "covering_notify_idx": 199,
+          "covering_end_idx": 264,
+          "covering_peak": 0.750120718414201,
+          "hours_active_before_onset": 1.4166666666666667,
+          "frac_q_ge_tau_half_preonset_segment": 1.0,
+          "frac_q_ge_tau_preonset_segment": 0.6111111111111112,
+          "active_at_onset": true,
+          "recover_run_at_onset": 0,
+          "persistent_high_probability": true,
+          "recovery_debt_dominant": false
+        },
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.7544857419397231,
+        "mean_q_in_credit": 0.475577718931627
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.43973716100057,
+          "Pd_d6_min_mean": -0.10136167208353679,
+          "Pd_d6_median_mean": -0.0029232237074110243,
+          "pump_on_frac": 0.05555555555555555,
+          "F_PUMP_mean": 2.4543361738324165,
+          "L_T1_mean": 2.6960073047214084
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.153117656707764,
+          "Pd_d6_min_mean": -0.03552813000149197,
+          "Pd_d6_median_mean": 0.017292499542236328,
+          "pump_on_frac": 1.0,
+          "F_PUMP_mean": 44.1133847925812,
+          "L_T1_mean": 2.7519510057237415
+        }
+      },
+      "ctx_at_covering_notify": {
+        "t": 199,
+        "hour": 16.583333333333332,
+        "P_median_m": 47.52347183227539,
+        "Pd_median_d6_m": -0.010471343994140625,
+        "Pd_min_d6_m": -0.05609893798828125,
+        "F_PUMP_1_m3h": 0.0,
+        "pump1_on": false,
+        "L_T1_m": 2.5113677978515625,
+        "dP_median_vs_winstart_m": -0.006931304931640625,
+        "win_steps": 6
+      },
+      "episodes": [
+        {
+          "notify_idx": 199,
+          "end_idx": 264,
+          "peak_score": 0.750120718414201
+        },
+        {
+          "notify_idx": 283,
+          "end_idx": 355,
+          "peak_score": 0.8854262225182277
+        },
+        {
+          "notify_idx": 486,
+          "end_idx": 556,
+          "peak_score": 0.7751086502297986
+        },
+        {
+          "notify_idx": 573,
+          "end_idx": 576,
+          "peak_score": 0.7478657847401451
+        }
+      ]
+    },
+    {
+      "scenario_id": "leak_023_p891",
+      "pipe": "p891",
+      "pipe_group": 4,
+      "demand_scale": 1.03,
+      "leak_area_m2": 5e-05,
+      "leak_start_hour": 24.861519544101423,
+      "leak_end_hour": 36.44643956571019,
+      "operating_realization": 2,
+      "onset_idx": 298,
+      "onset_hour": 24.833333333333332,
+      "episode_6h_hit": false,
+      "row_credit_hit": true,
+      "preonset_notify_idxs": [
+        200,
+        292
+      ],
+      "preonset_notify_hours": [
+        16.666666666666668,
+        24.333333333333332
+      ],
+      "classification": {
+        "primary": "preonset_active_block",
+        "causes": {
+          "no_crossing_in_6h": false,
+          "preonset_active_block": true,
+          "preonset_active_at_onset": true,
+          "confirmation_not_met": false,
+          "warmup_missingness": false
+        },
+        "crossed_in_credit": true,
+        "blocked_at_onset": true,
+        "notify_in_credit": false,
+        "recovery_debt": {
+          "covering_notify_idx": 292,
+          "covering_end_idx": 354,
+          "covering_peak": 0.9012548485566576,
+          "hours_active_before_onset": 0.5,
+          "frac_q_ge_tau_half_preonset_segment": 1.0,
+          "frac_q_ge_tau_preonset_segment": 1.0,
+          "active_at_onset": true,
+          "recover_run_at_onset": 0,
+          "persistent_high_probability": true,
+          "recovery_debt_dominant": false
+        },
+        "n_finite_in_credit": 73,
+        "n_credit_steps": 73,
+        "max_q_in_credit": 0.9012548485566576,
+        "mean_q_in_credit": 0.48281058603812516
+      },
+      "signal": {
+        "pre_6h": {
+          "n_steps": 72,
+          "P_median_mean": 47.14473533630371,
+          "Pd_d6_min_mean": -0.00805815060933431,
+          "Pd_d6_median_mean": 0.045752260420057506,
+          "pump_on_frac": 1.0,
+          "F_PUMP_mean": 44.08227535896003,
+          "L_T1_mean": 2.8886082967122397
+        },
+        "post_6h_credit": {
+          "n_steps": 72,
+          "P_median_mean": 47.816949155595566,
+          "Pd_d6_min_mean": -0.03930131594340006,
+          "Pd_d6_median_mean": 0.010824309455023872,
+          "pump_on_frac": 0.625,
+          "F_PUMP_mean": 27.591095957905054,
+          "L_T1_mean": 3.6675812403361
+        }
+      },
+      "ctx_at_covering_notify": {
+        "t": 292,
+        "hour": 24.333333333333332,
+        "P_median_m": 47.55790328979492,
+        "Pd_median_d6_m": 0.10828399658203125,
+        "Pd_min_d6_m": 0.00177764892578125,
+        "F_PUMP_1_m3h": 44.13194730877876,
+        "pump1_on": true,
+        "L_T1_m": 3.175323486328125,
+        "dP_median_vs_winstart_m": 0.0993804931640625,
+        "win_steps": 6
+      },
+      "episodes": [
+        {
+          "notify_idx": 200,
+          "end_idx": 247,
+          "peak_score": 0.7309505125577801
+        },
+        {
+          "notify_idx": 292,
+          "end_idx": 354,
+          "peak_score": 0.9012548485566576
+        },
+        {
+          "notify_idx": 487,
+          "end_idx": 513,
+          "peak_score": 0.7595115314583463
+        }
+      ]
+    }
+  ],
+  "preonset_blocked_detail": [
+    {
+      "scenario_id": "leak_000_p282",
+      "covering_notify_idx": 292,
+      "covering_notify_hour": 24.333333333333332,
+      "covering_end_idx": 354,
+      "ctx_at_notify": {
+        "t": 292,
+        "hour": 24.333333333333332,
+        "P_median_m": 47.551734924316406,
+        "Pd_median_d6_m": 0.11006927490234375,
+        "Pd_min_d6_m": 0.0018157958984375,
+        "F_PUMP_1_m3h": 44.128406792879105,
+        "pump1_on": true,
+        "L_T1_m": 3.1801300048828125,
+        "dP_median_vs_winstart_m": 0.10499954223632812,
+        "win_steps": 6
+      },
+      "recovery_debt": {
+        "covering_notify_idx": 292,
+        "covering_end_idx": 354,
+        "covering_peak": 0.9057273812289699,
+        "hours_active_before_onset": 4.083333333333333,
+        "frac_q_ge_tau_half_preonset_segment": 1.0,
+        "frac_q_ge_tau_preonset_segment": 0.8,
+        "active_at_onset": true,
+        "recover_run_at_onset": 0,
+        "persistent_high_probability": true,
+        "recovery_debt_dominant": false
+      },
+      "n_control_notifies_within_1h_of_covering": 3
+    },
+    {
+      "scenario_id": "leak_003_p435",
+      "covering_notify_idx": 199,
+      "covering_notify_hour": 16.583333333333332,
+      "covering_end_idx": 356,
+      "ctx_at_notify": {
+        "t": 199,
+        "hour": 16.583333333333332,
+        "P_median_m": 47.58366012573242,
+        "Pd_median_d6_m": -0.009151458740234375,
+        "Pd_min_d6_m": -0.051967620849609375,
+        "F_PUMP_1_m3h": 0.0,
+        "pump1_on": false,
+        "L_T1_m": 2.6067123413085938,
+        "dP_median_vs_winstart_m": -0.006053924560546875,
+        "win_steps": 6
+      },
+      "recovery_debt": {
+        "covering_notify_idx": 199,
+        "covering_end_idx": 356,
+        "covering_peak": 0.8689851255304476,
+        "hours_active_before_onset": 11.583333333333334,
+        "frac_q_ge_tau_half_preonset_segment": 0.9857142857142858,
+        "frac_q_ge_tau_preonset_segment": 0.6,
+        "active_at_onset": true,
+        "recover_run_at_onset": 0,
+        "persistent_high_probability": true,
+        "recovery_debt_dominant": false
+      },
+      "n_control_notifies_within_1h_of_covering": 3
+    },
+    {
+      "scenario_id": "leak_012_p801",
+      "covering_notify_idx": 283,
+      "covering_notify_hour": 23.583333333333332,
+      "covering_end_idx": 355,
+      "ctx_at_notify": {
+        "t": 283,
+        "hour": 23.583333333333332,
+        "P_median_m": 47.4599494934082,
+        "Pd_median_d6_m": 0.09087753295898438,
+        "Pd_min_d6_m": 0.000885009765625,
+        "F_PUMP_1_m3h": 44.12755183875561,
+        "pump1_on": true,
+        "L_T1_m": 3.0416946411132812,
+        "dP_median_vs_winstart_m": 0.10950469970703125,
+        "win_steps": 6
+      },
+      "recovery_debt": {
+        "covering_notify_idx": 283,
+        "covering_end_idx": 355,
+        "covering_peak": 0.8854262225182277,
+        "hours_active_before_onset": 0.8333333333333334,
+        "frac_q_ge_tau_half_preonset_segment": 1.0,
+        "frac_q_ge_tau_preonset_segment": 1.0,
+        "active_at_onset": true,
+        "recover_run_at_onset": 0,
+        "persistent_high_probability": true,
+        "recovery_debt_dominant": false
+      },
+      "n_control_notifies_within_1h_of_covering": 0
+    },
+    {
+      "scenario_id": "leak_015_p655",
+      "covering_notify_idx": 199,
+      "covering_notify_hour": 16.583333333333332,
+      "covering_end_idx": 357,
+      "ctx_at_notify": {
+        "t": 199,
+        "hour": 16.583333333333332,
+        "P_median_m": 47.59138488769531,
+        "Pd_median_d6_m": -0.008983612060546875,
+        "Pd_min_d6_m": -0.05142974853515625,
+        "F_PUMP_1_m3h": 0.0,
+        "pump1_on": false,
+        "L_T1_m": 2.6194076538085938,
+        "dP_median_vs_winstart_m": -0.00594329833984375,
+        "win_steps": 6
+      },
+      "recovery_debt": {
+        "covering_notify_idx": 199,
+        "covering_end_idx": 357,
+        "covering_peak": 0.8605251539513957,
+        "hours_active_before_onset": 1.0,
+        "frac_q_ge_tau_half_preonset_segment": 1.0,
+        "frac_q_ge_tau_preonset_segment": 0.8461538461538461,
+        "active_at_onset": true,
+        "recover_run_at_onset": 0,
+        "persistent_high_probability": true,
+        "recovery_debt_dominant": false
+      },
+      "n_control_notifies_within_1h_of_covering": 3
+    },
+    {
+      "scenario_id": "leak_023_p891",
+      "covering_notify_idx": 292,
+      "covering_notify_hour": 24.333333333333332,
+      "covering_end_idx": 354,
+      "ctx_at_notify": {
+        "t": 292,
+        "hour": 24.333333333333332,
+        "P_median_m": 47.55790328979492,
+        "Pd_median_d6_m": 0.10828399658203125,
+        "Pd_min_d6_m": 0.00177764892578125,
+        "F_PUMP_1_m3h": 44.13194730877876,
+        "pump1_on": true,
+        "L_T1_m": 3.175323486328125,
+        "dP_median_vs_winstart_m": 0.0993804931640625,
+        "win_steps": 6
+      },
+      "recovery_debt": {
+        "covering_notify_idx": 292,
+        "covering_end_idx": 354,
+        "covering_peak": 0.9012548485566576,
+        "hours_active_before_onset": 0.5,
+        "frac_q_ge_tau_half_preonset_segment": 1.0,
+        "frac_q_ge_tau_preonset_segment": 1.0,
+        "active_at_onset": true,
+        "recover_run_at_onset": 0,
+        "persistent_high_probability": true,
+        "recovery_debt_dominant": false
+      },
+      "n_control_notifies_within_1h_of_covering": 3
+    }
+  ],
+  "preonset_notify_histogram": {
+    "16": 14,
+    "24": 5,
+    "23": 3
+  },
+  "control_test": {
+    "n_scenarios": 6,
+    "n_episodes": 9,
+    "scenario_weeks_each": 0.2857142857142857,
+    "total_control_weeks": 1.7142857142857142,
+    "episodes_per_week": 5.25,
+    "per_control": [
+      {
+        "scenario_id": "ctrl_000_control_pump",
+        "kind": "control_pump",
+        "n_episodes": 2,
+        "notify_idxs": [
+          201,
+          487
+        ],
+        "notify_hours": [
+          16.75,
+          40.583333333333336
+        ],
+        "operating_realization": 3,
+        "demand_scale": 0.85
+      },
+      {
+        "scenario_id": "ctrl_001_control_demand",
+        "kind": "control_demand",
+        "n_episodes": 1,
+        "notify_idxs": [
+          303
+        ],
+        "notify_hours": [
+          25.25
+        ],
+        "operating_realization": 3,
+        "demand_scale": 1.2
+      },
+      {
+        "scenario_id": "ctrl_003_control_demand",
+        "kind": "control_demand",
+        "n_episodes": 2,
+        "notify_idxs": [
+          199,
+          486
+        ],
+        "notify_hours": [
+          16.583333333333332,
+          40.5
+        ],
+        "operating_realization": 3,
+        "demand_scale": 0.9
+      },
+      {
+        "scenario_id": "ctrl_010_control_pump",
+        "kind": "control_pump",
+        "n_episodes": 1,
+        "notify_idxs": [
+          298
+        ],
+        "notify_hours": [
+          24.833333333333332
+        ],
+        "operating_realization": 3,
+        "demand_scale": 1.1
+      },
+      {
+        "scenario_id": "ctrl_012_control_demand",
+        "kind": "control_demand",
+        "n_episodes": 1,
+        "notify_idxs": [
+          303
+        ],
+        "notify_hours": [
+          25.25
+        ],
+        "operating_realization": 3,
+        "demand_scale": 1.2
+      },
+      {
+        "scenario_id": "ctrl_013_control_demand",
+        "kind": "control_demand",
+        "n_episodes": 2,
+        "notify_idxs": [
+          201,
+          487
+        ],
+        "notify_hours": [
+          16.75,
+          40.583333333333336
+        ],
+        "operating_realization": 3,
+        "demand_scale": 0.85
+      }
+    ]
+  },
+  "construction": {
+    "warmup_hours": 12,
+    "duration_hours": 48,
+    "feature_warmup_steps": 144,
+    "feature_warmup_hours": 12.0,
+    "leak_start_sampling": "uniform in [14, 38] hours",
+    "by_split_leaks": {
+      "train": {
+        "n": 4,
+        "leak_area_m2": {
+          "min": 5e-05,
+          "max": 0.00035,
+          "mean": 0.0002
+        },
+        "demand_scale": {
+          "min": 0.97,
+          "max": 1.0,
+          "mean": 0.9849999999999999
+        },
+        "leak_start_hour": {
+          "min": 15.545783803100907,
+          "max": 36.83756182231506,
+          "mean": 24.351219604049692
+        },
+        "leak_duration_h": {
+          "min": 8.79642046262461,
+          "max": 16.86089046862947,
+          "mean": 12.117695416022235
+        },
+        "operating_realization_counts": {
+          "0": 3,
+          "1": 1
+        },
+        "pipe_group_counts": {
+          "1": 2,
+          "2": 2
+        }
+      },
+      "synthetic_dev": {
+        "n": 5,
+        "leak_area_m2": {
+          "min": 5e-05,
+          "max": 0.0002,
+          "mean": 9e-05
+        },
+        "demand_scale": {
+          "min": 0.92,
+          "max": 1.0,
+          "mean": 0.9620000000000001
+        },
+        "leak_start_hour": {
+          "min": 18.01901752127673,
+          "max": 35.95390579763104,
+          "mean": 24.120860927501834
+        },
+        "leak_duration_h": {
+          "min": 7.356561169539411,
+          "max": 14.713322415650698,
+          "mean": 11.025789114599997
+        },
+        "operating_realization_counts": {
+          "2": 5
+        },
+        "pipe_group_counts": {
+          "0": 1,
+          "1": 3,
+          "2": 1
+        }
+      },
+      "synthetic_test": {
+        "n": 15,
+        "leak_area_m2": {
+          "min": 5e-05,
+          "max": 0.00035,
+          "mean": 0.00018333333333333336
+        },
+        "demand_scale": {
+          "min": 0.92,
+          "max": 1.08,
+          "mean": 0.9966666666666666
+        },
+        "leak_start_hour": {
+          "min": 17.62885483855029,
+          "max": 35.5558534993813,
+          "mean": 25.52943834917933
+        },
+        "leak_duration_h": {
+          "min": 7.735130708363837,
+          "max": 17.356064791084236,
+          "mean": 12.016432655441166
+        },
+        "operating_realization_counts": {
+          "0": 2,
+          "1": 2,
+          "2": 3,
+          "3": 8
+        },
+        "pipe_group_counts": {
+          "0": 1,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 8
+        }
+      }
+    },
+    "by_split_controls": {
+      "train": {
+        "n": 7,
+        "kinds": {
+          "control_demand": 1,
+          "control_pump": 2,
+          "control_sensor": 2,
+          "control_tank": 2
+        },
+        "demand_scale": {
+          "min": 0.85,
+          "max": 1.2,
+          "mean": 1.0214285714285716
+        }
+      },
+      "synthetic_dev": {
+        "n": 3,
+        "kinds": {
+          "control_sensor": 2,
+          "control_tank": 1
+        },
+        "demand_scale": {
+          "min": 1.1,
+          "max": 1.15,
+          "mean": 1.1166666666666667
+        }
+      },
+      "synthetic_test": {
+        "n": 6,
+        "kinds": {
+          "control_pump": 2,
+          "control_demand": 4
+        },
+        "demand_scale": {
+          "min": 0.85,
+          "max": 1.2,
+          "mean": 1.0166666666666666
+        }
+      }
+    },
+    "label_phase_encoding": {
+      "note": "Positives are always the first 6 h after leak_start on a 48 h trajectory with leaks drawn uniformly in [14 h, 38 h]. Absolute operating features can correlate with scenario clock time / diurnal phase."
+    },
+    "control_burden_denominator": {
+      "formula": "n_control_episodes / (n_control_scenarios * scenario_weeks)",
+      "scenario_duration_hours": 48,
+      "scenario_weeks": 0.2857142857142857,
+      "synthetic_test_n_control": 6,
+      "synthetic_test_control_weeks_total": 1.7142857142857142,
+      "disclosure": "Each control contributes only 48 h (0.2857 weeks). With few controls, ep/wk is a noisy rate over a short simulated denominator \u2014 not a year-scale burden estimate."
+    }
+  },
+  "construction_rows": [
+    {
+      "scenario_id": "leak_000_p282",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p282",
+      "pipe_group": 0,
+      "demand_scale": 1.03,
+      "leak_area_m2": 0.00035,
+      "leak_start_hour": 28.476620218660365,
+      "leak_end_hour": 37.775517027957406,
+      "leak_duration_h": 9.298896809297041,
+      "operating_realization": 3,
+      "hours_after_warmup_to_onset": 16.476620218660365
+    },
+    {
+      "scenario_id": "leak_001_p299",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p299",
+      "pipe_group": 4,
+      "demand_scale": 1.03,
+      "leak_area_m2": 0.0002,
+      "leak_start_hour": 33.52617416306175,
+      "leak_end_hour": 47.5,
+      "leak_duration_h": 13.973825836938254,
+      "operating_realization": 3,
+      "hours_after_warmup_to_onset": 21.526174163061746
+    },
+    {
+      "scenario_id": "leak_002_p69",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p69",
+      "pipe_group": 3,
+      "demand_scale": 1.08,
+      "leak_area_m2": 0.0001,
+      "leak_start_hour": 18.541773368573516,
+      "leak_end_hour": 34.01119019084727,
+      "leak_duration_h": 15.469416822273757,
+      "operating_realization": 0,
+      "hours_after_warmup_to_onset": 6.541773368573516
+    },
+    {
+      "scenario_id": "leak_003_p435",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p435",
+      "pipe_group": 4,
+      "demand_scale": 0.92,
+      "leak_area_m2": 0.0002,
+      "leak_start_hour": 28.239095592636772,
+      "leak_end_hour": 42.56083361837362,
+      "leak_duration_h": 14.321738025736849,
+      "operating_realization": 1,
+      "hours_after_warmup_to_onset": 16.239095592636772
+    },
+    {
+      "scenario_id": "leak_004_p709",
+      "kind": "leak_abrupt",
+      "split": "synthetic_dev",
+      "pipe": "p709",
+      "pipe_group": 1,
+      "demand_scale": 0.97,
+      "leak_area_m2": 0.0002,
+      "leak_start_hour": 18.01901752127673,
+      "leak_end_hour": 28.28344993945935,
+      "leak_duration_h": 10.264432418182619,
+      "operating_realization": 2,
+      "hours_after_warmup_to_onset": 6.01901752127673
+    },
+    {
+      "scenario_id": "leak_005_p443",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p443",
+      "pipe_group": 2,
+      "demand_scale": 0.97,
+      "leak_area_m2": 0.0001,
+      "leak_start_hour": 29.834828615912585,
+      "leak_end_hour": 46.300736225100465,
+      "leak_duration_h": 16.46590760918788,
+      "operating_realization": 3,
+      "hours_after_warmup_to_onset": 17.834828615912585
+    },
+    {
+      "scenario_id": "leak_006_p128",
+      "kind": "leak_abrupt",
+      "split": "synthetic_dev",
+      "pipe": "p128",
+      "pipe_group": 0,
+      "demand_scale": 0.92,
+      "leak_area_m2": 5e-05,
+      "leak_start_hour": 35.95390579763104,
+      "leak_end_hour": 47.29558312190482,
+      "leak_duration_h": 11.341677324273782,
+      "operating_realization": 2,
+      "hours_after_warmup_to_onset": 23.953905797631037
+    },
+    {
+      "scenario_id": "leak_007_p356",
+      "kind": "leak_abrupt",
+      "split": "train",
+      "pipe": "p356",
+      "pipe_group": 2,
+      "demand_scale": 1.0,
+      "leak_area_m2": 0.00035,
+      "leak_start_hour": 22.359038330964943,
+      "leak_end_hour": 39.21992879959441,
+      "leak_duration_h": 16.86089046862947,
+      "operating_realization": 0,
+      "hours_after_warmup_to_onset": 10.359038330964943
+    },
+    {
+      "scenario_id": "leak_008_p576",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p576",
+      "pipe_group": 4,
+      "demand_scale": 1.0,
+      "leak_area_m2": 0.00035,
+      "leak_start_hour": 35.53532525183409,
+      "leak_end_hour": 47.5,
+      "leak_duration_h": 11.964674748165912,
+      "operating_realization": 3,
+      "hours_after_warmup_to_onset": 23.535325251834088
+    },
+    {
+      "scenario_id": "leak_009_p210",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p210",
+      "pipe_group": 4,
+      "demand_scale": 1.0,
+      "leak_area_m2": 0.0001,
+      "leak_start_hour": 22.15051580071662,
+      "leak_end_hour": 39.506580591800855,
+      "leak_duration_h": 17.356064791084236,
+      "operating_realization": 1,
+      "hours_after_warmup_to_onset": 10.150515800716619
+    },
+    {
+      "scenario_id": "leak_010_p607",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p607",
+      "pipe_group": 4,
+      "demand_scale": 0.97,
+      "leak_area_m2": 0.00035,
+      "leak_start_hour": 17.72805850816046,
+      "leak_end_hour": 25.463189216524295,
+      "leak_duration_h": 7.735130708363837,
+      "operating_realization": 2,
+      "hours_after_warmup_to_onset": 5.7280585081604585
+    },
+    {
+      "scenario_id": "leak_011_p19",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p19",
+      "pipe_group": 4,
+      "demand_scale": 1.03,
+      "leak_area_m2": 5e-05,
+      "leak_start_hour": 30.74749701034981,
+      "leak_end_hour": 44.862812012819695,
+      "leak_duration_h": 14.115315002469885,
+      "operating_realization": 3,
+      "hours_after_warmup_to_onset": 18.74749701034981
+    },
+    {
+      "scenario_id": "leak_012_p801",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p801",
+      "pipe_group": 2,
+      "demand_scale": 0.97,
+      "leak_area_m2": 0.00035,
+      "leak_start_hour": 24.42814925250786,
+      "leak_end_hour": 33.75895047216901,
+      "leak_duration_h": 9.33080121966115,
+      "operating_realization": 3,
+      "hours_after_warmup_to_onset": 12.428149252507861
+    },
+    {
+      "scenario_id": "leak_013_p688",
+      "kind": "leak_abrupt",
+      "split": "train",
+      "pipe": "p688",
+      "pipe_group": 2,
+      "demand_scale": 0.97,
+      "leak_area_m2": 0.00035,
+      "leak_start_hour": 15.545783803100907,
+      "leak_end_hour": 26.468890244805916,
+      "leak_duration_h": 10.92310644170501,
+      "operating_realization": 0,
+      "hours_after_warmup_to_onset": 3.545783803100907
+    },
+    {
+      "scenario_id": "leak_014_p36",
+      "kind": "leak_abrupt",
+      "split": "train",
+      "pipe": "p36",
+      "pipe_group": 1,
+      "demand_scale": 1.0,
+      "leak_area_m2": 5e-05,
+      "leak_start_hour": 22.662494459817857,
+      "leak_end_hour": 34.552858750947706,
+      "leak_duration_h": 11.890364291129849,
+      "operating_realization": 1,
+      "hours_after_warmup_to_onset": 10.662494459817857
+    },
+    {
+      "scenario_id": "leak_015_p655",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p655",
+      "pipe_group": 3,
+      "demand_scale": 0.92,
+      "leak_area_m2": 5e-05,
+      "leak_start_hour": 17.62885483855029,
+      "leak_end_hour": 27.418565874441278,
+      "leak_duration_h": 9.789711035890988,
+      "operating_realization": 0,
+      "hours_after_warmup_to_onset": 5.628854838550289
+    },
+    {
+      "scenario_id": "leak_016_p45",
+      "kind": "leak_abrupt",
+      "split": "train",
+      "pipe": "p45",
+      "pipe_group": 1,
+      "demand_scale": 0.97,
+      "leak_area_m2": 5e-05,
+      "leak_start_hour": 36.83756182231506,
+      "leak_end_hour": 45.63398228493967,
+      "leak_duration_h": 8.79642046262461,
+      "operating_realization": 0,
+      "hours_after_warmup_to_onset": 24.83756182231506
+    },
+    {
+      "scenario_id": "leak_017_p445",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p445",
+      "pipe_group": 1,
+      "demand_scale": 1.03,
+      "leak_area_m2": 5e-05,
+      "leak_start_hour": 35.5558534993813,
+      "leak_end_hour": 47.5,
+      "leak_duration_h": 11.9441465006187,
+      "operating_realization": 3,
+      "hours_after_warmup_to_onset": 23.5558534993813
+    },
+    {
+      "scenario_id": "leak_018_p513",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p513",
+      "pipe_group": 3,
+      "demand_scale": 1.0,
+      "leak_area_m2": 0.00035,
+      "leak_start_hour": 17.675194056829415,
+      "leak_end_hour": 26.598429409504092,
+      "leak_duration_h": 8.923235352674677,
+      "operating_realization": 2,
+      "hours_after_warmup_to_onset": 5.675194056829415
+    },
+    {
+      "scenario_id": "leak_019_p488",
+      "kind": "leak_abrupt",
+      "split": "synthetic_dev",
+      "pipe": "p488",
+      "pipe_group": 1,
+      "demand_scale": 0.92,
+      "leak_area_m2": 5e-05,
+      "leak_start_hour": 18.08939865931473,
+      "leak_end_hour": 32.802721074965426,
+      "leak_duration_h": 14.713322415650698,
+      "operating_realization": 2,
+      "hours_after_warmup_to_onset": 6.089398659314728
+    },
+    {
+      "scenario_id": "leak_020_p656",
+      "kind": "leak_abrupt",
+      "split": "synthetic_dev",
+      "pipe": "p656",
+      "pipe_group": 2,
+      "demand_scale": 1.0,
+      "leak_area_m2": 5e-05,
+      "leak_start_hour": 28.72620348271218,
+      "leak_end_hour": 36.08276465225159,
+      "leak_duration_h": 7.356561169539411,
+      "operating_realization": 2,
+      "hours_after_warmup_to_onset": 16.72620348271218
+    },
+    {
+      "scenario_id": "leak_021_p800",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p800",
+      "pipe_group": 4,
+      "demand_scale": 0.97,
+      "leak_area_m2": 0.0001,
+      "leak_start_hour": 18.012115516413765,
+      "leak_end_hour": 25.984820864059294,
+      "leak_duration_h": 7.97270534764553,
+      "operating_realization": 3,
+      "hours_after_warmup_to_onset": 6.012115516413765
+    },
+    {
+      "scenario_id": "leak_022_p670",
+      "kind": "leak_abrupt",
+      "split": "synthetic_dev",
+      "pipe": "p670",
+      "pipe_group": 1,
+      "demand_scale": 1.0,
+      "leak_area_m2": 0.0001,
+      "leak_start_hour": 19.815779176574498,
+      "leak_end_hour": 31.268731421927974,
+      "leak_duration_h": 11.452952245353476,
+      "operating_realization": 2,
+      "hours_after_warmup_to_onset": 7.815779176574498
+    },
+    {
+      "scenario_id": "leak_023_p891",
+      "kind": "leak_abrupt",
+      "split": "synthetic_test",
+      "pipe": "p891",
+      "pipe_group": 4,
+      "demand_scale": 1.03,
+      "leak_area_m2": 5e-05,
+      "leak_start_hour": 24.861519544101423,
+      "leak_end_hour": 36.44643956571019,
+      "leak_duration_h": 11.58492002160877,
+      "operating_realization": 2,
+      "hours_after_warmup_to_onset": 12.861519544101423
+    },
+    {
+      "scenario_id": "ctrl_000_control_pump",
+      "kind": "control_pump",
+      "split": "synthetic_test",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 0.85,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 3,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_001_control_demand",
+      "kind": "control_demand",
+      "split": "synthetic_test",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 1.2,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 3,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_002_control_demand",
+      "kind": "control_demand",
+      "split": "train",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 0.9,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 1,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_003_control_demand",
+      "kind": "control_demand",
+      "split": "synthetic_test",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 0.9,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 3,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_004_control_sensor",
+      "kind": "control_sensor",
+      "split": "synthetic_dev",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 1.1,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 2,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_005_control_sensor",
+      "kind": "control_sensor",
+      "split": "synthetic_dev",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 1.15,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 2,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_006_control_tank",
+      "kind": "control_tank",
+      "split": "synthetic_dev",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 1.1,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 2,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_007_control_pump",
+      "kind": "control_pump",
+      "split": "train",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 1.1,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 0,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_008_control_pump",
+      "kind": "control_pump",
+      "split": "train",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 1.1,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 0,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_009_control_sensor",
+      "kind": "control_sensor",
+      "split": "train",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 1.1,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 1,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_010_control_pump",
+      "kind": "control_pump",
+      "split": "synthetic_test",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 1.1,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 3,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_011_control_sensor",
+      "kind": "control_sensor",
+      "split": "train",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 1.2,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 1,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_012_control_demand",
+      "kind": "control_demand",
+      "split": "synthetic_test",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 1.2,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 3,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_013_control_demand",
+      "kind": "control_demand",
+      "split": "synthetic_test",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 0.85,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 3,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_014_control_tank",
+      "kind": "control_tank",
+      "split": "train",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 0.85,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 1,
+      "hours_after_warmup_to_onset": null
+    },
+    {
+      "scenario_id": "ctrl_015_control_tank",
+      "kind": "control_tank",
+      "split": "train",
+      "pipe": null,
+      "pipe_group": null,
+      "demand_scale": 0.9,
+      "leak_area_m2": null,
+      "leak_start_hour": null,
+      "leak_end_hour": null,
+      "leak_duration_h": null,
+      "operating_realization": 1,
+      "hours_after_warmup_to_onset": null
+    }
+  ],
+  "signal_summary": {
+    "hit_post_minus_pre_pd_min_mean": 0.05579387573968797,
+    "miss_post_minus_pre_pd_min_mean": -0.052877051962746516,
+    "control_clock_windows_pd_d6_min_mean": -0.040796151867619264,
+    "note": "Ground-truth onset defines leak pre/post windows for description only. Control windows are clock-based (16 h and 24 h), not paired scenarios."
+  },
+  "decision": {
+    "decision": "D",
+    "label": "Mixed or unresolved",
+    "votes": {
+      "A": 2,
+      "B": 3,
+      "C": 3
+    },
+    "primary_cause_counts_among_misses": {
+      "preonset_active_no_crossing": 2,
+      "no_crossing_in_6h": 3,
+      "preonset_active_block": 3
+    },
+    "evidence": [
+      "5/8 misses have no q\u2265\u03c4 in the 6 h credit window (insufficient score response at frozen \u03c4).",
+      "5/8 misses are pre-onset-active blocked (notifier state prevents a new credit-window notify).",
+      "3 scenarios have row-credit hits but episode-6h misses (objective/notifier mismatch with row labels).",
+      "14 pre-onset notifies cluster at indices ~199 (~16.6 h scenario time) across leaks \u2014 shared operating/phase cue.",
+      "Synthetic_test controls alone yield 5.25 ep/wk under the same freeze \u2014 false episodes without leaks."
+    ],
+    "recommended_next_intervention": "Single next step: on synthetic DEV only, add an explicit preonset_active_block / inactive-at-onset constraint to the existing episode-selection gates (same C/\u03c4 budget; no post-hoc expansion), because the dominant miss pattern is a shared ~16.6 h operating-phase latch that also fires on controls and then blocks onset credit. Scenario-clock redesign is the alternate if gating cannot find any passing candidate. Do not implement in this audit."
+  }
+}

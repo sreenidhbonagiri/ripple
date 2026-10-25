@@ -41,6 +41,14 @@ Change-only feature ablation (paired Arms A/B; episode-notification objective):
 Protocol: `CHANGE_ONLY_ABLATION_PROTOCOL.md`  
 Results: `outputs/change_only_ablation/CHANGE_ONLY_ABLATION_RESULTS.md`
 
+Arm A synthetic-test miss audit (diagnostic; no refit):
+
+```bash
+.venv/bin/python research/supervised-event-detection/audit_arm_a_synth_misses.py
+```
+
+Results: `outputs/arm_a_synth_miss_audit/ARM_A_SYNTH_MISS_AUDIT.md`
+
 ## Boundary
 
 - Preserves production and frozen FMR3C evaluations
