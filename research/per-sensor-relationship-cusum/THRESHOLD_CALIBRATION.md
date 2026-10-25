@@ -37,3 +37,11 @@ Freeze before DIAG. **Do not** score the full grid on DIAG or pick from DIAG.
 Run the frozen \(h\) **once**. Report the same metrics + 0–2 h notification-time
 shifted null. Diagnostic label only (prior examination). No broad-window headline;
 no already-active-alarm credit as success. Latched-alarm-only burden reduction ≠ success.
+
+## Extension (after first-grid selection failure)
+
+First grid failed the unmatched/week gate at the upper boundary \(h=256\).
+Further DEV \(h\) values and dual gates (6 h abrupt sensitivity ≥ 2/3 **and**
+unmatched/week ≤ 3) are registered in `THRESHOLD_CALIBRATION_EXTENSION.md`.
+Results go to `outputs/THRESHOLD_CALIBRATION_EXTENSION_RESULTS.md` (do not
+overwrite the first-grid report).

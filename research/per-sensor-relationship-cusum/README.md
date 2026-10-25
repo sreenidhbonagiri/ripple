@@ -48,3 +48,11 @@ Baseline reconciliation + DEV-only CUSUM-h calibration (original `build_signals.
 ```bash
 .venv/bin/python research/per-sensor-relationship-cusum/run_threshold_calibration.py
 ```
+
+Grid extension (higher \(h\); dual 6 h sensitivity + unmatched gates):
+`THRESHOLD_CALIBRATION_EXTENSION.md`,
+`outputs/THRESHOLD_CALIBRATION_EXTENSION_RESULTS.md`
+
+```bash
+.venv/bin/python research/per-sensor-relationship-cusum/run_threshold_calibration_extension.py
+```
