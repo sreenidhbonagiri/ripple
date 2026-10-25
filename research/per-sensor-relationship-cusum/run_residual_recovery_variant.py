@@ -225,24 +225,40 @@ def recommend(dev_o, dev_v, diag_o, diag_v, null_7, null_2) -> str:
     v_abr = diag_v["primary"]["abrupt_recall"]
     o_occ = diag_o["occupancy"]["union_alarm_pct_of_analysis"]
     v_occ = diag_v["occupancy"]["union_alarm_pct_of_analysis"]
+    o_sum = diag_o["occupancy"]["summed_sensor_alarm_pct_of_eligible"]
+    v_sum = diag_v["occupancy"]["summed_sensor_alarm_pct_of_eligible"]
     o_long = diag_o["occupancy"]["episode_length_hours"]["max"]
     v_long = diag_v["occupancy"]["episode_length_hours"]["max"]
     lines.append(
         f"DIAG abrupt recall original={o_abr:.2f} vs variant={v_abr:.2f}; "
         f"union occupancy {o_occ:.1f}% → {v_occ:.1f}%; "
+        f"summed sensor-alarm {o_sum:.1f}% → {v_sum:.1f}%; "
         f"longest episode {o_long} → {v_long} h; "
         f"unmatched/wk {diag_o['unmatched_per_week']:.2f} → {diag_v['unmatched_per_week']:.2f}."
     )
     lines.append(
         f"Variant null 7d: obs={null_7['observed_abrupt_matches']} "
         f"median={null_7['null_match_median']} "
+        f"min–max={null_7['null_match_min']}–{null_7['null_match_max']} "
         f"frac≥obs={null_7['fraction_shifts_ge_observed']:.2f} "
         f"(n_shifts={null_7['null_n_valid_shifts']}). "
         f"Null 0–2h: obs={null_2['observed_abrupt_matches']} "
         f"median={null_2['null_match_median']} "
+        f"min–max={null_2['null_match_min']}–{null_2['null_match_max']} "
         f"frac≥obs={null_2['fraction_shifts_ge_observed']:.2f}."
     )
-    retained_hits = True  # filled by caller context via delays
+    # Notification storm after clear/rearm dominates usefulness.
+    if diag_v["unmatched_per_week"] > max(10.0, 5 * diag_o["unmatched_per_week"]):
+        return (
+            "**No-go for this residual-recovery operating point:** abrupt hits were "
+            "retained, but clear/rearm under frequent residual excursions creates a "
+            "notification storm (unmatched/wk ≫ original) while union network occupancy "
+            "stays near saturation. The registered 7-day shift null is not beaten. "
+            "Summed sensor-hours fell, but that is not usable under the alert burden. "
+            "Tiny pair scales remain widespread; do not productize; do not sweep the "
+            "12-step constant next—address scale/excursion behavior first. "
+            + " ".join(lines)
+        )
     if v_abr >= o_abr - 1e-9 and v_occ < o_occ * 0.5 and null_7["fraction_shifts_ge_observed"] < 0.5:
         return (
             "**Conditional research continue:** residual recovery materially cuts occupancy "
@@ -274,7 +290,7 @@ def render(summary: dict) -> str:
         f"Generated: {summary['generated_at']}",
         "",
         "Original frozen detector/settings/RESULTS preserved. Variant registered in "
-        "`VARIANT_RESIDUAL_RECOVERY.md` (12-step \(z\\le k\) recovery; not swept).",
+        r"`VARIANT_RESIDUAL_RECOVERY.md` (12-step \(z\le k\) recovery; not swept).",
         "",
         f"Shared settings: `{summary['settings']}`",
         f"Variant residual_recover_steps: **{summary['residual_recover_steps']}**",

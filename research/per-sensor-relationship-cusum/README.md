@@ -19,3 +19,10 @@ Eligibility / occupancy / recovery audit (frozen settings unchanged): `outputs/A
 ```bash
 .venv/bin/python research/per-sensor-relationship-cusum/audit_occupancy_recovery.py
 ```
+
+Residual-recovery variant (paired; original preserved): `VARIANT_RESIDUAL_RECOVERY.md`, `outputs/VARIANT_COMPARISON.md`
+
+```bash
+.venv/bin/python -m pytest research/per-sensor-relationship-cusum/tests -q
+.venv/bin/python research/per-sensor-relationship-cusum/run_residual_recovery_variant.py
+```
