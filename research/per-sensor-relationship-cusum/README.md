@@ -26,3 +26,9 @@ Residual-recovery variant (paired; original preserved): `VARIANT_RESIDUAL_RECOVE
 .venv/bin/python -m pytest research/per-sensor-relationship-cusum/tests -q
 .venv/bin/python research/per-sensor-relationship-cusum/run_residual_recovery_variant.py
 ```
+
+Calibration / separability audit: `outputs/CALIBRATION_AUDIT.md`
+
+```bash
+.venv/bin/python research/per-sensor-relationship-cusum/audit_calibration_separability.py
+```

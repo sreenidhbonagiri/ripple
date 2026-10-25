@@ -64,6 +64,7 @@ htmlcov/
 # Research bulky / regenerable outputs
 research/**/outputs/plots/
 research/**/outputs/audit_plots/
+research/**/outputs/calibration_plots/
 research/**/outputs/*.npy
 research/**/outputs/cache/
 research/**/__pycache__/

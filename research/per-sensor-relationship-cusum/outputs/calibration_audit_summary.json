@@ -1,0 +1,625 @@
+{
+  "generated_at": "2026-10-24T20:07:37-04:00",
+  "settings": {
+    "train_days": 14,
+    "n_refs": 3,
+    "cusum_k": 0.5,
+    "cusum_h": 8.0,
+    "recover_hours": 24.0
+  },
+  "preserved": "original+variant detectors and frozen outputs unchanged",
+  "normalization": {
+    "n_pairs": 99,
+    "n_tiny_train_mad": 94,
+    "frac_tiny_train_mad": 0.9494949494949495,
+    "n_oos_inflate_gt2": 2,
+    "frac_oos_inflate_gt2": 0.020202020202020204,
+    "median_oos_over_train_MAD": 0.9933020574373016,
+    "n_scale_fallback": 0,
+    "interpretation_counts": {
+      "genuinely_tight_in_sample_and_near_oos": 94,
+      "underestimated_oos_uncertainty": 2,
+      "moderate_or_mixed": 3
+    },
+    "smallest_mad_examples": [
+      {
+        "target": "n105",
+        "reference": "n469",
+        "intercept_m": 3.7889437832876283,
+        "slope": 0.9830772561972623,
+        "n_train": 4032,
+        "train_residual_median_m": 0.0003755628141348666,
+        "train_residual_MAD_m": 0.0034161765836060454,
+        "train_residual_std_m": 0.005292808014393507,
+        "train_fit_rmse_m": 0.005292808014393506,
+        "norm_loc_m": 0.0003755628141348666,
+        "norm_scale_m": 0.005064823402854322,
+        "scale_formula": "mad * 1.4826",
+        "scale_used_fallback": false,
+        "oos_14d_residual_median_m": 0.0008832244705772041,
+        "oos_14d_residual_MAD_m": 0.003416176583613151,
+        "oos_14d_rmse_m": 0.0051646011081622895,
+        "oos_MAD_over_train_MAD": 1.00000000000208,
+        "analysis_residual_MAD_m": 0.0031976478331614544,
+        "units": "meters (BattLeDIM SCADA pressure head)",
+        "scale_interpretation": "genuinely_tight_in_sample_and_near_oos"
+      },
+      {
+        "target": "n469",
+        "reference": "n105",
+        "intercept_m": -3.8416452317646446,
+        "slope": 1.0169646606429747,
+        "n_train": 4032,
+        "train_residual_median_m": -0.0005195437655345359,
+        "train_residual_MAD_m": 0.003544780946214132,
+        "train_residual_std_m": 0.005383258658173826,
+        "train_fit_rmse_m": 0.005383258658173827,
+        "norm_loc_m": -0.0005195437655345359,
+        "norm_scale_m": 0.005255492230857072,
+        "scale_formula": "mad * 1.4826",
+        "scale_used_fallback": false,
+        "oos_14d_residual_median_m": -0.0010284628760146575,
+        "oos_14d_residual_MAD_m": 0.003544716231175471,
+        "oos_14d_rmse_m": 0.005243208403527442,
+        "oos_MAD_over_train_MAD": 0.9999817435718474,
+        "analysis_residual_MAD_m": 0.0030606602304246167,
+        "units": "meters (BattLeDIM SCADA pressure head)",
+        "scale_interpretation": "genuinely_tight_in_sample_and_near_oos"
+      },
+      {
+        "target": "n740",
+        "reference": "n769",
+        "intercept_m": 18.46738712702387,
+        "slope": 0.5224741507797414,
+        "n_train": 4032,
+        "train_residual_median_m": -8.903563735884745e-05,
+        "train_residual_MAD_m": 0.003593953346843648,
+        "train_residual_std_m": 0.005787743617890395,
+        "train_fit_rmse_m": 0.005787743617890395,
+        "norm_loc_m": -8.903563735884745e-05,
+        "norm_scale_m": 0.005328395232030392,
+        "scale_formula": "mad * 1.4826",
+        "scale_used_fallback": false,
+        "oos_14d_residual_median_m": 0.0003041147921294396,
+        "oos_14d_residual_MAD_m": 0.0038210348487126566,
+        "oos_14d_rmse_m": 0.0061040367576259994,
+        "oos_MAD_over_train_MAD": 1.0631843209841443,
+        "analysis_residual_MAD_m": 0.0052841078555871945,
+        "units": "meters (BattLeDIM SCADA pressure head)",
+        "scale_interpretation": "genuinely_tight_in_sample_and_near_oos"
+      },
+      {
+        "target": "n495",
+        "reference": "n332",
+        "intercept_m": 17.865538946875446,
+        "slope": 0.5994835740353535,
+        "n_train": 4032,
+        "train_residual_median_m": 0.00026346155313206054,
+        "train_residual_MAD_m": 0.003671868068920503,
+        "train_residual_std_m": 0.005103021903273985,
+        "train_fit_rmse_m": 0.005103021903273985,
+        "norm_loc_m": 0.00026346155313206054,
+        "norm_scale_m": 0.005443911598981537,
+        "scale_formula": "mad * 1.4826",
+        "scale_used_fallback": false,
+        "oos_14d_residual_median_m": -0.00126109181163514,
+        "oos_14d_residual_MAD_m": 0.003668053371654878,
+        "oos_14d_rmse_m": 0.004955734759664814,
+        "oos_MAD_over_train_MAD": 0.9989611017623663,
+        "analysis_residual_MAD_m": 0.003592879477324118,
+        "units": "meters (BattLeDIM SCADA pressure head)",
+        "scale_interpretation": "genuinely_tight_in_sample_and_near_oos"
+      },
+      {
+        "target": "n740",
+        "reference": "n722",
+        "intercept_m": 20.999004701110152,
+        "slope": 0.4943194167492636,
+        "n_train": 4032,
+        "train_residual_median_m": 0.00019754928734272426,
+        "train_residual_MAD_m": 0.0038627983440804314,
+        "train_residual_std_m": 0.005067029718654807,
+        "train_fit_rmse_m": 0.005067029718654807,
+        "norm_loc_m": 0.00019754928734272426,
+        "norm_scale_m": 0.0057269848249336475,
+        "scale_formula": "mad * 1.4826",
+        "scale_used_fallback": false,
+        "oos_14d_residual_median_m": 0.00031307090135612725,
+        "oos_14d_residual_MAD_m": 0.004031564666803433,
+        "oos_14d_rmse_m": 0.0051880782155328915,
+        "oos_MAD_over_train_MAD": 1.0436901716553826,
+        "analysis_residual_MAD_m": 0.0033536937717926207,
+        "units": "meters (BattLeDIM SCADA pressure head)",
+        "scale_interpretation": "genuinely_tight_in_sample_and_near_oos"
+      },
+      {
+        "target": "n726",
+        "reference": "n752",
+        "intercept_m": -0.6877219150064775,
+        "slope": 0.9723628028696629,
+        "n_train": 4032,
+        "train_residual_median_m": -9.063500726824714e-06,
+        "train_residual_MAD_m": 0.003921919124984186,
+        "train_residual_std_m": 0.005435569341663228,
+        "train_fit_rmse_m": 0.005435569341663228,
+        "norm_loc_m": -9.063500726824714e-06,
+        "norm_scale_m": 0.005814637294701553,
+        "scale_formula": "mad * 1.4826",
+        "scale_used_fallback": false,
+        "oos_14d_residual_median_m": 0.0009179514996588978,
+        "oos_14d_residual_MAD_m": 0.003967123553131557,
+        "oos_14d_rmse_m": 0.005432709279138815,
+        "oos_MAD_over_train_MAD": 1.0115260990109158,
+        "analysis_residual_MAD_m": 0.00530375789598736,
+        "units": "meters (BattLeDIM SCADA pressure head)",
+        "scale_interpretation": "genuinely_tight_in_sample_and_near_oos"
+      },
+      {
+        "target": "n769",
+        "reference": "n752",
+        "intercept_m": 11.949088949791204,
+        "slope": 0.7434214944387898,
+        "n_train": 4032,
+        "train_residual_median_m": -3.3271046348204436e-05,
+        "train_residual_MAD_m": 0.003946108462493214,
+        "train_residual_std_m": 0.005988257439611001,
+        "train_fit_rmse_m": 0.005988257439611001,
+        "norm_loc_m": -3.3271046348204436e-05,
+        "norm_scale_m": 0.005850500406492439,
+        "scale_formula": "mad * 1.4826",
+        "scale_used_fallback": false,
+        "oos_14d_residual_median_m": -0.0007567081736397085,
+        "oos_14d_residual_MAD_m": 0.0037834418842734863,
+        "oos_14d_rmse_m": 0.0059935402468454585,
+        "oos_MAD_over_train_MAD": 0.9587779758803303,
+        "analysis_residual_MAD_m": 0.0048034622222346,
+        "units": "meters (BattLeDIM SCADA pressure head)",
+        "scale_interpretation": "genuinely_tight_in_sample_and_near_oos"
+      },
+      {
+        "target": "n752",
+        "reference": "n726",
+        "intercept_m": 0.7154261123249839,
+        "slope": 1.0282480868853743,
+        "n_train": 4032,
+        "train_residual_median_m": -2.202638842163651e-05,
+        "train_residual_MAD_m": 0.00407006384643438,
+        "train_residual_std_m": 0.0055895883757911165,
+        "train_fit_rmse_m": 0.0055895883757911165,
+        "norm_loc_m": -2.202638842163651e-05,
+        "norm_scale_m": 0.006034276658723611,
+        "scale_formula": "mad * 1.4826",
+        "scale_used_fallback": false,
+        "oos_14d_residual_median_m": -0.0009212778782412556,
+        "oos_14d_residual_MAD_m": 0.00407006384643438,
+        "oos_14d_rmse_m": 0.0055790214771920706,
+        "oos_MAD_over_train_MAD": 1.0,
+        "analysis_residual_MAD_m": 0.005482446639121008,
+        "units": "meters (BattLeDIM SCADA pressure head)",
+        "scale_interpretation": "genuinely_tight_in_sample_and_near_oos"
+      }
+    ],
+    "scale_formula_doc": "scale = MAD(signed residual e)*1.4826 on training samples; if not finite or <1e-6, fall back to sample std; units meters"
+  },
+  "excursions": "33 targets \u2192 calibration_excursions.json",
+  "excursion_tag_totals": {
+    "isolated_spikes_common": 33,
+    "persistent_relationship_changes": 15,
+    "monthly_drift": 16,
+    "scale_mismatch": 1
+  },
+  "excursion_summary": {
+    "median_frac_z_gt_k": 0.24027777777777778,
+    "median_lag1_acf": 0.677799970446931,
+    "n_max_run_ge_6h": 15
+  },
+  "control_rule": {
+    "window_steps": 360,
+    "pre_hours": 6.0,
+    "post_hours": 24.0,
+    "exclude_days_around_leaks": 7.0,
+    "placement": "analysis free-span quartiles with +1 day advance if excluded",
+    "selected_controls": [
+      {
+        "start_idx": 68310,
+        "end_idx": 68670,
+        "start_time": "2018-08-26 04:30",
+        "end_time": "2018-08-27 10:25",
+        "rule": "quartile_q=0.25_onset_exclusion_advanced"
+      },
+      {
+        "start_idx": 82188,
+        "end_idx": 82548,
+        "start_time": "2018-10-13 09:00",
+        "end_time": "2018-10-14 14:55",
+        "rule": "quartile_q=0.5_onset_exclusion_advanced"
+      },
+      {
+        "start_idx": 92610,
+        "end_idx": 92970,
+        "start_time": "2018-11-18 13:30",
+        "end_time": "2018-11-19 19:25",
+        "rule": "quartile_q=0.75_onset_exclusion_advanced"
+      }
+    ]
+  },
+  "separability": [
+    {
+      "pipe": "p183",
+      "onset": "2018-08-07 02:35",
+      "event_window": {
+        "start": "2018-08-06 20:35",
+        "end": "2018-08-08 02:30",
+        "pre_hours": 6.0,
+        "post_hours": 24.0
+      },
+      "controls": [
+        {
+          "start_idx": 68310,
+          "end_idx": 68670,
+          "start_time": "2018-08-26 04:30",
+          "end_time": "2018-08-27 10:25",
+          "rule": "quartile_q=0.25_onset_exclusion_advanced"
+        },
+        {
+          "start_idx": 82188,
+          "end_idx": 82548,
+          "start_time": "2018-10-13 09:00",
+          "end_time": "2018-10-14 14:55",
+          "rule": "quartile_q=0.5_onset_exclusion_advanced"
+        },
+        {
+          "start_idx": 92610,
+          "end_idx": 92970,
+          "start_time": "2018-11-18 13:30",
+          "end_time": "2018-11-19 19:25",
+          "rule": "quartile_q=0.75_onset_exclusion_advanced"
+        }
+      ],
+      "top_contrasts_by_abs_delta_z": [
+        {
+          "target": "n752",
+          "refs": [
+            "n726",
+            "n769",
+            "n288"
+          ],
+          "event_post_median_z": 8.176740169525146,
+          "event_post_max_z": 11.469343185424805,
+          "control_median_z": 1.0631338953971863,
+          "delta_z": 7.11360627412796,
+          "event_median_percentile_vs_control_samples": 81.85185185185185,
+          "beats_all_control_window_medians": false,
+          "event_post_median_raw_residual_m": 0.06266172304658113,
+          "control_median_raw_residual_m": 0.008705752174336112,
+          "delta_raw_m": 0.05395597087224502
+        },
+        {
+          "target": "n288",
+          "refs": [
+            "n726",
+            "n752",
+            "n679"
+          ],
+          "event_post_median_z": -3.2406433820724487,
+          "event_post_max_z": -0.722274124622345,
+          "control_median_z": 0.27056290209293365,
+          "delta_z": -3.5112062841653824,
+          "event_median_percentile_vs_control_samples": 19.166666666666668,
+          "beats_all_control_window_medians": false,
+          "event_post_median_raw_residual_m": -0.03141834183244896,
+          "control_median_raw_residual_m": 0.007442433621427824,
+          "delta_raw_m": -0.038860775453876784
+        },
+        {
+          "target": "n613",
+          "refs": [
+            "n163",
+            "n188",
+            "n519"
+          ],
+          "event_post_median_z": 1.6559364795684814,
+          "event_post_max_z": 4.978256702423096,
+          "control_median_z": 4.228511571884155,
+          "delta_z": -2.572575092315674,
+          "event_median_percentile_vs_control_samples": 9.62962962962963,
+          "beats_all_control_window_medians": false,
+          "event_post_median_raw_residual_m": 0.01715199616600316,
+          "control_median_raw_residual_m": 0.033279527634331174,
+          "delta_raw_m": -0.016127531468328016
+        },
+        {
+          "target": "n726",
+          "refs": [
+            "n752",
+            "n769",
+            "n288"
+          ],
+          "event_post_median_z": 1.5307762026786804,
+          "event_post_max_z": 4.178613185882568,
+          "control_median_z": -0.49244749546051025,
+          "delta_z": 2.0232236981391907,
+          "event_median_percentile_vs_control_samples": 90.74074074074075,
+          "beats_all_control_window_medians": true,
+          "event_post_median_raw_residual_m": 0.011030694685860709,
+          "control_median_raw_residual_m": -0.005638166105320863,
+          "delta_raw_m": 0.016668860791181572
+        },
+        {
+          "target": "n769",
+          "refs": [
+            "n752",
+            "n726",
+            "n722"
+          ],
+          "event_post_median_z": -1.439286470413208,
+          "event_post_max_z": 2.390841245651245,
+          "control_median_z": 0.13156758248806,
+          "delta_z": -1.570854052901268,
+          "event_median_percentile_vs_control_samples": 11.481481481481481,
+          "beats_all_control_window_medians": false,
+          "event_post_median_raw_residual_m": -0.009229853422141332,
+          "control_median_raw_residual_m": 0.002730664347406986,
+          "delta_raw_m": -0.011960517769548318
+        }
+      ],
+      "n_targets_scored": 33,
+      "stands_out_before_cusum_accumulation": false,
+      "note": "Contrast ranking uses labeled onset time only for window placement; no leak-location sensor picking. Examined diagnostic examples, not validation.",
+      "plot": "outputs/calibration_plots/separability_p183.png"
+    },
+    {
+      "pipe": "p158",
+      "onset": "2018-10-06 02:35",
+      "event_window": {
+        "start": "2018-10-05 20:35",
+        "end": "2018-10-07 02:30",
+        "pre_hours": 6.0,
+        "post_hours": 24.0
+      },
+      "controls": [
+        {
+          "start_idx": 68310,
+          "end_idx": 68670,
+          "start_time": "2018-08-26 04:30",
+          "end_time": "2018-08-27 10:25",
+          "rule": "quartile_q=0.25_onset_exclusion_advanced"
+        },
+        {
+          "start_idx": 82188,
+          "end_idx": 82548,
+          "start_time": "2018-10-13 09:00",
+          "end_time": "2018-10-14 14:55",
+          "rule": "quartile_q=0.5_onset_exclusion_advanced"
+        },
+        {
+          "start_idx": 92610,
+          "end_idx": 92970,
+          "start_time": "2018-11-18 13:30",
+          "end_time": "2018-11-19 19:25",
+          "rule": "quartile_q=0.75_onset_exclusion_advanced"
+        }
+      ],
+      "top_contrasts_by_abs_delta_z": [
+        {
+          "target": "n644",
+          "refs": [
+            "n636",
+            "n679",
+            "n332"
+          ],
+          "event_post_median_z": 10.208113670349121,
+          "event_post_max_z": 12.824579238891602,
+          "control_median_z": 2.3350465297698975,
+          "delta_z": 7.873067140579224,
+          "event_median_percentile_vs_control_samples": 78.24074074074075,
+          "beats_all_control_window_medians": false,
+          "event_post_median_raw_residual_m": 0.25554616189596047,
+          "control_median_raw_residual_m": 0.07206024188961635,
+          "delta_raw_m": 0.18348592000634412
+        },
+        {
+          "target": "n342",
+          "refs": [
+            "n458",
+            "n415",
+            "n613"
+          ],
+          "event_post_median_z": 4.401339769363403,
+          "event_post_max_z": 9.292801856994629,
+          "control_median_z": 1.372799038887024,
+          "delta_z": 3.0285407304763794,
+          "event_median_percentile_vs_control_samples": 85.55555555555556,
+          "beats_all_control_window_medians": true,
+          "event_post_median_raw_residual_m": 0.04738682778462433,
+          "control_median_raw_residual_m": 0.017957036526180303,
+          "delta_raw_m": 0.029429791258444027
+        },
+        {
+          "target": "n613",
+          "refs": [
+            "n163",
+            "n188",
+            "n519"
+          ],
+          "event_post_median_z": 6.769817590713501,
+          "event_post_max_z": 12.7636137008667,
+          "control_median_z": 4.228511571884155,
+          "delta_z": 2.5413060188293457,
+          "event_median_percentile_vs_control_samples": 82.03703703703704,
+          "beats_all_control_window_medians": false,
+          "event_post_median_raw_residual_m": 0.056727074264181,
+          "control_median_raw_residual_m": 0.033279527634331174,
+          "delta_raw_m": 0.023447546629849825
+        },
+        {
+          "target": "n229",
+          "refs": [
+            "n636",
+            "n613",
+            "n163"
+          ],
+          "event_post_median_z": 2.9972933530807495,
+          "event_post_max_z": 6.784638404846191,
+          "control_median_z": 0.7145582139492035,
+          "delta_z": 2.282735139131546,
+          "event_median_percentile_vs_control_samples": 83.88888888888889,
+          "beats_all_control_window_medians": true,
+          "event_post_median_raw_residual_m": 0.06281708222779869,
+          "control_median_raw_residual_m": 0.006016792930090276,
+          "delta_raw_m": 0.05680028929770842
+        },
+        {
+          "target": "n679",
+          "refs": [
+            "n288",
+            "n726",
+            "n296"
+          ],
+          "event_post_median_z": 0.904351532459259,
+          "event_post_max_z": 3.1476681232452393,
+          "control_median_z": -1.342248558998108,
+          "delta_z": 2.246600091457367,
+          "event_median_percentile_vs_control_samples": 87.03703703703704,
+          "beats_all_control_window_medians": true,
+          "event_post_median_raw_residual_m": 0.013101351538193029,
+          "control_median_raw_residual_m": -0.010843621368866962,
+          "delta_raw_m": 0.02394497290705999
+        }
+      ],
+      "n_targets_scored": 33,
+      "stands_out_before_cusum_accumulation": false,
+      "note": "Contrast ranking uses labeled onset time only for window placement; no leak-location sensor picking. Examined diagnostic examples, not validation.",
+      "plot": "outputs/calibration_plots/separability_p158.png"
+    },
+    {
+      "pipe": "p369",
+      "onset": "2018-10-26 02:05",
+      "event_window": {
+        "start": "2018-10-25 20:05",
+        "end": "2018-10-27 02:00",
+        "pre_hours": 6.0,
+        "post_hours": 24.0
+      },
+      "controls": [
+        {
+          "start_idx": 68310,
+          "end_idx": 68670,
+          "start_time": "2018-08-26 04:30",
+          "end_time": "2018-08-27 10:25",
+          "rule": "quartile_q=0.25_onset_exclusion_advanced"
+        },
+        {
+          "start_idx": 82188,
+          "end_idx": 82548,
+          "start_time": "2018-10-13 09:00",
+          "end_time": "2018-10-14 14:55",
+          "rule": "quartile_q=0.5_onset_exclusion_advanced"
+        },
+        {
+          "start_idx": 92610,
+          "end_idx": 92970,
+          "start_time": "2018-11-18 13:30",
+          "end_time": "2018-11-19 19:25",
+          "rule": "quartile_q=0.75_onset_exclusion_advanced"
+        }
+      ],
+      "top_contrasts_by_abs_delta_z": [
+        {
+          "target": "n410",
+          "refs": [
+            "n429",
+            "n415",
+            "n342"
+          ],
+          "event_post_median_z": 3.1534149646759033,
+          "event_post_max_z": 4.754140853881836,
+          "control_median_z": -0.9933503866195679,
+          "delta_z": 4.146765351295471,
+          "event_median_percentile_vs_control_samples": 100.0,
+          "beats_all_control_window_medians": true,
+          "event_post_median_raw_residual_m": 0.10590138524877446,
+          "control_median_raw_residual_m": -0.013946948793009284,
+          "delta_raw_m": 0.11984833404178374
+        },
+        {
+          "target": "n636",
+          "refs": [
+            "n188",
+            "n613",
+            "n163"
+          ],
+          "event_post_median_z": -0.03052955074235797,
+          "event_post_max_z": 2.763944625854492,
+          "control_median_z": 3.1066839694976807,
+          "delta_z": -3.1372135202400386,
+          "event_median_percentile_vs_control_samples": 14.074074074074074,
+          "beats_all_control_window_medians": false,
+          "event_post_median_raw_residual_m": -0.005305440025185959,
+          "control_median_raw_residual_m": 0.04345911394863933,
+          "delta_raw_m": -0.048764553973825286
+        },
+        {
+          "target": "n296",
+          "refs": [
+            "n722",
+            "n726",
+            "n288"
+          ],
+          "event_post_median_z": -1.2709558010101318,
+          "event_post_max_z": 1.2788118124008179,
+          "control_median_z": -3.177254557609558,
+          "delta_z": 1.9062987565994263,
+          "event_median_percentile_vs_control_samples": 91.01851851851852,
+          "beats_all_control_window_medians": true,
+          "event_post_median_raw_residual_m": -0.009749033953106334,
+          "control_median_raw_residual_m": -0.022694391515784673,
+          "delta_raw_m": 0.012945357562678339
+        },
+        {
+          "target": "n679",
+          "refs": [
+            "n288",
+            "n726",
+            "n296"
+          ],
+          "event_post_median_z": 0.5104967504739761,
+          "event_post_max_z": 2.251781940460205,
+          "control_median_z": -1.342248558998108,
+          "delta_z": 1.852745309472084,
+          "event_median_percentile_vs_control_samples": 85.55555555555556,
+          "beats_all_control_window_medians": true,
+          "event_post_median_raw_residual_m": 0.011165795079044472,
+          "control_median_raw_residual_m": -0.010843621368866962,
+          "delta_raw_m": 0.022009416447911434
+        },
+        {
+          "target": "n644",
+          "refs": [
+            "n636",
+            "n679",
+            "n332"
+          ],
+          "event_post_median_z": 0.7625982761383057,
+          "event_post_max_z": 2.2655386924743652,
+          "control_median_z": 2.3350465297698975,
+          "delta_z": -1.5724482536315918,
+          "event_median_percentile_vs_control_samples": 26.75925925925926,
+          "beats_all_control_window_medians": false,
+          "event_post_median_raw_residual_m": 0.01662699374346488,
+          "control_median_raw_residual_m": 0.07206024188961635,
+          "delta_raw_m": -0.05543324814615147
+        }
+      ],
+      "n_targets_scored": 33,
+      "stands_out_before_cusum_accumulation": true,
+      "note": "Contrast ranking uses labeled onset time only for window placement; no leak-location sensor picking. Examined diagnostic examples, not validation.",
+      "plot": "outputs/calibration_plots/separability_p369.png"
+    }
+  ],
+  "recommendation": {
+    "direction": "calibration_unlikely_alone",
+    "proposal": "Ordinary and leak-timed residual changes overlap substantially under the documented controls; calibration alone is unlikely to solve detection. Revisit the sensing hypothesis, aggregation, or state-conditional features\u2014without an arbitrary scale floor.",
+    "supported_by": "abrupt events standing out before CUSUM: 1/3; weak-separability count=2; median OOS/train MAD=0.993; tags={'isolated_spikes_common': 33, 'persistent_relationship_changes': 15, 'monthly_drift': 16, 'scale_mismatch': 1}"
+  }
+}
