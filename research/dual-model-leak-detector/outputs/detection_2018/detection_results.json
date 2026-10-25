@@ -1,0 +1,383 @@
+{
+  "generated_at_utc": "2026-10-25T04:44:38.553090+00:00",
+  "frozen_calibration_sha256": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+  "protocol": "DETECTION_PROTOCOL.md",
+  "periods": {
+    "FIT_excluded_through": "2018-01-07 23:55:00",
+    "DEV": [
+      "2018-01-08 00:00:00",
+      "2018-06-30 23:55:00"
+    ],
+    "DIAG": [
+      "2018-07-01 00:00:00",
+      "2018-12-31 23:55:00"
+    ]
+  },
+  "gates": {
+    "abrupt_6h_recall_min": 0.6666666666666666,
+    "unmatched_per_week_max": 3.0,
+    "tau_grid": [
+      1.0,
+      1.5,
+      2.0,
+      2.5,
+      3.0,
+      3.5,
+      4.0
+    ]
+  },
+  "acknowledgement": "2018 events have already been examined; DIAG is protocol-bound diagnostic evaluation, not a first look.",
+  "selection": {
+    "A": {
+      "selection_passed": false,
+      "tau": 1.5,
+      "fallback": true,
+      "reason": "no_tau_passed_gates_diagnostic_fallback",
+      "dev_by_tau": {
+        "1.0": {
+          "abrupt_6h_recall": 0.6666666666666666,
+          "unmatched_per_week": 12.270359801241245,
+          "occupancy": 0.2559865900383142,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 2
+        },
+        "1.5": {
+          "abrupt_6h_recall": 0.6666666666666666,
+          "unmatched_per_week": 4.344914290275588,
+          "occupancy": 0.08453065134099617,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 2
+        },
+        "2.0": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 1.126459260441819,
+          "occupancy": 0.019157088122605363,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "2.5": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.3218455029833769,
+          "occupancy": 0.005268199233716475,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "3.0": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.20115343936461055,
+          "occupancy": 0.0026340996168582377,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "3.5": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.0,
+          "occupancy": 0.0,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "4.0": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.0,
+          "occupancy": 0.0,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        }
+      }
+    },
+    "B": {
+      "selection_passed": false,
+      "tau": 1.0,
+      "fallback": true,
+      "reason": "no_tau_passed_gates_diagnostic_fallback",
+      "dev_by_tau": {
+        "1.0": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.04023068787292211,
+          "occupancy": 0.9971264367816092,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "1.5": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.04023068787292211,
+          "occupancy": 0.9971264367816092,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "2.0": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.04023068787292211,
+          "occupancy": 0.9971264367816092,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "2.5": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.04023068787292211,
+          "occupancy": 0.9971264367816092,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "3.0": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.04023068787292211,
+          "occupancy": 0.9971264367816092,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "3.5": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.08046137574584422,
+          "occupancy": 0.9971264367816092,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "4.0": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.3218455029833769,
+          "occupancy": 0.9942528735632183,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        }
+      }
+    },
+    "C": {
+      "selection_passed": false,
+      "tau": 1.0,
+      "fallback": true,
+      "reason": "no_tau_passed_gates_diagnostic_fallback",
+      "dev_by_tau": {
+        "1.0": {
+          "abrupt_6h_recall": 0.3333333333333333,
+          "unmatched_per_week": 14.161202131268583,
+          "occupancy": 0.5395114942528736,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 1
+        },
+        "1.5": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 7.2817545049989025,
+          "occupancy": 0.1968390804597701,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "2.0": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 5.229989423479875,
+          "occupancy": 0.11398467432950192,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "2.5": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.5229989423479875,
+          "occupancy": 0.010775862068965518,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "3.0": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.0,
+          "occupancy": 0.0,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "3.5": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.0,
+          "occupancy": 0.0,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        },
+        "4.0": {
+          "abrupt_6h_recall": 0.0,
+          "unmatched_per_week": 0.0,
+          "occupancy": 0.0,
+          "gate_pass": false,
+          "n_eligible_abrupt": 3,
+          "n_hit": 0
+        }
+      }
+    }
+  },
+  "diag": {
+    "A": {
+      "period": "DIAG",
+      "tau": 1.5,
+      "n_eligible_abrupt": 3,
+      "n_hit": 0,
+      "abrupt_6h_recall": 0.0,
+      "mean_delay_hours": null,
+      "delays_hours": [],
+      "n_notifications": 98,
+      "n_unmatched": 98,
+      "unmatched_per_week": 3.728331226057255,
+      "occupancy": 0.0636322463768116,
+      "unmatched_on_transition_frac": 0.9795918367346939,
+      "gate_pass": false,
+      "events": [
+        {
+          "pipe": "p183",
+          "onset": "2018-08-07 02:35:00",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null
+        },
+        {
+          "pipe": "p158",
+          "onset": "2018-10-06 02:35:00",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null
+        },
+        {
+          "pipe": "p369",
+          "onset": "2018-10-26 02:05:00",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null
+        }
+      ],
+      "timing_nulls": {
+        "n_nulls": 200,
+        "true_recall": 0.0,
+        "null_recall_mean": 0.0,
+        "null_recall_std": 0.0,
+        "true_percentile_vs_null": 1.0
+      },
+      "selection": {
+        "selection_passed": false,
+        "tau": 1.5,
+        "fallback": true,
+        "reason": "no_tau_passed_gates_diagnostic_fallback"
+      }
+    },
+    "B": {
+      "period": "DIAG",
+      "tau": 1.0,
+      "n_eligible_abrupt": 3,
+      "n_hit": 0,
+      "abrupt_6h_recall": 0.0,
+      "mean_delay_hours": null,
+      "delays_hours": [],
+      "n_notifications": 1,
+      "n_unmatched": 1,
+      "unmatched_per_week": 0.03804419618425771,
+      "occupancy": 1.0,
+      "unmatched_on_transition_frac": 0.0,
+      "gate_pass": false,
+      "events": [
+        {
+          "pipe": "p183",
+          "onset": "2018-08-07 02:35:00",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null
+        },
+        {
+          "pipe": "p158",
+          "onset": "2018-10-06 02:35:00",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null
+        },
+        {
+          "pipe": "p369",
+          "onset": "2018-10-26 02:05:00",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null
+        }
+      ],
+      "timing_nulls": {
+        "n_nulls": 200,
+        "true_recall": 0.0,
+        "null_recall_mean": 0.0,
+        "null_recall_std": 0.0,
+        "true_percentile_vs_null": 1.0
+      },
+      "selection": {
+        "selection_passed": false,
+        "tau": 1.0,
+        "fallback": true,
+        "reason": "no_tau_passed_gates_diagnostic_fallback"
+      }
+    },
+    "C": {
+      "period": "DIAG",
+      "tau": 1.0,
+      "n_eligible_abrupt": 3,
+      "n_hit": 2,
+      "abrupt_6h_recall": 0.6666666666666666,
+      "mean_delay_hours": 2.1666666666666665,
+      "delays_hours": [
+        2.4166666666666665,
+        1.9166666666666667
+      ],
+      "n_notifications": 374,
+      "n_unmatched": 372,
+      "unmatched_per_week": 14.152440980543867,
+      "occupancy": 0.5450634057971014,
+      "unmatched_on_transition_frac": 0.9919354838709677,
+      "gate_pass": false,
+      "events": [
+        {
+          "pipe": "p183",
+          "onset": "2018-08-07 02:35:00",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null
+        },
+        {
+          "pipe": "p158",
+          "onset": "2018-10-06 02:35:00",
+          "hit": true,
+          "delay_hours": 2.4166666666666665,
+          "matched_notify": "2018-10-06 05:00:00"
+        },
+        {
+          "pipe": "p369",
+          "onset": "2018-10-26 02:05:00",
+          "hit": true,
+          "delay_hours": 1.9166666666666667,
+          "matched_notify": "2018-10-26 04:00:00"
+        }
+      ],
+      "timing_nulls": {
+        "n_nulls": 200,
+        "true_recall": 0.6666666666666666,
+        "null_recall_mean": 0.925,
+        "null_recall_std": 0.1578941276791368,
+        "true_percentile_vs_null": 0.2
+      },
+      "selection": {
+        "selection_passed": false,
+        "tau": 1.0,
+        "fallback": true,
+        "reason": "no_tau_passed_gates_diagnostic_fallback"
+      }
+    }
+  },
+  "any_selection_passed": false
+}

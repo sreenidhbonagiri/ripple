@@ -5,6 +5,9 @@ outputs/synthetic/_scratch/
 outputs/calibration/_scratch/
 outputs/calibration/_scratch_audit/
 outputs/calibration/_scratch_timing/
+outputs/detection_2018/_scratch/
+outputs/detection_2018/*.csv
+outputs/detection_2018/*.parquet
 *.inp
 !fixtures/**/*.inp
 temp.bin

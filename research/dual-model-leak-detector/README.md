@@ -9,8 +9,8 @@ Isolated research package reconstructing the **pressure–leak dual model**
 |-------|--------|
 | 1 Dual hydraulic solver | **Implemented** |
 | 2 Synthetic mechanism verification | **Implemented** |
-| 3 Measured 2018 calibration | **Implemented — stop for review** (`PASS_WITH_LIMITATIONS`) |
-| 4 Detection + continuous metrics | Not started |
+| 3 Measured 2018 calibration | **Corrected freeze** (`PASS_WITH_LIMITATIONS`) |
+| 4 Detection feasibility 2018 | **Ran** — DEV selection **failed** all methods; DIAG diagnostic only |
 
 ## Quick start
 
@@ -33,6 +33,8 @@ Requires `data/raw/2018_SCADA_{Pressures,Flows,Levels,Demands}.csv` (Demands fro
 | `CALIBRATION_WINDOWS.md` | Fit/validation windows (declared before fitting) |
 | `outputs/synthetic/SYNTHETIC_VERIFICATION_RESULTS.md` | Stage 2 results |
 | `outputs/calibration/STAGE3_VERDICT.md` | Stage 3 verdict |
+| `DETECTION_PROTOCOL.md` | 2018 detection protocol (pre-registered) |
+| `outputs/detection_2018/DETECTION_RESULTS.md` | DEV/DIAG detection results |
 
 ## Layout
 
