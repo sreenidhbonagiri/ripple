@@ -1,0 +1,356 @@
+{
+  "generated_at_utc": "2026-10-25T05:17:28.454999+00:00",
+  "acknowledgement": "Diagnostic audit only; no Method M refit, \u03c4 change, or dual rebuild. Non-onset neighborhoods are not treated as leak-free.",
+  "frozen_calibration_sha256": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+  "method_m_tau": 4.347,
+  "scale_period": [
+    "2018-01-09 01:00:00",
+    "2018-01-21 23:00:00"
+  ],
+  "month_scale_transfer_summary": [
+    {
+      "year_month": "2018-01",
+      "n_sensors": 33,
+      "ratio_median": 0.9641118367355734,
+      "ratio_p10": 0.9402479378402393,
+      "ratio_p90": 0.987824642385314,
+      "frac_ratio_gt_1_5": 0.0,
+      "frac_ratio_lt_0_67": 0.0
+    },
+    {
+      "year_month": "2018-02",
+      "n_sensors": 33,
+      "ratio_median": 0.9254491634646599,
+      "ratio_p10": 0.8449017674392332,
+      "ratio_p90": 1.0062294224318131,
+      "frac_ratio_gt_1_5": 0.0,
+      "frac_ratio_lt_0_67": 0.030303030303030304
+    },
+    {
+      "year_month": "2018-03",
+      "n_sensors": 33,
+      "ratio_median": 0.8813053985348681,
+      "ratio_p10": 0.8061049623572465,
+      "ratio_p90": 0.9904222112344722,
+      "frac_ratio_gt_1_5": 0.030303030303030304,
+      "frac_ratio_lt_0_67": 0.030303030303030304
+    },
+    {
+      "year_month": "2018-04",
+      "n_sensors": 33,
+      "ratio_median": 0.9366463708556706,
+      "ratio_p10": 0.8765217400123533,
+      "ratio_p90": 1.0078586661293287,
+      "frac_ratio_gt_1_5": 0.0,
+      "frac_ratio_lt_0_67": 0.030303030303030304
+    },
+    {
+      "year_month": "2018-05",
+      "n_sensors": 33,
+      "ratio_median": 0.9455829908178821,
+      "ratio_p10": 0.8398002701476501,
+      "ratio_p90": 1.0202706636511738,
+      "frac_ratio_gt_1_5": 0.0,
+      "frac_ratio_lt_0_67": 0.030303030303030304
+    },
+    {
+      "year_month": "2018-06",
+      "n_sensors": 33,
+      "ratio_median": 0.9299819146109448,
+      "ratio_p10": 0.8367103336595519,
+      "ratio_p90": 1.0294054965585047,
+      "frac_ratio_gt_1_5": 0.030303030303030304,
+      "frac_ratio_lt_0_67": 0.030303030303030304
+    },
+    {
+      "year_month": "2018-07",
+      "n_sensors": 33,
+      "ratio_median": 0.9772607945098559,
+      "ratio_p10": 0.7764866987993121,
+      "ratio_p90": 1.0705881872315715,
+      "frac_ratio_gt_1_5": 0.0,
+      "frac_ratio_lt_0_67": 0.06060606060606061
+    },
+    {
+      "year_month": "2018-08",
+      "n_sensors": 33,
+      "ratio_median": 0.9151685244700299,
+      "ratio_p10": 0.7815341584666347,
+      "ratio_p90": 1.0244833539534186,
+      "frac_ratio_gt_1_5": 0.0,
+      "frac_ratio_lt_0_67": 0.030303030303030304
+    },
+    {
+      "year_month": "2018-09",
+      "n_sensors": 33,
+      "ratio_median": 0.9232330904117192,
+      "ratio_p10": 0.839984424514461,
+      "ratio_p90": 0.9863535514556688,
+      "frac_ratio_gt_1_5": 0.0,
+      "frac_ratio_lt_0_67": 0.030303030303030304
+    },
+    {
+      "year_month": "2018-10",
+      "n_sensors": 33,
+      "ratio_median": 0.8607676846977169,
+      "ratio_p10": 0.7406034136026126,
+      "ratio_p90": 0.9777071873629557,
+      "frac_ratio_gt_1_5": 0.0,
+      "frac_ratio_lt_0_67": 0.06060606060606061
+    },
+    {
+      "year_month": "2018-11",
+      "n_sensors": 33,
+      "ratio_median": 0.8517996616653182,
+      "ratio_p10": 0.7811572848263192,
+      "ratio_p90": 0.9587989042943711,
+      "frac_ratio_gt_1_5": 0.0,
+      "frac_ratio_lt_0_67": 0.030303030303030304
+    },
+    {
+      "year_month": "2018-12",
+      "n_sensors": 33,
+      "ratio_median": 0.8608140043266448,
+      "ratio_p10": 0.790397757896968,
+      "ratio_p90": 0.9596304586364696,
+      "frac_ratio_gt_1_5": 0.0,
+      "frac_ratio_lt_0_67": 0.030303030303030304
+    }
+  ],
+  "focus_events": [
+    {
+      "pipe": "p183",
+      "onset": "2018-08-07 02:35:00",
+      "month_local_sigma": "2018-08",
+      "n_controls": 25,
+      "credit_max_score_M": 2.496372231772623,
+      "tau_M": 4.347,
+      "below_tau": true,
+      "event_window": {
+        "network_max_abs_delta": 11.508487034203426,
+        "argmax_abs_delta_sensor": "n342",
+        "network_max_z_scale": 4.603308063798568,
+        "argmax_z_scale_sensor": "n752",
+        "network_max_z_local": 6.093618629443226,
+        "argmax_z_local_sensor": "n752",
+        "credit_max_s_M_from_deltas": 2.496372231772623
+      },
+      "snr_vs_operating_matched_controls": {
+        "max_abs_delta": -0.6842154479346945,
+        "max_z_scale": 1.3166354967756386,
+        "max_z_local_month": 2.4505471927362716,
+        "credit_s_M": 1.3166354967756377
+      },
+      "ctrl_means": {
+        "max_abs_delta": 12.350665717330703,
+        "max_z_scale": 3.6673183546390447,
+        "max_z_local": 4.090923087804375
+      },
+      "top_sensors_max_abs_delta": [
+        [
+          "n342",
+          11.508487034203426
+        ],
+        [
+          "n188",
+          10.114814037020551
+        ],
+        [
+          "n429",
+          8.666715932486113
+        ],
+        [
+          "n752",
+          8.568481255788356
+        ],
+        [
+          "n114",
+          7.102318912278861
+        ]
+      ],
+      "top_sensors_z_scale": [
+        [
+          "n752",
+          4.603308063798568
+        ],
+        [
+          "n519",
+          4.166034313392213
+        ],
+        [
+          "n644",
+          3.798266473621191
+        ],
+        [
+          "n342",
+          3.7927818068987964
+        ],
+        [
+          "n458",
+          3.7632071111243053
+        ]
+      ],
+      "top_sensors_z_local": [
+        [
+          "n752",
+          6.093618629443226
+        ],
+        [
+          "n458",
+          4.723278094810768
+        ],
+        [
+          "n636",
+          4.298237019608839
+        ],
+        [
+          "n342",
+          4.212796174826566
+        ],
+        [
+          "n519",
+          4.115809127700538
+        ]
+      ],
+      "verdict": "mixed_or_unclear",
+      "note_controls": "Controls are operating-condition matched non-onset-neighborhood hours; they are not treated as confirmed leak-free."
+    },
+    {
+      "pipe": "p369",
+      "onset": "2018-10-26 02:05:00",
+      "month_local_sigma": "2018-10",
+      "n_controls": 25,
+      "credit_max_score_M": 2.359763820269915,
+      "tau_M": 4.347,
+      "below_tau": true,
+      "event_window": {
+        "network_max_abs_delta": 13.871471753940568,
+        "argmax_abs_delta_sensor": "n429",
+        "network_max_z_scale": 4.351402280578654,
+        "argmax_z_scale_sensor": "n410",
+        "network_max_z_local": 5.0870926824970155,
+        "argmax_z_local_sensor": "n410",
+        "credit_max_s_M_from_deltas": 2.359763820269915
+      },
+      "snr_vs_operating_matched_controls": {
+        "max_abs_delta": 1.1610378756437958,
+        "max_z_scale": 1.5808797089890916,
+        "max_z_local_month": 1.0094550020308535,
+        "credit_s_M": 1.5808797089890922
+      },
+      "ctrl_means": {
+        "max_abs_delta": 11.116980675621743,
+        "max_z_scale": 3.1537970764675403,
+        "max_z_local": 3.847983468753145
+      },
+      "top_sensors_max_abs_delta": [
+        [
+          "n429",
+          13.871471753940568
+        ],
+        [
+          "n54",
+          7.355370077770203
+        ],
+        [
+          "n410",
+          5.9694379595748615
+        ],
+        [
+          "n105",
+          5.080067056696862
+        ],
+        [
+          "n342",
+          4.758113653748296
+        ]
+      ],
+      "top_sensors_z_scale": [
+        [
+          "n410",
+          4.351402280578654
+        ],
+        [
+          "n429",
+          2.923806448118123
+        ],
+        [
+          "n105",
+          2.4214417506433064
+        ],
+        [
+          "n679",
+          2.092280677599852
+        ],
+        [
+          "n740",
+          1.881975641666895
+        ]
+      ],
+      "top_sensors_z_local": [
+        [
+          "n410",
+          5.0870926824970155
+        ],
+        [
+          "n429",
+          3.609216372949811
+        ],
+        [
+          "n105",
+          2.642722043440182
+        ],
+        [
+          "n769",
+          2.3568140838150127
+        ],
+        [
+          "n679",
+          2.138693748396007
+        ]
+      ],
+      "verdict": "weak_vs_contemporaneous_ordinary",
+      "note_controls": "Controls are operating-condition matched non-onset-neighborhood hours; they are not treated as confirmed leak-free."
+    }
+  ],
+  "timing_nulls_diag_detail": {
+    "assignment_rules": {
+      "description": "Density-matched timing nulls: for each of N null replicates, sample |E| candidate onsets uniformly from DIAG eligible hours that match the empirical hour-of-day of the true abrupt onsets (one draw per true event HOD). Episodes/notifies are fixed from the score series at frozen \u03c4; a null onset is a hit if any notify falls in [onset, onset+6h]. True percentile = fraction of null recalls \u2264 true recall.",
+      "eligible_hours": "DIAG index hours with t >= DIAG_START + WARMUP_HOURS (25h)",
+      "matching": "hour-of-day of each true abrupt onset",
+      "hit_rule": "any Method M notify in credit window [t0, t0+6h]",
+      "percentile_definition": "mean(I(null_recall <= true_recall))",
+      "rng_seed": 2031
+    },
+    "n_null_replicates": 200,
+    "n_true_events_E": 3,
+    "n_onset_timestamp_draws_total": 600,
+    "n_fixed_notifies_in_DIAG": 2,
+    "true_recall": 0.3333333333333333,
+    "null_recall_mean": 0.006666666666666666,
+    "null_recall_std": 0.04666666666666666,
+    "true_percentile_vs_null": 1.0,
+    "null_recall_value_counts": {
+      "0.0": 196,
+      "0.333333": 4
+    },
+    "n_nulls_with_recall_ge_true": 4,
+    "n_nulls_with_recall_le_true": 200,
+    "from_stored_method_m_json": {
+      "n_nulls": 200,
+      "true_recall": 0.3333333333333333,
+      "null_recall_mean": 0.006666666666666666,
+      "null_recall_std": 0.04666666666666666,
+      "true_percentile_vs_null": 1.0
+    },
+    "recomputed_matches_stored": true
+  },
+  "recommendation_causal_scale_adaptation": null,
+  "recommend_adaptation": false,
+  "recommendation_note": "Evidence does not cleanly support causal scale adaptation: focus verdicts=['mixed_or_unclear', 'weak_vs_contemporaneous_ordinary']; median Jul\u2013Dec \u03c3 ratio\u22480.90.",
+  "growing_leak_absorption_assessment": {
+    "risk": "Causal rolling/adapting \u03c3_i estimated on a recent window that includes a slowly growing leak will inflate \u03c3_i as |\u03b4_i| grows, so |\u03b4_i|/\u03c3_i can remain ordinary even while the physical leak enlarges \u2014 adaptation can absorb growing leaks.",
+    "implication": "Even if SCALE transfer is imperfect, recommending adaptation requires that obscuring from stale January scales dominate, and that absorption risk is accepted or mitigated (e.g. floor \u03c3, exclude high-|\u03b4| hours from scale updates, or dual timescales). This audit does not implement adaptation.",
+    "supported_here": false
+  }
+}
