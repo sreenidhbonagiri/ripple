@@ -7,6 +7,12 @@ Branch `research/per-sensor-relationship-cusum` from `main`.
 - Independent of LILA source; does not reproduce published results.
 - Prior `research/retrospective-review` negative decision is preserved elsewhere.
 
+**CUSUM-family threshold tuning: closed.** Further \(h\) / recovery / context
+sweeps on this detector family are not continued. Preserved results remain in
+`outputs/` (including `THRESHOLD_CALIBRATION_*.md`). Next distinct question
+(finite-memory recent–reference change) is design-only under
+`research/finite-memory-relationship-change/` — not implemented from this package.
+
 ```bash
 .venv/bin/python -m pytest research/per-sensor-relationship-cusum/tests -q
 .venv/bin/python research/per-sensor-relationship-cusum/run_experiment.py

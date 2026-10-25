@@ -30,6 +30,12 @@ h \in \{512, 1024, 2048, 4096, 8192, 16384\}
 
 Do **not** silently extend further if none qualify.
 
+**Closure (post-run):** the extension selected \(h{=}2048\) on DEV then failed
+useful 6 h abrupt sensitivity on DIAG (`outputs/THRESHOLD_CALIBRATION_EXTENSION_RESULTS.md`).
+Further CUSUM-\(h\) tuning of this family is **closed**. See
+`research/finite-memory-relationship-change/DESIGN.md` for the next distinct
+(design-only) question.
+
 ## DEV targets (both required)
 
 1. **Useful abrupt sensitivity (declared):** at least **2/3** of eligible DEV
