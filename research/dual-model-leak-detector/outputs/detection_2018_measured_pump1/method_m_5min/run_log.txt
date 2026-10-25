@@ -1,0 +1,19 @@
+Matplotlib is building the font cache; this may take a moment.
+=== Reproduce hourly Method M DEV from frozen score_M ===
+  hourly τ=4.347: recall=1.0 unm/wk=0.201 occ=0.028 pass=True
+Building 5-min dual 2018-01-08 00:00:00 → 2018-06-30 23:55:00 (chunk_days=3) …
+  dual done: n=50112 failures=0 runtime=39.2s
+  fill/missing summary: {"n_timestamps": 50112, "n_solver_failures": 0, "n_chunks": 58, "n_qv_cleared_stale_total": 0, "frac_qv_cleared_stale": 0.0, "median_index_step": "0 days 00:05:00", "pressure": {"n_cells": 1653696, "n_observed": 1653696, "n_filled": 0, "n_unavailable": 0, "frac_observed": 1.0, "frac_filled": 0.0, "frac_unavailable": 0.0}, "pump": {"n_cells": 50112, "n_observed": 50112, "n_filled": 0, "n_unavailable": 0, "frac_observed": 1.0, "frac_filled": 0.0, "frac_unavailable": 0.0}}
+Estimating SCALE σ_i on 2018-01-09 01:00:00 → 2018-01-21 23:00:00 (n=3721) …
+  kept 33 sensors; raw_max median=1.8627628082175554
+Computing s_M (5-min) …
+Registered τ grid (DEV p75/p90/p95/p99): (1.175, 1.565, 2.117, 4.517)
+  τ=1.175: recall=0.000 unm/wk=0.040 occ=0.997 pass=False
+  τ=1.565: recall=0.000 unm/wk=1.971 occ=0.930 pass=False
+  τ=2.117: recall=0.333 unm/wk=4.747 occ=0.324 pass=False
+  τ=4.517: recall=1.000 unm/wk=0.201 occ=0.031 pass=True
+DEV PASS → building DIAG dual and evaluating at τ=4.517
+Building 5-min dual 2018-07-01 00:00:00 → 2018-12-31 23:55:00 (chunk_days=3) …
+  dual done: n=52992 failures=0 runtime=39.5s
+Wrote /Users/sreenidhbonagiri/Desktop/rippple-method-m-multiscale/research/dual-model-leak-detector/outputs/detection_2018_measured_pump1/method_m_5min/METHOD_M_5MIN_RESULTS.md
+Total runtime 286.2s

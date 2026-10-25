@@ -1,0 +1,533 @@
+{
+  "generated_at_utc": "2026-10-25T06:34:30.590334+00:00",
+  "protocol": "outputs/detection_2018_measured_pump1/method_m_5min/METHOD_M_5MIN_PROTOCOL.md",
+  "acknowledgement": "2018 events have already been examined; measured findings are diagnostic. Higher resolution is not assumed to improve sensitivity.",
+  "frozen_calibration_sha256": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+  "pump_boundary": "measured_pump1",
+  "timestep_sec": 300,
+  "ref_min_samples": 144,
+  "min_scale_samples": 288,
+  "recover_steps": 12,
+  "causal_fill_max_age_steps": 2,
+  "runtime_sec_total": 286.15038333297707,
+  "runtime_sec_score": 90.06097425008193,
+  "runtime_sec_dual_dev": 39.152007333002985,
+  "dual_fill_summary": {
+    "n_timestamps": 50112,
+    "n_solver_failures": 0,
+    "n_chunks": 58,
+    "n_qv_cleared_stale_total": 0,
+    "frac_qv_cleared_stale": 0.0,
+    "median_index_step": "0 days 00:05:00",
+    "pressure": {
+      "n_cells": 1653696,
+      "n_observed": 1653696,
+      "n_filled": 0,
+      "n_unavailable": 0,
+      "frac_observed": 1.0,
+      "frac_filled": 0.0,
+      "frac_unavailable": 0.0
+    },
+    "pump": {
+      "n_cells": 50112,
+      "n_observed": 50112,
+      "n_filled": 0,
+      "n_unavailable": 0,
+      "frac_observed": 1.0,
+      "frac_filled": 0.0,
+      "frac_unavailable": 0.0
+    }
+  },
+  "hourly_baseline_reproduced": {
+    "tau": 4.347,
+    "abrupt_6h_recall": 1.0,
+    "mean_delay_hours": 1.5277777777777777,
+    "unmatched_per_week": 0.20115343936461055,
+    "occupancy": 0.02753831417624521,
+    "n_hit": 3,
+    "n_eligible_abrupt": 3,
+    "n_notifications": 8,
+    "gate_pass": true,
+    "events_detail": [
+      {
+        "pipe": "p673",
+        "onset": "2018-03-05 15:45:00",
+        "period": "DEV",
+        "hit": true,
+        "delay_hours": 0.25,
+        "matched_notify": "2018-03-05 16:00:00",
+        "pre_onset_blocked": false,
+        "credit_max_score": 6.532246161855244,
+        "credit_n_finite": 6,
+        "n_credit_notifies": 1
+      },
+      {
+        "pipe": "p538",
+        "onset": "2018-05-18 08:35:00",
+        "period": "DEV",
+        "hit": true,
+        "delay_hours": 3.4166666666666665,
+        "matched_notify": "2018-05-18 12:00:00",
+        "pre_onset_blocked": false,
+        "credit_max_score": 4.853290243682559,
+        "credit_n_finite": 6,
+        "n_credit_notifies": 1
+      },
+      {
+        "pipe": "p866",
+        "onset": "2018-06-01 09:05:00",
+        "period": "DEV",
+        "hit": true,
+        "delay_hours": 0.9166666666666666,
+        "matched_notify": "2018-06-01 10:00:00",
+        "pre_onset_blocked": false,
+        "credit_max_score": 6.450353429206096,
+        "credit_n_finite": 6,
+        "n_credit_notifies": 1
+      }
+    ],
+    "source": {
+      "score_file": "outputs/detection_2018_measured_pump1/score_M.csv",
+      "note": "Reproduced from existing frozen hourly score_M; hydraulics not re-run.",
+      "tau": 4.347
+    }
+  },
+  "scale": {
+    "period": [
+      "2018-01-09 01:00:00",
+      "2018-01-21 23:00:00"
+    ],
+    "n_scale_hours": 3721,
+    "n_sensors_kept": 33,
+    "sensors_dropped": [],
+    "raw_max_median": 1.8627628082175554,
+    "raw_max_p90": 2.8087360353123354,
+    "n_raw_max": 3721,
+    "ref_min_samples": 144,
+    "min_scale_samples": 288,
+    "sigma_m3h": {
+      "n1": 0.31087553133072093,
+      "n4": 0.4026164677740764,
+      "n31": 1.482271674896064,
+      "n54": 5.842023442539699,
+      "n105": 2.141142616532684,
+      "n114": 2.36583851531327,
+      "n163": 1.7374336433679538,
+      "n188": 2.8647877755563598,
+      "n215": 1.3231277616771486,
+      "n229": 1.6328994917409207,
+      "n288": 1.468528684947081,
+      "n296": 1.1168174604143477,
+      "n332": 1.5705539209016994,
+      "n342": 2.921697584187009,
+      "n410": 1.3535969945269497,
+      "n415": 0.8186826662765386,
+      "n429": 4.64625971000806,
+      "n458": 1.159164397758888,
+      "n469": 1.005334896664299,
+      "n495": 0.7792720820548943,
+      "n506": 1.007940197093517,
+      "n516": 1.2578771276067773,
+      "n519": 1.5256061134534615,
+      "n549": 1.1182487772525942,
+      "n613": 1.283618301607698,
+      "n636": 1.3074956087005425,
+      "n644": 1.5382573764751095,
+      "n679": 1.3448824485932525,
+      "n722": 0.7994352547874038,
+      "n726": 1.2134500372307853,
+      "n740": 0.47462744108760213,
+      "n752": 1.7512871624586592,
+      "n769": 1.047951154220064
+    }
+  },
+  "score_dev_distribution": {
+    "n": 49812,
+    "mean": 1.0968339156008233,
+    "quantiles": {
+      "0.75": 1.1747589848148936,
+      "0.9": 1.5652774987348752,
+      "0.95": 2.1174223649996176,
+      "0.99": 4.517234473146126
+    },
+    "max": 7.766333261072733
+  },
+  "tau_grid_registered": [
+    1.175,
+    1.565,
+    2.117,
+    4.517
+  ],
+  "gates": {
+    "abrupt_6h_recall_min": 0.6666666666666666,
+    "unmatched_per_week_max": 3.0,
+    "occupancy_max": 0.2
+  },
+  "dev_by_tau": {
+    "1.175": {
+      "tau": 1.175,
+      "abrupt_6h_recall": 0.0,
+      "unmatched_per_week": 0.04023068787292211,
+      "occupancy": 0.9968869731800766,
+      "n_hit": 0,
+      "n_eligible_abrupt": 3,
+      "n_notifications": 1,
+      "gate_pass": false,
+      "mean_delay_hours": null,
+      "events_detail": [
+        {
+          "pipe": "p673",
+          "onset": "2018-03-05 15:45:00",
+          "period": "DEV",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": true,
+          "credit_max_score": 7.6215343566625515,
+          "credit_n_finite": 73,
+          "n_credit_notifies": 0
+        },
+        {
+          "pipe": "p538",
+          "onset": "2018-05-18 08:35:00",
+          "period": "DEV",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": true,
+          "credit_max_score": 5.006165215118364,
+          "credit_n_finite": 73,
+          "n_credit_notifies": 0
+        },
+        {
+          "pipe": "p866",
+          "onset": "2018-06-01 09:05:00",
+          "period": "DEV",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": true,
+          "credit_max_score": 6.913131113133562,
+          "credit_n_finite": 73,
+          "n_credit_notifies": 0
+        }
+      ],
+      "timing_nulls": {
+        "n_nulls": 50,
+        "true_recall": 0.0,
+        "null_recall_mean": 0.0,
+        "null_recall_std": 0.0,
+        "true_percentile_vs_null": 1.0
+      }
+    },
+    "1.565": {
+      "tau": 1.565,
+      "abrupt_6h_recall": 0.0,
+      "unmatched_per_week": 1.9713037057731835,
+      "occupancy": 0.929617656449553,
+      "n_hit": 0,
+      "n_eligible_abrupt": 3,
+      "n_notifications": 49,
+      "gate_pass": false,
+      "mean_delay_hours": null,
+      "events_detail": [
+        {
+          "pipe": "p673",
+          "onset": "2018-03-05 15:45:00",
+          "period": "DEV",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": true,
+          "credit_max_score": 7.6215343566625515,
+          "credit_n_finite": 73,
+          "n_credit_notifies": 0
+        },
+        {
+          "pipe": "p538",
+          "onset": "2018-05-18 08:35:00",
+          "period": "DEV",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": true,
+          "credit_max_score": 5.006165215118364,
+          "credit_n_finite": 73,
+          "n_credit_notifies": 0
+        },
+        {
+          "pipe": "p866",
+          "onset": "2018-06-01 09:05:00",
+          "period": "DEV",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": true,
+          "credit_max_score": 6.913131113133562,
+          "credit_n_finite": 73,
+          "n_credit_notifies": 0
+        }
+      ],
+      "timing_nulls": {
+        "n_nulls": 50,
+        "true_recall": 0.0,
+        "null_recall_mean": 0.0,
+        "null_recall_std": 0.0,
+        "true_percentile_vs_null": 1.0
+      }
+    },
+    "2.117": {
+      "tau": 2.117,
+      "abrupt_6h_recall": 0.3333333333333333,
+      "unmatched_per_week": 4.747221169004809,
+      "occupancy": 0.32363505747126436,
+      "n_hit": 1,
+      "n_eligible_abrupt": 3,
+      "n_notifications": 119,
+      "gate_pass": false,
+      "mean_delay_hours": 0.0,
+      "events_detail": [
+        {
+          "pipe": "p673",
+          "onset": "2018-03-05 15:45:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 0.0,
+          "matched_notify": "2018-03-05 15:45:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 7.6215343566625515,
+          "credit_n_finite": 73,
+          "n_credit_notifies": 1
+        },
+        {
+          "pipe": "p538",
+          "onset": "2018-05-18 08:35:00",
+          "period": "DEV",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": true,
+          "credit_max_score": 5.006165215118364,
+          "credit_n_finite": 73,
+          "n_credit_notifies": 0
+        },
+        {
+          "pipe": "p866",
+          "onset": "2018-06-01 09:05:00",
+          "period": "DEV",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": true,
+          "credit_max_score": 6.913131113133562,
+          "credit_n_finite": 73,
+          "n_credit_notifies": 0
+        }
+      ],
+      "timing_nulls": {
+        "n_nulls": 50,
+        "true_recall": 0.3333333333333333,
+        "null_recall_mean": 0.08666666666666666,
+        "null_recall_std": 0.16069294390925265,
+        "true_percentile_vs_null": 0.98
+      }
+    },
+    "4.517": {
+      "tau": 4.517,
+      "abrupt_6h_recall": 1.0,
+      "unmatched_per_week": 0.20115343936461055,
+      "occupancy": 0.031269955300127716,
+      "n_hit": 3,
+      "n_eligible_abrupt": 3,
+      "n_notifications": 8,
+      "gate_pass": true,
+      "mean_delay_hours": 0.2777777777777778,
+      "events_detail": [
+        {
+          "pipe": "p673",
+          "onset": "2018-03-05 15:45:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 0.0,
+          "matched_notify": "2018-03-05 15:45:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 7.6215343566625515,
+          "credit_n_finite": 73,
+          "n_credit_notifies": 1
+        },
+        {
+          "pipe": "p538",
+          "onset": "2018-05-18 08:35:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 0.8333333333333334,
+          "matched_notify": "2018-05-18 09:25:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 5.006165215118364,
+          "credit_n_finite": 73,
+          "n_credit_notifies": 1
+        },
+        {
+          "pipe": "p866",
+          "onset": "2018-06-01 09:05:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 0.0,
+          "matched_notify": "2018-06-01 09:05:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 6.913131113133562,
+          "credit_n_finite": 73,
+          "n_credit_notifies": 1
+        }
+      ],
+      "timing_nulls": {
+        "n_nulls": 50,
+        "true_recall": 1.0,
+        "null_recall_mean": 0.04,
+        "null_recall_std": 0.10832051206181283,
+        "true_percentile_vs_null": 1.0
+      }
+    }
+  },
+  "selection": {
+    "selection_passed": true,
+    "tau": 4.517,
+    "reason": "largest_tau_passing_recall_burden_occupancy"
+  },
+  "paired_comparison": {
+    "hourly_tau": 4.347,
+    "five_min_tau_reported": 4.517,
+    "five_min_selection_passed": true,
+    "recall_hourly": 1.0,
+    "recall_five_min": 1.0,
+    "unmatched_per_week_hourly": 0.20115343936461055,
+    "unmatched_per_week_five_min": 0.20115343936461055,
+    "occupancy_hourly": 0.02753831417624521,
+    "occupancy_five_min": 0.031269955300127716,
+    "mean_delay_hourly": 1.5277777777777777,
+    "mean_delay_five_min": 0.2777777777777778,
+    "events": [
+      {
+        "pipe": "p673",
+        "hourly_hit": true,
+        "hourly_delay_hours": 0.25,
+        "hourly_pre_onset_blocked": false,
+        "five_min_hit": true,
+        "five_min_delay_hours": 0.0,
+        "five_min_pre_onset_blocked": false,
+        "hit_gain": false,
+        "hit_regression": false,
+        "delay_delta_hours": -0.25
+      },
+      {
+        "pipe": "p538",
+        "hourly_hit": true,
+        "hourly_delay_hours": 3.4166666666666665,
+        "hourly_pre_onset_blocked": false,
+        "five_min_hit": true,
+        "five_min_delay_hours": 0.8333333333333334,
+        "five_min_pre_onset_blocked": false,
+        "hit_gain": false,
+        "hit_regression": false,
+        "delay_delta_hours": -2.583333333333333
+      },
+      {
+        "pipe": "p866",
+        "hourly_hit": true,
+        "hourly_delay_hours": 0.9166666666666666,
+        "hourly_pre_onset_blocked": false,
+        "five_min_hit": true,
+        "five_min_delay_hours": 0.0,
+        "five_min_pre_onset_blocked": false,
+        "hit_gain": false,
+        "hit_regression": false,
+        "delay_delta_hours": -0.9166666666666666
+      }
+    ]
+  },
+  "diag": {
+    "tau": 4.517,
+    "abrupt_6h_recall": 0.3333333333333333,
+    "mean_delay_hours": 0.0,
+    "unmatched_per_week": 0.03804419618425771,
+    "occupancy": 0.008152173913043478,
+    "n_hit": 1,
+    "n_eligible_abrupt": 3,
+    "n_notifications": 2,
+    "n_unmatched": 1,
+    "unmatched_on_transition_frac": 1.0,
+    "timing_nulls": {
+      "n_nulls": 200,
+      "true_recall": 0.3333333333333333,
+      "null_recall_mean": 0.005,
+      "null_recall_std": 0.040517485937144056,
+      "true_percentile_vs_null": 1.0
+    },
+    "events_detail": [
+      {
+        "pipe": "p183",
+        "onset": "2018-08-07 02:35:00",
+        "period": "DIAG",
+        "hit": false,
+        "delay_hours": null,
+        "matched_notify": null,
+        "pre_onset_blocked": false,
+        "credit_max_score": 2.999284342707537,
+        "credit_n_finite": 73,
+        "n_credit_notifies": 0
+      },
+      {
+        "pipe": "p158",
+        "onset": "2018-10-06 02:35:00",
+        "period": "DIAG",
+        "hit": true,
+        "delay_hours": 0.0,
+        "matched_notify": "2018-10-06 02:35:00",
+        "pre_onset_blocked": false,
+        "credit_max_score": 5.8830022139691325,
+        "credit_n_finite": 73,
+        "n_credit_notifies": 1
+      },
+      {
+        "pipe": "p369",
+        "onset": "2018-10-26 02:05:00",
+        "period": "DIAG",
+        "hit": false,
+        "delay_hours": null,
+        "matched_notify": null,
+        "pre_onset_blocked": false,
+        "credit_max_score": 2.6970451467669916,
+        "credit_n_finite": 73,
+        "n_credit_notifies": 0
+      }
+    ],
+    "dual_fill_summary": {
+      "n_timestamps": 52992,
+      "n_solver_failures": 0,
+      "n_chunks": 62,
+      "n_qv_cleared_stale_total": 0,
+      "frac_qv_cleared_stale": 0.0,
+      "median_index_step": "0 days 00:05:00",
+      "pressure": {
+        "n_cells": 1748736,
+        "n_observed": 1748736,
+        "n_filled": 0,
+        "n_unavailable": 0,
+        "frac_observed": 1.0,
+        "frac_filled": 0.0,
+        "frac_unavailable": 0.0
+      },
+      "pump": {
+        "n_cells": 52992,
+        "n_observed": 52992,
+        "n_filled": 0,
+        "n_unavailable": 0,
+        "frac_observed": 1.0,
+        "frac_filled": 0.0,
+        "frac_unavailable": 0.0
+      }
+    },
+    "dual_runtime_sec": 39.50472454098053
+  },
+  "diag_skipped_reason": null
+}
