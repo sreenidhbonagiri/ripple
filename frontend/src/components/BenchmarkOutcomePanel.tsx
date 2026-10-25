@@ -42,12 +42,11 @@ export default function BenchmarkOutcomePanel({ onReturnToReplay }: Props) {
       <header className="benchmark-outcome-header">
         <p className="benchmark-outcome-kicker">Evaluation view</p>
         <h2 className="benchmark-outcome-title">
-          {data?.title ??
-            "Benchmark answers — retrospective evaluation, not available to the detector."}
+          Benchmark answers — retrospective evaluation
         </h2>
         <p className="benchmark-outcome-disclaimer" role="note">
-          This view is separate from historical replay. Labels were not available
-          to the detector. Returning to replay removes ground-truth overlays.
+          Labels shown here were not available during investigation. Return to
+          replay to clear ground-truth overlays.
         </p>
         <button type="button" className="btn" onClick={onReturnToReplay}>
           Return to investigation replay
@@ -69,7 +68,10 @@ export default function BenchmarkOutcomePanel({ onReturnToReplay }: Props) {
         <div className="benchmark-outcome-body">
           <section className="benchmark-outcome-section" aria-labelledby="bo-example">
             <h3 id="bo-example">Verified example — 24 Jan abrupt (p827)</h3>
-            <p className="channel-note">{ex.label}</p>
+            <p className="channel-note">
+              One verified case from the frozen diagnostic record — not a claim
+              of overall detection accuracy.
+            </p>
             <dl className="benchmark-outcome-dl">
               <div className="detail-row">
                 <dt>Frozen notification time</dt>
@@ -83,7 +85,8 @@ export default function BenchmarkOutcomePanel({ onReturnToReplay }: Props) {
                 <dt>Delay (five-minute resolution)</dt>
                 <dd>
                   {ex.delay_five_minute_steps} five-minute step
-                  {ex.delay_five_minute_steps === 1 ? "" : "s"} ({ex.delay_hours} h)
+                  {ex.delay_five_minute_steps === 1 ? "" : "s"} ({ex.delay_hours}{" "}
+                  h) — same five-minute timestamp
                 </dd>
               </div>
               <div className="detail-row">
@@ -94,15 +97,14 @@ export default function BenchmarkOutcomePanel({ onReturnToReplay }: Props) {
                 </dd>
               </div>
             </dl>
-            <p className="channel-note">{ex.delay_note}</p>
-            <p className="channel-note">{ex.contributing_sensor_note}</p>
           </section>
 
-          <section
-            className="benchmark-outcome-section"
-            aria-labelledby="bo-diagnostic"
-          >
-            <h3 id="bo-diagnostic">Complete diagnostic evaluation (2019)</h3>
+          <details className="method-m-tech" open={false}>
+            <summary>Method and evaluation</summary>
+            <p className="channel-note">
+              Delay note: {ex.delay_note} {ex.contributing_sensor_note}
+            </p>
+            <h4 className="details-section">Complete diagnostic evaluation (2019)</h4>
             <ul className="benchmark-outcome-list">
               <li>
                 Abrupt:{" "}
@@ -122,10 +124,6 @@ export default function BenchmarkOutcomePanel({ onReturnToReplay }: Props) {
               <li>{data.year_examined_note}</li>
               <li>{data.localization_note}</li>
             </ul>
-          </section>
-
-          <details className="method-m-tech">
-            <summary>Provenance and artifact hashes</summary>
             <p className="channel-note">
               Artifact <code>{data.artifact_id}</code> v{data.version} · sha256{" "}
               <code>{data.artifact_sha256.slice(0, 16)}…</code>

@@ -69,19 +69,12 @@ export default function MethodMWarningPanel({
       tabIndex={-1}
     >
       <div className="method-m-header">
-        <p className="method-m-badge">Experimental · five-minute scoring</p>
         <h2 className="method-m-title">Experimental warning</h2>
-        <p className="method-m-disclaimer" role="note">
-          Experimental — not a confirmed leak. Scores and notification times use
-          a five-minute grid. Sensors listed below are evidence to inspect — not
-          leak locations.
-        </p>
       </div>
 
       {!cursor && (
         <p className="channel-note">
-          Set a replay cursor to load the experimental warning. Investigation
-          stays usable without a warning.
+          Set a replay cursor to load warning status for this investigation.
         </p>
       )}
 
@@ -108,15 +101,10 @@ export default function MethodMWarningPanel({
 
           {data.warning_active ? (
             <div className="method-m-active" role="status">
-              <p className="method-m-status">
-                Experimental warning active{" "}
-                <span className="warn-pill">
-                  Experimental — not a confirmed leak
-                </span>
-              </p>
+              <p className="method-m-status">Experimental warning</p>
               <p className="method-m-explain">
-                An unusual pattern was flagged. Review the sensor measurements and
-                operating conditions to investigate its cause.
+                An unusual pattern was flagged. Review the evidence to
+                investigate.
               </p>
               <p className="method-m-score">
                 Anomaly score {fmtScore(data.score)}
@@ -125,22 +113,16 @@ export default function MethodMWarningPanel({
                   / warning threshold {fmtScore(data.threshold)}
                 </span>
               </p>
-              <p className="channel-note">
-                Higher score means stronger deviation from the reference pattern —
-                not a leak probability.
-              </p>
               {data.notification?.notify_ts && (
                 <p className="channel-note">
-                  Warning notification time (five-minute stamp ≤ cursor):{" "}
-                  {data.notification.notify_ts}
+                  Notification time: {data.notification.notify_ts}
                 </p>
               )}
               {data.peak_score_observed_to_cursor !== null &&
                 data.peak_score_observed_to_cursor !== undefined && (
                   <p className="channel-note">
                     Peak score observed to cursor:{" "}
-                    {fmtScore(data.peak_score_observed_to_cursor)} (final episode
-                    peak/end withheld until the cursor reaches them)
+                    {fmtScore(data.peak_score_observed_to_cursor)}
                   </p>
                 )}
             </div>
@@ -151,9 +133,6 @@ export default function MethodMWarningPanel({
                   ? "No experimental warning evidence at this cursor"
                   : "No warning at this time"}
               </p>
-              <p className="method-m-explain">
-                No warning at this time. This does not rule out a leak.
-              </p>
               {data.score !== null && data.score !== undefined && (
                 <p className="method-m-score">
                   Anomaly score {fmtScore(data.score)}
@@ -163,22 +142,14 @@ export default function MethodMWarningPanel({
                   </span>
                 </p>
               )}
-              <p className="channel-note">
-                Investigation remains usable. No predicted leaking pipes are
-                shown.
-              </p>
             </div>
           )}
 
           {data.contributors.length > 0 && (
             <>
-              <h3 className="details-section">
-                Sensors contributing to this warning
-              </h3>
+              <h3 className="details-section">Contributing sensors</h3>
               <p className="channel-note">
-                Use <strong>Inspect sensor</strong> to update the map selection and
-                pressure chart at the current replay cursor. This does not identify
-                a leaking pipe.
+                Inspect a sensor to update the map selection and pressure chart.
               </p>
               {data.argmax_sensor_id ? (
                 <p className="channel-note">
@@ -200,7 +171,7 @@ export default function MethodMWarningPanel({
                       <th title="Reference variability (σ_SCALE), m³/h">
                         Reference variability (m³/h)
                       </th>
-                      <th title="Model-estimated flow mismatch (qᵥ), m³/h — not measured leak discharge">
+                      <th title="Model-estimated flow mismatch (qᵥ), m³/h">
                         Model-estimated flow mismatch (m³/h)
                       </th>
                       <th>Inspect</th>
@@ -245,13 +216,15 @@ export default function MethodMWarningPanel({
           )}
 
           <details className="method-m-tech">
-            <summary>How it works · technical details</summary>
+            <summary>Method and evaluation</summary>
             <p className="channel-note">
-              Method M experimental warning. Anomaly score is not a probability.
+              Five-minute Method M anomaly scores on the historical benchmark.
+              Score magnitude reflects deviation from the reference pattern.
               Model-estimated flow mismatch (qᵥ) is a dual-context residual used
-              for scoring — not measured leak discharge. δ is the change in that
-              mismatch; σ_SCALE is reference variability. Strongest contributing
-              sensor is the argmax of calibrated |z|.
+              for scoring; δ is the change in that mismatch; σ_SCALE is reference
+              variability. Strongest contributing sensor is the argmax of
+              calibrated |z|. Contributing sensors are investigation evidence, not
+              predicted leak pipes.
             </p>
             <p className="channel-note">
               Serving store:{" "}

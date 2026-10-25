@@ -36,8 +36,6 @@ import {
 import {
   PRESENTER,
   WARNING_DEMOS,
-  warningDemoForCursor,
-  warningDemoForWindow,
   type WarningDemoId,
 } from "./presenter";
 import { addSeconds, clampTs, normalizeNaive, parseNaive } from "./time";
@@ -86,7 +84,7 @@ export default function App() {
     sensorCount: number;
   } | null>(null);
   const [stepSeconds, setStepSeconds] = useState(300);
-  const [replayLabel, setReplayLabel] = useState("Historical benchmark replay");
+  const [replayLabel, setReplayLabel] = useState("Network replay");
   const [cursor, setCursor] = useState<string | null>(null);
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState(1);
@@ -205,7 +203,7 @@ export default function App() {
         );
         const end = normalizeNaive(windowRes.presenter_end || windowRes.end || "");
         setStepSeconds(windowRes.step_seconds || 300);
-        setReplayLabel(windowRes.label || "Historical benchmark replay");
+        setReplayLabel(windowRes.label || "Network replay");
         setDataCoverage({
           start: windowRes.data_start ? normalizeNaive(windowRes.data_start) : null,
           end: windowRes.data_end ? normalizeNaive(windowRes.data_end) : null,
@@ -475,24 +473,6 @@ export default function App() {
     setMethodMWarningLoading(true);
   }, [cursor]);
 
-  const activeDisclaimer = (() => {
-    if (openedInvestigation && restoreStatus === "ready") {
-      const matched =
-        warningDemoForCursor(openedInvestigation.cursor) ??
-        warningDemoForWindow(
-          normalizeNaive(openedInvestigation.window_start),
-          normalizeNaive(openedInvestigation.window_end),
-        );
-      if (matched) return matched.disclaimer;
-      return PRESENTER.disclaimer;
-    }
-    const matched =
-      warningDemoForCursor(cursor) ??
-      warningDemoForWindow(windowStart, windowEnd);
-    if (matched) return matched.disclaimer;
-    return PRESENTER.disclaimer;
-  })();
-
   const selectedObservation =
     selection?.kind === "sensor"
       ? observations.find((o) => o.sensor_id === selection.data.id) ?? null
@@ -504,12 +484,12 @@ export default function App() {
     <div className="app">
       <header className="topbar">
         <div className="brand-block">
-          <p className="product-tag">Historical benchmark replay</p>
+          <p className="product-tag">Historical benchmark</p>
           <h1 className="brand">Ripple</h1>
           <p className="headline">Follow the signal. Investigate the change.</p>
           <p className="tagline">
-            Review unusual water-network patterns, explore sensor evidence, and
-            share an investigation.
+            Replay the network, review flagged patterns, and share an
+            investigation.
           </p>
         </div>
         <div className="toolbar">
@@ -567,7 +547,6 @@ export default function App() {
         <>
           <ReplayControls
             label={replayLabel}
-            activeDisclaimer={activeDisclaimer}
             cursor={cursor}
             windowStart={windowStart}
             windowEnd={windowEnd}

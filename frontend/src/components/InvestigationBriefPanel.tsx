@@ -186,12 +186,6 @@ export default function InvestigationBriefPanel({
               <ul className="brief-list">
                 <li>
                   <strong>Status:</strong> {warningStatusLine(warning)}
-                  {warning.warning_active ? (
-                    <span className="brief-muted">
-                      {" "}
-                      · Experimental — not a confirmed leak
-                    </span>
-                  ) : null}
                 </li>
                 <li>
                   <strong>Notification time (five-minute stamp):</strong>{" "}
@@ -213,11 +207,6 @@ export default function InvestigationBriefPanel({
                 ) : null}
               </ul>
             )}
-            <p className="brief-muted">
-              Experimental — not a confirmed leak. Anomaly score is not a
-              probability. Method M identity and hashes are in the on-screen
-              technical details, not repeated here.
-            </p>
           </section>
 
           <section className="brief-section">
@@ -250,9 +239,6 @@ export default function InvestigationBriefPanel({
                 </li>
               </ul>
             )}
-            <p className="brief-muted">
-              Observation only — pressure change is not labeled as a leak.
-            </p>
           </section>
 
           <section className="brief-section">
@@ -303,8 +289,7 @@ export default function InvestigationBriefPanel({
             <p>{BRIEF_PRODUCT_LABEL}</p>
             <p>{BRIEF_CAUSE_LABEL}</p>
             <p className="brief-muted">
-              Generated from live historical tables at the replay cursor. Evidence is
-              not a frozen courtroom exhibit.
+              Generated from live historical tables at the replay cursor.
             </p>
           </footer>
         </article>

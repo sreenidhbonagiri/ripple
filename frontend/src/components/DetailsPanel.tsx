@@ -64,7 +64,6 @@ export default function DetailsPanel({
       aria-label="Selected network details"
     >
       <header className="details-header">
-        <p className="eyebrow">Historical benchmark replay</p>
         <h2>
           {selection
             ? selection.kind === "node"
@@ -95,8 +94,8 @@ export default function DetailsPanel({
             </>
           )}
           <p className="hint">
-            Select a pressure sensor to inspect coordinated supply, pump
-            transfer, and tank context. Measurements do not confirm a leak.
+            Select a pressure sensor to inspect supply, pump transfer, and tank
+            context alongside the map.
           </p>
         </div>
       )}

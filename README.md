@@ -4,14 +4,7 @@
 
 Historical water-network investigation workspace for the official [BattLeDIM](https://battledim.ucy.ac.cy/) L-Town benchmark ([Zenodo 4017659](https://zenodo.org/records/4017659)).
 
-**Problem.** Water utilities and researchers need a way to replay historical SCADA, inspect synchronized sensor evidence, and share findings without treating model scores as confirmed leaks or pipe localizations.
-
-**Product boundaries**
-
-- Historical benchmark replay — not live utility monitoring
-- Pressure anomalies and experimental warnings are **not** confirmed leaks
-- No predicted leak-pipe rankings / no localization claims
-- Observations after the replay cursor are never exposed
+Replay SCADA, review experimental warnings, inspect synchronized sensor evidence, and share an investigation brief.
 
 **Sponsor targets:** Best Use of Tiger Data (primary); Vultr deployment (secondary).
 
@@ -20,7 +13,8 @@ Historical water-network investigation workspace for the official [BattLeDIM](ht
 - Network map + cursor-safe SCADA replay (5-minute BattLeDIM clock)
 - Selected-sensor pressure chart, 30-minute observation deltas, inflow / pump / tank context
 - Hourly pressure history from Timescale continuous aggregates (`readings_15m`)
-- **Experimental Method M** anomaly warning (frozen **five-minute** scoring, January 2019 serving artifact) — investigation support only
+- **Experimental warning** (frozen five-minute Method M scoring, January 2019 serving artifact)
+- Retrospective **benchmark answers** view (explicit evaluation only; ground truth not mixed into replay)
 - Save / reopen investigation **metadata** (public notes; share via `/?i=<id>`)
 - Tiger Data evidence panel (live size/counts + **saved** January raw-vs-CAGG timings; lazy; no re-bench on load)
 
@@ -33,18 +27,21 @@ Historical water-network investigation workspace for the official [BattLeDIM](ht
 | Tiger Data | Hypertables for raw SCADA; continuous aggregates for historical context; relational metadata for saved investigations; optional frozen Method M evidence (`003`) |
 | Deploy | Docker Compose on Vultr; Caddy TLS at `followtheripple.us` |
 
-## Evaluation limitations (Method M)
+## Method and evaluation (Method M)
 
-Diagnostic **2019** research evaluation of frozen five-minute Method M (not a blind holdout; not real-utility validation):
+Diagnostic **2019** research evaluation of frozen five-minute Method M. **2019 was previously examined — not a blind holdout.** Not real-utility validation.
 
 | Metric | Value |
 |--------|------:|
-| Primary abrupt recall (excl. development example **p523**) | **2/8** |
-| Inclusive abrupt recall | **3/9** |
+| Abrupt recall (excl. development example **p523**) | **2/8** |
+| Abrupt recall (inclusive) | **3/9** |
 | Incipient recall | **0/10** |
 | Unmatched notifications (2019) | **6** |
+| Validated localization | **None** |
 
-Same detected abrupt events as hourly Method M on shared hits, with earlier notifies where the five-minute grid allows. **No localization or operational-savings claims.**
+Verified walkthrough example (Jan 24 abrupt **p827**): frozen notify and official labeled onset share the **same five-minute timestamp** (`2019-01-24 18:30:00`); delay 0 steps. That example is a matched diagnostic case — **not** a claim of overall detection accuracy. Contributing sensors are investigation evidence, not predicted leak pipes. No measured water-savings claims.
+
+Same detected abrupt events as hourly Method M on shared hits, with earlier notifies where the five-minute grid allows. Full provenance: `artifacts/method_m_benchmark_outcome_v1/`.
 
 ## Demo scripts
 

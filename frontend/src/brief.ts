@@ -59,10 +59,10 @@ export function pressureDeltaLine(cmp: PressureComparison | null): string {
 }
 
 export const BRIEF_PRODUCT_LABEL =
-  "Historical BattLeDIM L-Town benchmark replay — not live utility monitoring.";
+  "Ripple investigation brief — BattLeDIM L-Town historical benchmark.";
 
 export const BRIEF_CAUSE_LABEL =
-  "Cause and location: unconfirmed. This brief does not identify a leak or pipe.";
+  "Cause and location remain open for review.";
 
 export const BRIEF_CONTEXT_CHANNELS = [
   {

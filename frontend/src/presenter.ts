@@ -1,13 +1,11 @@
 /**
  * Jan 12 illustrative investigation preset (Milestone 5).
  * Chosen after verifying fresh 30-minute pressure deltas in the window.
- * Observation walkthrough only — not a detected leak.
  */
 
 export const PRESENTER = {
   label: "Illustrative investigation — Jan 12 afternoon",
-  disclaimer:
-    "Selected historical pressure pattern for walkthrough only. Not a detected leak, alert, or localization result.",
+  disclaimer: "Jan 12 afternoon pressure walkthrough.",
   windowStart: "2019-01-12 14:00:00",
   windowEnd: "2019-01-12 17:00:00",
   illustrativeSensorId: "n54",
@@ -23,7 +21,7 @@ export const PRESENTER = {
       label: "Illustrative Δ 15:00",
       cursor: "2019-01-12 15:00:00",
       selectSensor: true,
-      note: "n54 · largest fresh 30-min pressure drop in this window (observation only)",
+      note: "n54 · largest fresh 30-min pressure drop in this window",
     },
     {
       id: "midpoint",
@@ -58,10 +56,9 @@ export const WARNING_DEMOS: Record<
 > = {
   jan24_1830: {
     id: "jan24_1830",
-    label: "Experimental warning — 24 Jan 18:30",
+    label: "Warning — 24 Jan 18:30",
     buttonLabel: "Warning 18:30 (24 Jan)",
-    disclaimer:
-      "Frozen experimental warning at 24 Jan 18:30 for walkthrough only. Experimental — not a confirmed leak. Contributing sensors are evidence to inspect, not leak locations.",
+    disclaimer: "24 Jan 18:30 experimental warning demo.",
     windowStart: "2019-01-24 16:30:00",
     windowEnd: "2019-01-24 20:30:00",
     cursor: "2019-01-24 18:30:00",
@@ -72,10 +69,9 @@ export const WARNING_DEMOS: Record<
   },
   jan15_2300: {
     id: "jan15_2300",
-    label: "Experimental warning — 15 Jan 23:00",
+    label: "Warning — 15 Jan 23:00",
     buttonLabel: "Warning 23:00 (15 Jan)",
-    disclaimer:
-      "Frozen experimental warning at 15 Jan 23:00 for walkthrough only. Experimental — not a confirmed leak. Contributing sensors are evidence to inspect, not leak locations.",
+    disclaimer: "15 Jan 23:00 experimental warning demo.",
     windowStart: "2019-01-15 21:00:00",
     windowEnd: "2019-01-16 01:00:00",
     cursor: "2019-01-15 23:00:00",

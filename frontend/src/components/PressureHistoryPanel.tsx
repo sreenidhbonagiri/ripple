@@ -174,10 +174,9 @@ export default function PressureHistoryPanel({ sensor, cursor }: Props) {
           )}
           <p className="history-footnote">
             Distinct from the detailed 5-minute replay chart. Built from
-            precomputed historical summaries (continuous aggregates). Incomplete
-            hours are included and labeled in the API; empty hours are omitted.
-            Min/max are observed, not limits. Observation only — not a confirmed
-            leak.
+            precomputed historical summaries. Incomplete hours are included and
+            labeled; empty hours are omitted. Min/max are observed values, not
+            operating limits.
           </p>
         </>
       )}

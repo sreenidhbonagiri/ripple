@@ -52,7 +52,7 @@ export const CONTEXT = {
 } as const;
 
 export const DISCLAIMER =
-  "Compare selected pressure with supply, internal pump transfer, and tank level at the same cursor. Historical benchmark evidence — measurements do not confirm a leak or location.";
+  "Compare selected pressure with supply, pump transfer, and tank level at the same cursor.";
 
 export interface ReadingPoint {
   ts: string;

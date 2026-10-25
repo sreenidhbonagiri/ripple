@@ -2,7 +2,6 @@ import { PRESENTER, WARNING_DEMOS, type WarningDemoId } from "../presenter";
 
 interface Props {
   label: string;
-  activeDisclaimer: string;
   cursor: string;
   windowStart: string;
   windowEnd: string;
@@ -30,7 +29,6 @@ const SECONDARY_WARNING = WARNING_DEMOS.jan15_2300;
 
 export default function ReplayControls({
   label,
-  activeDisclaimer,
   cursor,
   windowStart,
   windowEnd,
@@ -56,20 +54,16 @@ export default function ReplayControls({
         <p className="replay-label">{label}</p>
         <span className="replay-cursor">{cursor}</span>
       </div>
-      <p className="presenter-disclaimer" role="note">
-        {activeDisclaimer}
-      </p>
       <div
         className="presenter-bookmarks warning-demo-bookmarks"
         role="group"
-        aria-label="Experimental warning demo"
+        aria-label="Warning demos"
       >
-        <span className="presenter-bookmarks-label">Experimental warning demo</span>
+        <span className="presenter-bookmarks-label">Warning demos</span>
         <button
           type="button"
           className="btn btn-accent"
           onClick={() => onWarningDemoBookmark(PRIMARY_WARNING.id)}
-          title={PRIMARY_WARNING.disclaimer}
         >
           {PRIMARY_WARNING.buttonLabel}
         </button>
@@ -77,19 +71,15 @@ export default function ReplayControls({
           type="button"
           className="btn btn-ghost-dark"
           onClick={() => onWarningDemoBookmark(SECONDARY_WARNING.id)}
-          title={SECONDARY_WARNING.disclaimer}
         >
           {SECONDARY_WARNING.buttonLabel}
         </button>
-        <span className="warning-demo-hint">
-          Five-minute · not a confirmed leak · not localization
-        </span>
         {onCheckBenchmarkOutcome && (
           <button
             type="button"
             className="btn btn-ghost-dark"
             onClick={onCheckBenchmarkOutcome}
-            title="Leave replay for retrospective benchmark answers (evaluation only)"
+            title="Open retrospective benchmark answers"
           >
             Check benchmark outcome
           </button>

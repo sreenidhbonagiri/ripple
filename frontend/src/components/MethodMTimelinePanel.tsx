@@ -310,15 +310,9 @@ export default function MethodMTimelinePanel({
       aria-label="Experimental warning timeline"
     >
       <header className="method-m-timeline-header">
-        <p className="eyebrow">{timeline?.replay_label ?? "Historical benchmark replay"}</p>
-        <h2 className="method-m-timeline-title">Experimental anomaly score</h2>
+        <h2 className="method-m-timeline-title">Anomaly score timeline</h2>
         <p className="tiger-inline-note">
-          Warning history queried from Tiger Data.
-        </p>
-        <p className="method-m-disclaimer" role="note">
-          Preceding 24 hours ending at the replay cursor. Higher score means
-          stronger deviation from the reference pattern — not a leak probability.
-          Notification markers are frozen five-minute stamps ≤ cursor only.
+          Preceding 24 hours from Tiger Data, ending at the replay cursor.
         </p>
         <p className="method-m-timeline-cursor">
           Selected cursor {normalizeNaive(cursor)}
@@ -353,7 +347,7 @@ export default function MethodMTimelinePanel({
               ? ` · ${timeline.missingness.null_scores} missing scores`
               : ""}
           </p>
-          <p className="chart-title">Experimental anomaly score (five-minute)</p>
+          <p className="chart-title">Anomaly score (five-minute)</p>
           {timeline.points.length === 0 ? (
             <p className="chart-status">{timeline.status}: no scores in window.</p>
           ) : (
@@ -404,10 +398,11 @@ export default function MethodMTimelinePanel({
             )}
 
           <details className="method-m-tech">
-            <summary>How it works · technical details</summary>
+            <summary>Method and evaluation</summary>
             <p className="channel-note">{timeline.score_interpretation}</p>
             <p className="channel-note">
-              Method M frozen scores from Tiger. {timeline.resolution_note}{" "}
+              Frozen Method M scores from Tiger. {timeline.resolution_note}{" "}
+              Notification markers are five-minute stamps at or before the cursor.
               Provenance run <code>{timeline.provenance.run_id}</code> ·
               serving_hours sha256{" "}
               <code>

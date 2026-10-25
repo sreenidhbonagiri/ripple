@@ -107,9 +107,8 @@ export default function InvestigationPanels({
       tabIndex={-1}
     >
       <div className="investigation-header">
-        <p className="replay-label">Historical benchmark replay</p>
         <h2 className="investigation-title">Compare conditions</h2>
-        <p className="investigation-disclaimer">{DISCLAIMER}</p>
+        <p className="channel-note">{DISCLAIMER}</p>
       </div>
 
       {channelsError && (
@@ -182,9 +181,6 @@ export default function InvestigationPanels({
                       {pressureComparison.currentTs
                         ? ` @ ${pressureComparison.currentTs}`
                         : ""}
-                    </p>
-                    <p className="channel-note">
-                      Observation only — not labeled as a leak.
                     </p>
                   </>
                 )}
