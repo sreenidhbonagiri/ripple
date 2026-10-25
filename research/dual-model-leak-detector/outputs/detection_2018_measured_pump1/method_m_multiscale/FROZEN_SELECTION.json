@@ -1,0 +1,14 @@
+{
+  "frozen_at_utc": "2026-10-25T05:56:15.450945+00:00",
+  "tau": 5.284,
+  "combined_raw_max_median": 1.97629848657301,
+  "tau_grid_registered": [
+    1.276,
+    2.15,
+    3.155,
+    5.284
+  ],
+  "baseline_timescale": "medium",
+  "baseline_method_m_tau": 4.347,
+  "acknowledgement": "2018 already examined; diagnostic only. No 2019. \u03c4 frozen on DEV before DIAG."
+}

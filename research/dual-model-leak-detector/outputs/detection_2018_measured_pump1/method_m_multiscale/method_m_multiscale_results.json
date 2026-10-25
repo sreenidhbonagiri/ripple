@@ -1,0 +1,861 @@
+{
+  "generated_at_utc": "2026-10-25T05:56:16.144351+00:00",
+  "protocol": "outputs/detection_2018_measured_pump1/method_m_multiscale/METHOD_M_MULTISCALE_PROTOCOL.md",
+  "acknowledgement": "2018 events have already been examined; measured findings are diagnostic. No 2019 evaluation or tuning.",
+  "frozen_calibration_sha256": "5fab3acbf13f018d321b2d6af8c1522276dd2190efbc0a88b426f8755540c921",
+  "pump_boundary": "measured_pump1",
+  "baseline": {
+    "timescale": "medium",
+    "ref_hours": 24,
+    "reproduction_max_abs_diff_vs_archived_score_M": 0.0,
+    "reproduction_ok": true,
+    "raw_max_median": 1.843999066008619,
+    "frozen_tau": 4.347,
+    "scale_meta": {
+      "n_scale_hours": 311,
+      "n_sensors_kept": 33,
+      "sensors_dropped": [],
+      "raw_max_median": 1.843999066008619,
+      "raw_max_p90": 2.8087745008441076,
+      "n_raw_max": 311
+    },
+    "dev": {
+      "abrupt_6h_recall": 1.0,
+      "unmatched_per_week": 0.20115343936461055,
+      "occupancy": 0.02753831417624521,
+      "mean_delay_hours": 1.5277777777777777,
+      "n_notifications": 8,
+      "events_detail": [
+        {
+          "pipe": "p673",
+          "onset": "2018-03-05 15:45:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 0.25,
+          "matched_notify": "2018-03-05 16:00:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 6.532246161855244,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 1
+        },
+        {
+          "pipe": "p538",
+          "onset": "2018-05-18 08:35:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 3.4166666666666665,
+          "matched_notify": "2018-05-18 12:00:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 4.853290243682559,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 1
+        },
+        {
+          "pipe": "p866",
+          "onset": "2018-06-01 09:05:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 0.9166666666666666,
+          "matched_notify": "2018-06-01 10:00:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 6.450353429206096,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 1
+        }
+      ],
+      "incipient": {
+        "n_eligible": 5,
+        "n_hit": 0,
+        "recall": 0.0,
+        "mean_delay_hours": null,
+        "events": [
+          {
+            "pipe": "p461",
+            "onset": "2018-01-23 04:25:00",
+            "peak": "2018-03-27 20:35:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.2911161970285654
+          },
+          {
+            "pipe": "p232",
+            "onset": "2018-01-31 02:35:00",
+            "peak": "2018-02-03 16:05:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.5803183886431822
+          },
+          {
+            "pipe": "p427",
+            "onset": "2018-02-13 08:25:00",
+            "peak": "2018-05-14 19:25:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.004738851080626
+          },
+          {
+            "pipe": "p628",
+            "onset": "2018-05-02 14:55:00",
+            "peak": "2018-05-16 08:00:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.0633322873971343
+          },
+          {
+            "pipe": "p31",
+            "onset": "2018-06-28 10:35:00",
+            "peak": "2018-08-03 02:45:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.23269807077919
+          }
+        ],
+        "note": "Incipient reported separately; not used for DEV \u03c4 selection gates."
+      },
+      "timing_nulls": {
+        "n_nulls": 50,
+        "true_recall": 1.0,
+        "null_recall_mean": 0.04,
+        "null_recall_std": 0.10832051206181283,
+        "true_percentile_vs_null": 1.0
+      }
+    }
+  },
+  "timescales_registered": {
+    "short": 12,
+    "medium": 24,
+    "long": 72
+  },
+  "combined_meta": {
+    "combined_raw_max_median": 1.97629848657301,
+    "n_scale_raw": 311,
+    "timescales": {
+      "short": {
+        "ref_hours": 12,
+        "n_scale_hours": 311,
+        "n_sensors_kept": 33,
+        "sensors_dropped": [],
+        "raw_max_median": 1.8019292224820354,
+        "n_raw_max": 311
+      },
+      "medium": {
+        "ref_hours": 24,
+        "n_scale_hours": 311,
+        "n_sensors_kept": 33,
+        "sensors_dropped": [],
+        "raw_max_median": 1.843999066008619,
+        "n_raw_max": 311
+      },
+      "long": {
+        "ref_hours": 72,
+        "n_scale_hours": 311,
+        "n_sensors_kept": 33,
+        "sensors_dropped": [],
+        "raw_max_median": 1.8670417659199792,
+        "n_raw_max": 311
+      }
+    },
+    "scale_period_winner_counts": {
+      "short": 115,
+      "medium": 86,
+      "long": 110
+    },
+    "calibration": "joint_max_abs_z_over_sensor_and_timescale_div_scale_median",
+    "not_independent_union": true
+  },
+  "combined_raw_max_median": 1.97629848657301,
+  "tau_grid_registered": [
+    1.276,
+    2.15,
+    3.155,
+    5.284
+  ],
+  "gates": {
+    "abrupt_6h_recall_min": 0.6666666666666666,
+    "unmatched_per_week_max": 3.0,
+    "occupancy_max": 0.2,
+    "incipient_not_used_for_selection": true
+  },
+  "dev_by_tau": {
+    "1.276": {
+      "tau": 1.276,
+      "abrupt_6h_recall": 0.0,
+      "unmatched_per_week": 5.270220111352796,
+      "occupancy": 0.7679597701149425,
+      "n_hit": 0,
+      "n_eligible_abrupt": 3,
+      "n_notifications": 131,
+      "mean_delay_hours": null,
+      "gate_pass": false,
+      "events_detail": [
+        {
+          "pipe": "p673",
+          "onset": "2018-03-05 15:45:00",
+          "period": "DEV",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": true,
+          "credit_max_score": 6.105674100459567,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 0
+        },
+        {
+          "pipe": "p538",
+          "onset": "2018-05-18 08:35:00",
+          "period": "DEV",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": true,
+          "credit_max_score": 4.868353700208772,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 0
+        },
+        {
+          "pipe": "p866",
+          "onset": "2018-06-01 09:05:00",
+          "period": "DEV",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": true,
+          "credit_max_score": 6.1995686576056785,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 0
+        }
+      ],
+      "incipient": {
+        "n_eligible": 5,
+        "n_hit": 1,
+        "recall": 0.2,
+        "mean_delay_hours": 1.4166666666666667,
+        "events": [
+          {
+            "pipe": "p461",
+            "onset": "2018-01-23 04:25:00",
+            "peak": "2018-03-27 20:35:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.3661365354274524
+          },
+          {
+            "pipe": "p232",
+            "onset": "2018-01-31 02:35:00",
+            "peak": "2018-02-03 16:05:00",
+            "hit": true,
+            "delay_hours": 1.4166666666666667,
+            "matched_notify": "2018-01-31 04:00:00",
+            "credit_max_score": 1.5536872765809164
+          },
+          {
+            "pipe": "p427",
+            "onset": "2018-02-13 08:25:00",
+            "peak": "2018-05-14 19:25:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.074038973808832
+          },
+          {
+            "pipe": "p628",
+            "onset": "2018-05-02 14:55:00",
+            "peak": "2018-05-16 08:00:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 0.995657621082715
+          },
+          {
+            "pipe": "p31",
+            "onset": "2018-06-28 10:35:00",
+            "peak": "2018-08-03 02:45:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.1733937973099346
+          }
+        ],
+        "note": "Incipient reported separately; not used for DEV \u03c4 selection gates."
+      },
+      "timing_nulls": {
+        "n_nulls": 50,
+        "true_recall": 0.0,
+        "null_recall_mean": 0.10666666666666666,
+        "null_recall_std": 0.18184242262647807,
+        "true_percentile_vs_null": 0.72
+      }
+    },
+    "2.15": {
+      "tau": 2.15,
+      "abrupt_6h_recall": 1.0,
+      "unmatched_per_week": 2.8161481511045476,
+      "occupancy": 0.1736111111111111,
+      "n_hit": 3,
+      "n_eligible_abrupt": 3,
+      "n_notifications": 73,
+      "mean_delay_hours": 0.5277777777777778,
+      "gate_pass": true,
+      "events_detail": [
+        {
+          "pipe": "p673",
+          "onset": "2018-03-05 15:45:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 0.25,
+          "matched_notify": "2018-03-05 16:00:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 6.105674100459567,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 1
+        },
+        {
+          "pipe": "p538",
+          "onset": "2018-05-18 08:35:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 0.4166666666666667,
+          "matched_notify": "2018-05-18 09:00:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 4.868353700208772,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 1
+        },
+        {
+          "pipe": "p866",
+          "onset": "2018-06-01 09:05:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 0.9166666666666666,
+          "matched_notify": "2018-06-01 10:00:00",
+          "pre_onset_blocked": true,
+          "credit_max_score": 6.1995686576056785,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 1
+        }
+      ],
+      "incipient": {
+        "n_eligible": 5,
+        "n_hit": 0,
+        "recall": 0.0,
+        "mean_delay_hours": null,
+        "events": [
+          {
+            "pipe": "p461",
+            "onset": "2018-01-23 04:25:00",
+            "peak": "2018-03-27 20:35:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.3661365354274524
+          },
+          {
+            "pipe": "p232",
+            "onset": "2018-01-31 02:35:00",
+            "peak": "2018-02-03 16:05:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.5536872765809164
+          },
+          {
+            "pipe": "p427",
+            "onset": "2018-02-13 08:25:00",
+            "peak": "2018-05-14 19:25:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.074038973808832
+          },
+          {
+            "pipe": "p628",
+            "onset": "2018-05-02 14:55:00",
+            "peak": "2018-05-16 08:00:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 0.995657621082715
+          },
+          {
+            "pipe": "p31",
+            "onset": "2018-06-28 10:35:00",
+            "peak": "2018-08-03 02:45:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.1733937973099346
+          }
+        ],
+        "note": "Incipient reported separately; not used for DEV \u03c4 selection gates."
+      },
+      "timing_nulls": {
+        "n_nulls": 50,
+        "true_recall": 1.0,
+        "null_recall_mean": 0.08666666666666666,
+        "null_recall_std": 0.16069294390925265,
+        "true_percentile_vs_null": 1.0
+      }
+    },
+    "3.155": {
+      "tau": 3.155,
+      "abrupt_6h_recall": 1.0,
+      "unmatched_per_week": 0.2816148151104548,
+      "occupancy": 0.08979885057471264,
+      "n_hit": 3,
+      "n_eligible_abrupt": 3,
+      "n_notifications": 10,
+      "mean_delay_hours": 0.5277777777777778,
+      "gate_pass": true,
+      "events_detail": [
+        {
+          "pipe": "p673",
+          "onset": "2018-03-05 15:45:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 0.25,
+          "matched_notify": "2018-03-05 16:00:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 6.105674100459567,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 1
+        },
+        {
+          "pipe": "p538",
+          "onset": "2018-05-18 08:35:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 0.4166666666666667,
+          "matched_notify": "2018-05-18 09:00:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 4.868353700208772,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 1
+        },
+        {
+          "pipe": "p866",
+          "onset": "2018-06-01 09:05:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 0.9166666666666666,
+          "matched_notify": "2018-06-01 10:00:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 6.1995686576056785,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 1
+        }
+      ],
+      "incipient": {
+        "n_eligible": 5,
+        "n_hit": 0,
+        "recall": 0.0,
+        "mean_delay_hours": null,
+        "events": [
+          {
+            "pipe": "p461",
+            "onset": "2018-01-23 04:25:00",
+            "peak": "2018-03-27 20:35:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.3661365354274524
+          },
+          {
+            "pipe": "p232",
+            "onset": "2018-01-31 02:35:00",
+            "peak": "2018-02-03 16:05:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.5536872765809164
+          },
+          {
+            "pipe": "p427",
+            "onset": "2018-02-13 08:25:00",
+            "peak": "2018-05-14 19:25:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.074038973808832
+          },
+          {
+            "pipe": "p628",
+            "onset": "2018-05-02 14:55:00",
+            "peak": "2018-05-16 08:00:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 0.995657621082715
+          },
+          {
+            "pipe": "p31",
+            "onset": "2018-06-28 10:35:00",
+            "peak": "2018-08-03 02:45:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.1733937973099346
+          }
+        ],
+        "note": "Incipient reported separately; not used for DEV \u03c4 selection gates."
+      },
+      "timing_nulls": {
+        "n_nulls": 50,
+        "true_recall": 1.0,
+        "null_recall_mean": 0.04666666666666666,
+        "null_recall_std": 0.11566234381931646,
+        "true_percentile_vs_null": 1.0
+      }
+    },
+    "5.284": {
+      "tau": 5.284,
+      "abrupt_6h_recall": 0.6666666666666666,
+      "unmatched_per_week": 0.12069206361876633,
+      "occupancy": 0.04310344827586207,
+      "n_hit": 2,
+      "n_eligible_abrupt": 3,
+      "n_notifications": 5,
+      "mean_delay_hours": 0.5833333333333333,
+      "gate_pass": true,
+      "events_detail": [
+        {
+          "pipe": "p673",
+          "onset": "2018-03-05 15:45:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 0.25,
+          "matched_notify": "2018-03-05 16:00:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 6.105674100459567,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 1
+        },
+        {
+          "pipe": "p538",
+          "onset": "2018-05-18 08:35:00",
+          "period": "DEV",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": false,
+          "credit_max_score": 4.868353700208772,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 0
+        },
+        {
+          "pipe": "p866",
+          "onset": "2018-06-01 09:05:00",
+          "period": "DEV",
+          "hit": true,
+          "delay_hours": 0.9166666666666666,
+          "matched_notify": "2018-06-01 10:00:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 6.1995686576056785,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 1
+        }
+      ],
+      "incipient": {
+        "n_eligible": 5,
+        "n_hit": 0,
+        "recall": 0.0,
+        "mean_delay_hours": null,
+        "events": [
+          {
+            "pipe": "p461",
+            "onset": "2018-01-23 04:25:00",
+            "peak": "2018-03-27 20:35:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.3661365354274524
+          },
+          {
+            "pipe": "p232",
+            "onset": "2018-01-31 02:35:00",
+            "peak": "2018-02-03 16:05:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.5536872765809164
+          },
+          {
+            "pipe": "p427",
+            "onset": "2018-02-13 08:25:00",
+            "peak": "2018-05-14 19:25:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.074038973808832
+          },
+          {
+            "pipe": "p628",
+            "onset": "2018-05-02 14:55:00",
+            "peak": "2018-05-16 08:00:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 0.995657621082715
+          },
+          {
+            "pipe": "p31",
+            "onset": "2018-06-28 10:35:00",
+            "peak": "2018-08-03 02:45:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.1733937973099346
+          }
+        ],
+        "note": "Incipient reported separately; not used for DEV \u03c4 selection gates."
+      },
+      "timing_nulls": {
+        "n_nulls": 50,
+        "true_recall": 0.6666666666666666,
+        "null_recall_mean": 0.013333333333333332,
+        "null_recall_std": 0.06531972647421808,
+        "true_percentile_vs_null": 1.0
+      }
+    }
+  },
+  "selection": {
+    "selection_passed": true,
+    "tau": 5.284,
+    "reason": "largest_tau_passing_recall_burden_occupancy"
+  },
+  "comparison_vs_baseline": {
+    "dev": {
+      "gains": [],
+      "regressions": [
+        {
+          "pipe": "p538",
+          "baseline_hit": true,
+          "multiscale_hit": false,
+          "baseline_delay": 3.4166666666666665,
+          "multiscale_delay": null
+        }
+      ],
+      "both_hit": [
+        {
+          "pipe": "p673",
+          "baseline_hit": true,
+          "multiscale_hit": true,
+          "baseline_delay": 0.25,
+          "multiscale_delay": 0.25
+        },
+        {
+          "pipe": "p866",
+          "baseline_hit": true,
+          "multiscale_hit": true,
+          "baseline_delay": 0.9166666666666666,
+          "multiscale_delay": 0.9166666666666666
+        }
+      ],
+      "both_miss": []
+    },
+    "dev_burden": {
+      "baseline_unmatched_per_week": 0.20115343936461055,
+      "multiscale_unmatched_per_week": 0.12069206361876633,
+      "baseline_occupancy": 0.02753831417624521,
+      "multiscale_occupancy": 0.04310344827586207,
+      "baseline_mean_delay": 1.5277777777777777,
+      "multiscale_mean_delay": 0.5833333333333333
+    }
+  },
+  "diag": {
+    "tau": 5.284,
+    "abrupt_6h_recall": 0.3333333333333333,
+    "mean_delay_hours": 0.4166666666666667,
+    "unmatched_per_week": 0.0,
+    "occupancy": 0.00973731884057971,
+    "n_hit": 1,
+    "n_eligible_abrupt": 3,
+    "n_notifications": 1,
+    "timing_nulls": {
+      "n_nulls": 200,
+      "true_recall": 0.3333333333333333,
+      "null_recall_mean": 0.006666666666666666,
+      "null_recall_std": 0.04666666666666666,
+      "true_percentile_vs_null": 1.0
+    },
+    "events_detail": [
+      {
+        "pipe": "p183",
+        "onset": "2018-08-07 02:35:00",
+        "period": "DIAG",
+        "hit": false,
+        "delay_hours": null,
+        "matched_notify": null,
+        "pre_onset_blocked": false,
+        "credit_max_score": 2.475889686615534,
+        "credit_n_finite": 6,
+        "n_credit_notifies": 0
+      },
+      {
+        "pipe": "p158",
+        "onset": "2018-10-06 02:35:00",
+        "period": "DIAG",
+        "hit": true,
+        "delay_hours": 0.4166666666666667,
+        "matched_notify": "2018-10-06 03:00:00",
+        "pre_onset_blocked": false,
+        "credit_max_score": 5.528763474260915,
+        "credit_n_finite": 6,
+        "n_credit_notifies": 1
+      },
+      {
+        "pipe": "p369",
+        "onset": "2018-10-26 02:05:00",
+        "period": "DIAG",
+        "hit": false,
+        "delay_hours": null,
+        "matched_notify": null,
+        "pre_onset_blocked": false,
+        "credit_max_score": 2.2017940660998936,
+        "credit_n_finite": 6,
+        "n_credit_notifies": 0
+      }
+    ],
+    "incipient": {
+      "n_eligible": 2,
+      "n_hit": 0,
+      "recall": 0.0,
+      "mean_delay_hours": null,
+      "events": [
+        {
+          "pipe": "p810",
+          "onset": "2018-07-28 03:05:00",
+          "peak": "2018-11-02 22:25:00",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "credit_max_score": 1.560662648912744
+        },
+        {
+          "pipe": "p654",
+          "onset": "2018-07-05 03:40:00",
+          "peak": "2018-09-16 21:05:00",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "credit_max_score": 1.1017280230093285
+        }
+      ],
+      "note": "Incipient reported separately; not used for DEV \u03c4 selection gates."
+    },
+    "baseline_diag": {
+      "tau": 4.347,
+      "abrupt_6h_recall": 0.3333333333333333,
+      "mean_delay_hours": 0.4166666666666667,
+      "unmatched_per_week": 0.03804419618425771,
+      "occupancy": 0.007699275362318841,
+      "timing_nulls": {
+        "n_nulls": 200,
+        "true_recall": 0.3333333333333333,
+        "null_recall_mean": 0.006666666666666666,
+        "null_recall_std": 0.04666666666666666,
+        "true_percentile_vs_null": 1.0
+      },
+      "events_detail": [
+        {
+          "pipe": "p183",
+          "onset": "2018-08-07 02:35:00",
+          "period": "DIAG",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": false,
+          "credit_max_score": 2.496372231772623,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 0
+        },
+        {
+          "pipe": "p158",
+          "onset": "2018-10-06 02:35:00",
+          "period": "DIAG",
+          "hit": true,
+          "delay_hours": 0.4166666666666667,
+          "matched_notify": "2018-10-06 03:00:00",
+          "pre_onset_blocked": false,
+          "credit_max_score": 5.843872651815834,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 1
+        },
+        {
+          "pipe": "p369",
+          "onset": "2018-10-26 02:05:00",
+          "period": "DIAG",
+          "hit": false,
+          "delay_hours": null,
+          "matched_notify": null,
+          "pre_onset_blocked": false,
+          "credit_max_score": 2.359763820269915,
+          "credit_n_finite": 6,
+          "n_credit_notifies": 0
+        }
+      ],
+      "incipient": {
+        "n_eligible": 2,
+        "n_hit": 0,
+        "recall": 0.0,
+        "mean_delay_hours": null,
+        "events": [
+          {
+            "pipe": "p810",
+            "onset": "2018-07-28 03:05:00",
+            "peak": "2018-11-02 22:25:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.493152073510403
+          },
+          {
+            "pipe": "p654",
+            "onset": "2018-07-05 03:40:00",
+            "peak": "2018-09-16 21:05:00",
+            "hit": false,
+            "delay_hours": null,
+            "matched_notify": null,
+            "credit_max_score": 1.02976857599825
+          }
+        ],
+        "note": "Incipient reported separately; not used for DEV \u03c4 selection gates."
+      }
+    },
+    "event_compare_abrupt": {
+      "gains": [],
+      "regressions": [],
+      "both_hit": [
+        {
+          "pipe": "p158",
+          "baseline_hit": true,
+          "multiscale_hit": true,
+          "baseline_delay": 0.4166666666666667,
+          "multiscale_delay": 0.4166666666666667
+        }
+      ],
+      "both_miss": [
+        {
+          "pipe": "p183",
+          "baseline_hit": false,
+          "multiscale_hit": false,
+          "baseline_delay": null,
+          "multiscale_delay": null
+        },
+        {
+          "pipe": "p369",
+          "baseline_hit": false,
+          "multiscale_hit": false,
+          "baseline_delay": null,
+          "multiscale_delay": null
+        }
+      ]
+    }
+  },
+  "diag_skipped_reason": null
+}
