@@ -225,6 +225,10 @@ export interface MethodMWarningResponse {
   episode_end_ts: string | null;
   peak_score_observed_to_cursor?: number | null;
   notes: string[];
+  /** Serving backend: file artifact or Tiger tables. */
+  store?: "file" | "tiger" | string;
+  /** Present when store=tiger — frozen method_m_runs.run_id. */
+  run_id?: string;
 }
 
 export interface TigerEvidenceResponse {
@@ -240,6 +244,19 @@ export interface TigerEvidenceResponse {
     coverage_start: string | null;
     coverage_end: string | null;
     presenter_window: { start: string; end: string };
+    method_m_evidence?: {
+      tables_present: boolean;
+      runs?: Array<{
+        run_id: string;
+        n_score_stamps: number;
+        n_contributor_rows: number;
+        n_notifications: number;
+        serving_hours_sha256: string;
+      }>;
+      relation_bytes_approx?: number;
+      relation_pretty?: string;
+      note?: string;
+    } | null;
   };
   storage: {
     database_bytes: number;

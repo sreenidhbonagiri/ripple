@@ -13,6 +13,9 @@ services:
       DATABASE_URL: ${DATABASE_URL:?set DATABASE_URL in project-root .env}
       RIPPLE_STORAGE_LIMIT_BYTES: ${RIPPLE_STORAGE_LIMIT_BYTES:?set RIPPLE_STORAGE_LIMIT_BYTES}
       RIPPLE_INP_PATH: /app/data/L-TOWN.inp
+      # Method M: file (default/rollback) or tiger after migration 003 + January import.
+      RIPPLE_METHOD_M_STORE: ${RIPPLE_METHOD_M_STORE:-file}
+      RIPPLE_METHOD_M_RUN_ID: ${RIPPLE_METHOD_M_RUN_ID:-}
       # Browser talks to nginx on the published frontend port (same-origin /api).
       RIPPLE_CORS_ORIGINS: ${RIPPLE_CORS_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080}
     volumes:

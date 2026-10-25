@@ -153,6 +153,53 @@ export default function TigerEvidencePanel() {
                 </div>
               </dl>
 
+              {live?.method_m_evidence?.tables_present &&
+                (live.method_m_evidence.runs?.length ?? 0) > 0 && (
+                  <>
+                    <h3 className="details-section">
+                      Method M evidence (persisted)
+                    </h3>
+                    <p className="channel-note">
+                      {live.method_m_evidence.note ??
+                        "Frozen Method M detector outputs in Tiger (no labels, no raw SCADA duplication)."}
+                    </p>
+                    {(live.method_m_evidence.runs ?? []).map((run) => (
+                      <dl className="tiger-dl" key={run.run_id}>
+                        <div className="detail-row">
+                          <dt>Run</dt>
+                          <dd>
+                            <code>{run.run_id}</code>
+                          </dd>
+                        </div>
+                        <div className="detail-row">
+                          <dt>Score stamps</dt>
+                          <dd>{run.n_score_stamps.toLocaleString()}</dd>
+                        </div>
+                        <div className="detail-row">
+                          <dt>Contributor rows</dt>
+                          <dd>{run.n_contributor_rows.toLocaleString()}</dd>
+                        </div>
+                        <div className="detail-row">
+                          <dt>Notifications</dt>
+                          <dd>{run.n_notifications.toLocaleString()}</dd>
+                        </div>
+                        <div className="detail-row">
+                          <dt>serving_hours sha256</dt>
+                          <dd>
+                            <code>{run.serving_hours_sha256.slice(0, 16)}…</code>
+                          </dd>
+                        </div>
+                      </dl>
+                    ))}
+                    {live.method_m_evidence.relation_pretty ? (
+                      <p className="channel-note">
+                        Method M relation size ≈{" "}
+                        {live.method_m_evidence.relation_pretty}
+                      </p>
+                    ) : null}
+                  </>
+                )}
+
               <h3 className="details-section">January raw vs CAGG (saved)</h3>
               {!bench?.available && (
                 <p className="channel-note">

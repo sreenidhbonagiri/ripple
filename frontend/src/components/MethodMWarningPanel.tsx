@@ -220,7 +220,21 @@ export default function MethodMWarningPanel({
           <details className="method-m-tech">
             <summary>Technical methodology and version hashes</summary>
             <p className="channel-note">
-              Threshold τ = {fmtScore(data.threshold)} (recover{" "}
+              Serving store:{" "}
+              <strong>
+                {data.store === "tiger"
+                  ? "Tiger (database)"
+                  : data.store === "file"
+                    ? "file artifact"
+                    : (data.store ?? "file artifact")}
+              </strong>
+              {data.store === "tiger" && data.run_id ? (
+                <>
+                  {" "}
+                  · run <code>{data.run_id}</code>
+                </>
+              ) : null}
+              . Threshold τ = {fmtScore(data.threshold)} (recover{" "}
               {fmtScore(data.recover_threshold)}). Resolution{" "}
               {data.resolution === "five_minute" ? "five-minute" : data.resolution}.
               Calibration sha256{" "}
@@ -229,6 +243,13 @@ export default function MethodMWarningPanel({
                 <>
                   {" "}
                   · τ sha256 <code>{data.version_hashes.tau_sha256}</code>
+                </>
+              ) : null}
+              {data.version_hashes.serving_hours_sha256 ? (
+                <>
+                  {" "}
+                  · serving_hours sha256{" "}
+                  <code>{data.version_hashes.serving_hours_sha256}</code>
                 </>
               ) : null}
             </p>
