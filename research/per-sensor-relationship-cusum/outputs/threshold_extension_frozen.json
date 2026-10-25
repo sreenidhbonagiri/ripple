@@ -1,0 +1,42 @@
+{
+  "frozen_at": "2026-10-24T21:07:48-04:00",
+  "gate_met": true,
+  "selected_h": 2048.0,
+  "unmatched_cap": 3.0,
+  "abrupt_6h_min": 0.6666666666666666,
+  "abrupt_6h_hours": 6.0,
+  "h_grid": [
+    512.0,
+    1024.0,
+    2048.0,
+    4096.0,
+    8192.0,
+    16384.0
+  ],
+  "selection_rule": "among unmatched/wk<=3 AND abrupt_6h_recall>=2/3 AND not latched_suspect: max abrupt_6h recall, then min median 6h delay, then min unmatched/wk; else selection failure at this range",
+  "signal": "build_signals.z",
+  "input_hashes": {
+    "2018_SCADA_Pressures.csv": "7782d890a7195699be94ddc01cba392da7ca285908afff619065a9616e04dcae",
+    "2018_SCADA_Flows.csv": "7f7e8625c9d92b083ee079a54cffb9ef803876de1e35017c1da0455968daf3ff",
+    "2018_SCADA_Levels.csv": "a1fc5f0229448a620b6220f4d079b3162a255b3070acdce448608fbfc760903c"
+  },
+  "dev_z_sha256_16": "ad73a40a8a17d109",
+  "fixed": {
+    "train_days": 14,
+    "n_refs": 3,
+    "cusum_k": 0.5,
+    "recover_hours": 24.0,
+    "residual_recover_steps": 12,
+    "recovery_mode": "residual_le_k"
+  },
+  "dev_snapshot": {
+    "abrupt_6h_recall": 1.0,
+    "unmatched_per_week": 2.4751381215469612,
+    "median_delay_6h": 3.25,
+    "n_episodes": 72,
+    "union_occ_pct": 80.70525615435795
+  },
+  "numeric_gate_met_count": 1,
+  "latch_blocked_count": 0,
+  "note": ""
+}
