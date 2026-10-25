@@ -1,0 +1,27 @@
+{
+  "decision": "STOP_NO_ABLATION_FIT",
+  "reason": "Synthetic selection optimizes row-hit in 6h credit window; measured eval requires episode notification within 6h of onset. Labels are 6h post-onset credit blocks, not full ongoing leak presence; open-leak times after 6h are negative.",
+  "labels": {
+    "definition": "y(t)=1 iff t in [leak_start, leak_start+6h] on 5-minute grid",
+    "n_pos_steps_per_leak_scenario": 72,
+    "frac_leak_scenarios_with_open_but_negative_steps": 1.0,
+    "mean_open_but_negative_steps": 71.0
+  },
+  "synthetic_selection": {
+    "metric": "scenario_recall = fraction of leak scenarios with >=1 row q>=tau and y==1",
+    "uses_episode_notifier": false,
+    "uses_notify_delay_le_6h": false
+  },
+  "measured_objective": {
+    "metric": "abrupt_6h recall via episode notify_time in [onset, onset+6h]",
+    "uses_episode_notifier": true
+  },
+  "frozen_pilot_synthetic_test_disagreement": {
+    "n_leak_scenarios": 15,
+    "row_credit_scenario_recall": 0.8666666666666667,
+    "episode_notify_within_6h_recall": 0.2,
+    "n_disagree_row_vs_notify6h": 10
+  },
+  "ablation_status": "not_run",
+  "preserves_original_pilot": true
+}

@@ -19,6 +19,9 @@ Transfer-failure diagnosis (frozen pilot unchanged):
 .venv/bin/python research/supervised-event-detection/diagnose_transfer_failure.py
 ```
 
+Change-only ablation gate (target alignment) — **stopped before fit**:
+`outputs/TARGET_ALIGNMENT_BEFORE_ABLATION.md`
+
 ## Boundary
 
 - Preserves production and frozen FMR3C evaluations
