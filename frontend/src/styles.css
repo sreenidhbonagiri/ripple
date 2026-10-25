@@ -507,6 +507,31 @@ body {
   padding: 0.85rem 1rem 1rem;
 }
 
+.method-m-timeline {
+  background: rgba(242, 246, 244, 0.94);
+  box-shadow: var(--shadow);
+  padding: 0.85rem 1rem 1rem;
+  margin-top: 0.75rem;
+}
+
+.method-m-timeline-header {
+  margin-bottom: 0.35rem;
+}
+
+.method-m-timeline-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.method-m-timeline-cursor {
+  margin: 0.35rem 0 0;
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
 .method-m-header {
   margin-bottom: 0.35rem;
 }

@@ -231,6 +231,53 @@ export interface MethodMWarningResponse {
   run_id?: string;
 }
 
+export interface MethodMTimelinePoint {
+  ts: string;
+  score: number | null;
+  argmax_sensor_id: string | null;
+}
+
+export interface MethodMTimelineResponse {
+  method: string;
+  experimental: boolean;
+  store: string;
+  run_id: string;
+  source: string;
+  notification_source: string;
+  label: string;
+  replay_label: string;
+  disclaimer: string;
+  score_interpretation: string;
+  resolution: string;
+  resolution_note: string;
+  cursor: string;
+  window_start: string;
+  window_end: string;
+  timeline_hours: number;
+  threshold: number;
+  recover_threshold: number;
+  version_hashes: Record<string, string>;
+  coverage: { start: string; end: string; note?: string | null };
+  status: string;
+  points: MethodMTimelinePoint[];
+  notifications: { notify_ts: string }[];
+  missingness: {
+    expected_stamps_in_window: number;
+    expected_stamps_in_method_coverage: number;
+    returned_stamps: number;
+    null_scores: number;
+    coverage_complete: boolean;
+  };
+  provenance: {
+    serving_hours_sha256?: string | null;
+    serving_notifications_sha256?: string | null;
+    run_id: string;
+    store: string;
+  };
+  notes: string[];
+  predicted_leak_pipes: null;
+}
+
 export interface TigerEvidenceResponse {
   mode: string;
   reran_expensive_benchmark: boolean;

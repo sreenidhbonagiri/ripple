@@ -42,6 +42,7 @@ from app.schemas import (
     SensorReadingsResponse,
     SensorsResponse,
 )
+from app.method_m_timeline import present_method_m_timeline
 from app.method_m_warning import present_method_m_warning
 from app.tiger_evidence import present_tiger_evidence
 
@@ -253,6 +254,25 @@ def get_method_m_warning(
         raise HTTPException(status_code=503, detail=str(exc)) from None
     except Exception as exc:  # noqa: BLE001
         raise HTTPException(status_code=500, detail=str(exc)) from None
+
+
+@app.get("/api/experimental/method-m-timeline")
+def get_method_m_timeline(
+    at: str = Query(..., description="Replay cursor (naive timestamp)"),
+) -> dict:
+    """Preceding-24h Method M score timeline from Tiger (frozen scores only).
+
+    Requires RIPPLE_METHOD_M_STORE=tiger. Never substitutes the file artifact.
+    Returns scores and notify markers with ts <= floor(cursor); no episode peaks.
+    """
+    cursor = _parse_naive(at, "at")
+    try:
+        return present_method_m_timeline(cursor)
+    except RuntimeError as exc:
+        # Misconfigured store / missing run — surface, do not fall back to files.
+        raise HTTPException(status_code=503, detail=str(exc)) from None
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=sanitize_db_error(str(exc))) from None
 
 
 def _client_rate_key(request: Request) -> str:

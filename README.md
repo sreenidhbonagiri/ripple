@@ -140,6 +140,7 @@ At cursor `T`, each sensor uses the latest **raw** reading with `ts <= T` (never
 | `GET` | `/api/sensors/{id}/hourly-history?at=&days=` | Hourly pressure context from `readings_15m` (≤30 days before cursor; bucket_end ≤ cursor) |
 | `GET` | `/api/presenter/preset` | Jan 12 illustrative bookmarks (not alerts/leaks) |
 | `GET` | `/api/experimental/method-m-warning?at=` | Cursor-safe Experimental Method M warning (January five-minute artifact) |
+| `GET` | `/api/experimental/method-m-timeline?at=` | Preceding-24h Method M score timeline from Tiger (requires `RIPPLE_METHOD_M_STORE=tiger`) |
 | `GET` | `/api/tiger/evidence` | Live counts/size + **saved** January raw/CAGG artifact (lazy; no re-bench) |
 | `POST` | `/api/investigations` | Save investigation **metadata** (public notes; rate-limited; no edit/delete) |
 | `GET` | `/api/investigations/{id}` | Reopen saved metadata; measurements still come from time-series APIs |

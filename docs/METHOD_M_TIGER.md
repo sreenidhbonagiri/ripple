@@ -54,6 +54,15 @@ export RIPPLE_METHOD_M_STORE=tiger
 pytest backend/tests/test_method_m_tiger_parity.py -q
 ```
 
+## Score timeline API
+
+`GET /api/experimental/method-m-timeline?at=` returns the preceding 24 hours of
+frozen `method_m_scores` (and in-window notify markers) for the selected run,
+ending at `floor(cursor)` on the five-minute grid. Requires
+`RIPPLE_METHOD_M_STORE=tiger` — there is no file-artifact fallback.
+Aligned pressure uses existing `/api/sensors/{id}/readings` on the same window;
+30-day hourly CAGG history remains on `/api/sensors/{id}/hourly-history`.
+
 ## Useful SQL workflow
 
 For an active warning stamp, join contributors to sensor metadata; use existing

@@ -5,6 +5,7 @@ import type {
 import type {
   HealthResponse,
   HourlyHistoryResponse,
+  MethodMTimelineResponse,
   MethodMWarningResponse,
   NetworkResponse,
   ReplaySnapshotResponse,
@@ -110,6 +111,18 @@ export function fetchMethodMWarning(
   const q = new URLSearchParams({ at });
   return fetchJson<MethodMWarningResponse>(
     `/api/experimental/method-m-warning?${q}`,
+    signal,
+  );
+}
+
+/** Preceding-24h Method M score timeline (Tiger store required). */
+export function fetchMethodMTimeline(
+  at: string,
+  signal?: AbortSignal,
+): Promise<MethodMTimelineResponse> {
+  const q = new URLSearchParams({ at });
+  return fetchJson<MethodMTimelineResponse>(
+    `/api/experimental/method-m-timeline?${q}`,
     signal,
   );
 }

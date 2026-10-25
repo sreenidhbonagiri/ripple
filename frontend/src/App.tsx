@@ -14,6 +14,7 @@ import NetworkMap from "./components/NetworkMap";
 import ReplayControls from "./components/ReplayControls";
 import SaveInvestigationPanel from "./components/SaveInvestigationPanel";
 import InvestigationBriefPanel from "./components/InvestigationBriefPanel";
+import MethodMTimelinePanel from "./components/MethodMTimelinePanel";
 import MethodMWarningPanel from "./components/MethodMWarningPanel";
 import TigerEvidencePanel from "./components/TigerEvidencePanel";
 import {
@@ -703,6 +704,12 @@ export default function App() {
         onInspectSensor={inspectWarningSensor}
         selectedSensorId={selectedSensorId}
         onMatchedData={onMethodMMatchedData}
+      />
+
+      <MethodMTimelinePanel
+        cursor={cursor}
+        selectedSensorId={selectedSensorId}
+        onSeek={seekTo}
       />
 
       <InvestigationPanels
