@@ -9,8 +9,6 @@ Historical water-network investigation workspace for the official [BattLeDIM](ht
 - No predicted leak-pipe rankings
 - Observations after the replay cursor are never exposed
 
-**Sponsor targets:** Best Use of Tiger Data (primary); Vultr deployment (secondary).
-
 **Current scope:** Milestones 1–5 (network viewer, Tiger storage/replay, investigation evidence, historical pressure context, sponsor evidence / presenter readiness). No detection.
 
 ## Requirements
